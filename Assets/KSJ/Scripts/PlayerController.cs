@@ -6,10 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     public float jumpForce = 10f;
     private Rigidbody2D rb;
-    private bool isGrounded = false;
+    private Animator anim;
+    //나중에 플레이어 상태에 따라 적용되는 스킬들이 있을 수 있기 때문에 public으로 설정
+    public bool isGrounded = false;
+    public bool isSlide;
     private int jumpCount = 0;
     public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
-    private Animator anim;
 
     void Start()
     {
@@ -71,8 +73,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Slide(bool isSlide)
+    void Slide(bool _isSlide)
     {
-        anim.SetBool("isSlide", isSlide);
+        isSlide = _isSlide;
+        anim.SetBool("isSlide", _isSlide);
     }
 }
