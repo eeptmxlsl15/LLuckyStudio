@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,30 +12,39 @@ public class PlayerController : MonoBehaviour
     //나중에 플레이어 상태에 따라 적용되는 스킬들이 있을 수 있기 때문에 public으로 설정
     public bool isGrounded = false;
     public bool isSlide;
-    private int jumpCount = 0;
+    public int jumpCount = 0;
     public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
-
+    
+    public GameObject jumpButton;
+    public GameObject slideButton;
     void Start()
     {
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
+        AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, Jump);
+
+        EventTrigger slideTrigger = slideButton.GetComponent<EventTrigger>();
+        AddEventTrigger(slideTrigger, EventTriggerType.PointerDown, () => Slide(true));
+        AddEventTrigger(slideTrigger, EventTriggerType.PointerUp, () => Slide(false));
     }
 
     void Update()
     {
         // 모바일 터치 입력 처리
+        
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             Jump();
         }
-
+        
         // 키보드 입력 처리 (디버깅용)
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
-
+        
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Slide(true);
@@ -45,13 +56,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Jump()
+    public void Jump()
     {
         
         
         if (jumpCount < maxJumpCount)
         {
             // -1은 현재 애니메이터 레이어 , 0f는 애니메이션 시작 부분(0~1)
+            Debug.Log("점프");
             anim.Play("Jump", -1, 0f);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount++;
@@ -80,9 +92,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Slide(bool _isSlide)
+    public void Slide(bool _isSlide)
     {
         isSlide = _isSlide;
         anim.SetBool("isSlide", _isSlide);
+    }
+
+    private void AddEventTrigger(EventTrigger trigger, EventTriggerType eventType, UnityEngine.Events.UnityAction action)
+    {
+        EventTrigger.Entry entry = new EventTrigger.Entry { eventID = eventType };
+        entry.callback.AddListener((eventData) => action());
+        trigger.triggers.Add(entry);
     }
 }
