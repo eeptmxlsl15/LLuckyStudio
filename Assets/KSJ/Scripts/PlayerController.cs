@@ -47,11 +47,16 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        
+        
         if (jumpCount < maxJumpCount)
         {
+            // -1은 현재 애니메이터 레이어 , 0f는 애니메이션 시작 부분(0~1)
+            anim.Play("Jump", -1, 0f);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount++;
         }
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -68,6 +73,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
         {
+
+            
             anim.SetBool("isGround", false);
             isGrounded = false;
         }
