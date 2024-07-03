@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        
         EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
         AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, Jump);
 
@@ -34,16 +35,9 @@ public class PlayerController : MonoBehaviour
     {
         // 모바일 터치 입력 처리
         
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            Jump();
-        }
         
-        // 키보드 입력 처리 (디버깅용)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
+        
+        
         
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
