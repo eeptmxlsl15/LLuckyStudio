@@ -4,19 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public float jumpForce = 10f;
+    
     private Rigidbody2D rb;
     private Animator anim;
     //나중에 플레이어 상태에 따라 적용되는 스킬들이 있을 수 있기 때문에 public으로 설정
-    public bool isGrounded = false;
-    public bool isSlide;
-    public int jumpCount = 0;
-    public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
-    
     public GameObject jumpButton;
     public GameObject slideButton;
+
+    [Header("# Player Stat")]
+    public int health;
+    public int maxHealth=100;
+    public float speed = 10f;
+    public float jumpForce = 10f;
+    public int jumpCount = 0;
+    public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
+
+    [Header("# Player State")]
+    public bool isGrounded = false;
+    public bool isSlide;
+    
     void Start()
     {
 
@@ -33,21 +41,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // 모바일 터치 입력 처리
-        
-        
-        
-        
-        
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (isSlide)
         {
-            Slide(true);
+            rb.AddForce(Vector2.down, (ForceMode2D)ForceMode.Acceleration);
         }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            Slide(false);
-        }
+        
+        
+        
+        
     }
 
     public void Jump()
@@ -90,6 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         isSlide = _isSlide;
         anim.SetBool("isSlide", _isSlide);
+        
     }
 
     private void AddEventTrigger(EventTrigger trigger, EventTriggerType eventType, UnityEngine.Events.UnityAction action)
