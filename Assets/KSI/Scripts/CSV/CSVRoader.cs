@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CSVRoader : MonoBehaviour
 {
-	private void Start()
+	private void Awake()
 	{
 		List<Dictionary<string, object>> data = CSVReader.Read("Item");
 
@@ -25,14 +25,20 @@ public class CSVRoader : MonoBehaviour
 			}
 			else
 			{
-				Debug.LogError("Resourcesø° " + itemType + "¿Ã æ¯¿Ω");
+				Debug.LogError("ResourcesÏóê " + itemType + "Ïù¥ ÏóÜÏùå");
 			}
 
 			Debug.Log("ItemID " + data[i]["ItemID"] + " " +
-					  "ItemType " + data[i]["ItemType"] + " " +
-					  "Value " + data[i]["Value"] + " " +
-					  "PositionX " + data[i]["PositionX"] + " " +
-					  "PositionY " + data[i]["PositionY"] + " ");
+					"ItemType " + data[i]["ItemType"] + " " +
+					"Value " + data[i]["Value"] + " " +
+					"PositionX " + data[i]["PositionX"] + " " +
+					"PositionY " + data[i]["PositionY"] + " ");
 		}
+	}
+
+	public class Item
+	{
+		public string ItemType { get; set; }
+		public float Value { get; set; }
 	}
 }
