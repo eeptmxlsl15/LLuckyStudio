@@ -29,10 +29,16 @@ public class CSVRoader : MonoBehaviour
 			}
 
 			Debug.Log("ItemID " + data[i]["ItemID"] + " " +
-					  "ItemType " + data[i]["ItemType"] + " " +
-					  "Value " + data[i]["Value"] + " " +
-					  "PositionX " + data[i]["PositionX"] + " " +
-					  "PositionY " + data[i]["PositionY"] + " ");
+					"ItemType " + data[i]["ItemType"] + " " +
+					"Value " + data[i]["Value"] + " " +
+					"PositionX " + data[i]["PositionX"] + " " +
+					"PositionY " + data[i]["PositionY"] + " ");
 		}
+	}
+
+	public class Item
+	{
+		public string ItemType { get; set; }
+		public float Value { get; set; }
 	}
 }
