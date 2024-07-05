@@ -13,9 +13,8 @@ public class CSVRoader : MonoBehaviour
 		{
 			float positionX = Convert.ToSingle(data[i]["PositionX"]);
 			float positionY = Convert.ToSingle(data[i]["PositionY"]);
-			float positionZ = Convert.ToSingle(data[i]["PositionZ"]);
 
-			Vector3 position = new Vector3(positionX, positionY, positionZ);
+			Vector3 position = new Vector3(positionX, positionY, 0);
 
 			string itemType = data[i]["ItemType"].ToString();
 			GameObject itemPrefab = Resources.Load<GameObject>(itemType);
@@ -33,8 +32,7 @@ public class CSVRoader : MonoBehaviour
 					"ItemType " + data[i]["ItemType"] + " " +
 					"Value " + data[i]["Value"] + " " +
 					"PositionX " + data[i]["PositionX"] + " " +
-					"PositionY " + data[i]["PositionY"] + " " +
-					"PositionZ " + data[i]["PositionZ"]);
+					"PositionY " + data[i]["PositionY"]);
 		}
 	}
 
