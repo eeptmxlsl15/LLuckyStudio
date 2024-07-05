@@ -10,13 +10,14 @@ public class BackgroundScroller : MonoBehaviour
 	[SerializeField] private Vector3 moveDirection;
 
 	private void Update()
-    {
+	{
 		transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
-		// ¹è°æÀÌ ¼³Á¤µÈ ¹üÀ§¸¦ ¹ş¾î³ª¸é À§Ä¡ Àç¼³Á¤ÇÔ
+		// ë°°ê²½ì´ ì„¤ì •ëœ ë²”ìœ„ë¥¼ ë²—ì–´ë‚˜ë©´ ìœ„ì¹˜ ì¬ì„¤ì •í•¨
 		if (transform.position.x <= -scrollAmount)
 		{
 			transform.position = target.position - moveDirection * scrollAmount;
 		}
 	}
 }
+

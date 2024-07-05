@@ -32,7 +32,7 @@ public class CSVRoader : MonoBehaviour
 					"ItemType " + data[i]["ItemType"] + " " +
 					"Value " + data[i]["Value"] + " " +
 					"PositionX " + data[i]["PositionX"] + " " +
-					"PositionY " + data[i]["PositionY"] + " ");
+					"PositionY " + data[i]["PositionY"]);
 		}
 	}
 
