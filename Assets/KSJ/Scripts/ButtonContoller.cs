@@ -22,8 +22,9 @@ public class ButtonController : MonoBehaviour
         foreach (Button button in desires)
         {
             desireStates[button] = false; // 초기 상태는 Off
-            button.GetComponentInChildren<Text>().text = "Off";
+            
             button.onClick.AddListener(() => ToggleButton(button));
+            button.GetComponent<Image>().color = Color.gray;
         }
 
        
@@ -37,7 +38,7 @@ public class ButtonController : MonoBehaviour
             if (currentOnCount < maxOnButtons)
             {
                 desireStates[button] = true; // 버튼을 On으로 설정
-                button.GetComponentInChildren<Text>().text = "On";
+                button.GetComponent<Image>().color = Color.white;
                 currentOnCount++;
             }
         }
@@ -45,7 +46,7 @@ public class ButtonController : MonoBehaviour
         else
         {
             desireStates[button] = false; // 버튼을 Off로 설정
-            button.GetComponentInChildren<Text>().text = "Off"; // 버튼 텍스트 변경
+            button.GetComponent<Image>().color = Color.gray;
             currentOnCount--;
         }
         DataManager.Instance.InitializeData(desireStates);

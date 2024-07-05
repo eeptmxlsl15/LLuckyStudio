@@ -15,12 +15,19 @@ public class Player : MonoBehaviour
     public GameObject slideButton;
 
     [Header("# Player Stat")]
-    public int health;
-    public int maxHealth=100;
+    public float health;
+    public float maxHealth=100f;
     public float speed = 10f;
     public float jumpForce = 10f;
     public int jumpCount = 0;
     public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
+    public int floorRes = 0; // 발판형 장애물 저항
+    public int flyRes = 0; // 날아오는 장애물 저항
+    public float healthRegen=0;
+
+    private bool ratDesire;
+    private float healthRegenTimer = 0f;
+    private const float healthRegenInterval = 5f;
 
     [Header("# Player State")]
     public bool isGrounded = false;
@@ -31,7 +38,7 @@ public class Player : MonoBehaviour
         public const int Pig = 0;
         public const int Dog = 1;
         public const int Rooster = 2;
-        public const int Monket = 3;
+        public const int Monkey = 3;
         public const int Lamb = 4;
         public const int Horse = 5;
         public const int Snake = 6;
@@ -40,6 +47,8 @@ public class Player : MonoBehaviour
         public const int Tiger = 9;
         public const int Ox = 10;
         public const int Rat = 11;
+        public const int Cat = 12;
+
     }
 
     //Data Manager에서 받아온 염원 활성화 데이터를 저장하는 리스트
@@ -80,7 +89,19 @@ public class Player : MonoBehaviour
         if (isSlide)
         {
             rb.AddForce(Vector2.down, (ForceMode2D)ForceMode.Acceleration);
-        }        
+        }
+
+        if (ratDesire)
+        {
+            healthRegenTimer += Time.deltaTime;
+            if (healthRegenTimer >= healthRegenInterval)
+            {
+                // 체력 회복
+                health = Mathf.Min(health + healthRegen, maxHealth);
+                healthRegenTimer = 0f;
+                Debug.Log("체력 회복: " + health);
+            }
+        }
     }
 
     public void Jump()
@@ -139,13 +160,50 @@ public class Player : MonoBehaviour
         {
             case Constants.Pig:
                 maxHealth += 5;
+                health = maxHealth;
                 break;
             case Constants.Dog:
                 speed += 5f;
+                break;
+            case Constants.Rooster:
+                floorRes += 1;
+                break;
+            case Constants.Monkey:
+                jumpForce += 2f;
+                break;
+            case Constants.Lamb:
+                //반딧불의 체력 회복량 증가
+                break;
+            case Constants.Horse:
+                //부스터 아이템 지속 시간 증가
+                break;
+            case Constants.Snake:
+                flyRes += 1;
+                break;
+            case Constants.Dragon:
+                //무적 아이템 지속 시간 증가
+                break;
+            case Constants.Rabbit:
+                //츄르의 체력 회복량 증가
+                break;
+            case Constants.Tiger:
+                //쉴드 효과 증가
+                break;
+            case Constants.Ox:
+                //제한 시간 감소
+                break;
+            case Constants.Rat:
+                ratDesire = true;
+                healthRegen += 1f;
+                break;
+            case Constants.Cat:
+                
                 break;
             default:
                 break;
 
         }
     }
+
+
 }
