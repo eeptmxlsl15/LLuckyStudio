@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class CustomSceneManager : MonoBehaviour
 {
-    // ¾À ÀÌ¸§À¸·Î ¾ÀÀ» ·ÎµåÇÕ´Ï´Ù.
+    // ì”¬ ì´ë¦„ìœ¼ë¡œ ì”¬ì„ ë¡œë“œí•©ë‹ˆë‹¤.
     public void LoadScene(string sceneName)
     {
         StartCoroutine(LoadSceneAsync(sceneName));
     }
 
-    // ÇöÀç ¾ÀÀ» ´Ù½Ã ·ÎµåÇÕ´Ï´Ù.
+    // í˜„ì¬ ì”¬ì„ ë‹¤ì‹œ ë¡œë“œí•©ë‹ˆë‹¤.
     public void ReloadCurrentScene()
     {
         string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         StartCoroutine(LoadSceneAsync(currentSceneName));
     }
 
-    // ¾À ÀÎµ¦½º·Î ¾ÀÀ» ·ÎµåÇÕ´Ï´Ù.
+    // ì”¬ ì¸ë±ìŠ¤ë¡œ ì”¬ì„ ë¡œë“œí•©ë‹ˆë‹¤.
     public void LoadSceneByIndex(int sceneIndex)
     {
         StartCoroutine(LoadSceneByIndexAsync(sceneIndex));
     }
 
-    // ´ÙÀ½ ¾ÀÀ» ·ÎµåÇÕ´Ï´Ù.
+    // ë‹¤ìŒ ì”¬ì„ ë¡œë“œí•©ë‹ˆë‹¤.
     public void LoadNextScene()
     {
         int nextSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1;
@@ -32,11 +32,11 @@ public class CustomSceneManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("´ÙÀ½ ¾ÀÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+            Debug.LogError("ë‹¤ìŒ ì”¬ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         }
     }
 
-    // ÀÌÀü ¾ÀÀ» ·ÎµåÇÕ´Ï´Ù.
+    // ì´ì „ ì”¬ì„ ë¡œë“œí•©ë‹ˆë‹¤.
     public void LoadPreviousScene()
     {
         int previousSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex - 1;
@@ -46,7 +46,7 @@ public class CustomSceneManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ÀÌÀü ¾ÀÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+            Debug.LogError("ì´ì „ ì”¬ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         }
     }
 
@@ -55,8 +55,8 @@ public class CustomSceneManager : MonoBehaviour
         AsyncOperation asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
         while (!asyncOperation.isDone)
         {
-            // ·Îµù ÁøÇà »óÈ²À» Ãâ·ÂÇÕ´Ï´Ù.
-            Debug.Log(asyncOperation.progress);
+            // ë¡œë”© ì§„í–‰ ìƒí™©ì„ ì¶œë ¥í•©ë‹ˆë‹¤.
+            
             yield return null;
         }
     }
@@ -66,7 +66,7 @@ public class CustomSceneManager : MonoBehaviour
         AsyncOperation asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneIndex);
         while (!asyncOperation.isDone)
         {
-            // ·Îµù ÁøÇà »óÈ²À» Ãâ·ÂÇÕ´Ï´Ù.
+            // ë¡œë”© ì§„í–‰ ìƒí™©ì„ ì¶œë ¥í•©ë‹ˆë‹¤.
             Debug.Log(asyncOperation.progress);
             yield return null;
         }

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using TMPro;
 public class Player : MonoBehaviour
 {
     
     
     private Rigidbody2D rb;
     private Animator anim;
-    //³ªÁß¿¡ ÇÃ·¹ÀÌ¾î »óÅÂ¿¡ µû¶ó Àû¿ëµÇ´Â ½ºÅ³µéÀÌ ÀÖÀ» ¼ö ÀÖ±â ¶§¹®¿¡ publicÀ¸·Î ¼³Á¤
+    //ë‚˜ì¤‘ì— í”Œë ˆì´ì–´ ìƒíƒœì— ë”°ë¼ ì ìš©ë˜ëŠ” ìŠ¤í‚¬ë“¤ì´ ìˆì„ ìˆ˜ ìˆê¸° ë•Œë¬¸ì— publicìœ¼ë¡œ ì„¤ì •
     public GameObject jumpButton;
     public GameObject slideButton;
 
@@ -20,9 +20,9 @@ public class Player : MonoBehaviour
     public float speed = 10f;
     public float jumpForce = 10f;
     public int jumpCount = 0;
-    public int maxJumpCount = 2; // 2´Ü Á¡ÇÁ¸¦ À§ÇØ ÃÖ´ë Á¡ÇÁ È½¼ö¸¦ 2·Î ¼³Á¤
-    public int floorRes = 0; // ¹ßÆÇÇü Àå¾Ö¹° ÀúÇ×
-    public int flyRes = 0; // ³¯¾Æ¿À´Â Àå¾Ö¹° ÀúÇ×
+    public int maxJumpCount = 2; // 2ë‹¨ ì í”„ë¥¼ ìœ„í•´ ìµœëŒ€ ì í”„ íšŸìˆ˜ë¥¼ 2ë¡œ ì„¤ì •
+    public int floorRes = 0; // ë°œíŒí˜• ì¥ì• ë¬¼ ì €í•­
+    public int flyRes = 0; // ë‚ ì•„ì˜¤ëŠ” ì¥ì• ë¬¼ ì €í•­
     public float healthRegen=0;
 
     private bool ratDesire;
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 
     }
 
-    //Data Manager¿¡¼­ ¹Ş¾Æ¿Â ¿°¿ø È°¼ºÈ­ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â ¸®½ºÆ®
+    //Data Managerì—ì„œ ë°›ì•„ì˜¨ ì—¼ì› í™œì„±í™” ë°ì´í„°ë¥¼ ì €ì¥í•˜ëŠ” ë¦¬ìŠ¤íŠ¸
     public List<bool> activeDesires= new List<bool>();
 
     void Start()
@@ -59,18 +59,18 @@ public class Player : MonoBehaviour
         
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        //Á¡ÇÁ Æ®¸®°Å
+        //ì í”„ íŠ¸ë¦¬ê±°
         EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
         AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, Jump);
-        //½½¶óÀÌµå Æ®¸®°Å
+        //ìŠ¬ë¼ì´ë“œ íŠ¸ë¦¬ê±°
         EventTrigger slideTrigger = slideButton.GetComponent<EventTrigger>();
         AddEventTrigger(slideTrigger, EventTriggerType.PointerDown, () => Slide(true));
         AddEventTrigger(slideTrigger, EventTriggerType.PointerUp, () => Slide(false));
 
-        //¸®½ºÆ®¸¦ 12°³·Î ÁöÁ¤
-        activeDesires = new List<bool>(new bool[12]);
+        //ë¦¬ìŠ¤íŠ¸ë¥¼ 12ê°œë¡œ ì§€ì •
+        activeDesires = new List<bool>(new bool[13]);
         
-        //DataManager¿¡ µñ¼Å³Ê¸®¸¦ ¼øÈ¸ÇÏ¸é¼­ bool°ª ¼ø¼­¸¦ ¸®½ºÆ®¿¡ ÀúÀå
+        //DataManagerì— ë”•ì…”ë„ˆë¦¬ë¥¼ ìˆœíšŒí•˜ë©´ì„œ boolê°’ ìˆœì„œë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
         int i = 0;
         foreach (KeyValuePair<Button,bool> desire in DataManager.Instance.desireStates)
         {
@@ -80,13 +80,15 @@ public class Player : MonoBehaviour
             i++;
 
         }
-        //¿°¿ø Àû¿ë ÈÄ ÃÖ´ë Ã¼·Â¿¡ ¸Â°Ô Á¶Á¤
+        //ì—¼ì› ì ìš© í›„ ìµœëŒ€ ì²´ë ¥ì— ë§ê²Œ ì¡°ì •
         health = maxHealth;
     }
 
     void Update()
     {
-        if (isSlide)
+		transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+
+		if (isSlide)
         {
             rb.AddForce(Vector2.down, (ForceMode2D)ForceMode.Acceleration);
         }
@@ -96,10 +98,10 @@ public class Player : MonoBehaviour
             healthRegenTimer += Time.deltaTime;
             if (healthRegenTimer >= healthRegenInterval)
             {
-                // Ã¼·Â È¸º¹
+                // ì²´ë ¥ íšŒë³µ
                 health = Mathf.Min(health + healthRegen, maxHealth);
                 healthRegenTimer = 0f;
-                Debug.Log("Ã¼·Â È¸º¹: " + health);
+                Debug.Log("ì²´ë ¥ íšŒë³µ: " + health);
             }
         }
     }
@@ -110,8 +112,8 @@ public class Player : MonoBehaviour
         
         if (jumpCount < maxJumpCount)
         {
-            // -1Àº ÇöÀç ¾Ö´Ï¸ŞÀÌÅÍ ·¹ÀÌ¾î , 0f´Â ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÀÛ ºÎºĞ(0~1)
-            Debug.Log("Á¡ÇÁ");
+            // -1ì€ í˜„ì¬ ì• ë‹ˆë©”ì´í„° ë ˆì´ì–´ , 0fëŠ” ì• ë‹ˆë©”ì´ì…˜ ì‹œì‘ ë¶€ë¶„(0~1)
+            Debug.Log("ì í”„");
             anim.Play("Jump", -1, 0f);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount++;
@@ -172,25 +174,25 @@ public class Player : MonoBehaviour
                 jumpForce += 2f;
                 break;
             case Constants.Lamb:
-                //¹İµ÷ºÒÀÇ Ã¼·Â È¸º¹·® Áõ°¡
+                //ë°˜ë”§ë¶ˆì˜ ì²´ë ¥ íšŒë³µëŸ‰ ì¦ê°€
                 break;
             case Constants.Horse:
-                //ºÎ½ºÅÍ ¾ÆÀÌÅÛ Áö¼Ó ½Ã°£ Áõ°¡
+                //ë¶€ìŠ¤í„° ì•„ì´í…œ ì§€ì† ì‹œê°„ ì¦ê°€
                 break;
             case Constants.Snake:
                 flyRes += 1;
                 break;
             case Constants.Dragon:
-                //¹«Àû ¾ÆÀÌÅÛ Áö¼Ó ½Ã°£ Áõ°¡
+                //ë¬´ì  ì•„ì´í…œ ì§€ì† ì‹œê°„ ì¦ê°€
                 break;
             case Constants.Rabbit:
-                //Ãò¸£ÀÇ Ã¼·Â È¸º¹·® Áõ°¡
+                //ì¸„ë¥´ì˜ ì²´ë ¥ íšŒë³µëŸ‰ ì¦ê°€
                 break;
             case Constants.Tiger:
-                //½¯µå È¿°ú Áõ°¡
+                //ì‰´ë“œ íš¨ê³¼ ì¦ê°€
                 break;
             case Constants.Ox:
-                //Á¦ÇÑ ½Ã°£ °¨¼Ò
+                //ì œí•œ ì‹œê°„ ê°ì†Œ
                 break;
             case Constants.Rat:
                 ratDesire = true;

@@ -18,10 +18,10 @@ public class ButtonController : MonoBehaviour
     {
         desireStates = new Dictionary<Button, bool>();
 
-        // °¢ ¹öÆ°ÀÇ »óÅÂ ÃÊ±âÈ­ ¹× Å¬¸¯ ÀÌº¥Æ® ¼³Á¤
+        // ê° ë²„íŠ¼ì˜ ìƒíƒœ ì´ˆê¸°í™” ë° í´ë¦­ ì´ë²¤íŠ¸ ì„¤ì •
         foreach (Button button in desires)
         {
-            desireStates[button] = false; // ÃÊ±â »óÅÂ´Â Off
+            desireStates[button] = false; // ì´ˆê¸° ìƒíƒœëŠ” Off
             
             button.onClick.AddListener(() => ToggleButton(button));
             button.GetComponent<Image>().color = Color.gray;
@@ -32,20 +32,20 @@ public class ButtonController : MonoBehaviour
 
     void ToggleButton(Button button)
     {
-        // ¹öÆ°ÀÌ Off »óÅÂÀÏ ¶§
+        // ë²„íŠ¼ì´ Off ìƒíƒœì¼ ë•Œ
         if (!desireStates[button])
         {
             if (currentOnCount < maxOnButtons)
             {
-                desireStates[button] = true; // ¹öÆ°À» OnÀ¸·Î ¼³Á¤
+                desireStates[button] = true; // ë²„íŠ¼ì„ Onìœ¼ë¡œ ì„¤ì •
                 button.GetComponent<Image>().color = Color.white;
                 currentOnCount++;
             }
         }
-        // ¹öÆ°ÀÌ On »óÅÂÀÏ ¶§
+        // ë²„íŠ¼ì´ On ìƒíƒœì¼ ë•Œ
         else
         {
-            desireStates[button] = false; // ¹öÆ°À» Off·Î ¼³Á¤
+            desireStates[button] = false; // ë²„íŠ¼ì„ Offë¡œ ì„¤ì •
             button.GetComponent<Image>().color = Color.gray;
             currentOnCount--;
         }
@@ -57,7 +57,7 @@ public class ButtonController : MonoBehaviour
         activeInventory = !activeInventory;
         if (activeInventory)
         {
-            transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
         else
             transform.localScale = new Vector3(0f,0f,0f);
