@@ -1105,14 +1105,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpButton: {fileID: 1577944759}
   slideButton: {fileID: 1945693233}
-  health: 0
+  health: 100
   maxHealth: 100
   speed: 10
   jumpForce: 5
   jumpCount: 0
   maxJumpCount: 4
+  floorRes: 0
+  flyRes: 0
+  healthRegen: 0
   isGrounded: 0
   isSlide: 0
+  activeDesires: 
 --- !u!70 &1921621825
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
