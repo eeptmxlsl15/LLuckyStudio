@@ -1,32 +1,79 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DataManager : MonoBehaviour
 {
-    // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+    // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤
     public static DataManager Instance { get; private set; }
 
-    // ¾À °£¿¡ Àü´ŞÇÒ µ¥ÀÌÅÍ
+    // ì”¬ ê°„ì— ì „ë‹¬í•  ë°ì´í„°
+	//ì—¼ì›
     public Dictionary<Button, bool> desireStates = new Dictionary<Button, bool>();
+	//ìŠ¤íƒ¯
+	[Header("# Player Stat")]
+	public float health;
+	public float maxHealth = 100f;
+	public float speed = 10f;
+	public float jumpForce = 10f;
+	public int jumpCount = 0;
+	public int maxJumpCount = 2; // 2ë‹¨ ì í”„ë¥¼ ìœ„í•´ ìµœëŒ€ ì í”„ íšŸìˆ˜ë¥¼ 2ë¡œ ì„¤ì •
+	public int floorRes = 0; // ë°œíŒí˜• ì¥ì• ë¬¼ ì €í•­
+	public int flyRes = 0; // ë‚ ì•„ì˜¤ëŠ” ì¥ì• ë¬¼ ì €í•­
+	public float healthRegen = 0;
 
-    private void Awake()
+	private bool ratDesire;
+	private float healthRegenTimer = 0f;
+	private const float healthRegenInterval = 5f;
+
+	public TMP_Text maxHealthText;
+	public TMP_Text speedText;
+	public TMP_Text jumpText;
+
+	public TMP_Text catDesireHP;
+	public TMP_Text catDesireSpeed;
+	public TMP_Text catDesireJump;
+
+	public Button upgradeCatDesireHP;
+	public Button upgradeCatDesireSpeed;
+	public Button upgradeCatDesireJump;
+
+
+	private void Awake()
     {
-        // ½Ì±ÛÅæ ÆĞÅÏ ±¸Çö
+        // ì‹±ê¸€í†¤ íŒ¨í„´ êµ¬í˜„
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // ¾À ÀüÈ¯ ½Ã °´Ã¼ À¯Áö
+            DontDestroyOnLoad(gameObject); // ì”¬ ì „í™˜ ì‹œ ê°ì²´ ìœ ì§€
         }
         else
         {
-            Destroy(gameObject); // Áßº¹µÈ ÀÎ½ºÅÏ½º Á¦°Å
+            Destroy(gameObject); // ì¤‘ë³µëœ ì¸ìŠ¤í„´ìŠ¤ ì œê±°
         }
     }
 
-    // µ¥ÀÌÅÍ ÃÊ±âÈ­ ¸Ş¼­µå
-    public void InitializeData(Dictionary<Button, bool> data)
+
+	void Start()
+	{
+		
+	}
+
+	void Update()
+	{
+		UpdateCharacterUI();
+	}
+	// ë°ì´í„° ì´ˆê¸°í™” ë©”ì„œë“œ
+	public void InitializeData(Dictionary<Button, bool> data)
     {
         desireStates = new Dictionary<Button, bool>(data);
     }
+
+	public void UpdateCharacterUI()
+	{
+		maxHealthText.text = "HP : " + maxHealth;
+		speedText.text = "Speed : " + speed;
+		jumpText.text = "Jump : " + jumpForce;
+	}
 }

@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
         AddEventTrigger(slideTrigger, EventTriggerType.PointerUp, () => Slide(false));
 
         //리스트를 12개로 지정
-        activeDesires = new List<bool>(new bool[13]);
+        activeDesires = new List<bool>(new bool[12]);
         
         //DataManager에 딕셔너리를 순회하면서 bool값 순서를 리스트에 저장
         int i = 0;
