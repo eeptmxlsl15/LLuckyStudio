@@ -1,23 +1,38 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class ButtonManager : MonoBehaviour
 {
 	public List<Button> buttons; // 모든 버튼을 리스트로 관리
 	public List<GameObject> uiWindows; // 모든 UI 창을 리스트로 관리
-
 	private Dictionary<Button, GameObject> buttonToUIMap = new Dictionary<Button, GameObject>();
+
+	public List<Button> closeButtons;
+	private Dictionary<Button, GameObject> closeToUIMap = new Dictionary<Button, GameObject>();
 
 	private void Start()
 	{
+
 		// 버튼과 UI 창을 매핑
 		for (int i = 0; i < buttons.Count; i++)
 		{
-			buttonToUIMap.Add(buttons[i], uiWindows[i]);
-			buttons[i].onClick.AddListener(() => OnButtonClick(buttons[i]));
+			Button button = buttons[i];
+			GameObject uiWindow = uiWindows[i];
+			buttonToUIMap.Add(button, uiWindow);
+			button.onClick.AddListener(() => OnButtonClick(button));
 		}
+
+		// 클로즈 버튼과 UI 창을 매핑
+		for (int i = 0; i < closeButtons.Count; i++)
+		{
+			Button closeButton = closeButtons[i];
+			GameObject uiWindow = uiWindows[i];
+			closeToUIMap.Add(closeButton, uiWindow);
+			closeButton.onClick.AddListener(() => CloseButtonClick(closeButton));
+		}
+
 	}
 
 	private void OnButtonClick(Button clickedButton)
@@ -28,12 +43,28 @@ public class ButtonManager : MonoBehaviour
 		// 모든 UI 창을 숨김
 		foreach (var uiWindow in uiWindows)
 		{
-			uiWindow.transform.localScale = Vector3.zero;
+			uiWindow.transform.localScale = new Vector3(0,0,0);
 		}
 
+		
+
 		// 클릭된 버튼과 관련된 UI 창을 표시
-		clickedUIWindow.transform.localScale = Vector3.one;
+		clickedUIWindow.transform.localScale = new Vector3(1f,1f,1f);
+		//열리는 창에 스크롤바가 하나만 있다는 가정하에
+		
+		
+
 	}
 
+	private void CloseButtonClick(Button closeButton)
+	{
+		// 클릭된 버튼과 관련된 UI 창을 가져옴
+		GameObject closeUIWindow = closeToUIMap[closeButton];
+
+
+		// 클릭된 버튼과 관련된 UI 창을 표시
+		closeUIWindow.transform.localScale = new Vector3(0f, 0f, 0f);
+		//열리는 창에 스크롤바가 하나만 있다는 가정하에
+	}
 
 }
