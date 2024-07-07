@@ -6,9 +6,11 @@ using UnityEngine.UI;
 using TMPro;
 
 // 입장 재화
-public class SiverBellGenerator : MonoBehaviour
+public class BellGenerator : MonoBehaviour
 {
-	private int maxSiverBells = 60;
+	[Header("Bell")]
+	[SerializeField] private int maxSiverBells = 60;
+	[SerializeField] private int minSiverBells = 5;
 	private int curSiverBells;
 	private double generatorTimer = 300f;	
 	private double lastTime;
@@ -18,21 +20,22 @@ public class SiverBellGenerator : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI siverBellsText;
 	[SerializeField] private TextMeshProUGUI timerText;
 
+
 	private void Start()
 	{
+		timerText.gameObject.SetActive(false);
 		curSiverBells = maxSiverBells;
 		lastTime = GetUnixTimestamp();
 		StartCoroutine(UpdateUIRoutine());
-		timerText.gameObject.SetActive(false);
 
 		Debug.Log("현재 입장 재화 : " + maxSiverBells);
 	}
 
-	private void UsedSiverBells()
+	public void UsedSiverBells()
 	{
-		if (curSiverBells > 0)
+		if (curSiverBells >= minSiverBells)
 		{
-			curSiverBells--;
+			curSiverBells -= minSiverBells;
 			lastTime = GetUnixTimestamp();
 			isTimerRunning = true;
 			timerText.gameObject.SetActive(true);
@@ -41,10 +44,9 @@ public class SiverBellGenerator : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("현재 사용가능한 입장 재화 없음");
+			Debug.Log("현재 사용가능한 입장 재화가 " + minSiverBells + " 개 미만");
 		}
 	}
-
 
 	private IEnumerator UpdateUIRoutine()
 	{
@@ -67,10 +69,20 @@ public class SiverBellGenerator : MonoBehaviour
 				// 남은 시간이 없는 경우
 				else
 				{
-					curSiverBells = maxSiverBells;
-					isTimerRunning = false;
-					timerText.text = "00:00";
-					timerText.gameObject.SetActive(false);
+					if (curSiverBells < maxSiverBells)
+						curSiverBells += 1;
+
+					lastTime = GetUnixTimestamp();
+					if (curSiverBells < maxSiverBells)
+					{
+						isTimerRunning = true; 
+					}
+					else
+					{
+						isTimerRunning = false;
+						timerText.text = "00:00";
+						timerText.gameObject.SetActive(false);
+					}
 				}
 			}
 
