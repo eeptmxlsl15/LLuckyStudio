@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 255, y: 166}
+  m_AnchoredPosition: {x: 209.9, y: 166}
   m_SizeDelta: {x: 207.4881, y: 51.2981}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &106422328
@@ -174,8 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0184100611c38b459beb0317f9a7223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSiverBells: 60
-  minSiverBells: 5
+  maxBells: 60
+  minBells: 5
+  generatorTimer: 300
   siverBellsText: {fileID: 826918242}
   timerText: {fileID: 244055539}
 --- !u!114 &106422329
@@ -322,7 +323,7 @@ GameObject:
   - component: {fileID: 244055540}
   - component: {fileID: 244055539}
   m_Layer: 5
-  m_Name: TimeText
+  m_Name: TimerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,7 +368,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 05:00
+  m_text: 00:00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -430,7 +431,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 58.271973, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
