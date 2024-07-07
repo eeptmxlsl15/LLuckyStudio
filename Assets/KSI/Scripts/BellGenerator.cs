@@ -14,7 +14,7 @@ public class BellGenerator : MonoBehaviour
 	[SerializeField] private double generatorTimer = 300f;
 	[Space]
 	[Header("UI")]
-	[SerializeField] private TextMeshProUGUI siverBellsText;
+	[SerializeField] private TextMeshProUGUI BellText;
 	[SerializeField] private TextMeshProUGUI timerText;
 
 	private int curBells;
@@ -58,14 +58,14 @@ public class BellGenerator : MonoBehaviour
 	{
 		while (true)
 		{
-			siverBellsText.text = $"{curBells}/{maxBells}";
+			BellText.text = $"{curBells}/{maxBells}";
 			// 타이머가 실행 중인 경우
 			if (isTimerRunning)
 			{
 				UpdateTimerUI();
 			}
 
-			Debug.Log(siverBellsText.text + " " + timerText.text);
+			Debug.Log(BellText.text + " " + timerText.text);
 
 			yield return new WaitForSeconds(1);
 		}
