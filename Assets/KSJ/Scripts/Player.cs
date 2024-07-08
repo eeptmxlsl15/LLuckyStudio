@@ -24,8 +24,9 @@ public class Player : MonoBehaviour
     public int floorRes = 0; // 발판형 장애물 저항
     public int flyRes = 0; // 날아오는 장애물 저항
     public float healthRegen=0;
+	public float wingTime = 0;
 
-    private bool ratDesire;
+	private bool ratDesire;
     private float healthRegenTimer = 0f;
     private const float healthRegenInterval = 5f;
 
@@ -67,6 +68,9 @@ public class Player : MonoBehaviour
         AddEventTrigger(slideTrigger, EventTriggerType.PointerDown, () => Slide(true));
         AddEventTrigger(slideTrigger, EventTriggerType.PointerUp, () => Slide(false));
 
+
+		//DataManager에서 스탯들을 가져옴
+		SetStat();
         //리스트를 12개로 지정
         activeDesires = new List<bool>(new bool[12]);
         
@@ -80,6 +84,8 @@ public class Player : MonoBehaviour
             i++;
 
         }
+
+		
         //염원 적용 후 최대 체력에 맞게 조정
         health = maxHealth;
     }
@@ -155,8 +161,26 @@ public class Player : MonoBehaviour
         entry.callback.AddListener((eventData) => action());
         trigger.triggers.Add(entry);
     }
+	public void SetStat()
+	{
+		health=DataManager.Instance.health;
+		maxHealth = DataManager.Instance.maxHealth;
+		speed = DataManager.Instance.speed;
+		jumpForce = DataManager.Instance.jumpForce;
+		jumpCount = DataManager.Instance.jumpCount;
+		
+		//점프 카운트가 2개씩 올라가는 버그가 수정될때까지 2 곱하기
+		maxJumpCount = 2*DataManager.Instance.maxJumpCount; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
+		floorRes = DataManager.Instance.floorRes; // 발판형 장애물 저항
+		flyRes = DataManager.Instance.flyRes; // 날아오는 장애물 저항
+		healthRegen = DataManager.Instance.healthRegen;
+		wingTime = DataManager.Instance.wingTime;
 
-   public void ActiveDesire(int animal)
+		ratDesire=DataManager.Instance.ratDesire;
+		healthRegenTimer = DataManager.Instance.healthRegenTimer;
+		
+}
+	public void ActiveDesire(int animal)
     {
         switch (animal)
         {
