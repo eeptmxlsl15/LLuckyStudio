@@ -9,6 +9,8 @@ public class BackgroundScroller : MonoBehaviour
 	[SerializeField] private float moveSpeed;
 	[SerializeField] private Vector3 moveDirection;
 
+	private float originalSpeed;
+
 	private void Update()
 	{
 		transform.position += moveDirection * moveSpeed * Time.deltaTime;
@@ -18,6 +20,18 @@ public class BackgroundScroller : MonoBehaviour
 		{
 			transform.position = target.position - moveDirection * scrollAmount;
 		}
+	}
+
+	public void ReduceSpeed(float factor, float duration)
+	{
+		moveSpeed *= factor;
+		StartCoroutine(RestoreSpeedRoutine(duration));
+	}
+
+	private IEnumerator RestoreSpeedRoutine(float duration)
+	{
+		yield return new WaitForSeconds(duration);
+		moveSpeed = originalSpeed;
 	}
 }
 
