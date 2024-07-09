@@ -22,7 +22,7 @@ public class DataManager : MonoBehaviour
 	public int floorRes = 0; // 발판형 장애물 저항
 	public int flyRes = 0; // 날아오는 장애물 저항
 	public float healthRegen = 0;
-	public float wingTime=0;
+	public float glideTime=0;
 
 	public bool ratDesire;
 	public float healthRegenTimer = 0f;
@@ -53,7 +53,7 @@ public class DataManager : MonoBehaviour
 	public TMP_Text maxHealthText;
 	public TMP_Text speedText;
 	public TMP_Text jumpForceText;
-	public TMP_Text wingTimeText;
+	public TMP_Text glideTimeText;
 	public TMP_Text jumpCountText;
 
 	//염원 Lv, 이름, 성능과 잔여개수
@@ -70,7 +70,7 @@ public class DataManager : MonoBehaviour
 	public Button upgradeBlueHP;
 	public TMP_Text needBlueCan;
 
-	public Button upgradeRedWing;
+	public Button upgradeRedGlide;
 	public TMP_Text needRedCan;
 
 	public Button upgradeGreenCount;
@@ -125,7 +125,7 @@ public class DataManager : MonoBehaviour
 		speedText.text = "Speed : " +speed ;
 		jumpForceText.text = "JumpForce : " + jumpForce ;
 		jumpCountText.text = "JumpCount : "+ (maxJumpCount+ greenMarbleValue[greenMarbleLv]);
-		wingTimeText.text = "Wing Time : " + redMarbleValue[redMarbleLv];
+		glideTimeText.text = "Glide Time : " + redMarbleValue[redMarbleLv];
 		
 		//염원 잔여/필요
 		brokenBlueText.text = "" + brokenBlue + "/" + nextExp[blueMarbleLv];
@@ -142,7 +142,7 @@ public class DataManager : MonoBehaviour
 	public void UpdateCatsDesire()
 	{
 		blueMarble.text = "Lv." + blueMarbleLv + " Blue Marble + HP :" + blueMarbleValue[blueMarbleLv];
-		redMarble.text = "Lv." + redMarbleLv + " Red Marble + Wing : " + redMarbleValue[redMarbleLv];
+		redMarble.text = "Lv." + redMarbleLv + " Red Marble + Glide : " + redMarbleValue[redMarbleLv];
 		greenMarble.text = "Lv. " + greenMarbleLv + " Green Marble + JumpCount : " + greenMarbleValue[greenMarbleLv];
 	}
 
@@ -151,7 +151,7 @@ public class DataManager : MonoBehaviour
 		if (brokenBlue < nextExp[blueMarbleLv] || cannedFood < nextExp[blueMarbleLv])
 			upgradeBlueHP.GetComponent<Image>().color = Color.gray;
 		if (brokenRed < nextExp[redMarbleLv] || cannedFood < nextExp[redMarbleLv])
-			upgradeRedWing.GetComponent<Image>().color = Color.gray;
+			upgradeRedGlide.GetComponent<Image>().color = Color.gray;
 		if (brokenGreen < nextExp[greenMarbleLv] || cannedFood < nextExp[greenMarbleLv])
 			upgradeGreenCount.GetComponent<Image>().color = Color.gray;
 	}
@@ -196,7 +196,7 @@ public class DataManager : MonoBehaviour
 	{
 		maxHealth += blueMarbleValue[blueMarbleLv];
 		maxJumpCount +=greenMarbleValue[greenMarbleLv];
-		wingTime += redMarbleValue[redMarbleLv];
+		glideTime += redMarbleValue[redMarbleLv];
 
 		
 	}
