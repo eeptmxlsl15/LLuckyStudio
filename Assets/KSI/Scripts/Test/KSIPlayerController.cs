@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.GraphicsBuffer;
 
-public class KSIPlayerController : MonoBehaviour
+public class KSIPlayerController : MonoBehaviour, IDamagable
 {
 	public float jumpForce = 10f;
 	private Rigidbody2D rb;
@@ -18,11 +18,11 @@ public class KSIPlayerController : MonoBehaviour
 	public GameObject jumpButton;
 	public GameObject slideButton;
 
-	public float moveSpeed = 5f;
+	[Header("Take Damage")]
+	public int health = 100;
 
 	void Start()
 	{
-
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
 
@@ -37,10 +37,6 @@ public class KSIPlayerController : MonoBehaviour
 	void Update()
 	{
 		// 모바일 터치 입력 처리
-
-
-		transform.position += new Vector3(moveSpeed * Time.deltaTime, 0, 0);
-
 		if (Input.GetKeyDown(KeyCode.LeftShift))
 		{
 			Slide(true);
@@ -54,8 +50,6 @@ public class KSIPlayerController : MonoBehaviour
 
 	public void Jump()
 	{
-
-
 		if (jumpCount < maxJumpCount)
 		{
 			// -1은 현재 애니메이터 레이어 , 0f는 애니메이션 시작 부분(0~1)
@@ -64,7 +58,6 @@ public class KSIPlayerController : MonoBehaviour
 			rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 			jumpCount++;
 		}
-
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -81,8 +74,6 @@ public class KSIPlayerController : MonoBehaviour
 	{
 		if (collision.collider.CompareTag("Ground"))
 		{
-
-
 			//anim.SetBool("isGround", false);
 			isGrounded = false;
 		}
@@ -100,4 +91,21 @@ public class KSIPlayerController : MonoBehaviour
 		entry.callback.AddListener((eventData) => action());
 		trigger.triggers.Add(entry);
 	}
+
+	public void TakeDamage(int damage)
+	{
+		health -= damage;
+		Debug.Log("플레이어가 데미지를 입었습니다. 현재 체력: " + health);
+		if (health <= 0)
+		{
+			Die();
+		}
+	}
+
+	private void Die()
+	{
+		// TODO : 플레이어 사망 추가
+		Debug.Log("플레이어가 죽었습니다.");
+	}
+
 }

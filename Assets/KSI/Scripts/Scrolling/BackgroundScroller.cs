@@ -11,6 +11,11 @@ public class BackgroundScroller : MonoBehaviour
 
 	private float originalSpeed;
 
+	private void Start()
+	{
+		originalSpeed = moveSpeed;
+	}
+
 	private void Update()
 	{
 		transform.position += moveDirection * moveSpeed * Time.deltaTime;
