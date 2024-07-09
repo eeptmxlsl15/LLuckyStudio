@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.VersionControl;
 
 public class CoinUI : MonoBehaviour
 {
@@ -24,8 +23,8 @@ public class CoinUI : MonoBehaviour
 		GameManager.Score.OnScoreChanged -= UpdateScoreText;
 	}
 
-	private void UpdateScoreText(int count)
+	private void UpdateScoreText(int value)
 	{
-		coinUI.text = count.ToString();
+		coinUI.text = "Score: " + value.ToString();
 	}
 }
