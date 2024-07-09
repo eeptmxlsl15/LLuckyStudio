@@ -10,12 +10,12 @@ public class JellyCoinUI : MonoBehaviour
 
 	private void OnEnable()
 	{
-		GameManager.Score.OnScoreChanged += UpdateScoreText;
+		GameManager.Score.OnJellyCoinChanged += UpdateScoreText;
 	}
 
 	private void OnDisable()
 	{
-		GameManager.Score.OnScoreChanged -= UpdateScoreText;
+		GameManager.Score.OnJellyCoinChanged -= UpdateScoreText;
 	}
 
 	private void UpdateScoreText(int value)
