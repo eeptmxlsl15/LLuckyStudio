@@ -18,10 +18,12 @@ public class Interactor : MonoBehaviour
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
-	{
-		if (other.CompareTag("Player"))
+	{		
+		IInteractable interactable = other.GetComponent<IInteractable>();
+
+		if (interactable != null)
 		{
-			Interact();
+			interactable.Interact(this);
 		}
 	}
 }

@@ -2,25 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviour
 {
-	public TMP_Text scoreText;
-	private int score = 0;
+	public int scoreText;
 
-	void Start()
-	{
-		UpdateScoreText();
-	}
+	public UnityAction<int> OnScoreChanged;
 
 	public void AddScore(int value)
 	{
-		score += value;
-		UpdateScoreText();
-	}
-
-	void UpdateScoreText()
-	{
-		scoreText.text = "Score: " + score.ToString();
+		scoreText += value;
+		OnScoreChanged?.Invoke(scoreText);
 	}
 }
