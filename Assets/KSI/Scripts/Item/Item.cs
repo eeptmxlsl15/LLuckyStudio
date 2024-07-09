@@ -8,11 +8,6 @@ public abstract class Item : MonoBehaviour
 
 	public abstract void Contact();
 
-	private void Start()
-	{
-		
-	}
-
 	private void Update()
 	{
 		Move();
