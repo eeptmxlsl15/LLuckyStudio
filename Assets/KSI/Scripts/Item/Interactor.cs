@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
-	public int scoreValue = 10;
+	[SerializeField] private int scoreValue = 10;
 
 	private void Interact()
 	{
-		ScoreManager.instance.AddScore(scoreValue);
+		GameManager.Score.AddScore(scoreValue);
 		Destroy(gameObject);
 	}
 
@@ -17,7 +17,6 @@ public class Interactor : MonoBehaviour
 		Interact();
 	}
 
-	
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.CompareTag("Player"))
@@ -25,5 +24,4 @@ public class Interactor : MonoBehaviour
 			Interact();
 		}
 	}
-
 }
