@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CSVRoader : MonoBehaviour
+public class CSVMapRoader : MonoBehaviour
 {
 	private void Awake()
 	{
@@ -28,17 +28,20 @@ public class CSVRoader : MonoBehaviour
 				Debug.LogError("Resources에 " + itemType + "이 없음");
 			}
 
-			Debug.Log("ItemID " + data[i]["ItemID"] + " " +
-					"ItemType " + data[i]["ItemType"] + " " +
-					"Value " + data[i]["Value"] + " " +
-					"PositionX " + data[i]["PositionX"] + " " +
-					"PositionY " + data[i]["PositionY"]);
+			//Debug.Log("ItemID " + data[i]["ItemID"] + " " +
+			//		"ItemType " + data[i]["ItemType"] + " " +
+			//		"Value " + data[i]["Value"] + " " +
+			//		"PositionX " + data[i]["PositionX"] + " " +
+			//		"PositionY " + data[i]["PositionY"]);
 		}
 	}
 
+	[System.Serializable]
 	public class Item
 	{
 		public string ItemType { get; set; }
+		public string Effect { get; set; }
+		public float Duration { get; set; }
 		public float Value { get; set; }
 	}
 }

@@ -9,8 +9,8 @@ using TMPro;
 public class BellGenerator : MonoBehaviour
 {
 	[Header("Bell")]
-	[SerializeField] private int maxBells = 60;
-	[SerializeField] private int minBells = 5;
+	[SerializeField] private int maxBells;
+	[SerializeField] private int minBells;
 	[SerializeField] private double generatorTimer = 300f;
 	[Space]
 	[Header("UI")]
