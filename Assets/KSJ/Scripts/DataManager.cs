@@ -121,6 +121,7 @@ public class DataManager : MonoBehaviour
 
 	public void UpdateCharacterUI()
 	{
+		
 		maxHealthText.text = "HP : " +(maxHealth+ blueMarbleValue[blueMarbleLv]);
 		speedText.text = "Speed : " +speed ;
 		jumpForceText.text = "JumpForce : " + jumpForce ;

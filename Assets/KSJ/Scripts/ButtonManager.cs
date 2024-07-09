@@ -32,7 +32,10 @@ public class ButtonManager : MonoBehaviour
 			closeToUIMap.Add(closeButton, uiWindow);
 			closeButton.onClick.AddListener(() => CloseButtonClick(closeButton));
 		}
-
+		foreach (var uiWindow in uiWindows)
+		{
+			uiWindow.transform.localScale = new Vector3(0, 0, 0);
+		}
 	}
 
 	private void OnButtonClick(Button clickedButton)
