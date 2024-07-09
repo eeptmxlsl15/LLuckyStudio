@@ -7,7 +7,7 @@ public class PrefabsToCSVSaver : MonoBehaviour
 	public List<GameObject> prefabList;
 	private static Dictionary<string, int> typeIds = new Dictionary<string, int>();
 
-	void Start()
+	private void Start()
 	{
 		string filePath = "Assets/Resources/prefabs.csv";
 		List<string> lines = new List<string>();
@@ -24,7 +24,7 @@ public class PrefabsToCSVSaver : MonoBehaviour
 		File.WriteAllLines(filePath, lines);
 	}
 
-	void ProcessChildGameObject(GameObject obj, List<string> lines)
+	private void ProcessChildGameObject(GameObject obj, List<string> lines)
 	{
 		foreach (Transform child in obj.transform)
 		{
@@ -33,7 +33,7 @@ public class PrefabsToCSVSaver : MonoBehaviour
 		}
 	}
 
-	void ProcessGameObject(GameObject obj, List<string> lines)
+	private void ProcessGameObject(GameObject obj, List<string> lines)
 	{
 		string type = obj.name.Split('(')[0].Trim();
 		if (!typeIds.ContainsKey(type))
