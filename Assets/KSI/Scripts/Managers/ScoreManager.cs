@@ -10,9 +10,10 @@ public class ScoreManager : MonoBehaviour
 
 	public UnityAction<int> OnScoreChanged;
 
-	public void AddJellyCoin(int value)
+	public void AddJellyCoin(int score)
 	{
-		scoreText += value;
+
+		scoreText += score;
 		OnScoreChanged?.Invoke(scoreText);
 	}
 }

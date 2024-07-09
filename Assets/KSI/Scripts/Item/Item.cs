@@ -13,7 +13,7 @@ public abstract class Item : MonoBehaviour
 		Move();
 	}
 
-	private void Move()
+	protected virtual void Move()
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
 
