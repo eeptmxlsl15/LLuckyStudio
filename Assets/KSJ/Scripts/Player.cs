@@ -9,9 +9,12 @@ public class Player : MonoBehaviour
 	private Rigidbody2D rb;
 	private Animator anim;
 
+	public GameObject glideCooltimeUI;
+	public TMP_Text glideCooltimeText;
 	public GameObject jumpButton;
 	public GameObject slideButton;
-
+	public GameObject glideButton;
+	private Color originalGlideButtonColor;
 	[Header("# Player Stat")]
 	public float health;
 	public float maxHealth = 100f;
@@ -35,8 +38,8 @@ public class Player : MonoBehaviour
 	public bool isGlide = false;
 
 	//활주 관련 
-	private float jumpButtonHoldTimer = 0f;
-	private const float glideHoldThreshold = 0.1f; // 약 2프레임 (0.033초 = 2프레임 @ 60fps)
+	public float glideButtonHoldTimer = 0f;
+	
 	public bool canGlide = true;
 	public float glideCooldown = 10f;
 	public float glideCooldownTimer = 0f;
@@ -64,17 +67,22 @@ public class Player : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
-
+		originalGlideButtonColor = glideButton.GetComponent<Image>().color;
 		// 점프 트리거
 		EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
 		AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, OnJumpButtonDown);
-		AddEventTrigger(jumpTrigger, EventTriggerType.PointerUp, OnJumpButtonUp);
+		
 
 		// 슬라이드 트리거
 		EventTrigger slideTrigger = slideButton.GetComponent<EventTrigger>();
 		AddEventTrigger(slideTrigger, EventTriggerType.PointerDown, () => Slide(true));
 		AddEventTrigger(slideTrigger, EventTriggerType.PointerUp, () => Slide(false));
-
+		
+		// 활주 트리거
+		EventTrigger glideTrigger = glideButton.GetComponent<EventTrigger>();
+		AddEventTrigger(glideTrigger, EventTriggerType.PointerDown, () => Glide(true));
+		AddEventTrigger(glideTrigger, EventTriggerType.PointerUp, () => Glide(false)) ;
+		
 		// DataManager에서 스탯들을 가져옴
 		SetStat();
 
@@ -104,6 +112,8 @@ public class Player : MonoBehaviour
 			rb.AddForce(Vector2.down, (ForceMode2D)ForceMode.Acceleration);
 		}
 
+
+
 		if (ratDesire)
 		{
 			healthRegenTimer += Time.deltaTime;
@@ -115,45 +125,55 @@ public class Player : MonoBehaviour
 				Debug.Log("체력 회복: " + health);
 			}
 		}
+		//활주 쿨타임이 아닐때
+		if (isGlide && canGlide && !isGrounded) {
+			rb.velocity = new Vector2(rb.velocity.x, 0.5f);
+			
+			glideButtonHoldTimer += Time.deltaTime;
+			
 
-		if (isJumpButtonHeld)
-		{
-			jumpButtonHoldTimer += Time.deltaTime;
-			if (jumpButtonHoldTimer >= glideHoldThreshold && !isGrounded && canGlide)
+			if (glideButtonHoldTimer > glideTime)
 			{
-				
-				Glide();
+
+				Glide(false);
+				canGlide = false;
+				glideButtonHoldTimer = 0f;
 			}
 		}
-
-		//활주 스킬의 쿨타임
+		//활주 쿨타임일때
 		if (!canGlide)
 		{
+			glideCooltimeUI.SetActive(true);
+
 			glideCooldownTimer += Time.deltaTime;
+			glideCooltimeText.text = ""+ (glideCooldown - glideCooldownTimer).ToString("F1")+" sec";
+
+			Color glideButtonColor = Color.black;
+			glideButtonColor.a = 101/255f;
+			
+			glideButton.GetComponent<Image>().color = glideButtonColor;
+
 			if (glideCooldownTimer >= glideCooldown)
 			{
+				glideCooltimeUI.SetActive(false);
 				canGlide = true;
 				glideCooldownTimer = 0f;
+				glideButton.GetComponent<Image>().color = originalGlideButtonColor;
 			}
+			
 		}
+
+		
 	}
 
 	public void OnJumpButtonDown()
 	{
+		Jump();
 		isJumpButtonHeld = true;
-		jumpButtonHoldTimer = 0f;
+		
 	}
 
-	public void OnJumpButtonUp()
-	{
-		if (isGlide) { 
-			isGlide = false;
-			canGlide = false; }
-		else
-			Jump();
-		isJumpButtonHeld = false;
-		jumpButtonHoldTimer = 0f;
-	}
+	
 
 	public void Jump()
 	{
@@ -167,13 +187,15 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	public void Glide()
+	public void Glide(bool _isGlide)
 	{
-		isGlide = true;
 		
-
-		Debug.Log("활주 시작");
-		rb.velocity = new Vector2(rb.velocity.x, 0.5f); // 활주 중 천천히 하강
+		isGlide = _isGlide;
+		if (!_isGlide)
+		{
+			canGlide = false;
+			glideButtonHoldTimer = 0f;
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -216,7 +238,7 @@ public class Player : MonoBehaviour
 		jumpForce = DataManager.Instance.jumpForce;
 		jumpCount = DataManager.Instance.jumpCount;
 
-		
+
 		maxJumpCount = DataManager.Instance.maxJumpCount; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
 		floorRes = DataManager.Instance.floorRes; // 발판형 장애물 저항
 		flyRes = DataManager.Instance.flyRes; // 날아오는 장애물 저항
