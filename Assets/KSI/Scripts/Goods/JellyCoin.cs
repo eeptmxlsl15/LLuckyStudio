@@ -6,9 +6,7 @@ using UnityEngine;
 // 스토리 및 무한 모드에서 획득한 젤리 코인을 생선으로 환산
 // 환산 : 젤리 1코인 = 생선 1마리
 public class JellyCoin : Goods
-{ 
-	private IScore scoreAdapter;
-
+{
 	private void Awake()
     {
 		scoreAdapter = new JellyCoinAdapter();
@@ -18,7 +16,7 @@ public class JellyCoin : Goods
 	public override void Contact()
 	{
 		gameObject.SetActive(false);
-		scoreAdapter.AddScore(10);
+		scoreAdapter.AddScore(scoreValue);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

@@ -7,8 +7,6 @@ using UnityEngine;
 // 보상 : 일일상점, 랭킹 보상을 통해 획득 가능
 public class CannedFood : Goods
 {
-	private IScore scoreAdapter;
-
 	private void Awake()
 	{
 		scoreAdapter = new CannedFoodAdapter();
@@ -18,7 +16,7 @@ public class CannedFood : Goods
 	public override void Contact()
 	{
 		gameObject.SetActive(false);
-		scoreAdapter.AddScore(20);
+		scoreAdapter.AddScore(scoreValue);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
