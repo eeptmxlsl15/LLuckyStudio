@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 통조림(강화 재화)
+// 통조림
+// 고양이 염원을 강화시킬 때 필요한 강화 재화
+// 보상 : 일일상점, 랭킹 보상을 통해 획득 가능
 public class CannedFood : Goods
 {
 	private IScore scoreAdapter;
