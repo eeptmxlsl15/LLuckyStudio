@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour
+public abstract class Goods : MonoBehaviour
 {
-	[SerializeField] private float speed = 1f;
+	[SerializeField] private float speed = 10f;
+	[SerializeField] protected int scoreValue = 10;
+	protected IScore scoreAdapter;
 
 	public abstract void Contact();
-
-	private void Start()
-	{
-		
-	}
 
 	private void Update()
 	{
 		Move();
 	}
 
-	private void Move()
+	protected virtual void Move()
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
 

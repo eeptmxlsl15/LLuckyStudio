@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEngine.GraphicsBuffer;
 
-public class KSIPlayerController : MonoBehaviour
+public class KSIPlayerController : MonoBehaviour, IDamagable
 {
 	public float jumpForce = 10f;
 	private Rigidbody2D rb;
@@ -18,11 +17,14 @@ public class KSIPlayerController : MonoBehaviour
 	public GameObject jumpButton;
 	public GameObject slideButton;
 
-	public float moveSpeed = 5f;
+	[Header("KSI")]
+	public int health = 100;
+	private BackgroundScroller scroller;	
+	private bool isInvincible = false;
+	private bool isShiled = false;
 
 	void Start()
 	{
-
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
 
@@ -37,10 +39,6 @@ public class KSIPlayerController : MonoBehaviour
 	void Update()
 	{
 		// 모바일 터치 입력 처리
-
-
-		transform.position += new Vector3(moveSpeed * Time.deltaTime, 0, 0);
-
 		if (Input.GetKeyDown(KeyCode.LeftShift))
 		{
 			Slide(true);
@@ -54,8 +52,6 @@ public class KSIPlayerController : MonoBehaviour
 
 	public void Jump()
 	{
-
-
 		if (jumpCount < maxJumpCount)
 		{
 			// -1은 현재 애니메이터 레이어 , 0f는 애니메이션 시작 부분(0~1)
@@ -64,7 +60,6 @@ public class KSIPlayerController : MonoBehaviour
 			rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 			jumpCount++;
 		}
-
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -81,8 +76,6 @@ public class KSIPlayerController : MonoBehaviour
 	{
 		if (collision.collider.CompareTag("Ground"))
 		{
-
-
 			//anim.SetBool("isGround", false);
 			isGrounded = false;
 		}
@@ -99,5 +92,82 @@ public class KSIPlayerController : MonoBehaviour
 		EventTrigger.Entry entry = new EventTrigger.Entry { eventID = eventType };
 		entry.callback.AddListener((eventData) => action());
 		trigger.triggers.Add(entry);
+	}
+
+	/* 강수인 추가 */
+	public void TakeDamage(int damage)
+	{
+		health -= damage;
+		Debug.Log("플레이어가 데미지를 입었습니다. 현재 체력: " + health);
+		if (health <= 0)
+		{
+			Die();
+		}
+	}
+
+	private void Die()
+	{
+		// TODO : 플레이어 사망 추가
+		Debug.Log("플레이어가 죽었습니다.");
+	}
+
+	// 츄르 : 체력 10회복
+	public void Heal(int value)
+	{
+		health += value;
+	}
+
+	// 무적 : 3초간 모든 피해 무적(낙사 제외)
+	public void BecomeInvincible(float duration)
+	{
+		StartCoroutine(BecomeInvincibleRoutine(duration));
+	}
+
+	private IEnumerator BecomeInvincibleRoutine(float duration)
+	{
+		isInvincible = true;
+		yield return new WaitForSeconds(duration);
+		isInvincible = false;
+
+		// TODO : 낙사 제외
+	}
+
+	// 부스터 : 3초간 모든 장애물을 파괴하면서 질주(이동 속도 수치가 20증가)
+	public void Booster(float duration)
+	{
+		StartCoroutine(BoostRoutine(duration));
+	}
+
+	private IEnumerator BoostRoutine(float duration)
+	{
+		// TODO : 이동 속도 수치가 20증가
+		yield return new WaitForSeconds(duration);
+	}
+
+	// 쉴드 : 장애물 1회 방어(낙사 제외)
+	public void BlockObstacle()
+	{
+		isShiled = true;
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.CompareTag("Obstacle"))
+		{
+			if (isShiled)
+			{
+				isShiled = false;
+				// TODO :  장애물 방어
+			}
+			else if (!isInvincible)
+			{
+				// TODO : 플레이어가 무적인지 확인
+			}
+			else if (other.gameObject.CompareTag("FallZone"))
+			{
+				// TODO : 낙사 확인
+				Die();
+			}
+		}
 	}
 }
