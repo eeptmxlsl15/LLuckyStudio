@@ -12,6 +12,8 @@ public class DataManager : MonoBehaviour
 	//염원
     public Dictionary<Button, bool> desireStates = new Dictionary<Button, bool>();
 	//스탯
+
+	
 	[Header("# Player Stat")]
 	public float health;
 	public float maxHealth = 100f;
@@ -34,6 +36,13 @@ public class DataManager : MonoBehaviour
 	public int brokenBlue;//체력
 	public int brokenRed;//활주시간
 	public int brokenGreen;//점프횟수
+	public int fish;//인게임 재화
+	public int goldMarble;
+	public int silverMarble;
+	public int resurrection;
+
+	
+
 	public int[] nextExp = { 10, 20	, 30, 40, 50, 60, 70, 80};
 	[Header("# Player Level")]
 	
@@ -48,7 +57,12 @@ public class DataManager : MonoBehaviour
 	public int greenMarbleLv;//점프횟수
 	//public int[] greenMarbleValue = { 0, 0, 0, 1,0,1,0,1,0,1 };
 	public int[] greenMarbleValue = { 0, 0, 0, 1, 1, 2, 2, 3, 3, 4 };
+
 	[Header("# UI Mapping")]
+	//인게임 재화
+	public TMP_Text fishText;
+	public TMP_Text silverMarbleText;
+
 	//스탯창에 표시되는 텍스트
 	public TMP_Text maxHealthText;
 	public TMP_Text speedText;
@@ -98,18 +112,24 @@ public class DataManager : MonoBehaviour
         {
             Destroy(gameObject); // 중복된 인스턴스 제거
         }
+		//InitializeUI();
     }
 
 
 	void Start()
 	{
-		
 	}
 
 	void Update()
 	{
+		//최대치 관리
+		if (fish > 999999998)
+			fish = 999999999;
+		if (silverMarble > 30)
+			silverMarble = 30;
 		UpdateCatsDesire();
 		UpdateCharacterUI();
+		UpdateLobbyUI();
 		UpdateUpgrade();
 		UpdateSliderValue();
 	}
@@ -211,5 +231,47 @@ public class DataManager : MonoBehaviour
 		brokenBlueSlider.value = (float)brokenBlue / nextExp[blueMarbleLv];
 		brokenRedSlider.value = (float)brokenRed / nextExp[redMarbleLv];
 		brokenGreenSlider.value = (float)brokenGreen / nextExp[greenMarbleLv];
+	}
+	public void UpdateLobbyUI()
+	{
+		fishText.text = ""+fish;
+		silverMarbleText.text = "" + silverMarble + "/30";
+	}
+	void InitializeUI()
+	{
+		// 여기서 모든 UI 요소를 다시 가져와서 맵핑
+		maxHealthText = GameObject.Find("MaxHealthText").GetComponent<TMP_Text>();
+		speedText = GameObject.Find("SpeedText").GetComponent<TMP_Text>();
+		jumpForceText = GameObject.Find("JumpForceText").GetComponent<TMP_Text>();
+		glideTimeText = GameObject.Find("GlideTimeText").GetComponent<TMP_Text>();
+		jumpCountText = GameObject.Find("JumpCountText").GetComponent<TMP_Text>();
+
+		blueMarble = GameObject.Find("BlueMarbleText").GetComponent<TMP_Text>();
+		brokenBlueText = GameObject.Find("BrokenBlueText").GetComponent<TMP_Text>();
+
+		redMarble = GameObject.Find("RedMarbleText").GetComponent<TMP_Text>();
+		brokenRedText = GameObject.Find("BrokenRedText").GetComponent<TMP_Text>();
+
+		greenMarble = GameObject.Find("GreenMarbleText").GetComponent<TMP_Text>();
+		brokenGreenText = GameObject.Find("BrokenGreenText").GetComponent<TMP_Text>();
+
+		upgradeBlueHP = GameObject.Find("UpgradeBlueHPButton").GetComponent<Button>();
+		needBlueCan = GameObject.Find("NeedBlueCanText").GetComponent<TMP_Text>();
+
+		upgradeRedGlide = GameObject.Find("UpgradeRedGlideButton").GetComponent<Button>();
+		needRedCan = GameObject.Find("NeedRedCanText").GetComponent<TMP_Text>();
+
+		upgradeGreenCount = GameObject.Find("UpgradeGreenCountButton").GetComponent<Button>();
+		needGreenCan = GameObject.Find("NeedGreenCanText").GetComponent<TMP_Text>();
+
+		cannedFoodBlueSlider = GameObject.Find("CannedFoodBlueSlider").GetComponent<Slider>();
+		cannedFoodRedSlider = GameObject.Find("CannedFoodRedSlider").GetComponent<Slider>();
+		cannedFoodGreenSlider = GameObject.Find("CannedFoodGreenSlider").GetComponent<Slider>();
+
+		brokenBlueSlider = GameObject.Find("BrokenBlueSlider").GetComponent<Slider>();
+		brokenRedSlider = GameObject.Find("BrokenRedSlider").GetComponent<Slider>();
+		brokenGreenSlider = GameObject.Find("BrokenGreenSlider").GetComponent<Slider>();
+
+		fishText = GameObject.Find("Fish Text").GetComponent<TMP_Text>();
 	}
 }

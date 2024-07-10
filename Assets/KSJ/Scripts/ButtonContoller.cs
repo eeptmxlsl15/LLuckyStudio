@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class ButtonController : MonoBehaviour
 {
 	public GameObject backpack;
-	private bool activeInventory = false;
-    public List<Button> desires; 
+	public List<Button> desires; 
 
     public Dictionary<Button, bool> desireStates;
     

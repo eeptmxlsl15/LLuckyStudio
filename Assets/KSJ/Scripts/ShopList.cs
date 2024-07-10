@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ShopList : MonoBehaviour
 {
-
+	public int resetCost;
 	[Header("Item Prefabs")]
 	public List<GameObject> itemPrefabs; // 여러 아이템 프리팹 리스트
 
@@ -15,14 +15,15 @@ public class ShopList : MonoBehaviour
 
 	void Start()
 	{
+		transform.parent.localScale = new Vector3(1, 1, 1);//0에서 스폰 위치가 이상하게 지정되기 때문
 		DisplayRandomItems();
+		transform.parent.localScale = new Vector3(0, 0, 0);
 	}
+	
 
-	
-	
+
 	private void DisplayRandomItems()
 	{
-		Debug.Log("초기화");
 		// 기존에 생성된 아이템이 있다면 제거
 		foreach (var item in spawnedItems)
 		{
@@ -38,12 +39,14 @@ public class ShopList : MonoBehaviour
 		{
 			int index = chosenIndices[i];
 			GameObject itemPrefab = itemPrefabs[index];
+			
 			Transform spawnPoint = spawnPoints[i];
-
 			GameObject spawnedItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation, transform);
+			spawnedItem.transform.SetParent(transform, false);
 			spawnedItem.SetActive(true);
 			spawnedItems.Add(spawnedItem);
 		}
+		
 	}
 
 	private List<int> GetRandomIndices(int listCount, int itemCount)
@@ -61,6 +64,13 @@ public class ShopList : MonoBehaviour
 	}
 
 	public void OnClickIngameReset(){
+		if (DataManager.Instance.fish - resetCost < 0)
+		{
+			return;
+			//실패 사운드
+		}
+
+		DataManager.Instance.fish -= resetCost;
 		DisplayRandomItems();
 	}
 }

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3612277052173023060}
+  - component: {fileID: 8942152423289409651}
   m_Layer: 5
   m_Name: Shop item
   m_TagString: Untagged
@@ -36,6 +37,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8942152423289409651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360784461337435121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bf65a77afbf8c4aacbf5ad658cb599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishCost: 0
+  quantity: 0
+  itemID: 0
+  isBuyUI: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  fishCostText: {fileID: 0}
+  quantityText: {fileID: 0}
 --- !u!1 &1444878433507063567
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +329,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1526161936137749053}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8942152423289409651}
+        m_TargetAssemblyTypeName: ShopItem, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4965593205242532220
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +354,7 @@ GameObject:
   - component: {fileID: 7023829087590306549}
   - component: {fileID: 4616224430770338123}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Quantity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,7 +488,7 @@ GameObject:
   - component: {fileID: 3418431331135084581}
   - component: {fileID: 152802530022128491}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Fish Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -478,8 +510,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -97}
-  m_SizeDelta: {x: 0, y: 133}
+  m_AnchoredPosition: {x: -5.0175, y: -97}
+  m_SizeDelta: {x: 10.035, y: -115.833}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3418431331135084581
 CanvasRenderer:
