@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 장애물
+// 파괴 안됨
 public abstract class Obstacle : MonoBehaviour, IDamagable
 {
 	public int damage = 10;

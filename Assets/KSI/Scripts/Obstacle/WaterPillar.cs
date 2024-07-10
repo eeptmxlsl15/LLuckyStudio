@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 물기둥(이동 속도 감소)
+// 물기둥
 // 고정형 오브젝트
-// 데미지 : 0
+// 데미지 : -10
+// 무한 모드
 public class WaterPillar : Obstacle
 {
 	[SerializeField] private float speedReduction = 0.5f;
@@ -15,12 +16,12 @@ public class WaterPillar : Obstacle
 		damage = 0;
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		BackgroundScroller bgScroller = other.GetComponent<BackgroundScroller>();
-		if (bgScroller != null)
-		{
-			bgScroller.ReduceSpeed(speedReduction, durationTime);
-		}
-	}
+	//void OnTriggerEnter2D(Collider2D other)
+	//{
+	//	BackgroundScroller bgScroller = other.GetComponent<BackgroundScroller>();
+	//	if (bgScroller != null)
+	//	{
+	//		bgScroller.ReduceSpeed(speedReduction, durationTime);
+	//	}
+	//}
 }

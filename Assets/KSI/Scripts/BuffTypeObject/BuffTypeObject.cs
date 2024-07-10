@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 버프형 오브젝트
+// 파괴됨
 public abstract class BuffTypeObject : MonoBehaviour
 {
 	protected KSIPlayerController player;

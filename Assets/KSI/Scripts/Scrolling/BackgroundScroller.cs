@@ -9,12 +9,12 @@ public class BackgroundScroller : MonoBehaviour
 	[SerializeField] private float moveSpeed;
 	[SerializeField] private Vector3 moveDirection;
 
-	private float originalSpeed;
+	//private float originalSpeed;
 
-	private void Start()
-	{
-		originalSpeed = moveSpeed;
-	}
+	//private void Start()
+	//{
+	//	originalSpeed = moveSpeed;
+	//}
 
 	private void Update()
 	{
@@ -27,16 +27,16 @@ public class BackgroundScroller : MonoBehaviour
 		}
 	}
 
-	public void ReduceSpeed(float factor, float duration)
-	{
-		moveSpeed *= factor;
-		StartCoroutine(RestoreSpeedRoutine(duration));
-	}
+	//public void ReduceSpeed(float factor, float duration)
+	//{
+	//	moveSpeed *= factor;
+	//	StartCoroutine(RestoreSpeedRoutine(duration));
+	//}
 
-	private IEnumerator RestoreSpeedRoutine(float duration)
-	{
-		yield return new WaitForSeconds(duration);
-		moveSpeed = originalSpeed;
-	}
+	//private IEnumerator RestoreSpeedRoutine(float duration)
+	//{
+	//	yield return new WaitForSeconds(duration);
+	//	moveSpeed = originalSpeed;
+	//}
 }
 
