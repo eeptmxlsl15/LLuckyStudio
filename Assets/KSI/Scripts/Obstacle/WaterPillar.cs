@@ -10,6 +10,6 @@ public class WaterPillar : Obstacle
 {
 	private void Start()
 	{
-		damage = 0;
+		damage = 10;
 	}
 }
