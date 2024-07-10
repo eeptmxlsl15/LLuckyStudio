@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEngine.GraphicsBuffer;
 
 public class KSIPlayerController : MonoBehaviour, IDamagable
 {
@@ -92,6 +91,7 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 		trigger.triggers.Add(entry);
 	}
 
+	/* 강수인 추가 */
 	public void TakeDamage(int damage)
 	{
 		health -= damage;
@@ -108,4 +108,8 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 		Debug.Log("플레이어가 죽었습니다.");
 	}
 
+	public void Heal(int amount)
+	{
+		health += amount;
+	}
 }
