@@ -14,7 +14,6 @@ public abstract class Obstacle : MonoBehaviour, IDamagable
 		if (damagable != null)
 		{
 			damagable.TakeDamage(damage);
-			Destroy(gameObject);
 		}
 	}
 }

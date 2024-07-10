@@ -21,7 +21,6 @@ public class WaterPillar : Obstacle
 		if (bgScroller != null)
 		{
 			bgScroller.ReduceSpeed(speedReduction, durationTime);
-			Destroy(gameObject);
 		}
 	}
 }
