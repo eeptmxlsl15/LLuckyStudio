@@ -21,6 +21,7 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 	public int health = 100;
 	private BackgroundScroller scroller;	
 	private bool isInvincible = false;
+	private bool isShiled = false;
 
 	void Start()
 	{
@@ -131,7 +132,7 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 		// TODO : 낙사 제외
 	}
 
-	// 부스터 : : 3초간 모든 장애물을 파괴하면서 질주(이동 속도 수치가 20증가)
+	// 부스터 : 3초간 모든 장애물을 파괴하면서 질주(이동 속도 수치가 20증가)
 	public void Booster(float duration)
 	{
 		StartCoroutine(BoostRoutine(duration));
@@ -141,5 +142,32 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 	{
 		// TODO : 이동 속도 수치가 20증가
 		yield return new WaitForSeconds(duration);
+	}
+
+	// 쉴드 : 장애물 1회 방어(낙사 제외)
+	public void BlockObstacle()
+	{
+		isShiled = true;
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.CompareTag("Obstacle"))
+		{
+			if (isShiled)
+			{
+				isShiled = false;
+				// TODO :  장애물 1회 방어
+			}
+			else if (!isInvincible)
+			{
+				// TODO : 플레이어가 무적인지 확인
+			}
+			else if (other.gameObject.CompareTag("FallZone"))
+			{
+				// TODO : 낙사로 사망
+				Die();
+			}
+		}
 	}
 }
