@@ -17,8 +17,10 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 	public GameObject jumpButton;
 	public GameObject slideButton;
 
-	[Header("Take Damage")]
+	[Header("KSI")]
 	public int health = 100;
+	private BackgroundScroller scroller;	
+	private bool isInvincible = false;
 
 	void Start()
 	{
@@ -108,8 +110,36 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 		Debug.Log("플레이어가 죽었습니다.");
 	}
 
-	public void Heal(int amount)
+	// 츄르 : 체력 10회복
+	public void Heal(int value)
 	{
-		health += amount;
+		health += value;
+	}
+
+	// 무적 : 3초간 모든 피해 무적(낙사 제외)
+	public void BecomeInvincible(float duration)
+	{
+		StartCoroutine(BecomeInvincibleRoutine(duration));
+	}
+
+	private IEnumerator BecomeInvincibleRoutine(float duration)
+	{
+		isInvincible = true;
+		yield return new WaitForSeconds(duration);
+		isInvincible = false;
+
+		// TODO : 낙사 제외
+	}
+
+	// 부스터 : : 3초간 모든 장애물을 파괴하면서 질주(이동 속도 수치가 20증가)
+	public void Booster(float duration)
+	{
+		StartCoroutine(BoostRoutine(duration));
+	}
+
+	private IEnumerator BoostRoutine(float duration)
+	{
+		// TODO : 이동 속도 수치가 20증가
+		yield return new WaitForSeconds(duration);
 	}
 }
