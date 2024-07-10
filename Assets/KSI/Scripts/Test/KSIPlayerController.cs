@@ -157,7 +157,7 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 			if (isShiled)
 			{
 				isShiled = false;
-				// TODO :  장애물 1회 방어
+				// TODO :  장애물 방어
 			}
 			else if (!isInvincible)
 			{
@@ -165,7 +165,7 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 			}
 			else if (other.gameObject.CompareTag("FallZone"))
 			{
-				// TODO : 낙사로 사망
+				// TODO : 낙사 확인
 				Die();
 			}
 		}

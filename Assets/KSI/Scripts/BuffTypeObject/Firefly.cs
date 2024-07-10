@@ -23,7 +23,8 @@ public class Firefly : BuffTypeObject
 
 	private void Start()
 	{
-		startPosition = transform.position; // 초기 위치 저장
+		// 초기 위치 저장
+		startPosition = transform.position; 
 	}
 
 	private void Update()
