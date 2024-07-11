@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CustomSceneManager : MonoBehaviour
 {
-    // 씬 이름으로 씬을 로드합니다.
-    public void LoadScene(string sceneName)
+	public static event Action<Scene, LoadSceneMode> OnSceneLoaded;
+	// 씬 이름으로 씬을 로드합니다.
+	public void LoadScene(string sceneName)
     {
         StartCoroutine(LoadSceneAsync(sceneName));
     }

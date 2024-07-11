@@ -4,15 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
-    public CustomSceneManager sceneManager; // SceneManager¸¦ ÂüÁ¶ÇÕ´Ï´Ù.
-    public string sceneName = "GameScene"; // ±âº»°ª ¼³Á¤
+    public CustomSceneManager sceneManager; // SceneManagerë¥¼ ì°¸ì¡°í•©ë‹ˆë‹¤.
+    public string sceneName = "GameScene"; // ê¸°ë³¸ê°’ ì„¤ì •
 
     public void LoadScene()
     {
         if (sceneManager != null)
         {
             sceneManager.LoadScene(sceneName);
-        }
+			
+
+		}
         else
         {
             Debug.LogError("SceneManager is not set.");

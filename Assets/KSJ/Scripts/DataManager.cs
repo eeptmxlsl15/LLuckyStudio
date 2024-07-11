@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class DataManager : MonoBehaviour
 {
     // 싱글톤 인스턴스
@@ -118,11 +118,17 @@ public class DataManager : MonoBehaviour
 
 	void Start()
 	{
+		InitializeUI();
 	}
-
+	
 	void Update()
 	{
 		//최대치 관리
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Debug.Log("ad");
+			InitializeUI();
+		}
 		if (fish > 999999998)
 			fish = 999999999;
 		if (silverMarble > 30)
@@ -132,6 +138,7 @@ public class DataManager : MonoBehaviour
 		UpdateLobbyUI();
 		UpdateUpgrade();
 		UpdateSliderValue();
+
 	}
 	// 데이터 초기화 메서드
 	public void InitializeData(Dictionary<Button, bool> data)
@@ -240,38 +247,48 @@ public class DataManager : MonoBehaviour
 	void InitializeUI()
 	{
 		// 여기서 모든 UI 요소를 다시 가져와서 맵핑
-		maxHealthText = GameObject.Find("MaxHealthText").GetComponent<TMP_Text>();
-		speedText = GameObject.Find("SpeedText").GetComponent<TMP_Text>();
-		jumpForceText = GameObject.Find("JumpForceText").GetComponent<TMP_Text>();
-		glideTimeText = GameObject.Find("GlideTimeText").GetComponent<TMP_Text>();
-		jumpCountText = GameObject.Find("JumpCountText").GetComponent<TMP_Text>();
+		fishText = GameObject.Find("/Canvas/Fish/Fish Text").GetComponent<TMP_Text>();
+		silverMarbleText = GameObject.Find("/Canvas/Silver Marble/Silver Marble Text").GetComponent<TMP_Text>();
 
-		blueMarble = GameObject.Find("BlueMarbleText").GetComponent<TMP_Text>();
-		brokenBlueText = GameObject.Find("BrokenBlueText").GetComponent<TMP_Text>();
+		maxHealthText = GameObject.Find("/Canvas/Character Info/Character Stat/Health").GetComponent<TMP_Text>();
+		speedText = GameObject.Find("/Canvas/Character Info/Character Stat/Speed").GetComponent<TMP_Text>();
+		jumpForceText = GameObject.Find("/Canvas/Character Info/Character Stat/Jump Force").GetComponent<TMP_Text>();
+		glideTimeText = GameObject.Find("/Canvas/Character Info/Character Stat/Glide").GetComponent<TMP_Text>();
+		jumpCountText = GameObject.Find("/Canvas/Character Info/Character Stat/Jump Count").GetComponent<TMP_Text>();
 
-		redMarble = GameObject.Find("RedMarbleText").GetComponent<TMP_Text>();
-		brokenRedText = GameObject.Find("BrokenRedText").GetComponent<TMP_Text>();
+		blueMarble = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Lv. name").GetComponent<TMP_Text>();
+		brokenBlueText = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Desire Next").GetComponent<TMP_Text>();
 
-		greenMarble = GameObject.Find("GreenMarbleText").GetComponent<TMP_Text>();
-		brokenGreenText = GameObject.Find("BrokenGreenText").GetComponent<TMP_Text>();
+		redMarble = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Lv. name").GetComponent<TMP_Text>();
+		brokenRedText = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Desire Next").GetComponent<TMP_Text>();
 
-		upgradeBlueHP = GameObject.Find("UpgradeBlueHPButton").GetComponent<Button>();
-		needBlueCan = GameObject.Find("NeedBlueCanText").GetComponent<TMP_Text>();
+		greenMarble = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Lv. name").GetComponent<TMP_Text>();
+		brokenGreenText = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Desire Next").GetComponent<TMP_Text>();
 
-		upgradeRedGlide = GameObject.Find("UpgradeRedGlideButton").GetComponent<Button>();
-		needRedCan = GameObject.Find("NeedRedCanText").GetComponent<TMP_Text>();
+		upgradeBlueHP = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Upgrade Material/Blue Upgrade").GetComponent<Button>();
+		needBlueCan = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Upgrade Material").GetComponent<TMP_Text>();
 
-		upgradeGreenCount = GameObject.Find("UpgradeGreenCountButton").GetComponent<Button>();
-		needGreenCan = GameObject.Find("NeedGreenCanText").GetComponent<TMP_Text>();
+		upgradeRedGlide = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Upgrade Material/Red Upgrade").GetComponent<Button>();
+		needRedCan = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Upgrade Material").GetComponent<TMP_Text>();
 
-		cannedFoodBlueSlider = GameObject.Find("CannedFoodBlueSlider").GetComponent<Slider>();
-		cannedFoodRedSlider = GameObject.Find("CannedFoodRedSlider").GetComponent<Slider>();
-		cannedFoodGreenSlider = GameObject.Find("CannedFoodGreenSlider").GetComponent<Slider>();
+		upgradeGreenCount = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Upgrade Material/Green Upgrade").GetComponent<Button>();
+		needGreenCan = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Upgrade Material").GetComponent<TMP_Text>();
 
-		brokenBlueSlider = GameObject.Find("BrokenBlueSlider").GetComponent<Slider>();
-		brokenRedSlider = GameObject.Find("BrokenRedSlider").GetComponent<Slider>();
-		brokenGreenSlider = GameObject.Find("BrokenGreenSlider").GetComponent<Slider>();
+		cannedFoodBlueSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Canned Slider").GetComponent<Slider>();
+		cannedFoodRedSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Canned Slider").GetComponent<Slider>();
+		cannedFoodGreenSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Canned Slider").GetComponent<Slider>();
 
-		fishText = GameObject.Find("Fish Text").GetComponent<TMP_Text>();
+		brokenBlueSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Slider").GetComponent<Slider>();
+		brokenRedSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Slider").GetComponent<Slider>();
+		brokenGreenSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Slider").GetComponent<Slider>();
+
+		upgradeBlueHP.onClick.RemoveAllListeners();
+		upgradeBlueHP.onClick.AddListener(() => UpgradeButton(1));
+
+		upgradeRedGlide.onClick.RemoveAllListeners();
+		upgradeRedGlide.onClick.AddListener(() => UpgradeButton(2));
+
+		upgradeGreenCount.onClick.RemoveAllListeners();
+		upgradeGreenCount.onClick.AddListener(() => UpgradeButton(3));
 	}
 }
