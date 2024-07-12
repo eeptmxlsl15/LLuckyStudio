@@ -33,6 +33,6 @@ public class MovingPlatform : Platform
 		// PingPong 함수로 위아래로 움직임
 		float y = Mathf.PingPong(Time.time * speed, maxHeight - minHeight) + minHeight;
 		// Y 위치 업데이트
-		transform.position = new Vector3(initialPosition.x, initialPosition.y + y, 0);
+		transform.position = new Vector3(initialPosition.x, initialPosition.y + y, initialPosition.z);
 	} 
 }

@@ -18,6 +18,8 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 	public GameObject slideButton;
 
 	[Header("KSI")]
+	[SerializeField] private float moveSpeed;
+	[SerializeField] private Vector3 moveDirection;
 	public int health = 100;
 	private BackgroundScroller scroller;	
 	private bool isInvincible = false;
@@ -38,6 +40,8 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 
 	void Update()
 	{
+		transform.position += moveDirection * moveSpeed * Time.deltaTime;
+
 		// 모바일 터치 입력 처리
 		if (Input.GetKeyDown(KeyCode.LeftShift))
 		{
