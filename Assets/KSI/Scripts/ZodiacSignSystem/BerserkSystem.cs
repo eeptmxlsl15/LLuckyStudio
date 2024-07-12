@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // 광폭 시스템
 // 해(돼지)시 : 21 ~ 23시  
@@ -45,10 +46,11 @@ public class BerserkSystem : MonoBehaviour
 	public class ZodiacSignDebuff
 	{
 		public ZodiacSign zodiacSign;
-		public Action applyDebuff;
+		public UnityAction applyDebuff;
 	}
 
 	public BerserkTime[] berserkTime;
 	public ZodiacSignDebuff[] zodiacSignDebuff;
-	
+	private DebuffSystem debuffSystem;
+
 }
