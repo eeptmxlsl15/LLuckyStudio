@@ -3,65 +3,71 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-// °¢ ¾À ¸¶´Ù ÀÖ´Â BaseScene Ã£¾Æ¼­ °¡Á®´Ù ÁÜ
+// ê° ì”¬ ë§ˆë‹¤ ìˆëŠ” BaseScene ì°¾ì•„ì„œ ê°€ì ¸ë‹¤ ì¤Œ
 public class SceneManager : MonoBehaviour
 {
-	private LoadingUI loadingUI;
-
-	BaseScene curScene;
-	public BaseScene CurScene
+	public void StartGame()
 	{
-		get
-		{
-			// FindObjectOfTypeÀ» ÀÚÁÖ ¾²¸é ºÎ´ãÀÌ µÇ´Ï±î Null·Î È®ÀÎÇÔ
-			if (curScene == null)
-				curScene = GameObject.FindObjectOfType<BaseScene>();
-
-			return curScene;
-		}
+		UnitySceneManager.LoadScene("KSITestScene");
+		Time.timeScale = 1;
 	}
 
-	void Awake()
-	{
-		//LoadingUI ui = GameManager.Resource.Load<LoadingUI>("UI/LoadingUI");
-		//loadingUI = Instantiate(ui);
-		//loadingUI.transform.SetParent(transform, false);
-	}
+	//private LoadingUI loadingUI;
 
-	public void LoadScene(string sceneName)
-	{
-		StartCoroutine(LoadingRoutine(sceneName));
-	}
+	//BaseScene curScene;
+	//public BaseScene CurScene
+	//{
+	//	get
+	//	{
+	//		// FindObjectOfTypeì„ ìì£¼ ì“°ë©´ ë¶€ë‹´ì´ ë˜ë‹ˆê¹Œ Nullë¡œ í™•ì¸í•¨
+	//		if (curScene == null)
+	//			curScene = GameObject.FindObjectOfType<BaseScene>();
 
-	IEnumerator LoadingRoutine(string sceneName)
-	{
-		loadingUI.FadeOut();
-		yield return new WaitForSeconds(0.5f);
-		//·Îµù Áß¿¡´Â °ÔÀÓÀÇ ½Ã°£À» ¸ØÃçÁÜ
-		Time.timeScale = 0f;
+	//		return curScene;
+	//	}
+	//}
 
-		// ºñµ¿±â½Ä ·Îµù
-		AsyncOperation oper = UnitySceneManager.LoadSceneAsync(sceneName);
-		while (!oper.isDone)
-		{
-			loadingUI.SetProgress(Mathf.Lerp(0.0f, 0.5f, oper.progress));
-			yield return null;
-		}
+	//void Awake()
+	//{
+	//	//LoadingUI ui = GameManager.Resource.Load<LoadingUI>("UI/LoadingUI");
+	//	//loadingUI = Instantiate(ui);
+	//	//loadingUI.transform.SetParent(transform, false);
+	//}
 
-		if (CurScene != null)
-		{
-			CurScene.LoadAsync();
-			while (CurScene.progress < 1f)
-			{
-				loadingUI.SetProgress(Mathf.Lerp(0.5f, 1.0f, CurScene.progress));
-				yield return null;
-			}
-		}
+	//public void LoadScene(string sceneName)
+	//{
+	//	StartCoroutine(LoadingRoutine(sceneName));
+	//}
 
-		loadingUI.SetProgress(1.0f);
-		//·Îµù Áß¿¡´Â °ÔÀÓÀÇ ½Ã°£À» ¸ØÃá °Í ÇØÁ¦
-		Time.timeScale = 1f;
-		loadingUI.FadeIn();
-		yield return new WaitForSeconds(1f);
-	}
+	//IEnumerator LoadingRoutine(string sceneName)
+	//{
+	//	loadingUI.FadeOut();
+	//	yield return new WaitForSeconds(0.5f);
+	//	//ë¡œë”© ì¤‘ì—ëŠ” ê²Œì„ì˜ ì‹œê°„ì„ ë©ˆì¶°ì¤Œ
+	//	Time.timeScale = 0f;
+
+	//	// ë¹„ë™ê¸°ì‹ ë¡œë”©
+	//	AsyncOperation oper = UnitySceneManager.LoadSceneAsync(sceneName);
+	//	while (!oper.isDone)
+	//	{
+	//		loadingUI.SetProgress(Mathf.Lerp(0.0f, 0.5f, oper.progress));
+	//		yield return null;
+	//	}
+
+	//	if (CurScene != null)
+	//	{
+	//		CurScene.LoadAsync();
+	//		while (CurScene.progress < 1f)
+	//		{
+	//			loadingUI.SetProgress(Mathf.Lerp(0.5f, 1.0f, CurScene.progress));
+	//			yield return null;
+	//		}
+	//	}
+
+	//	loadingUI.SetProgress(1.0f);
+	//	//ë¡œë”© ì¤‘ì—ëŠ” ê²Œì„ì˜ ì‹œê°„ì„ ë©ˆì¶˜ ê²ƒ í•´ì œ
+	//	Time.timeScale = 1f;
+	//	loadingUI.FadeIn();
+	//	yield return new WaitForSeconds(1f);
+	//}
 }
