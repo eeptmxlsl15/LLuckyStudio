@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
 	private bool ratDesire;
 	private float healthRegenTimer = 0f;
-	private const float healthRegenInterval = 5f;
+	private const float healthRegenInterval = 10f;//10초당 healthRegan 만큼 회복
 
 	[Header("# Player State")]
 	public bool isGrounded = false;
@@ -253,39 +253,39 @@ public class Player : MonoBehaviour
 	{
 		switch (animal)
 		{
-			case Constants.Pig:
-				maxHealth += 5;
+			case Constants.Pig://최대 체력 20 증가
+				maxHealth += 20;
 				health = maxHealth;
 				break;
-			case Constants.Dog:
-				speed += 5f;
+			case Constants.Dog://이동 속도 20 증가
+				speed += 20f;
 				break;
-			case Constants.Rooster:
-				floorRes += 1;
+			case Constants.Rooster://고정형 장애물 피해 감소
+				floorRes += 5;
 				break;
-			case Constants.Monkey:
-				jumpForce += 2f;
+			case Constants.Monkey://젤리코인 점수 5점 증가
+				
 				break;
-			case Constants.Lamb:
-				// 반딧불의 체력 회복량 증가
+			case Constants.Lamb:// 반딧불의 체력 회복량 5 증가
+
 				break;
-			case Constants.Horse:
-				// 부스터 아이템 지속 시간 증가
+			case Constants.Horse:// 부스터 아이템 지속 시간 1.5초 증가
+								
 				break;
-			case Constants.Snake:
-				flyRes += 1;
+			case Constants.Snake://날아오는 장애물 오브젝트 피해 수치 5 감소
+				flyRes += 5;
 				break;
-			case Constants.Dragon:
-				// 무적 아이템 지속 시간 증가
+			case Constants.Dragon:// 무적 아이템 지속 시간 증가
+
 				break;
-			case Constants.Rabbit:
-				// 츄르의 체력 회복량 증가
+			case Constants.Rabbit:// 츄르의 체력 회복량 5 증가
+
 				break;
-			case Constants.Tiger:
-				// 쉴드 효과 증가
+			case Constants.Tiger://  쉴드 효과 횟수 1회 증가
+
 				break;
 			case Constants.Ox:
-				// 제한 시간 감소
+				glideTime += 1f;
 				break;
 			case Constants.Rat:
 				ratDesire = true;
