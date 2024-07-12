@@ -29,8 +29,10 @@ public class DataManager : MonoBehaviour
 
 	public bool ratDesire;
 	public float healthRegenTimer = 0f;
-	private const float healthRegenInterval = 5f;
+	private const float healthRegenInterval = 10f;
 
+	public float glideCooldown = 120f;
+	public float glideCooldownTimer = 0f;
 
 	[Header("# Player Items")]
 	public int cannedFood;
@@ -44,20 +46,19 @@ public class DataManager : MonoBehaviour
 
 	
 
-	public int[] nextExp = { 10, 20	, 30, 40, 50, 60, 70, 80};
-	[Header("# Player Level")]
+	public int[] nextExp = { 10, 20	, 30, 40, 50, 60, 70, 80 , 90,100,110};
+	[Header("# Cat's Desire Level")]
+	public bool haveCatsDesire = true;
+
+	public int redMarbleLv;//체력
+	public int[] redMarbleValue =  { 5, 5, 5, 5, 5, 10, 10, 10, 10, 10,20 };
+
+	public int blueMarbleLv;//피해 수치 감소
+	public int[] blueMarbleValue = { 1, 1, 1, 1, 1, 3, 3, 3, 3, 3,5 };
 	
-	public int blueMarbleLv;//체력
-	//public int[] blueMarbleValue = { 5, 5, 5, 5, 5, 10, 10, 10, 10,15 };
-	public int[] blueMarbleValue = { 5, 10, 15, 20, 25, 35, 45, 55, 65, 80 };
 	
-	public int redMarbleLv;//활주시간
-	//public float[] redMarbleValue = { 0, 0, 1f, 0.5f, 0.5f, 1f, 0.5f, 0.5f, 0.5f,1.5f };
-	public float[] redMarbleValue = { 0, 0, 1f, 1.5f, 2f, 3f, 3.5f, 4f, 4.5f, 6f };
-	
-	public int greenMarbleLv;//점프횟수
-	//public int[] greenMarbleValue = { 0, 0, 0, 1,0,1,0,1,0,1 };
-	public int[] greenMarbleValue = { 0, 0, 0, 1, 1, 2, 2, 3, 3, 4 };
+	public int greenMarbleLv;//활공 시간
+	public float[] greenMarbleValue = { 5f, 5f, 5f, 5f, 5f,7f, 7f, 7f, 7f, 7f,10f };
 
 	[Header("# UI Mapping")]
 	//인게임 재화
@@ -70,6 +71,7 @@ public class DataManager : MonoBehaviour
 	public TMP_Text jumpForceText;
 	public TMP_Text glideTimeText;
 	public TMP_Text jumpCountText;
+	//public TMP_Text allResText;
 
 	//염원 Lv, 이름, 성능과 잔여개수
 	public TMP_Text blueMarble;
@@ -149,19 +151,35 @@ public class DataManager : MonoBehaviour
 
 	public void UpdateCharacterUI()
 	{
+		//스탯창
+		if (haveCatsDesire)
+			maxHealthText.text = "HP : " + (maxHealth + redMarbleValue[redMarbleLv]);
+		else
+			maxHealthText.text = "HP : " + maxHealth;
 		
-		maxHealthText.text = "HP : " +(maxHealth+ blueMarbleValue[blueMarbleLv]);
+		/*
+		if(haveCatsDesire)
+			allResText.text = "All Resist : " + (allRes+blueMarbleValue[blueMarbleLv]);
+		else
+			allResText.text = "All Resist : " + allRes;
+		*/
+		if (haveCatsDesire)
+			glideTimeText.text = "Glide Time : " + greenMarbleValue[greenMarbleLv];
+		else
+			glideTimeText.text = "Glide Time : 0";
+		
+			
+		
 		speedText.text = "Speed : " +speed ;
 		jumpForceText.text = "JumpForce : " + jumpForce ;
-		jumpCountText.text = "JumpCount : "+ (maxJumpCount+ greenMarbleValue[greenMarbleLv]);
-		glideTimeText.text = "Glide Time : " + redMarbleValue[redMarbleLv];
+		jumpCountText.text = "JumpCount : "+ maxJumpCount;
 		
 		//염원 잔여/필요
 		brokenBlueText.text = "" + brokenBlue + "/" + nextExp[blueMarbleLv];
 		brokenRedText.text = "" + brokenRed + "/" + nextExp[redMarbleLv];
 		brokenGreenText.text = "" + brokenGreen + "/" + nextExp[greenMarbleLv];
 
-		//통조림 잔여/필요
+		//생선 잔여/필요
 		needBlueCan.text = "" + fish + "/" + nextExp[blueMarbleLv];
 		needRedCan.text = "" + fish + "/" + nextExp[redMarbleLv];
 		needGreenCan.text = "" + fish + "/" + nextExp[greenMarbleLv];
@@ -170,27 +188,62 @@ public class DataManager : MonoBehaviour
 
 	public void UpdateCatsDesire()
 	{
-		blueMarble.text = "Lv." + blueMarbleLv + " Blue Marble + HP :" + blueMarbleValue[blueMarbleLv];
-		redMarble.text = "Lv." + redMarbleLv + " Red Marble + Glide : " + redMarbleValue[redMarbleLv];
-		greenMarble.text = "Lv. " + greenMarbleLv + " Green Marble + JumpCount : " + greenMarbleValue[greenMarbleLv];
+		redMarble.text = "Lv." + redMarbleLv + " Red Marble + HP : " + redMarbleValue[redMarbleLv];
+		blueMarble.text = "Lv." + blueMarbleLv + " Blue Marble + All Resist :" + blueMarbleValue[blueMarbleLv];
+		greenMarble.text = "Lv. " + greenMarbleLv + " Green Marble + Glide Time : " + greenMarbleValue[greenMarbleLv];
 	}
 
 	public void UpdateUpgrade()//강화 가능 여부에 따라 버튼 활성화
 	{
-		if (brokenBlue < nextExp[blueMarbleLv] || fish < nextExp[blueMarbleLv])
-			upgradeBlueHP.GetComponent<Image>().color = Color.gray;
-		if (brokenRed < nextExp[redMarbleLv] || fish < nextExp[redMarbleLv])
+		if (brokenRed < nextExp[redMarbleLv] || fish < nextExp[redMarbleLv]||redMarbleLv==11)
+		{
 			upgradeRedGlide.GetComponent<Image>().color = Color.gray;
-		if (brokenGreen < nextExp[greenMarbleLv] || fish < nextExp[greenMarbleLv])
+			upgradeRedGlide.interactable = false; // 버튼 비활성화
+		}
+		else
+		{
+			upgradeRedGlide.GetComponent<Image>().color = Color.white;
+			upgradeRedGlide.interactable = true; // 버튼 활성화
+		}
+		if (brokenBlue < nextExp[blueMarbleLv] || fish < nextExp[blueMarbleLv] || blueMarbleLv==11)
+		{
+			upgradeBlueHP.GetComponent<Image>().color = Color.gray;
+			upgradeBlueHP.interactable = false; // 버튼 비활성화
+		}
+		else
+		{
+			upgradeBlueHP.GetComponent<Image>().color = Color.white;
+			upgradeBlueHP.interactable = true; // 버튼 활성화
+		}
+
+
+		if (brokenGreen < nextExp[greenMarbleLv] || fish < nextExp[greenMarbleLv]||greenMarbleLv ==11)
+		{
 			upgradeGreenCount.GetComponent<Image>().color = Color.gray;
+			upgradeGreenCount.interactable = false; // 버튼 비활성화
+		}
+		else
+		{
+			upgradeGreenCount.GetComponent<Image>().color = Color.white;
+			upgradeGreenCount.interactable = true; // 버튼 활성화
+		}
 	}
 
 	public void UpgradeButton(int color)//누르면 강화됨
 	{
 		
-		if (color == 1)//청
+		if (color == 1)//적
 		{
-			if (brokenBlue >= nextExp[blueMarbleLv] && fish >= nextExp[blueMarbleLv])
+			if (brokenRed >= nextExp[redMarbleLv] && fish >= nextExp[redMarbleLv] && redMarbleLv < 10)
+			{
+				brokenRed -= nextExp[redMarbleLv];
+				fish -= nextExp[redMarbleLv];
+				redMarbleLv++;
+			}
+		}
+		if (color == 2)//청
+		{
+			if (brokenBlue >= nextExp[blueMarbleLv] && fish >= nextExp[blueMarbleLv] && blueMarbleLv<10 )
 			{
 				brokenBlue -= nextExp[blueMarbleLv];
 				fish -= nextExp[blueMarbleLv];
@@ -198,19 +251,10 @@ public class DataManager : MonoBehaviour
 			}
 		}
 
-		if (color == 2)//적
-		{
-			if (brokenRed >= nextExp[redMarbleLv] && fish >= nextExp[redMarbleLv])
-			{
-				brokenRed -= nextExp[redMarbleLv];
-				fish -= nextExp[redMarbleLv];
-				redMarbleLv++;
-			}
-		}
 
 		if (color == 3)//녹
 		{
-			if (brokenGreen >= nextExp[greenMarbleLv] && fish >= nextExp[greenMarbleLv])
+			if (brokenGreen >= nextExp[greenMarbleLv] && fish >= nextExp[greenMarbleLv]&&greenMarbleLv<10)
 			{
 				brokenGreen -= nextExp[greenMarbleLv];
 				fish -= nextExp[greenMarbleLv];
@@ -224,9 +268,9 @@ public class DataManager : MonoBehaviour
 	//변화된 데이터를 DataManager에 저장 - DataManager가 플레이어에게 넘김
 	public void SetStat()
 	{
-		maxHealth += blueMarbleValue[blueMarbleLv];
-		maxJumpCount +=greenMarbleValue[greenMarbleLv];
-		glideTime += redMarbleValue[redMarbleLv];
+		maxHealth += redMarbleValue[redMarbleLv];
+		allRes += blueMarbleValue[blueMarbleLv];
+		glideTime +=greenMarbleValue[greenMarbleLv];
 
 		
 	}
@@ -257,7 +301,8 @@ public class DataManager : MonoBehaviour
 		jumpForceText = GameObject.Find("/Canvas/Character Info/Character Stat/Jump Force").GetComponent<TMP_Text>();
 		glideTimeText = GameObject.Find("/Canvas/Character Info/Character Stat/Glide").GetComponent<TMP_Text>();
 		jumpCountText = GameObject.Find("/Canvas/Character Info/Character Stat/Jump Count").GetComponent<TMP_Text>();
-
+		//allResText = GameObject.Find("/Canvas/Character Info/Character Stat/All Resist").GetComponent<TMP_Text>();
+		
 		blueMarble = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Lv. name").GetComponent<TMP_Text>();
 		brokenBlueText = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Desire Next").GetComponent<TMP_Text>();
 
@@ -284,11 +329,11 @@ public class DataManager : MonoBehaviour
 		brokenRedSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Slider").GetComponent<Slider>();
 		brokenGreenSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Slider").GetComponent<Slider>();
 
-		upgradeBlueHP.onClick.RemoveAllListeners();
-		upgradeBlueHP.onClick.AddListener(() => UpgradeButton(1));
-
 		upgradeRedGlide.onClick.RemoveAllListeners();
-		upgradeRedGlide.onClick.AddListener(() => UpgradeButton(2));
+		upgradeRedGlide.onClick.AddListener(() => UpgradeButton(1));
+		
+		upgradeBlueHP.onClick.RemoveAllListeners();
+		upgradeBlueHP.onClick.AddListener(() => UpgradeButton(2));
 
 		upgradeGreenCount.onClick.RemoveAllListeners();
 		upgradeGreenCount.onClick.AddListener(() => UpgradeButton(3));

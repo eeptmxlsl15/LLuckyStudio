@@ -254,17 +254,17 @@ public class Player : MonoBehaviour
 	{
 		switch (animal)
 		{
-			case Constants.Pig://최대 체력 20 증가
+			case Constants.Pig:// 최대 체력 20 증가
 				maxHealth += 20;
 				health = maxHealth;
 				break;
-			case Constants.Dog://이동 속도 20 증가
+			case Constants.Dog:// 이동 속도 20 증가
 				speed += 20f;
 				break;
-			case Constants.Rooster://고정형 장애물 피해 감소
+			case Constants.Rooster:// 고정형 장애물 피해 감소
 				floorRes += 5;
 				break;
-			case Constants.Monkey://젤리코인 점수 5점 증가
+			case Constants.Monkey:// 젤리코인 점수 5점 증가
 				
 				break;
 			case Constants.Lamb:// 반딧불의 체력 회복량 5 증가
@@ -273,7 +273,7 @@ public class Player : MonoBehaviour
 			case Constants.Horse:// 부스터 아이템 지속 시간 1.5초 증가
 								
 				break;
-			case Constants.Snake://날아오는 장애물 오브젝트 피해 수치 5 감소
+			case Constants.Snake:// 날아오는 장애물 오브젝트 피해 수치 5 감소
 				flyRes += 5;
 				break;
 			case Constants.Dragon:// 무적 아이템 지속 시간 증가
@@ -285,14 +285,12 @@ public class Player : MonoBehaviour
 			case Constants.Tiger://  쉴드 효과 횟수 1회 증가
 
 				break;
-			case Constants.Ox:
+			case Constants.Ox:// 활공 시간 증가
 				glideTime += 1f;
 				break;
-			case Constants.Rat:
+			case Constants.Rat://10초당 체력 재생
 				ratDesire = true;
 				healthRegen += 1f;
-				break;
-			case Constants.Cat:
 				break;
 			default:
 				break;
