@@ -23,6 +23,7 @@ public class DataManager : MonoBehaviour
 	public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
 	public int floorRes = 0; // 발판형 장애물 저항
 	public int flyRes = 0; // 날아오는 장애물 저항
+	public int allRes = 0; // 모든 피해 수치 감소 
 	public float healthRegen = 0;
 	public float glideTime=0;
 
@@ -91,9 +92,9 @@ public class DataManager : MonoBehaviour
 	public TMP_Text needGreenCan;
 
 	//슬라이더
-	public Slider cannedFoodBlueSlider;
-	public Slider cannedFoodRedSlider;
-	public Slider cannedFoodGreenSlider;
+	public Slider fishFoodBlueSlider;
+	public Slider fishFoodRedSlider;
+	public Slider fishFoodGreenSlider;
 
 	public Slider brokenBlueSlider;
 	public Slider brokenRedSlider;
@@ -161,9 +162,9 @@ public class DataManager : MonoBehaviour
 		brokenGreenText.text = "" + brokenGreen + "/" + nextExp[greenMarbleLv];
 
 		//통조림 잔여/필요
-		needBlueCan.text = "" + cannedFood + "/" + nextExp[blueMarbleLv];
-		needRedCan.text = "" + cannedFood + "/" + nextExp[redMarbleLv];
-		needGreenCan.text = "" + cannedFood + "/" + nextExp[greenMarbleLv];
+		needBlueCan.text = "" + fish + "/" + nextExp[blueMarbleLv];
+		needRedCan.text = "" + fish + "/" + nextExp[redMarbleLv];
+		needGreenCan.text = "" + fish + "/" + nextExp[greenMarbleLv];
 
 	}
 
@@ -176,42 +177,43 @@ public class DataManager : MonoBehaviour
 
 	public void UpdateUpgrade()//강화 가능 여부에 따라 버튼 활성화
 	{
-		if (brokenBlue < nextExp[blueMarbleLv] || cannedFood < nextExp[blueMarbleLv])
+		if (brokenBlue < nextExp[blueMarbleLv] || fish < nextExp[blueMarbleLv])
 			upgradeBlueHP.GetComponent<Image>().color = Color.gray;
-		if (brokenRed < nextExp[redMarbleLv] || cannedFood < nextExp[redMarbleLv])
+		if (brokenRed < nextExp[redMarbleLv] || fish < nextExp[redMarbleLv])
 			upgradeRedGlide.GetComponent<Image>().color = Color.gray;
-		if (brokenGreen < nextExp[greenMarbleLv] || cannedFood < nextExp[greenMarbleLv])
+		if (brokenGreen < nextExp[greenMarbleLv] || fish < nextExp[greenMarbleLv])
 			upgradeGreenCount.GetComponent<Image>().color = Color.gray;
 	}
 
 	public void UpgradeButton(int color)//누르면 강화됨
 	{
+		
 		if (color == 1)//청
 		{
-			if (brokenBlue >= nextExp[blueMarbleLv] && cannedFood >= nextExp[blueMarbleLv])
+			if (brokenBlue >= nextExp[blueMarbleLv] && fish >= nextExp[blueMarbleLv])
 			{
 				brokenBlue -= nextExp[blueMarbleLv];
-				cannedFood -= nextExp[blueMarbleLv];
+				fish -= nextExp[blueMarbleLv];
 				blueMarbleLv++;
 			}
 		}
 
 		if (color == 2)//적
 		{
-			if (brokenRed >= nextExp[redMarbleLv] && cannedFood >= nextExp[redMarbleLv])
+			if (brokenRed >= nextExp[redMarbleLv] && fish >= nextExp[redMarbleLv])
 			{
 				brokenRed -= nextExp[redMarbleLv];
-				cannedFood -= nextExp[redMarbleLv];
+				fish -= nextExp[redMarbleLv];
 				redMarbleLv++;
 			}
 		}
 
 		if (color == 3)//녹
 		{
-			if (brokenGreen >= nextExp[greenMarbleLv] && cannedFood >= nextExp[greenMarbleLv])
+			if (brokenGreen >= nextExp[greenMarbleLv] && fish >= nextExp[greenMarbleLv])
 			{
 				brokenGreen -= nextExp[greenMarbleLv];
-				cannedFood -= nextExp[greenMarbleLv];
+				fish -= nextExp[greenMarbleLv];
 				greenMarbleLv++;
 			}
 		}
@@ -231,9 +233,9 @@ public class DataManager : MonoBehaviour
 
 	public void UpdateSliderValue()
 	{
-		cannedFoodBlueSlider.value = (float)cannedFood / nextExp[blueMarbleLv];
-		cannedFoodRedSlider.value = (float)cannedFood / nextExp[redMarbleLv];
-		cannedFoodGreenSlider.value = (float)cannedFood / nextExp[greenMarbleLv];
+		fishFoodBlueSlider.value = (float)fish / nextExp[blueMarbleLv];
+		fishFoodRedSlider.value = (float)fish / nextExp[redMarbleLv];
+		fishFoodGreenSlider.value = (float)fish / nextExp[greenMarbleLv];
 
 		brokenBlueSlider.value = (float)brokenBlue / nextExp[blueMarbleLv];
 		brokenRedSlider.value = (float)brokenRed / nextExp[redMarbleLv];
@@ -274,9 +276,9 @@ public class DataManager : MonoBehaviour
 		upgradeGreenCount = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Upgrade Material/Green Upgrade").GetComponent<Button>();
 		needGreenCan = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Upgrade Material").GetComponent<TMP_Text>();
 
-		cannedFoodBlueSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Canned Slider").GetComponent<Slider>();
-		cannedFoodRedSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Canned Slider").GetComponent<Slider>();
-		cannedFoodGreenSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Canned Slider").GetComponent<Slider>();
+		fishFoodBlueSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Fish Slider").GetComponent<Slider>();
+		fishFoodRedSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Fish Slider").GetComponent<Slider>();
+		fishFoodGreenSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Fish Slider").GetComponent<Slider>();
 
 		brokenBlueSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Slider").GetComponent<Slider>();
 		brokenRedSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Slider").GetComponent<Slider>();

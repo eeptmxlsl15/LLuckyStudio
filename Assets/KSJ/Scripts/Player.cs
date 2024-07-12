@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 	public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
 	public int floorRes = 0; // 발판형 장애물 저항
 	public int flyRes = 0; // 날아오는 장애물 저항
+	public int allRes = 0; // 모든 피해 수치 감소 
 	public float healthRegen = 0;
 	public float glideTime = 0;
 

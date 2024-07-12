@@ -45,7 +45,7 @@ public class Login : LoginBase
 	private void ResponseToLogin(string ID, string PW)
 	{
 		// 서버에 로그인 요청 (비동기)
-		//Backend.BMember.CustomLogin(ID, PW, callback =>
+		Backend.BMember.CustomLogin(ID, PW, callback =>
 		{
 			StopCoroutine(nameof(LoginProcess));
 
