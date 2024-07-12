@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static BerserkSystem;
 
 // 광폭 시스템
 // 해(돼지)시 : 21 ~ 23시  
@@ -122,7 +121,7 @@ public class BerserkSystem : MonoBehaviour
 			}
 		}
 
-		// 기본값으로 쥐시 반환
+		// 기본값으로 쥐시 반환 
 		return ZodiacSign.MOUSE; 
 	}
 
