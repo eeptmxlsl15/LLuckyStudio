@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // 게임 모드
@@ -19,6 +21,9 @@ public class GameModeSystem : MonoBehaviour
 	}
 
 	public GameMode curGameMode;
+	public TMP_Text randomDebuffText1;
+	public TMP_Text randomDebuffText2;
+
 	private BerserkSystem berserkSystem;
 
 	private void Start()
@@ -50,18 +55,41 @@ public class GameModeSystem : MonoBehaviour
 		}
 	}
 
+	// 보스 스테이지 디버프
 	private void ApplyBossDebuff()
-	{ 
-	
+	{
+		// 현재 시간에 해당하는 십이지신을 가져옴
+		BerserkSystem.ZodiacSign curZodiacSign = berserkSystem.GetCurZodiacSign();
+		Debug.Log($"보스 스테이지 : {curZodiacSign}이 적용됨");
+
+		// 해당 십이지신의 디버프를 적용
+		berserkSystem.ApplyDebuff(curZodiacSign);
 	}
 
+	// 광폭 보스 스테이지 디버프
 	private void ApplyBerserkBossDebuff()
 	{
-		
+		// 현재 시간에 해당하는 십이지신을 가져옴
+		BerserkSystem.ZodiacSign curZodiacSign = berserkSystem.GetCurZodiacSign();
+		Debug.Log($"광폭 보스 스테이지 : {curZodiacSign}이 적용됨");
+
+		// 해당 십이지신의 디버프를 적용
+		berserkSystem.ApplyDebuff(curZodiacSign);
 	}
 
+	// 무한 모드 스테이지 디버프
 	private void ApplyInfiniteDebuff()
-	{ 
-	
+	{
+		Array values = Enum.GetValues(typeof(BerserkSystem.ZodiacSign));
+		System.Random random = new System.Random();
+		BerserkSystem.ZodiacSign randomZodiac1 = (BerserkSystem.ZodiacSign)values.GetValue(random.Next(values.Length));
+		BerserkSystem.ZodiacSign randomZodiac2 = (BerserkSystem.ZodiacSign)values.GetValue(random.Next(values.Length));
+
+		Debug.Log($"무한모드 : {randomZodiac1}, {randomZodiac2}가 적용됨");
+		berserkSystem.ApplyDebuff(randomZodiac1);
+		berserkSystem.ApplyDebuff(randomZodiac2);
+
+		randomDebuffText1.text = $"Debuff 1: {randomZodiac1}";
+		randomDebuffText2.text = $"Debuff 2: {randomZodiac2}";
 	}
 }

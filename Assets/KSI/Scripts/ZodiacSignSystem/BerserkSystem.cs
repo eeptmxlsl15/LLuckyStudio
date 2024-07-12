@@ -94,7 +94,7 @@ public class BerserkSystem : MonoBehaviour
 	}
 
 	// 현재 시간을 기준으로 십이지신을 반환하는 메소드
-	public ZodiacSign GetCurrentZodiacSign()
+	public ZodiacSign GetCurZodiacSign()
 	{
 		// 현재 유닉스 타임스탬프를 가져옴
 		double unixTimestamp = GetUnixTimestamp();
