@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class ShopList : MonoBehaviour
 {
+	public static ShopList Instance { get; private set; }
 	public int resetCost;
 	[Header("Item Prefabs")]
 	public List<GameObject> itemPrefabs; // 여러 아이템 프리팹 리스트
@@ -22,7 +23,7 @@ public class ShopList : MonoBehaviour
 	
 
 
-	private void DisplayRandomItems()
+	public void DisplayRandomItems()
 	{
 		// 기존에 생성된 아이템이 있다면 제거
 		foreach (var item in spawnedItems)

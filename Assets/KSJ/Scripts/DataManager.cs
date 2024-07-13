@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -102,7 +103,8 @@ public class DataManager : MonoBehaviour
 	public Slider brokenRedSlider;
 	public Slider brokenGreenSlider;
 
-
+	//일일 상점 초기화 시간 텍스트
+	public TMP_Text dayTimeText;
 	private void Awake()
     {
         // 싱글톤 패턴 구현
@@ -129,7 +131,7 @@ public class DataManager : MonoBehaviour
 		//최대치 관리
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			Debug.Log("ad");
+			
 			InitializeUI();
 		}
 		if (fish > 999999998)
@@ -141,7 +143,7 @@ public class DataManager : MonoBehaviour
 		UpdateLobbyUI();
 		UpdateUpgrade();
 		UpdateSliderValue();
-
+		UpdateDayTime();
 	}
 	// 데이터 초기화 메서드
 	public void InitializeData(Dictionary<Button, bool> data)
@@ -290,6 +292,30 @@ public class DataManager : MonoBehaviour
 		fishText.text = ""+fish;
 		silverMarbleText.text = "" + silverMarble + "/30";
 	}
+
+	public void UpdateDayTime() {
+		// 현재 유닉스 시간
+		long currentUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+		// 오늘 자정의 유닉스 시간 계산
+		DateTimeOffset now = DateTimeOffset.UtcNow;
+		DateTimeOffset endOfDay = new DateTimeOffset(now.Year, now.Month, now.Day, 23, 59, 59, TimeSpan.Zero);
+		long endOfDayUnixTime = endOfDay.ToUnixTimeSeconds();
+
+		// 남은 시간 계산
+		long secondsRemaining = endOfDayUnixTime - (currentUnixTime+ 32400);//utc에서 9시간(32400초)를 더하면 한국 시간
+		if (secondsRemaining == 0)
+			ShopList.Instance.DisplayRandomItems();
+			// 남은 시간을 시간, 분, 초로 변환
+		TimeSpan timeRemaining = TimeSpan.FromSeconds(secondsRemaining);
+		// 남은 시간을 텍스트로 표시
+		dayTimeText.text = string.Format("Reset : {0:D2}:{1:D2}:{2:D2}",timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds);
+		
+		//현재 시간
+		//TimeSpan nowTime = TimeSpan.FromSeconds(currentUnixTime);
+		//dayTimeText.text = string.Format("now : {0:D2}:{1:D2}:{2:D2}", nowTime.Hours, nowTime.Minutes, nowTime.Seconds);
+
+	}
 	void InitializeUI()
 	{
 		// 여기서 모든 UI 요소를 다시 가져와서 맵핑
@@ -337,5 +363,8 @@ public class DataManager : MonoBehaviour
 
 		upgradeGreenCount.onClick.RemoveAllListeners();
 		upgradeGreenCount.onClick.AddListener(() => UpgradeButton(3));
+
+		//일일 시간 초기화
+		dayTimeText = GameObject.Find("/Canvas/Shop/Day Time Text").GetComponent<TMP_Text>();
 	}
 }
