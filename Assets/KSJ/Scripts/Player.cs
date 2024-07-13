@@ -106,7 +106,11 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+		//활공 중 이속 빨라짐
+		if(isGlide)
+			transform.position += new Vector3(speed*1.2f * Time.deltaTime, 0, 0);
+		else
+			transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
 
 		if (isSlide)
 		{
@@ -197,6 +201,7 @@ public class Player : MonoBehaviour
 			canGlide = false;
 			glideButtonHoldTimer = 0f;
 		}
+
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
