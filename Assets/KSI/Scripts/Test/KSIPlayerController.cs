@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class KSIPlayerController : MonoBehaviour, IDamagable
 {
-	// TEST
+	// TEST1
 	public float jumpForce = 10f;
 	private Rigidbody2D rb;
 	private Animator anim;
