@@ -12,6 +12,8 @@ public class BellGenerator : MonoBehaviour
 	[SerializeField] private int maxBells;
 	[SerializeField] private int minBells;
 	[SerializeField] private double generatorTimer = 300f;
+	[SerializeField] private double chargingTime;
+
 	[Space]
 	[Header("UI")]
 	[SerializeField] private TextMeshProUGUI BellText;
@@ -43,8 +45,8 @@ public class BellGenerator : MonoBehaviour
 			isTimerRunning = true;
 			timerText.gameObject.SetActive(true);
 
-			// 1개당 5분씩 충전되도록 함
-			generatorTimer += 300 * bellsUsed;
+			// 1개당 충전 시간
+			generatorTimer += chargingTime * bellsUsed;
 
 			UpdateTimerUI();
 		}
