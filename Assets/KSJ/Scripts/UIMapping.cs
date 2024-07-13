@@ -23,32 +23,30 @@ public class UIMapping : MonoBehaviour
 	public TMP_Text jumpCountText;
 
 	// 염원 Lv, 이름, 성능과 잔여개수
-	public TMP_Text blueMarble;
-	public TMP_Text brokenBlueText;
-
 	public TMP_Text redMarble;
 	public TMP_Text brokenRedText;
+
+	public TMP_Text blueMarble;
+	public TMP_Text brokenBlueText;
 
 	public TMP_Text greenMarble;
 	public TMP_Text brokenGreenText;
 
 	// 각각의 강화버튼과 텍스트
-	public Button upgradeBlueHP;
-	public TMP_Text needBlueCan;
-
 	public Button upgradeRedGlide;
-	public TMP_Text needRedCan;
+	public TMP_Text needRedFish;
+	
+	public Button upgradeBlueHP;
+	public TMP_Text needBlueFish;
 
 	public Button upgradeGreenCount;
-	public TMP_Text needGreenCan;
+	public TMP_Text needGreenFish;
 
 	// 슬라이더
-	public Slider fishFoodBlueSlider;
-	public Slider fishFoodRedSlider;
-	public Slider fishFoodGreenSlider;
+	
 
-	public Slider brokenBlueSlider;
 	public Slider brokenRedSlider;
+	public Slider brokenBlueSlider;
 	public Slider brokenGreenSlider;
 
 	// 일일 상점 초기화 시간 텍스트
@@ -58,16 +56,12 @@ public class UIMapping : MonoBehaviour
 	{
 		// DataManager 인스턴스 캐싱
 		dataManager = DataManager.Instance;
-		InitializeUI();
+		//InitializeUI();
 	}
 
 	void Update()
 	{
 		// 최대치 관리
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			InitializeUI();
-		}
 		if (dataManager.fish > 999999998)
 			dataManager.fish = 999999999;
 		if (dataManager.silverMarble > 30)
@@ -95,9 +89,20 @@ public class UIMapping : MonoBehaviour
 		brokenGreenText.text = "" + dataManager.brokenGreen + "/" + dataManager.nextExp[dataManager.greenMarbleLv];
 
 		// 생선 잔여/필요
-		needBlueCan.text = "" + dataManager.fish + "/" + dataManager.nextExp[dataManager.blueMarbleLv];
-		needRedCan.text = "" + dataManager.fish + "/" + dataManager.nextExp[dataManager.redMarbleLv];
-		needGreenCan.text = "" + dataManager.fish + "/" + dataManager.nextExp[dataManager.greenMarbleLv];
+		if (dataManager.redMarbleLv == 10)
+			needRedFish.text = "Master";
+		else
+			needRedFish.text = "Upgrade : " + dataManager.nextExp[dataManager.redMarbleLv];
+
+		if (dataManager.blueMarbleLv == 10)
+			needBlueFish.text = "Master";
+		else
+			needBlueFish.text = "Upgrade : " + dataManager.nextExp[dataManager.blueMarbleLv];
+
+		if(dataManager.greenMarbleLv == 10)
+			needGreenFish.text = "Master";
+		else
+			needGreenFish.text = "Upgrade : " + dataManager.nextExp[dataManager.greenMarbleLv];
 	}
 
 	public void UpdateCatsDesire()
@@ -176,9 +181,7 @@ public class UIMapping : MonoBehaviour
 
 	public void UpdateSliderValue()
 	{
-		fishFoodBlueSlider.value = (float)dataManager.fish / dataManager.nextExp[dataManager.blueMarbleLv];
-		fishFoodRedSlider.value = (float)dataManager.fish / dataManager.nextExp[dataManager.redMarbleLv];
-		fishFoodGreenSlider.value = (float)dataManager.fish / dataManager.nextExp[dataManager.greenMarbleLv];
+		
 
 		brokenBlueSlider.value = (float)dataManager.brokenBlue / dataManager.nextExp[dataManager.blueMarbleLv];
 		brokenRedSlider.value = (float)dataManager.brokenRed / dataManager.nextExp[dataManager.redMarbleLv];
@@ -212,54 +215,5 @@ public class UIMapping : MonoBehaviour
 		dayTimeText.text = string.Format("Reset : {0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds);
 	}
 
-	void InitializeUI()
-	{
-		// 여기서 모든 UI 요소를 다시 가져와서 맵핑
-		fishText = GameObject.Find("/Canvas/Fish/Fish Text").GetComponent<TMP_Text>();
-		silverMarbleText = GameObject.Find("/Canvas/Silver Marble/Silver Marble Text").GetComponent<TMP_Text>();
-
-		maxHealthText = GameObject.Find("/Canvas/Character Info/Character Stat/Health").GetComponent<TMP_Text>();
-		speedText = GameObject.Find("/Canvas/Character Info/Character Stat/Speed").GetComponent<TMP_Text>();
-		jumpForceText = GameObject.Find("/Canvas/Character Info/Character Stat/Jump Force").GetComponent<TMP_Text>();
-		glideTimeText = GameObject.Find("/Canvas/Character Info/Character Stat/Glide").GetComponent<TMP_Text>();
-		jumpCountText = GameObject.Find("/Canvas/Character Info/Character Stat/Jump Count").GetComponent<TMP_Text>();
-
-		blueMarble = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Lv. name").GetComponent<TMP_Text>();
-		brokenBlueText = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Desire Next").GetComponent<TMP_Text>();
-
-		redMarble = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Lv. name").GetComponent<TMP_Text>();
-		brokenRedText = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Desire Next").GetComponent<TMP_Text>();
-
-		greenMarble = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Lv. name").GetComponent<TMP_Text>();
-		brokenGreenText = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Desire Next").GetComponent<TMP_Text>();
-
-		upgradeBlueHP = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Upgrade Material/Blue Upgrade").GetComponent<Button>();
-		needBlueCan = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Upgrade Material").GetComponent<TMP_Text>();
-
-		upgradeRedGlide = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Upgrade Material/Red Upgrade").GetComponent<Button>();
-		needRedCan = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Upgrade Material").GetComponent<TMP_Text>();
-
-		upgradeGreenCount = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Upgrade Material/Green Upgrade").GetComponent<Button>();
-		needGreenCan = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Upgrade Material").GetComponent<TMP_Text>();
-
-		fishFoodBlueSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Fish Slider").GetComponent<Slider>();
-		fishFoodRedSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Fish Slider").GetComponent<Slider>();
-		fishFoodGreenSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Fish Slider").GetComponent<Slider>();
-
-		brokenBlueSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Blue/Blue Slider").GetComponent<Slider>();
-		brokenRedSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Red/Red Slider").GetComponent<Slider>();
-		brokenGreenSlider = GameObject.Find("/Canvas/Character Info/Cat's Desire/Cat's Stat Green/Green Slider").GetComponent<Slider>();
-
-		upgradeRedGlide.onClick.RemoveAllListeners();
-		upgradeRedGlide.onClick.AddListener(() => UpgradeButton(1));
-
-		upgradeBlueHP.onClick.RemoveAllListeners();
-		upgradeBlueHP.onClick.AddListener(() => UpgradeButton(2));
-
-		upgradeGreenCount.onClick.RemoveAllListeners();
-		upgradeGreenCount.onClick.AddListener(() => UpgradeButton(3));
-
-		// 일일 시간 초기화
-		dayTimeText = GameObject.Find("/Canvas/Shop/Day Time Text").GetComponent<TMP_Text>();
-	}
+	
 }

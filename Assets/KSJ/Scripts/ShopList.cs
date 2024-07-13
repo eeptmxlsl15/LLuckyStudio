@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ public class ShopList : MonoBehaviour
 {
 	public static ShopList Instance { get; private set; }
 	public int resetCost;
+	
 	[Header("Item Prefabs")]
 	public List<GameObject> itemPrefabs; // 여러 아이템 프리팹 리스트
 
@@ -16,8 +18,10 @@ public class ShopList : MonoBehaviour
 
 	void Start()
 	{
-		transform.parent.localScale = new Vector3(1, 1, 1);//0에서 스폰 위치가 이상하게 지정되기 때문
 		DisplayRandomItems();
+		transform.parent.localScale = new Vector3(1, 1, 1);//0에서 스폰 위치가 이상하게 지정되기 때문
+
+
 		transform.parent.localScale = new Vector3(0, 0, 0);
 	}
 	
@@ -43,7 +47,7 @@ public class ShopList : MonoBehaviour
 			
 			Transform spawnPoint = spawnPoints[i];
 			GameObject spawnedItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation, transform);
-			spawnedItem.transform.SetParent(transform, false);
+			//spawnedItem.transform.SetParent(transform, false);
 			spawnedItem.SetActive(true);
 			spawnedItems.Add(spawnedItem);
 		}
@@ -74,4 +78,12 @@ public class ShopList : MonoBehaviour
 		DataManager.Instance.fish -= resetCost;
 		DisplayRandomItems();
 	}
+
+	public void OnClickContent()
+	{
+		Debug.Log("dad");
+		transform.parent.localScale = new Vector3(1, 1, 1);
+	}
+
+	
 }
