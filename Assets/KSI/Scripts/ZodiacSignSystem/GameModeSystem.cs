@@ -26,19 +26,21 @@ public class GameModeSystem : MonoBehaviour
 
 	private BerserkSystemManager berserkSystem;	
 	private LobbySceneUI lobbySceneUI;
+	private KSITestSceneUI testSceneUI;
 
 	private void Start()
 	{
 		berserkSystem = GameManager.BerserkSystem;
 		lobbySceneUI = FindAnyObjectByType<LobbySceneUI>();
+		testSceneUI = FindAnyObjectByType<KSITestSceneUI>();
 
 		if (curGameMode == GameMode.INFINITE)
 		{
 			if (GameManager.Instance.InfiniteDebuff1 == default && GameManager.Instance.InfiniteDebuff2 == default)
 			{
 				SelectInfiniteRandomDebuff();
-				UpdateInfiniteRandomDebuff();
 			}
+			UpdateInfiniteRandomDebuff();
 		}
 
 		ApplyDebuff(curGameMode);
@@ -118,6 +120,11 @@ public class GameModeSystem : MonoBehaviour
 		if (lobbySceneUI != null )
 		{
 			lobbySceneUI.DisplayInfiniteRandomDebuff(GameManager.Instance.InfiniteDebuff1, GameManager.Instance.InfiniteDebuff2);
+		}
+
+		if (testSceneUI != null)
+		{
+			testSceneUI.DisplayInfiniteRandomDebuff(GameManager.Instance.InfiniteDebuff1, GameManager.Instance.InfiniteDebuff2);
 		}
 	}
 }
