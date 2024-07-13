@@ -1175,32 +1175,6 @@ MonoBehaviour:
   - 7
   - 7
   - 10
-  fishText: {fileID: 1574728911}
-  silverMarbleText: {fileID: 1599339044}
-  maxHealthText: {fileID: 1790773020}
-  speedText: {fileID: 1560570101}
-  jumpForceText: {fileID: 1924663775}
-  glideTimeText: {fileID: 878560450}
-  jumpCountText: {fileID: 1623691867}
-  blueMarble: {fileID: 383239358}
-  brokenBlueText: {fileID: 958528279}
-  redMarble: {fileID: 159653964}
-  brokenRedText: {fileID: 1880340133}
-  greenMarble: {fileID: 991665209}
-  brokenGreenText: {fileID: 24159589}
-  upgradeBlueHP: {fileID: 74278234}
-  needBlueCan: {fileID: 1061988868}
-  upgradeRedGlide: {fileID: 1701239457}
-  needRedCan: {fileID: 2115918485}
-  upgradeGreenCount: {fileID: 976805568}
-  needGreenCan: {fileID: 1226550110}
-  fishFoodBlueSlider: {fileID: 0}
-  fishFoodRedSlider: {fileID: 0}
-  fishFoodGreenSlider: {fileID: 0}
-  brokenBlueSlider: {fileID: 1863841893}
-  brokenRedSlider: {fileID: 758301956}
-  brokenGreenSlider: {fileID: 1935480785}
-  dayTimeText: {fileID: 1841471178}
 --- !u!4 &99262356
 Transform:
   m_ObjectHideFlags: 0
@@ -1589,7 +1563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.0007324219, y: 4227008}
+  m_AnchoredPosition: {x: 0.0007324219, y: 4286086}
   m_SizeDelta: {x: 652.793, y: 1200}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &265855612
@@ -11422,7 +11396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.0007324219, y: -1997366.9}
+  m_AnchoredPosition: {x: 0.0007324219, y: -2041083.5}
   m_SizeDelta: {x: 652.793, y: 1200}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1841471176
@@ -13242,6 +13216,76 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09d496605c7bb8c408769d0be3c26c0d, type: 3}
+--- !u!1 &2136529675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2136529676}
+  - component: {fileID: 2136529677}
+  m_Layer: 0
+  m_Name: UI Mapping
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2136529676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136529675}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 126.57174, y: 241.69788, z: -1.0735916}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2136529677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136529675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314a479a6e5aa5941b7e3114a631c525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishText: {fileID: 0}
+  silverMarbleText: {fileID: 0}
+  maxHealthText: {fileID: 0}
+  speedText: {fileID: 0}
+  jumpForceText: {fileID: 0}
+  glideTimeText: {fileID: 0}
+  jumpCountText: {fileID: 0}
+  blueMarble: {fileID: 0}
+  brokenBlueText: {fileID: 0}
+  redMarble: {fileID: 0}
+  brokenRedText: {fileID: 0}
+  greenMarble: {fileID: 0}
+  brokenGreenText: {fileID: 0}
+  upgradeBlueHP: {fileID: 0}
+  needBlueCan: {fileID: 0}
+  upgradeRedGlide: {fileID: 0}
+  needRedCan: {fileID: 0}
+  upgradeGreenCount: {fileID: 0}
+  needGreenCan: {fileID: 0}
+  fishFoodBlueSlider: {fileID: 0}
+  fishFoodRedSlider: {fileID: 0}
+  fishFoodGreenSlider: {fileID: 0}
+  brokenBlueSlider: {fileID: 0}
+  brokenRedSlider: {fileID: 0}
+  brokenGreenSlider: {fileID: 0}
+  dayTimeText: {fileID: 0}
 --- !u!1001 &5319917643015202876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13347,5 +13391,6 @@ SceneRoots:
   - {fileID: 1723888311}
   - {fileID: 320009618}
   - {fileID: 619423930}
-  - {fileID: 99262356}
   - {fileID: 1249149161}
+  - {fileID: 99262356}
+  - {fileID: 2136529676}
