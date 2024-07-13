@@ -80,4 +80,10 @@ public class GameManager : MonoBehaviour
 		berserkSystemObject.transform.parent = transform;
 		berserkSystemManager = berserkSystemObject.AddComponent<BerserkSystemManager>();
 	}
+
+	public void ResetInfiniteDebuff()
+	{
+		InfiniteDebuff1 = default;
+		InfiniteDebuff2 = default;
+	}
 }
