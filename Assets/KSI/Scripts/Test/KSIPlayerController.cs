@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class KSIPlayerController : MonoBehaviour, IDamagable
 {
-	// TEST11
 	public float jumpForce = 10f;
 	private Rigidbody2D rb;
 	private Animator anim;
@@ -15,8 +14,8 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 	public int jumpCount = 0;
 	public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
 
-	public GameObject jumpButton;
-	public GameObject slideButton;
+	//public GameObject jumpButton;
+	//public GameObject slideButton;
 
 	[Header("KSI")]
 	[SerializeField] private float moveSpeed;
@@ -31,12 +30,12 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
 
-		EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
-		AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, Jump);
+		//EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
+		//AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, Jump);
 
-		EventTrigger slideTrigger = slideButton.GetComponent<EventTrigger>();
-		AddEventTrigger(slideTrigger, EventTriggerType.PointerDown, () => Slide(true));
-		AddEventTrigger(slideTrigger, EventTriggerType.PointerUp, () => Slide(false));
+		//EventTrigger slideTrigger = slideButton.GetComponent<EventTrigger>();
+		//AddEventTrigger(slideTrigger, EventTriggerType.PointerDown, () => Slide(true));
+		//AddEventTrigger(slideTrigger, EventTriggerType.PointerUp, () => Slide(false));
 	}
 
 	void Update()
