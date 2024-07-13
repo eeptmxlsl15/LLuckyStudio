@@ -19,7 +19,7 @@ public class CustomSceneManager : MonoBehaviour
         StartCoroutine(LoadSceneAsync(currentSceneName));
     }
 
-    // 씬 인덱스로 씬을 로드합니다.
+    // 씬 인덱스로 씬을 로드합니다.	
     public void LoadSceneByIndex(int sceneIndex)
     {
         StartCoroutine(LoadSceneByIndexAsync(sceneIndex));

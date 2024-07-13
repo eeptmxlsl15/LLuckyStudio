@@ -231,10 +231,11 @@ public class Player : MonoBehaviour
 		trigger.triggers.Add(entry);
 	}
 
+	//시작시 DataManager의 스탯을 가져옴
 	public void SetStat()
 	{
 		health = DataManager.Instance.health;
-		maxHealth = DataManager.Instance.maxHealth;
+		maxHealth = DataManager.Instance.maxHealth+DataManager.Instance.redMarbleValue[DataManager.Instance.redMarbleLv];
 		speed = DataManager.Instance.speed;
 		jumpForce = DataManager.Instance.jumpForce;
 		jumpCount = DataManager.Instance.jumpCount;
@@ -244,8 +245,12 @@ public class Player : MonoBehaviour
 		floorRes = DataManager.Instance.floorRes; // 발판형 장애물 저항
 		flyRes = DataManager.Instance.flyRes; // 날아오는 장애물 저항
 		healthRegen = DataManager.Instance.healthRegen;
-		glideTime = DataManager.Instance.glideTime;
-
+		glideTime = DataManager.Instance.glideTime+DataManager.Instance.greenMarbleValue[DataManager.Instance.greenMarbleLv];
+		if (DataManager.Instance.greenMarbleLv == 10)
+			glideCooldown = DataManager.Instance.glideCooldown - 30;
+		else
+			glideCooldown = DataManager.Instance.glideCooldown;
+		allRes = DataManager.Instance.allRes+DataManager.Instance.blueMarbleValue[DataManager.Instance.blueMarbleLv];
 		ratDesire = DataManager.Instance.ratDesire;
 		healthRegenTimer = DataManager.Instance.healthRegenTimer;
 	}

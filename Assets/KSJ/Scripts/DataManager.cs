@@ -266,17 +266,7 @@ public class DataManager : MonoBehaviour
 
 	}
 
-	//무한 모드 또는 스토리 모드 버튼을 누를 경우 실행
-	//변화된 데이터를 DataManager에 저장 - DataManager가 플레이어에게 넘김
-	public void SetStat()
-	{
-		maxHealth += redMarbleValue[redMarbleLv];
-		allRes += blueMarbleValue[blueMarbleLv];
-		glideTime +=greenMarbleValue[greenMarbleLv];
-
-		
-	}
-
+	
 	public void UpdateSliderValue()
 	{
 		fishFoodBlueSlider.value = (float)fish / nextExp[blueMarbleLv];
@@ -304,16 +294,15 @@ public class DataManager : MonoBehaviour
 
 		// 남은 시간 계산
 		long secondsRemaining = endOfDayUnixTime - (currentUnixTime+ 32400);//utc에서 9시간(32400초)를 더하면 한국 시간
-		if (secondsRemaining == 0)
+		if (secondsRemaining == 0)//하루가 바뀔 때 
 			ShopList.Instance.DisplayRandomItems();
-			// 남은 시간을 시간, 분, 초로 변환
+		
+		// 남은 시간을 시간, 분, 초로 변환
 		TimeSpan timeRemaining = TimeSpan.FromSeconds(secondsRemaining);
 		// 남은 시간을 텍스트로 표시
 		dayTimeText.text = string.Format("Reset : {0:D2}:{1:D2}:{2:D2}",timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds);
 		
-		//현재 시간
-		//TimeSpan nowTime = TimeSpan.FromSeconds(currentUnixTime);
-		//dayTimeText.text = string.Format("now : {0:D2}:{1:D2}:{2:D2}", nowTime.Hours, nowTime.Minutes, nowTime.Seconds);
+		
 
 	}
 	void InitializeUI()
