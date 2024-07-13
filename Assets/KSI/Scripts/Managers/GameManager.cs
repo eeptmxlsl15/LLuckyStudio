@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
 	static UIManager uiManager;
 	static SceneManager sceneManager;
 	static ScoreManager scoreManager;
+	static BerserkSystemManager berserkSystemManager;
+
 
 	public static GameManager Instance { get { return instance; } }
 	public static ResourceManager Resource { get { return resourceManager; } }
@@ -19,8 +22,13 @@ public class GameManager : MonoBehaviour
 	public static UIManager UI { get { return uiManager; } }
 	public static SceneManager Scene { get { return sceneManager; } }
 	public static ScoreManager Score { get { return scoreManager; } }
+	public static BerserkSystemManager BerserkSystem { get { return berserkSystemManager; } }
 
-	void Awake()
+	public BerserkSystemManager.ZodiacSign InfiniteDebuff1;
+	public BerserkSystemManager.ZodiacSign InfiniteDebuff2;
+	
+
+	private void Awake()
 	{
 		if (instance != null)
 		{
@@ -34,13 +42,13 @@ public class GameManager : MonoBehaviour
 		InitManagers();
 	}
 
-	void OnDestroy()
+	private void OnDestroy()
 	{
 		if (instance == this)
 			instance = null;
 	}
 
-	void InitManagers()
+	private void InitManagers()
 	{
 		GameObject resourceObject = new GameObject();
 		resourceObject.name = "ResourceManager";
@@ -66,5 +74,10 @@ public class GameManager : MonoBehaviour
 		scoreObject.name = "ScoreManager";
 		scoreObject.transform.parent = transform;
 		scoreManager = scoreObject.AddComponent<ScoreManager>();
+
+		GameObject berserkSystemObject = new GameObject();
+		berserkSystemObject.name = "BerserkSystemManager";
+		berserkSystemObject.transform.parent = transform;
+		berserkSystemManager = berserkSystemObject.AddComponent<BerserkSystemManager>();
 	}
 }

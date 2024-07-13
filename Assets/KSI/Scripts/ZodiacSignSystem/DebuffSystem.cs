@@ -31,11 +31,30 @@ public class DebuffSystem : MonoBehaviour
 	public UnityAction<int> OnCowDebufChanged;
 	public UnityAction<int, int> OnMouseDebuffChanged;
 
+	[SerializeField] private int MaxHealth = 100;
+
+	private Player player;
+
+	private void Start()
+	{
+		player = FindObjectOfType<Player>();
+		if (player == null)
+		{
+			Debug.LogError("씬에 플레이어 없음");
+		}
+
+	}
+
 	public void PigDebuff(int value)
 	{
-		// TODO : 최대 체력 20감소	
+		if (player != null)
+		{
+			player.maxHealth -= value;
+			//player.ReduceMaxHealth(value);
+		}
+
 		OnPigDebuffChanged?.Invoke(value);
-		Debug.Log($"최대 체력 감소 {value}");
+		Debug.Log($"최대 체력 감소 {value}, 남은 최대 쳬력 {MaxHealth}");
 	}
 
 	public void DogDebuff(int value)
