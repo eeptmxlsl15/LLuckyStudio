@@ -5,7 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 public class ShopItem : MonoBehaviour
 {
+	public int moneyCost;//유료 재화
 	public int fishCost;
+	public int cannedFoodCost;
 	public int quantity;
 	public int itemID;
 	public bool alreadyBuy;
@@ -13,14 +15,16 @@ public class ShopItem : MonoBehaviour
 	public GameObject itemPrefab; // 아이템 프리팹을 저장할 변수
 	public Transform contentTransform; // 프리팹 아이템을 넣을 부모 Transform
 	public Button OverlayButton;//다른 곳을 클릭하면 isBuyUI가 꺼지게 하는 버튼
-
-	public TMP_Text fishCostText;
+	
+	public TMP_Text costText;
 	public TMP_Text quantityText;
 	private void Start()
 	{
-		fishCostText = transform.Find("Button/Fish Cost").GetComponent<TMP_Text>();
+		costText = transform.Find("Button/Fish Cost").GetComponent<TMP_Text>();
 		quantityText = transform.Find("Button/Quantity").GetComponent<TMP_Text>();
 		OverlayButton = GameObject.Find("/Canvas/Overlay Button").GetComponent<Button>();
+		
+
 		//this.transform.localScale = new Vector3(1, 1, 1);
 		itemPrefab = transform.gameObject;
 		// isBuyUI를 찾음
@@ -67,6 +71,7 @@ public class ShopItem : MonoBehaviour
 		{
 			Vector3 position = spawnedItemRect.localPosition;
 			position.x = 0;
+			position.y = 40;
 			spawnedItemRect.localPosition = position;
 		}
 		Button buyButton = isBuyUI.transform.Find("Is Buy Button").GetComponent<Button>();
@@ -77,22 +82,53 @@ public class ShopItem : MonoBehaviour
 	public void IsBuy(int _itemID)
 	{
 
-		DataManager.Instance.fish -= fishCost;
+		
 
 		switch (_itemID)
 		{
 			case 1: // 통조림
+
+				Debug.Log("여기");
+				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.cannedFood += quantity;
+				transform.gameObject.SetActive(false);
 				break;
 			case 2: // 은방울
+				
+				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.silverMarble += quantity;
+				DataManager.Instance.isBuyItem2 = false;
+				transform.gameObject.SetActive(false);
 				break;
 			case 3: // 금방울
+				
+				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.goldMarble += quantity;
+				DataManager.Instance.isBuyItem3 = false;
+				transform.gameObject.SetActive(false);
 				break;
 			case 4: // 부활권
+				
+				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.resurrection += quantity;
+				DataManager.Instance.isBuyItem4 = false;
+				transform.gameObject.SetActive(false);
 				break;
+
+			case 5: //유료 재화
+			case 6:
+			case 7:
+				DataManager.Instance.money -= moneyCost;
+				DataManager.Instance.cannedFood += quantity;
+				break;
+			case 8:
+			case 9:
+			case 10:
+
+				DataManager.Instance.cannedFood -= cannedFoodCost;
+				DataManager.Instance.fish += quantity;
+				break;
+
 		}
 
 		
@@ -105,6 +141,10 @@ public class ShopItem : MonoBehaviour
 	public void UpdateText()
 	{
 		quantityText.text = "" + quantity;
-		fishCostText.text = "Fish : "+fishCost;
+		costText.text = "Fish : "+fishCost;
+		if (itemID == 5 || itemID == 6 || itemID == 7)
+			costText.text = "Money : "+moneyCost;
+		else if (itemID > 7)
+			costText.text = "Canned Food : "+cannedFoodCost;
 	}
 }

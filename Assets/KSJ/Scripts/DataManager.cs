@@ -14,8 +14,9 @@ public class DataManager : MonoBehaviour
     public Dictionary<Button, bool> desireStates = new Dictionary<Button, bool>();
 	//스탯
 
-	
+
 	[Header("# Player Stat")]
+	public int skinID;
 	public float health;
 	public float maxHealth = 100f;
 	public float speed = 10f;
@@ -36,7 +37,7 @@ public class DataManager : MonoBehaviour
 	public float glideCooldownTimer = 0f;
 
 	[Header("# Player Items")]
-	public int cannedFood;
+	public int cannedFood;//유료 재화
 	public int brokenBlue;//체력
 	public int brokenRed;//활주시간
 	public int brokenGreen;//점프횟수
@@ -44,7 +45,7 @@ public class DataManager : MonoBehaviour
 	public int goldMarble;
 	public int silverMarble;
 	public int resurrection;
-
+	public int money;//유료 재화 
 	
 
 	public int[] nextExp = { 10, 20	, 30, 40, 50, 60, 70, 80 , 90,100,110};
@@ -61,7 +62,11 @@ public class DataManager : MonoBehaviour
 	public int greenMarbleLv;//활공 시간
 	public float[] greenMarbleValue = { 5f, 5f, 5f, 5f, 5f,7f, 7f, 7f, 7f, 7f,10f };
 
-	
+	[Header("# Is Buy")]
+	public bool isBuyItem1;
+	public bool isBuyItem2;
+	public bool isBuyItem3;
+	public bool isBuyItem4;
 	private void Awake()
     {
         // 싱글톤 패턴 구현
