@@ -8,9 +8,10 @@ public class ShopItem : MonoBehaviour
 	public int fishCost;
 	public int quantity;
 	public int itemID;
+	public bool alreadyBuy;
 	public GameObject isBuyUI;
 	public GameObject itemPrefab; // 아이템 프리팹을 저장할 변수
-	private Transform contentTransform; // 프리팹 아이템을 넣을 부모 Transform
+	public Transform contentTransform; // 프리팹 아이템을 넣을 부모 Transform
 	public Button OverlayButton;//다른 곳을 클릭하면 isBuyUI가 꺼지게 하는 버튼
 
 	public TMP_Text fishCostText;
@@ -20,6 +21,7 @@ public class ShopItem : MonoBehaviour
 		fishCostText = transform.Find("Button/Fish Cost").GetComponent<TMP_Text>();
 		quantityText = transform.Find("Button/Quantity").GetComponent<TMP_Text>();
 		OverlayButton = GameObject.Find("/Canvas/Overlay Button").GetComponent<Button>();
+		//this.transform.localScale = new Vector3(1, 1, 1);
 		itemPrefab = transform.gameObject;
 		// isBuyUI를 찾음
 		isBuyUI = GameObject.Find("/Canvas/Is Buy");
@@ -51,6 +53,7 @@ public class ShopItem : MonoBehaviour
 		// isBuyUI를 활성화하고 위치를 고정된 위치로 설정
 		isBuyUI.transform.localScale = new Vector3(1, 1, 1);
 		OverlayButton.transform.localScale = new Vector3(1, 1, 1);
+
 		// 기존에 생성된 아이템이 있다면 제거
 		foreach (Transform child in contentTransform)
 		{
@@ -92,7 +95,8 @@ public class ShopItem : MonoBehaviour
 				break;
 		}
 
-
+		
+		
 		isBuyUI.transform.localScale = new Vector3(0, 0, 0);
 		OverlayButton.transform.localScale = new Vector3(0, 0, 0);
 
