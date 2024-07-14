@@ -6,9 +6,22 @@ using UnityEngine;
 // 파괴 안됨
 public abstract class Obstacle : MonoBehaviour, IDamagable
 {
-	public int damage = 10;
+	[SerializeField] private float speed = 10f;
+	[SerializeField] protected int damage = 10;
 
 	public void TakeDamage(int damage) { }
+
+	private void Update()
+	{
+		Move();
+	}
+
+	protected virtual void Move()
+	{
+		transform.Translate(Vector3.left * speed * Time.deltaTime);
+
+		Destroy(gameObject, 5f);
+	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
