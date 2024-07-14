@@ -9,18 +9,18 @@ using UnityEngine;
 // 파괴 안됨
 public class WaterPillar : Obstacle
 {
-	private Renderer pillarRenderer;
-	private bool isGameStarted = false;
-	private const int speedReduction = 15;
+	//private Renderer pillarRenderer;
+	//private bool isGameStarted = false;
+	//private const int speedReduction = 15;
 
-	private void Start()
-	{
-		ReduceSpeed();
-	}
+	//private void Start()
+	//{
+	//	ReduceSpeed();
+	//}
 
-	private void ReduceSpeed()
-	{
-		// TODO : 감속
-		Debug.Log("이동속도 -15 감소");
-	}
+	//private void ReduceSpeed()
+	//{
+	//	// TODO : 감속
+	//	Debug.Log("이동속도 -15 감소");
+	//}
 }

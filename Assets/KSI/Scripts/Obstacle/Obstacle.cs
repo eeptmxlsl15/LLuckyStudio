@@ -20,7 +20,7 @@ public abstract class Obstacle : MonoBehaviour, IDamagable
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-		Destroy(gameObject, 5f);
+		Destroy(gameObject, 10f);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
