@@ -8,9 +8,9 @@ using UnityEngine;
 // 오른쪽에서 왼쪽으로 위아래로 움직이면서 날아옴
 // 버프 : 체력 10회복
 // 스토리 모드(서브, 보스, 보스(광폭)), 무한 모드
+// 획득 시 사라짐
 public class Firefly : BuffTypeObject
 {
-	public float speed = 10f; // 이동 속도
 	public float range = 1f; // 이동 범위
 	public float cycle = 1f; // 이동 주기
 

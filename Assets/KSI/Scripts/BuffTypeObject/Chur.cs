@@ -7,6 +7,7 @@ using UnityEngine;
 // 고정형 오브젝트
 // 버프 : 체력 +10
 // 스토리 모드(서브, 보스, 보스(광폭)), 무한 모드
+// 획득 시 사라짐
 public class Chur : BuffTypeObject
 {
 	public override void Buff()
