@@ -97,21 +97,21 @@ public class ShopItem : MonoBehaviour
 				
 				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.silverMarble += quantity;
-				DataManager.Instance.isBuyItem2 = false;
+				
 				transform.gameObject.SetActive(false);
 				break;
 			case 3: // 금방울
 				
 				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.goldMarble += quantity;
-				DataManager.Instance.isBuyItem3 = false;
+				
 				transform.gameObject.SetActive(false);
 				break;
 			case 4: // 부활권
 				
 				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.resurrection += quantity;
-				DataManager.Instance.isBuyItem4 = false;
+				
 				transform.gameObject.SetActive(false);
 				break;
 

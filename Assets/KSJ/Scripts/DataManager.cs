@@ -62,11 +62,8 @@ public class DataManager : MonoBehaviour
 	public int greenMarbleLv;//활공 시간
 	public float[] greenMarbleValue = { 5f, 5f, 5f, 5f, 5f,7f, 7f, 7f, 7f, 7f,10f };
 
-	[Header("# Is Buy")]
-	public bool isBuyItem1;
-	public bool isBuyItem2;
-	public bool isBuyItem3;
-	public bool isBuyItem4;
+	[Header("# Reset Item")]
+	public List<int> resetItemID;
 	private void Awake()
     {
         // 싱글톤 패턴 구현

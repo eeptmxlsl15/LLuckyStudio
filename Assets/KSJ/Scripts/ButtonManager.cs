@@ -14,7 +14,9 @@ public class ButtonManager : MonoBehaviour
 
 	private void Start()
 	{
-
+		Debug.Log("창 매니져");
+		
+		
 		// 버튼과 UI 창을 매핑
 		for (int i = 0; i < buttons.Count; i++)
 		{
@@ -35,6 +37,7 @@ public class ButtonManager : MonoBehaviour
 		foreach (var uiWindow in uiWindows)
 		{
 			uiWindow.transform.localScale = new Vector3(1, 1, 1);
+			
 			uiWindow.transform.localScale = new Vector3(0, 0, 0);
 		}
 	}
