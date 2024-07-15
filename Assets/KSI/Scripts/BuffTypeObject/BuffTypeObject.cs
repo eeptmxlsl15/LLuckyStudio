@@ -6,9 +6,23 @@ using UnityEngine;
 // 파괴됨
 public abstract class BuffTypeObject : MonoBehaviour
 {
+	public float speed = 10f;
+
 	protected KSIPlayerController player;
 
 	public abstract void Buff();
+
+	private void Update()
+	{
+		Move();
+	}
+
+	protected virtual void Move()
+	{
+		transform.Translate(Vector3.left * speed * Time.deltaTime);
+
+		Destroy(gameObject, 5f);
+	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
@@ -17,6 +31,7 @@ public abstract class BuffTypeObject : MonoBehaviour
 		{
 			Buff();
 			Destroy(gameObject);
+			Debug.Log("버프");
 		}
 	}
 }

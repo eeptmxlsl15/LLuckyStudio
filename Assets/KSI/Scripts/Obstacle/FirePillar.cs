@@ -6,6 +6,7 @@ using UnityEngine;
 // 고정형 오브젝트
 // 데미지 : -20
 // 무한 모드
+// 파괴 안됨
 public class FirePillar : Obstacle
 {
 	private void Start()

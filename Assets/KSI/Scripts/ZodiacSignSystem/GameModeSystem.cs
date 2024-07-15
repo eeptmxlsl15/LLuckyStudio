@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 // 게임 모드
 // 서브 스테이지 : 디버프 적용 없음
@@ -96,7 +94,6 @@ public class GameModeSystem : MonoBehaviour
 		berserkSystem.ApplyDebuff(GameManager.Instance.InfiniteDebuff1);
 		berserkSystem.ApplyDebuff(GameManager.Instance.InfiniteDebuff2);
 		Debug.Log($"무한모드 : {GameManager.Instance.InfiniteDebuff1}, {GameManager.Instance.InfiniteDebuff2}가 적용됨");
-
 	}
 
 	private void SelectInfiniteRandomDebuff()
@@ -125,6 +122,15 @@ public class GameModeSystem : MonoBehaviour
 		if (testSceneUI != null)
 		{
 			testSceneUI.DisplayInfiniteRandomDebuff(GameManager.Instance.InfiniteDebuff1, GameManager.Instance.InfiniteDebuff2);
+		}
+	}
+
+	// TODO : 게임 끝나는 시점에 호출하기
+	private void InfinitGameEnd()
+	{
+		if (curGameMode == GameMode.INFINITE)
+		{
+			GameManager.Instance.ResetInfiniteDebuff();
 		}
 	}
 }

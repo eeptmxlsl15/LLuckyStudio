@@ -4,35 +4,29 @@ using UnityEngine;
 
 // 움직이는 발판
 // 위아래로 움직임
+
 public class MovingPlatform : Platform
 {
-	[SerializeField] private float speed = 3.0f; // 속도
-	[SerializeField] private float maxHeight = 1.0f; // 최대 높이
-	[SerializeField] private float minHeight = -1.0f; // 최소 높이
-
-	private Vector3 initialPosition; // 초기 위치
+	[SerializeField] private float verticalSpeed = 2f;
+	[SerializeField] private float verticalRange = 2f;
+	
+	private Vector3 startPosition;
 
 	private void Start()
 	{
-		// 초기 위치 저장
-		initialPosition = transform.position;
+		startPosition = transform.position;
 	}
 
-	void Update()
+	protected override void Update()
 	{
-		Move();
+		base.Update();
+
+		PingPongMove();
 	}
 
-	public override void Pass()
+	private void PingPongMove()
 	{
-		// TODO : 통과
+		float newY = Mathf.PingPong(Time.time * verticalSpeed, verticalRange) - (verticalRange / 2);
+		transform.position = new Vector3(transform.position.x, startPosition.y + newY, transform.position.z);
 	}
-
-	private void Move()
-	{
-		// PingPong 함수로 위아래로 움직임
-		float y = Mathf.PingPong(Time.time * speed, maxHeight - minHeight) + minHeight;
-		// Y 위치 업데이트
-		transform.position = new Vector3(initialPosition.x, initialPosition.y + y, initialPosition.z);
-	} 
 }

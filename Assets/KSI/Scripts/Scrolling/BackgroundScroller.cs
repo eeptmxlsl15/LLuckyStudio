@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class BackgroundScroller : MonoBehaviour
 {
-	[SerializeField] private Transform target;
-	[SerializeField] private float scrollAmount;
-	[SerializeField] private float moveSpeed;
-	[SerializeField] private Vector3 moveDirection;
+	[SerializeField] public float speed;
+	
+	private MeshRenderer render;
+	private float x = 0;
+	private float y = 0;
+
+	private void Awake()
+	{
+		render = GetComponent<MeshRenderer>();
+	}
 
 	private void Update()
 	{
-		transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-		// 배경이 설정된 범위를 벗어나면 위치 재설정함
-		if (transform.position.x <= -scrollAmount)
-		{
-			transform.position = target.position - moveDirection * scrollAmount;
-		}
+		render.material.mainTextureOffset = new Vector2(x, y);
+		x = x + Time.deltaTime * speed;
 	}
 }
+
 
