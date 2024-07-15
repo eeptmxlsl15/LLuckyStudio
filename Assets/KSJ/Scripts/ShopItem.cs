@@ -18,12 +18,22 @@ public class ShopItem : MonoBehaviour
 	
 	public TMP_Text costText;
 	public TMP_Text quantityText;
+
+	//한번 샀을 때 색을 바꿈
+	public Button button;
+	public Image icon;
+	public Image background;
+
 	private void Start()
 	{
 		costText = transform.Find("Button/Fish Cost").GetComponent<TMP_Text>();
 		quantityText = transform.Find("Button/Quantity").GetComponent<TMP_Text>();
 		OverlayButton = GameObject.Find("/Canvas/Overlay Button").GetComponent<Button>();
-		
+		button = GetComponentInChildren<Button>();
+		icon = transform.Find("Button/Icon").GetComponent<Image>();
+		background = transform.Find("Button/Background").GetComponent<Image>();
+
+
 
 		//this.transform.localScale = new Vector3(1, 1, 1);
 		itemPrefab = transform.gameObject;
@@ -91,28 +101,29 @@ public class ShopItem : MonoBehaviour
 				Debug.Log("여기");
 				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.cannedFood += quantity;
-				transform.gameObject.SetActive(false);
+				DisableButton();
+				
 				break;
 			case 2: // 은방울
 				
 				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.silverMarble += quantity;
+				DisableButton();
 				
-				transform.gameObject.SetActive(false);
 				break;
 			case 3: // 금방울
 				
 				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.goldMarble += quantity;
+				DisableButton();
 				
-				transform.gameObject.SetActive(false);
 				break;
 			case 4: // 부활권
 				
 				DataManager.Instance.fish -= fishCost;
 				DataManager.Instance.resurrection += quantity;
+				DisableButton();
 				
-				transform.gameObject.SetActive(false);
 				break;
 
 			case 5: //유료 재화
@@ -137,7 +148,13 @@ public class ShopItem : MonoBehaviour
 		OverlayButton.transform.localScale = new Vector3(0, 0, 0);
 
 	}
+	private void DisableButton()
+	{
+		button.interactable = false;
+		icon.color = Color.gray;
+		background.color = Color.gray;
 
+	}
 	public void UpdateText()
 	{
 		quantityText.text = "" + quantity;

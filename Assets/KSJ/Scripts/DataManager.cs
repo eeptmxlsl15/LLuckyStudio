@@ -64,6 +64,8 @@ public class DataManager : MonoBehaviour
 
 	[Header("# Reset Item")]
 	public List<int> resetItemID;
+	public int resetNum;
+	public int resetMaxNum;
 	private void Awake()
     {
         // 싱글톤 패턴 구현
