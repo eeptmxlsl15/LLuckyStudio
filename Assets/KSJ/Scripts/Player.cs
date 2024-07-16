@@ -324,7 +324,16 @@ public class Player : MonoBehaviour , IDamagable
 
 		
 	}
+	public int FloorObstacleDamage(int damage)
+	{
+		return damage -= floorRes;
 
+	}
+
+	public int FlyObstacleDamage(int damage)
+	{
+		return damage -= flyRes;
+	}
 	private void Die()
 	{
 		// TODO : 플레이어 사망 추가
