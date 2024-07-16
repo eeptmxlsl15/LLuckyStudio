@@ -46,6 +46,7 @@ public class QuestManager : MonoBehaviour
 					if (quest.isComplete)
 					{
 						questUI.ShowQuestCompleteUI(quest.questName);
+						GiveReward(quest);
 					}
 				}
 			}
@@ -65,5 +66,12 @@ public class QuestManager : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	private void GiveReward(Quest quest)
+	{
+		int reward = quest.GetReward();
+		Debug.Log($"퀘스트 보상 : '{quest.questName}' / {reward} 초밥");
+		// TODO : 보상 로직 추가
 	}
 }

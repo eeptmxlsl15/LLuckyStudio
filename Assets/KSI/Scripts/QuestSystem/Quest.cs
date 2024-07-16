@@ -9,6 +9,7 @@ public class Quest : ScriptableObject
 	public string description;
 	public bool isComplete;
 	public int scoreTarget;
+	public int reward;
 
 	public void CheckCompleteQuest(int score)
 	{
@@ -22,5 +23,11 @@ public class Quest : ScriptableObject
 		{
 			Debug.Log($"{questName} 완료 못함. 현재 점수 : {score}, 목표 점수: {scoreTarget}");
 		}
+	}
+
+	public int GetReward()
+	{
+		// 젤리 발바닥 1개당 초밥 5개로 계산
+		return reward * 5;
 	}
 }
