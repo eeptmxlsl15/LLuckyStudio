@@ -7,10 +7,10 @@ using UnityEngine.Events;
 public class ScoreManager : MonoBehaviour
 {
 	public int jellyCoinText;
-	public int cannedFoodText;
+	//public int cannedFoodText;
 
 	public UnityAction<int> OnJellyCoinChanged;
-	public UnityAction<int> OnCannedFoodChanged;
+	//public UnityAction<int> OnCannedFoodChanged;
 
 	public void AddJellyCoin(int score)
 	{
@@ -18,9 +18,9 @@ public class ScoreManager : MonoBehaviour
 		OnJellyCoinChanged?.Invoke(jellyCoinText);
 	}
 
-	public void AddCannedFood(int score)
-	{
-		cannedFoodText += score;
-		OnCannedFoodChanged?.Invoke(cannedFoodText);
-	}
+	//public void AddCannedFood(int score)
+	//{
+	//	cannedFoodText += score;
+	//	OnCannedFoodChanged?.Invoke(cannedFoodText);
+	//}
 }

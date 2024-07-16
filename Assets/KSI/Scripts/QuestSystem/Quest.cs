@@ -10,12 +10,17 @@ public class Quest : ScriptableObject
 	public bool isComplete;
 	public int scoreTarget;
 
-	public void CheckComplete(int score)
+	public void CheckCompleteQuest(int score)
 	{
+		Debug.Log($"{questName} 완료 체크, 현재 점수 : {score}, 목표 점수: {scoreTarget}");
 		if (score >= scoreTarget)
 		{
 			isComplete = true;
-			Debug.Log(questName + " is completed.");
+			Debug.Log(questName + " 완료");
+		}
+		else
+		{
+			Debug.Log($"{questName} 완료 못함. 현재 점수 : {score}, 목표 점수: {scoreTarget}");
 		}
 	}
 }

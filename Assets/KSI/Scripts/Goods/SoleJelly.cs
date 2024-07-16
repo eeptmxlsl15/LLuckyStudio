@@ -11,14 +11,25 @@ public class SoleJelly : Goods
 {
 	private void Awake()
     {
-		scoreAdapter = new JellyCoinAdapter();
+		scoreAdapter = new SoleJellyAdapter();
 		// TODO : AudioClip 초기화
 	}
 
 	public override void Contact()
 	{
 		gameObject.SetActive(false);
+		Debug.Log("발바닥 젤리 점수 : " + scoreValue);
 		scoreAdapter.AddScore(scoreValue);
+
+		QuestManager questManager = FindObjectOfType<QuestManager>();
+		if (questManager != null)
+		{
+			questManager.UpdateQuestProgress("Quest_SUB", scoreValue);
+		}
+		else
+		{
+			Debug.LogError("QuestManager를 찾을 수 없음");
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
