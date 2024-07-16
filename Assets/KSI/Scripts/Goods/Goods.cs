@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Goods : MonoBehaviour
 {
 	[SerializeField] private float speed = 10f;
-	[SerializeField] protected int scoreValue = 10;
+	[SerializeField] protected int scoreValue;
 	protected IScore scoreAdapter;
 
 	public abstract void Contact();
