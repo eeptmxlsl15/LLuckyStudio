@@ -315,11 +315,10 @@ public class Player : MonoBehaviour , IDamagable
 
 	public void TakeDamage(int damage)
 	{
-		//if(!isInvincible || !isFirstShiled || !isSecondShiled)//무적이 아닐 경우에만 데미지를 받음
+		
 		//발판형, 고정형 , 방해물 , 버프
 
-
-		if(!isInvincible&&!isFirstShiled&&!isSecondShiled)	
+		if(!isInvincible && !isFirstShiled && !isSecondShiled)//무적,첫번째 쉴드, 두번째 쉴드
 			health -= (damage - allRes);
 		Debug.Log("Player took damage: " + (damage - allRes) + ", current health: " + health + " allRes : "+allRes);
 
