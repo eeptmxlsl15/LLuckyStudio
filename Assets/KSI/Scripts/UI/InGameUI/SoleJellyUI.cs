@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class JellyCoinUI : MonoBehaviour
+public class SoleJellyUI : MonoBehaviour
 {
 	[SerializeField] private TMP_Text jellyCoinUI;
 
@@ -20,6 +20,6 @@ public class JellyCoinUI : MonoBehaviour
 
 	private void UpdateScoreText(int value)
 	{
-		jellyCoinUI.text = "JellyCoin : " + value.ToString();
+		jellyCoinUI.text = "Sole Jelly : " + value.ToString();
 	}
 }
