@@ -1,10 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour , IDamagable
 {
 	private Rigidbody2D rb;
 	private Animator anim;
@@ -37,13 +38,16 @@ public class Player : MonoBehaviour
 	public bool isSlide;
 	public bool isJumpButtonHeld = false;
 	public bool isGlide = false;
-
+	public bool isInvincible = false;
+	public bool isFirstShiled = false;
+	public bool isSecondShiled = false;
 	//활주 관련 
 	public float glideButtonHoldTimer = 0f;
 	
 	public bool canGlide = true;
 	public float glideCooldown = 10f;
 	public float glideCooldownTimer = 0f;
+	
 	static class Constants
 	{
 		public const int Pig = 0;
@@ -60,7 +64,7 @@ public class Player : MonoBehaviour
 		public const int Rat = 11;
 		public const int Cat = 12;
 	}
-
+	
 	// Data Manager에서 받아온 염원 활성화 데이터를 저장하는 리스트
 	public List<bool> activeDesires = new List<bool>();
 
@@ -212,6 +216,8 @@ public class Player : MonoBehaviour
 			anim.SetBool("isGround", true);
 			jumpCount = 0;
 		}
+		
+
 	}
 
 	void OnCollisionExit2D(Collision2D collision)
@@ -222,7 +228,7 @@ public class Player : MonoBehaviour
 			isGrounded = false;
 		}
 	}
-
+	
 	public void Slide(bool _isSlide)
 	{
 		isSlide = _isSlide;
@@ -278,22 +284,22 @@ public class Player : MonoBehaviour
 				
 				break;
 			case Constants.Lamb:// 반딧불의 체력 회복량 5 증가
-
+				//완료
 				break;
 			case Constants.Horse:// 부스터 아이템 지속 시간 1.5초 증가
-								
+				//완료		
 				break;
 			case Constants.Snake:// 날아오는 장애물 오브젝트 피해 수치 5 감소
 				flyRes += 5;
 				break;
 			case Constants.Dragon:// 무적 아이템 지속 시간 증가
-
+				//완료
 				break;
 			case Constants.Rabbit:// 츄르의 체력 회복량 5 증가
-
+				//완료
 				break;
 			case Constants.Tiger://  쉴드 효과 횟수 1회 증가
-
+				Debug.Log("호랑이 염원");
 				break;
 			case Constants.Ox:// 활공 시간 증가
 				glideTime += 1f;
@@ -304,6 +310,117 @@ public class Player : MonoBehaviour
 				break;
 			default:
 				break;
+		}
+	}
+
+	public void TakeDamage(int damage)
+	{
+		//if(!isInvincible || !isFirstShiled || !isSecondShiled)//무적이 아닐 경우에만 데미지를 받음
+		//발판형, 고정형 , 방해물 , 버프
+
+
+		if(!isInvincible&&!isFirstShiled&&!isSecondShiled)	
+			health -= (damage - allRes);
+		Debug.Log("Player took damage: " + (damage - allRes) + ", current health: " + health + " allRes : "+allRes);
+
+		
+	}
+
+	private void Die()
+	{
+		// TODO : 플레이어 사망 추가
+		Debug.Log("플레이어가 죽었습니다.");
+	}
+
+	// 츄르 : 체력 10회복
+	public void HealByFirfly(int value)
+	{
+		if (activeDesires[Constants.Lamb])
+			health += value + 5;
+		
+		else
+			health += value;
+		if (health > maxHealth)
+			health = maxHealth;
+	}
+
+	public void HealByChur(int value)
+	{
+		if (activeDesires[Constants.Rabbit])
+			health += value + 5;
+
+		else
+			health += value;
+		if (health > maxHealth)
+			health = maxHealth;
+	}
+
+	// 무적 : 3초간 모든 피해 무적(낙사 제외)
+	public void BecomeInvincible(float duration)
+	{
+		
+		
+		if (activeDesires[Constants.Dragon])
+			duration += 1.5f;
+		StartCoroutine(BecomeInvincibleRoutine(duration));
+	}
+
+	private IEnumerator BecomeInvincibleRoutine(float duration)
+	{
+		isInvincible = true;
+		yield return new WaitForSeconds(duration);
+		Debug.Log("무적");
+		isInvincible = false;
+
+		// TODO : 낙사 제외
+	}
+
+	// 부스터 : 3초간 모든 장애물을 파괴하면서 질주(이동 속도 수치가 20증가)
+	public void Booster(float duration)
+	{
+		if (activeDesires[Constants.Horse])
+			duration += 1.5f;
+		StartCoroutine(BoostRoutine(duration));
+	}
+
+	private IEnumerator BoostRoutine(float duration)
+	{
+		speed += 20;
+		yield return new WaitForSeconds(duration);
+		speed -= 20;
+	}
+
+	// 쉴드 : 장애물 1회 방어(낙사 제외)
+	public void BlockObstacle()
+	{
+		isFirstShiled = true;
+		if(activeDesires[Constants.Tiger])
+			isSecondShiled = true;
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.CompareTag("Obstacle"))
+		{
+			if(!isFirstShiled && isSecondShiled)
+			{
+				isSecondShiled = false;
+			}
+			if (isFirstShiled)
+			{
+				isFirstShiled = false;
+				
+				
+			}
+
+			
+			
+		}
+
+		if (other.gameObject.CompareTag("FallZone"))
+		{
+			// TODO : 낙사 확인
+			Die();
 		}
 	}
 }

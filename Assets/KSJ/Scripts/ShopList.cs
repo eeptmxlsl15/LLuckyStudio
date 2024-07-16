@@ -75,7 +75,7 @@ public class ShopList : MonoBehaviour
 
 	public void OnClickContent()
 	{
-		Debug.Log("dd");
+		
 		transform.parent.localScale = new Vector3(1, 1, 1);
 		DisplayRandomItems();
 	}
