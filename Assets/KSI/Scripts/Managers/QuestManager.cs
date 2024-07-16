@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class QuestManager : MonoBehaviour
 {
 	public List<QuestCategory> questCategories;
 
+	private QuestUI questUI;
+
 	private void Start()
 	{
 		InitializeQuests();
+		questUI = FindObjectOfType<QuestUI>();
+		if (questUI == null)
+		{
+			Debug.LogError("QuestUIManager 찾을 수 없음");
+		}
 	}
 
 	private void InitializeQuests()
@@ -35,6 +43,10 @@ public class QuestManager : MonoBehaviour
 				{				
 					quest.CheckCompleteQuest(score);
 					Debug.Log($"퀘스트 확인 중 : {quest.questName}");
+					if (quest.isComplete)
+					{
+						questUI.ShowQuestCompleteUI(quest.questName);
+					}
 				}
 			}
 		}

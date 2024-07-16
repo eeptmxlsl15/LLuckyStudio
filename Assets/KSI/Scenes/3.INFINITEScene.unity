@@ -703,6 +703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 979004072}
   - component: {fileID: 979004071}
+  - component: {fileID: 979004073}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -738,6 +739,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &979004073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979004070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49daf22a244e418449b39be1d89ad34c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questCompleteUI: {fileID: 663026423}
+  questCompleteText: {fileID: 1670410401}
 --- !u!1 &1144716288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,7 +1396,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -287.8707, y: 0, z: -289.55396, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
