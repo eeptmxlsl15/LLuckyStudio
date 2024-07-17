@@ -28,10 +28,14 @@ public class Player : MonoBehaviour , IDamagable
 	public int allRes = 0; // 모든 피해 수치 감소 
 	public float healthRegen = 0;
 	public float glideTime = 0;
-
+	//쥐의 염원 회복 관련
 	private bool ratDesire;
 	private float healthRegenTimer = 0f;
 	private const float healthRegenInterval = 10f;//10초당 healthRegan 만큼 회복
+
+	//쥐의 디버프 관련
+	private float healthDamageTimer = 0f;
+	private const float healthDamageInterval = 5f;
 
 	[Header("# Player State")]
 	public bool isGrounded = false;
@@ -41,12 +45,26 @@ public class Player : MonoBehaviour , IDamagable
 	public bool isInvincible = false;
 	public bool isFirstShiled = false;
 	public bool isSecondShiled = false;
-	//활주 관련 
 	public float glideButtonHoldTimer = 0f;
 	
+	//활주 관련 
 	public bool canGlide = true;
 	public float glideCooldown = 10f;
 	public float glideCooldownTimer = 0f;
+
+	[Header("# Debuff State")]
+	public bool isPigDebuff = false;
+	public bool isDogDebuff = false;
+	public bool isRoosterDebuff = false;
+	public bool isMonkeyDebuff = false;
+	public bool isLambDebuff = false;
+	public bool isHoresDebuff = false;
+	public bool isSnakeDebuff = false;
+	public bool isDragonDebuff = false;
+	public bool isRabbitDebuff = false;
+	public bool isTigerDebuff = false;
+	public bool isOxDebuff = false;
+	public bool isRatDebuff = false;
 	
 	static class Constants
 	{
@@ -122,7 +140,7 @@ public class Player : MonoBehaviour , IDamagable
 		}
 
 
-
+		//쥐의 염원이 있을때 : 10초당 체력 1 회복
 		if (ratDesire)
 		{
 			healthRegenTimer += Time.deltaTime;
@@ -172,7 +190,18 @@ public class Player : MonoBehaviour , IDamagable
 			
 		}
 
-		
+		//쥐 디버프일 때 : 5초당 체력 1 감소 
+		if (isRatDebuff)
+		{
+			healthDamageTimer += Time.deltaTime;
+			if (healthDamageTimer >= healthDamageInterval)
+			{
+				// 체력 회복
+				health -= 1f;
+				healthDamageTimer = 0f;
+				Debug.Log("체력 감소: " + health);
+			}
+		}
 	}
 
 	public void OnJumpButtonDown()
@@ -277,8 +306,8 @@ public class Player : MonoBehaviour , IDamagable
 			case Constants.Dog:// 이동 속도 20 증가
 				speed += 20f;
 				break;
-			case Constants.Rooster:// 고정형 장애물 피해 감소
-				floorRes += 5;
+			case Constants.Rooster:// 물기둥 둔화 면역
+				//floorRes += 5;
 				break;
 			case Constants.Monkey:// 젤리코인 점수 5점 증가
 				
@@ -290,7 +319,7 @@ public class Player : MonoBehaviour , IDamagable
 				//완료		
 				break;
 			case Constants.Snake:// 날아오는 장애물 오브젝트 피해 수치 5 감소
-				flyRes += 5;
+				flyRes += 3;
 				break;
 			case Constants.Dragon:// 무적 아이템 지속 시간 증가
 				//완료
@@ -343,22 +372,44 @@ public class Player : MonoBehaviour , IDamagable
 	// 츄르 : 체력 10회복
 	public void HealByFirfly(int value)
 	{
+		if (isLambDebuff)
+			value -= 5;
 		if (activeDesires[Constants.Lamb])
-			health += value + 5;
+			value += 5;
+
 		
-		else
-			health += value;
+
+
+		health += value;
 		if (health > maxHealth)
 			health = maxHealth;
 	}
+	public void ReduceSpeed(float duration)
+	{
+		if (activeDesires[Constants.Rooster])
+			return;
+		StartCoroutine(ReduceSpeedRoutine(duration));
+	}
+	private IEnumerator ReduceSpeedRoutine(float duration)
+	{
+		
+		speed -= 2;
+		yield return new WaitForSeconds(duration);
+		speed += 2;
+		
 
+		// TODO : 낙사 제외
+	}
 	public void HealByChur(int value)
 	{
-		if (activeDesires[Constants.Rabbit])
-			health += value + 5;
+		if (isRabbitDebuff)
+			value -= 5;
 
-		else
-			health += value;
+		if (activeDesires[Constants.Rabbit])
+			value += 5;
+
+
+		health += value;
 		if (health > maxHealth)
 			health = maxHealth;
 	}
@@ -366,7 +417,8 @@ public class Player : MonoBehaviour , IDamagable
 	// 무적 : 3초간 모든 피해 무적(낙사 제외)
 	public void BecomeInvincible(float duration)
 	{
-		
+		if (isDragonDebuff)
+			duration -= 1.5f;
 		
 		if (activeDesires[Constants.Dragon])
 			duration += 1.5f;
@@ -386,6 +438,8 @@ public class Player : MonoBehaviour , IDamagable
 	// 부스터 : 3초간 모든 장애물을 파괴하면서 질주(이동 속도 수치가 20증가)
 	public void Booster(float duration)
 	{
+		if (isHoresDebuff)
+			duration -= 1.5f;
 		if (activeDesires[Constants.Horse])
 			duration += 1.5f;
 		StartCoroutine(BoostRoutine(duration));
@@ -401,6 +455,9 @@ public class Player : MonoBehaviour , IDamagable
 	// 쉴드 : 장애물 1회 방어(낙사 제외)
 	public void BlockObstacle()
 	{
+		if (isTigerDebuff)
+			return;
+
 		isFirstShiled = true;
 		if(activeDesires[Constants.Tiger])
 			isSecondShiled = true;
@@ -418,11 +475,7 @@ public class Player : MonoBehaviour , IDamagable
 			{
 				isFirstShiled = false;
 				
-				
 			}
-
-			
-			
 		}
 
 		if (other.gameObject.CompareTag("FallZone"))
@@ -430,5 +483,72 @@ public class Player : MonoBehaviour , IDamagable
 			// TODO : 낙사 확인
 			Die();
 		}
+	}
+
+	//디버프 메서드
+	public void PigDebuff()// 최대체력 20감소
+	{
+		isPigDebuff = true;
+		maxHealth -= 20;
+	}
+
+	public void DogDebuff()// 이동속도 20 감소 우선 20프로 감소로 변경
+	{
+		isDogDebuff = true;
+		speed *= 0.80f;
+	}
+
+	public void RoosterDebuff()// 고정형 장애물 오브젝트 피해수치 5 증가
+	{
+		isRoosterDebuff = true;
+		floorRes -= 5;
+	}
+
+	public void MonkeyDebuff() // 젤리발바닥 점수 5 감소 스코어에서 관리
+	{
+		isMonkeyDebuff = true;
+	}
+
+	public void LamnDebuff() // 반딧불 회복량 5 감소
+	{
+		isLambDebuff = true;
+	}
+
+	public void HorseDebuff() // 부스터 아이템 지속시간 1.5초 감소
+	{
+		isHoresDebuff = true;
+	}
+
+	public void SnakeDebuff() // 날아오는 장애물 오브젝트 피해수치 5 증가
+	{
+		isSnakeDebuff = true;
+		flyRes -=5;
+	}
+
+	public void DragonDebuff() // 무적 아이템 지속시간 1.5초 감소
+	{
+		isDragonDebuff = true;
+	}
+
+	public void RabbitDebuff() // 츄르의 회복량 5 감소
+	{
+		isRabbitDebuff = true;
+	}
+
+	public void TigerDebuff() // 쉴드 효과 무효화
+	{
+		isTigerDebuff = true;
+	}
+
+	public void OxDebuff() // 활공 1초 감소
+	{
+		isOxDebuff = true;
+		glideTime -= 1f;
+	}
+
+	public void RatDebuff() // 5초당 체력 1 감소
+	{
+		isRatDebuff = true;
+
 	}
 }
