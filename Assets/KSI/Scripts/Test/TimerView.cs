@@ -10,14 +10,14 @@ public class TimerView : MonoBehaviour
 	public float roundTime;
 	public Slider timerSlider;
 
-	[Header("Time Out")]
-	public GameObject TimeOutUI;
+	//[Header("Time Out")]
+	//public GameObject TimeOutUI;
 
 	bool roundEnd = false;
 
 	private void Start()
 	{
-		TimeOutUI.SetActive(false);
+		//TimeOutUI.SetActive(false);
 
 		timerSlider.maxValue = roundTime;
 		timerSlider.value = roundTime;
@@ -43,12 +43,12 @@ public class TimerView : MonoBehaviour
 			}
 		}
 
-		if (roundEnd)
-		{
-			TimeOutUI.SetActive(true); ;
+		//if (roundEnd)
+		//{
+		//	TimeOutUI.SetActive(true); ;
 
-			roundEnd = false;
-		}
+		//	roundEnd = false;
+		//}
 	}
 
 }

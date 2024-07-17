@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class QuestManager : MonoBehaviour
 {
-	public List<QuestCategory> questCategories;
-
+	public List<Quest> quests;
 	private QuestUI questUI;
 
 	private void Start()
@@ -21,57 +20,79 @@ public class QuestManager : MonoBehaviour
 
 	private void InitializeQuests()
 	{
-		foreach (var category in questCategories)
+
+		foreach (var quest in quests)
 		{
-			foreach (var quest in category.quests)
-			{
-				// 모든 퀘스트를 초기화
-				quest.isComplete = false;
-				Debug.Log("퀘스트 시작 : " + quest.questName);
-			}
+			quest.isComplete = false;
+			Debug.Log("퀘스트 시작 : " + quest.curQuestName);
 		}
 	}
 
-	public void UpdateQuestProgress(string questName, int score)
+	public void UpdateQuestProgress(Quest.QuestName questName, int score)
 	{
 		Debug.Log($"퀘스트 진행 상황 업데이트 / 퀘스트 이름: {questName}, 점수 : {score}");
-		foreach (var category in questCategories)
+		bool questFound = false;
+		foreach (var quest in quests)
 		{
-			foreach (var quest in category.quests)
+			Debug.Log($"확인 중인 퀘스트: {quest.curQuestName}");
+			if (quest.curQuestName == questName)
 			{
-				if (quest.questName == questName && !quest.isComplete)
-				{				
+				questFound = true;
+				if (!quest.isComplete)
+				{
 					quest.CheckCompleteQuest(score);
-					Debug.Log($"퀘스트 확인 중 : {quest.questName}");
+					Debug.Log($"퀘스트 확인 중 : {quest.curQuestName}");
 					if (quest.isComplete)
 					{
-						questUI.ShowQuestCompleteUI(quest.questName);
+						questUI.ShowQuestCompleteUI(quest.curQuestName);
 						GiveReward(quest);
 					}
 				}
+				else
+				{
+					Debug.Log($"퀘스트 {quest.curQuestName}는 이미 완료됨");
+				}
 			}
+		}
+		if (!questFound)
+		{
+			Debug.LogError($"퀘스트 이름 '{questName}'을 찾을 수 없음");
 		}
 	}
 
-	public void CompleteQuest(string questName)
+	public void CompleteQuest(Quest.QuestName questName)
 	{
-		foreach (var category in questCategories)
+		foreach (var quest in quests)
 		{
-			foreach (var quest in category.quests)
+			if (quest.curQuestName == questName)
 			{
-				if (quest.questName == questName)
-				{
-					quest.isComplete = true;
-					Debug.Log(questName + " 완료");
-				}
+				quest.isComplete = true;
+				Debug.Log(questName + " 완료");
 			}
 		}
 	}
 
 	private void GiveReward(Quest quest)
 	{
+		GiveSushi(quest);
+
+		if (quest.rewardDesirePiece)
+		{
+			GiveDesirePiece(quest);
+		}
+	}
+
+	private void GiveSushi(Quest quest)
+	{
 		int reward = quest.GetReward();
-		Debug.Log($"퀘스트 보상 : '{quest.questName}' / {reward} 초밥");
+		Debug.Log($"퀘스트 보상 : '{quest.curQuestName}' / 초밥 {reward} 개 ");
+		// TODO : 보상 로직 추가
+	}
+
+	private void GiveDesirePiece(Quest quest)
+	{
+		int rewardValue = quest.GetDesirePiece();
+		Debug.Log($"퀘스트 보상 : '{quest.curQuestName}' / 깨진 염원 조각 {rewardValue} 개");
 		// TODO : 보상 로직 추가
 	}
 }
