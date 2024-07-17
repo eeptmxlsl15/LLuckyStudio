@@ -9,7 +9,7 @@ public class Player : MonoBehaviour , IDamagable
 {
 	private Rigidbody2D rb;
 	private Animator anim;
-
+	
 	public GameObject glideCooltimeUI;
 	public TMP_Text glideCooltimeText;
 	public GameObject jumpButton;
@@ -90,6 +90,7 @@ public class Player : MonoBehaviour , IDamagable
 	{
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		anim.runtimeAnimatorController = DataManager.Instance.playerSkin[DataManager.Instance.skinID];
 		originalGlideButtonColor = glideButton.GetComponent<Image>().color;
 		// 점프 트리거
 		EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();

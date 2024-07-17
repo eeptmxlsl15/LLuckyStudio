@@ -532,7 +532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e2d5ba9061dfa4f9b722b3cf79c9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!58 &71282941
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -652,7 +651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e2d5ba9061dfa4f9b722b3cf79c9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!1 &222433764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,7 +2147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb04640c6ef0df489b38e9aa0864672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!212 &612380184
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2692,7 +2689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5040fad70af3347a045a5776d6fc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!61 &749771255
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3269,7 +3265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4895e274cf1bb4f9c0dee7064a92d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!58 &1243671810
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6331,6 +6326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9506bac9314fa614296c3da0e811294a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSkins:
+  - {fileID: 9100000, guid: 209c64997684e774a8312ab654e80f27, type: 2}
   glideCooltimeUI: {fileID: 1291365223869293147}
   glideCooltimeText: {fileID: 8067157665454517777}
   jumpButton: {fileID: 3306000188423670852}
@@ -6358,6 +6355,18 @@ MonoBehaviour:
   canGlide: 1
   glideCooldown: 120
   glideCooldownTimer: 0
+  isPigDebuff: 0
+  isDogDebuff: 0
+  isRoosterDebuff: 0
+  isMonkeyDebuff: 0
+  isLambDebuff: 0
+  isHoresDebuff: 0
+  isSnakeDebuff: 0
+  isDragonDebuff: 0
+  isRabbitDebuff: 0
+  isTigerDebuff: 0
+  isOxDebuff: 0
+  isRatDebuff: 0
   activeDesires: 
 --- !u!70 &1921621825
 CapsuleCollider2D:
@@ -6597,9 +6606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50c0fc5b469972488239712b487f09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  range: 1
-  cycle: 1
 --- !u!1 &1945693233
 GameObject:
   m_ObjectHideFlags: 0

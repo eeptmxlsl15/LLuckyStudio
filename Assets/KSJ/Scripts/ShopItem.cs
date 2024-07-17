@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class ShopItem : MonoBehaviour
 {
-	public int moneyCost;//유료 재화
-	public int fishCost;
+	public int moneyCost; // 유료 재화
+	public int sushiCost;
 	public int cannedFoodCost;
 	public int quantity;
 	public int itemID;
@@ -14,28 +15,25 @@ public class ShopItem : MonoBehaviour
 	public GameObject isBuyUI;
 	public GameObject itemPrefab; // 아이템 프리팹을 저장할 변수
 	public Transform contentTransform; // 프리팹 아이템을 넣을 부모 Transform
-	public Button OverlayButton;//다른 곳을 클릭하면 isBuyUI가 꺼지게 하는 버튼
-	
+	public Button OverlayButton; // 다른 곳을 클릭하면 isBuyUI가 꺼지게 하는 버튼
+
 	public TMP_Text costText;
 	public TMP_Text quantityText;
 
-	//한번 샀을 때 색을 바꿈
+	// 한번 샀을 때 색을 바꿈
 	public Button button;
 	public Image icon;
 	public Image background;
 
 	private void Start()
 	{
-		costText = transform.Find("Button/Fish Cost").GetComponent<TMP_Text>();
+		costText = transform.Find("Button/Sushi Cost").GetComponent<TMP_Text>();
 		quantityText = transform.Find("Button/Quantity").GetComponent<TMP_Text>();
 		OverlayButton = GameObject.Find("/Canvas/Overlay Button").GetComponent<Button>();
 		button = GetComponentInChildren<Button>();
 		icon = transform.Find("Button/Icon").GetComponent<Image>();
 		background = transform.Find("Button/Background").GetComponent<Image>();
 
-
-
-		//this.transform.localScale = new Vector3(1, 1, 1);
 		itemPrefab = transform.gameObject;
 		// isBuyUI를 찾음
 		isBuyUI = GameObject.Find("/Canvas/Is Buy");
@@ -51,19 +49,17 @@ public class ShopItem : MonoBehaviour
 			Debug.LogError("Contents 오브젝트를 찾을 수 없습니다. isBuyUI 안에 Content 오브젝트를 추가하세요.");
 		}
 
-		//isBuyUI.transform.localScale = new Vector3(0, 0, 0); // 초기에는 비활성화
-		itemPrefab = transform.gameObject;
 		UpdateText();
+		LoadButtonState(); // Load the saved button state on start
 	}
-	private void Update()
-	{
-	}
+
+	private void Update() { }
 
 	public void OnClick()
 	{
-		if (DataManager.Instance.fish - fishCost < 0)
+		if (DataManager.Instance.sushi - sushiCost < 0)
 			return;
-			Debug.Log("클릭됨");
+		Debug.Log("클릭됨");
 		// isBuyUI를 활성화하고 위치를 고정된 위치로 설정
 		isBuyUI.transform.localScale = new Vector3(1, 1, 1);
 		OverlayButton.transform.localScale = new Vector3(1, 1, 1);
@@ -75,7 +71,7 @@ public class ShopItem : MonoBehaviour
 		}
 
 		// 클릭된 아이템 프리팹을 contentTransform 안에 생성
-		GameObject spawnedItem = Instantiate(itemPrefab, contentTransform,transform.parent);
+		GameObject spawnedItem = Instantiate(itemPrefab, contentTransform, transform.parent);
 		RectTransform spawnedItemRect = spawnedItem.GetComponent<RectTransform>();
 		if (spawnedItemRect != null)
 		{
@@ -91,77 +87,78 @@ public class ShopItem : MonoBehaviour
 
 	public void IsBuy(int _itemID)
 	{
-
-		
-
 		switch (_itemID)
 		{
 			case 1: // 통조림
-
-				Debug.Log("여기");
-				DataManager.Instance.fish -= fishCost;
+				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.cannedFood += quantity;
 				DisableButton();
-				
 				break;
 			case 2: // 은방울
-				
-				DataManager.Instance.fish -= fishCost;
+				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.silverMarble += quantity;
 				DisableButton();
-				
 				break;
 			case 3: // 금방울
-				
-				DataManager.Instance.fish -= fishCost;
+				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.goldMarble += quantity;
 				DisableButton();
-				
 				break;
 			case 4: // 부활권
-				
-				DataManager.Instance.fish -= fishCost;
+				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.resurrection += quantity;
 				DisableButton();
-				
 				break;
-
-			case 5: //유료 재화
+			case 5:
 			case 6:
-			case 7:
+			case 7: // 유료 재화
 				DataManager.Instance.money -= moneyCost;
 				DataManager.Instance.cannedFood += quantity;
 				break;
 			case 8:
 			case 9:
 			case 10:
-
 				DataManager.Instance.cannedFood -= cannedFoodCost;
-				DataManager.Instance.fish += quantity;
+				DataManager.Instance.sushi += quantity;
 				break;
-
 		}
 
-		
-		
 		isBuyUI.transform.localScale = new Vector3(0, 0, 0);
 		OverlayButton.transform.localScale = new Vector3(0, 0, 0);
-
 	}
+
 	private void DisableButton()
 	{
 		button.interactable = false;
 		icon.color = Color.gray;
 		background.color = Color.gray;
-
+		SaveButtonState(); // 버튼 상태 저장
 	}
+
 	public void UpdateText()
 	{
 		quantityText.text = "" + quantity;
-		costText.text = "Fish : "+fishCost;
+		costText.text = "Sushi : " + sushiCost;
 		if (itemID == 5 || itemID == 6 || itemID == 7)
-			costText.text = "Money : "+moneyCost;
+			costText.text = "Money : " + moneyCost;
 		else if (itemID > 7)
-			costText.text = "Canned Food : "+cannedFoodCost;
+			costText.text = "Canned Food : " + cannedFoodCost;
+	}
+
+	private void SaveButtonState()
+	{
+		PlayerPrefs.SetInt("ShopItem_" + itemID + "_Disabled", button.interactable ? 0 : 1);
+		PlayerPrefs.Save();
+	}
+
+	private void LoadButtonState()
+	{
+		int disabled = PlayerPrefs.GetInt("ShopItem_" + itemID + "_Disabled", 0);
+		if (disabled == 1)
+		{
+			button.interactable = false;
+			icon.color = Color.gray;
+			background.color = Color.gray;
+		}
 	}
 }

@@ -56,7 +56,7 @@ public class ShopList : MonoBehaviour
 
 	public void OnClickIngameReset()
 	{
-		if (DataManager.Instance.fish - resetCost < 0)
+		if (DataManager.Instance.sushi - resetCost < 0)
 		{
 			return;
 			//실패 사운드
@@ -69,7 +69,7 @@ public class ShopList : MonoBehaviour
 				DataManager.Instance.resetItemID[i] = randomIndex;
 			}
 		}
-		DataManager.Instance.fish -= resetCost;
+		DataManager.Instance.sushi -= resetCost;
 		DisplayRandomItems();
 	}
 

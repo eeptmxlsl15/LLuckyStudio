@@ -6,14 +6,15 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class DataManager : MonoBehaviour
 {
-    // 싱글톤 인스턴스
-    public static DataManager Instance { get; private set; }
+	// 싱글톤 인스턴스
+	public static DataManager Instance { get; private set; }
 
-    // 씬 간에 전달할 데이터
+	// 씬 간에 전달할 데이터
 	//염원
-    public Dictionary<Button, bool> desireStates = new Dictionary<Button, bool>();
+	public Dictionary<Button, bool> desireStates = new Dictionary<Button, bool>();
 	//스탯
-
+	[Header("# Player Skin")]
+	public RuntimeAnimatorController[] playerSkin;
 
 	[Header("# Player Stat")]
 	public int skinID;
@@ -41,7 +42,7 @@ public class DataManager : MonoBehaviour
 	public int brokenBlue;//체력
 	public int brokenRed;//활주시간
 	public int brokenGreen;//점프횟수
-	public int fish;//인게임 재화
+	public int sushi;//인게임 재화
 	public int goldMarble;
 	public int silverMarble;
 	public int resurrection;
@@ -66,6 +67,7 @@ public class DataManager : MonoBehaviour
 	public List<int> resetItemID;
 	public int resetNum;
 	public int resetMaxNum;
+	
 	private void Awake()
     {
         // 싱글톤 패턴 구현
@@ -86,7 +88,7 @@ public class DataManager : MonoBehaviour
 		desireStates = new Dictionary<Button, bool>(data);
 	}
 
-
+	
 
 
 }

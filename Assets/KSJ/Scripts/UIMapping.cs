@@ -12,7 +12,7 @@ public class UIMapping : MonoBehaviour
 
 	[Header("# UI Mapping")]
 	// 인게임 재화
-	public TMP_Text fishText;
+	public TMP_Text sushiText;
 	public TMP_Text silverMarbleText;
 
 	// 스탯창에 표시되는 텍스트
@@ -34,13 +34,13 @@ public class UIMapping : MonoBehaviour
 
 	// 각각의 강화버튼과 텍스트
 	public Button upgradeRedGlide;
-	public TMP_Text needRedFish;
+	public TMP_Text needRedSushi;
 	
 	public Button upgradeBlueHP;
-	public TMP_Text needBlueFish;
+	public TMP_Text needBlueSushi;
 
 	public Button upgradeGreenCount;
-	public TMP_Text needGreenFish;
+	public TMP_Text needGreenSushi;
 
 	// 슬라이더
 	
@@ -62,8 +62,8 @@ public class UIMapping : MonoBehaviour
 	void Update()
 	{
 		// 최대치 관리
-		if (dataManager.fish > 999999998)
-			dataManager.fish = 999999999;
+		if (dataManager.sushi > 999999998)
+			dataManager.sushi = 999999999;
 		if (dataManager.silverMarble > 30)
 			dataManager.silverMarble = 30;
 		UpdateCatsDesire();
@@ -90,19 +90,19 @@ public class UIMapping : MonoBehaviour
 
 		// 생선 잔여/필요
 		if (dataManager.redMarbleLv == 10)
-			needRedFish.text = "Master";
+			needRedSushi.text = "Master";
 		else
-			needRedFish.text = "Upgrade : " + dataManager.nextExp[dataManager.redMarbleLv];
+			needRedSushi.text = "Upgrade : " + dataManager.nextExp[dataManager.redMarbleLv];
 
 		if (dataManager.blueMarbleLv == 10)
-			needBlueFish.text = "Master";
+			needBlueSushi.text = "Master";
 		else
-			needBlueFish.text = "Upgrade : " + dataManager.nextExp[dataManager.blueMarbleLv];
+			needBlueSushi.text = "Upgrade : " + dataManager.nextExp[dataManager.blueMarbleLv];
 
 		if(dataManager.greenMarbleLv == 10)
-			needGreenFish.text = "Master";
+			needGreenSushi.text = "Master";
 		else
-			needGreenFish.text = "Upgrade : " + dataManager.nextExp[dataManager.greenMarbleLv];
+			needGreenSushi.text = "Upgrade : " + dataManager.nextExp[dataManager.greenMarbleLv];
 	}
 
 	public void UpdateCatsDesire()
@@ -114,7 +114,7 @@ public class UIMapping : MonoBehaviour
 
 	public void UpdateUpgrade()
 	{
-		if (dataManager.brokenBlue < dataManager.nextExp[dataManager.blueMarbleLv] || dataManager.fish < dataManager.nextExp[dataManager.blueMarbleLv] || dataManager.blueMarbleLv == 11)
+		if (dataManager.brokenBlue < dataManager.nextExp[dataManager.blueMarbleLv] || dataManager.sushi < dataManager.nextExp[dataManager.blueMarbleLv] || dataManager.blueMarbleLv == 11)
 		{
 			upgradeBlueHP.GetComponent<Image>().color = Color.gray;
 			upgradeBlueHP.interactable = false; // 버튼 비활성화
@@ -125,7 +125,7 @@ public class UIMapping : MonoBehaviour
 			upgradeBlueHP.interactable = true; // 버튼 활성화
 		}
 
-		if (dataManager.brokenRed < dataManager.nextExp[dataManager.redMarbleLv] || dataManager.fish < dataManager.nextExp[dataManager.redMarbleLv] || dataManager.redMarbleLv == 11)
+		if (dataManager.brokenRed < dataManager.nextExp[dataManager.redMarbleLv] || dataManager.sushi < dataManager.nextExp[dataManager.redMarbleLv] || dataManager.redMarbleLv == 11)
 		{
 			upgradeRedGlide.GetComponent<Image>().color = Color.gray;
 			upgradeRedGlide.interactable = false; // 버튼 비활성화
@@ -136,7 +136,7 @@ public class UIMapping : MonoBehaviour
 			upgradeRedGlide.interactable = true; // 버튼 활성화
 		}
 
-		if (dataManager.brokenGreen < dataManager.nextExp[dataManager.greenMarbleLv] || dataManager.fish < dataManager.nextExp[dataManager.greenMarbleLv] || dataManager.greenMarbleLv == 11)
+		if (dataManager.brokenGreen < dataManager.nextExp[dataManager.greenMarbleLv] || dataManager.sushi < dataManager.nextExp[dataManager.greenMarbleLv] || dataManager.greenMarbleLv == 11)
 		{
 			upgradeGreenCount.GetComponent<Image>().color = Color.gray;
 			upgradeGreenCount.interactable = false; // 버튼 비활성화
@@ -152,28 +152,28 @@ public class UIMapping : MonoBehaviour
 	{
 		if (color == 1) // 적
 		{
-			if (dataManager.brokenRed >= dataManager.nextExp[dataManager.redMarbleLv] && dataManager.fish >= dataManager.nextExp[dataManager.redMarbleLv] && dataManager.redMarbleLv < 10)
+			if (dataManager.brokenRed >= dataManager.nextExp[dataManager.redMarbleLv] && dataManager.sushi >= dataManager.nextExp[dataManager.redMarbleLv] && dataManager.redMarbleLv < 10)
 			{
 				dataManager.brokenRed -= dataManager.nextExp[dataManager.redMarbleLv];
-				dataManager.fish -= dataManager.nextExp[dataManager.redMarbleLv];
+				dataManager.sushi -= dataManager.nextExp[dataManager.redMarbleLv];
 				dataManager.redMarbleLv++;
 			}
 		}
 		if (color == 2) // 청
 		{
-			if (dataManager.brokenBlue >= dataManager.nextExp[dataManager.blueMarbleLv] && dataManager.fish >= dataManager.nextExp[dataManager.blueMarbleLv] && dataManager.blueMarbleLv < 10)
+			if (dataManager.brokenBlue >= dataManager.nextExp[dataManager.blueMarbleLv] && dataManager.sushi >= dataManager.nextExp[dataManager.blueMarbleLv] && dataManager.blueMarbleLv < 10)
 			{
 				dataManager.brokenBlue -= dataManager.nextExp[dataManager.blueMarbleLv];
-				dataManager.fish -= dataManager.nextExp[dataManager.blueMarbleLv];
+				dataManager.sushi -= dataManager.nextExp[dataManager.blueMarbleLv];
 				dataManager.blueMarbleLv++;
 			}
 		}
 		if (color == 3) // 녹
 		{
-			if (dataManager.brokenGreen >= dataManager.nextExp[dataManager.greenMarbleLv] && dataManager.fish >= dataManager.nextExp[dataManager.greenMarbleLv] && dataManager.greenMarbleLv < 10)
+			if (dataManager.brokenGreen >= dataManager.nextExp[dataManager.greenMarbleLv] && dataManager.sushi >= dataManager.nextExp[dataManager.greenMarbleLv] && dataManager.greenMarbleLv < 10)
 			{
 				dataManager.brokenGreen -= dataManager.nextExp[dataManager.greenMarbleLv];
-				dataManager.fish -= dataManager.nextExp[dataManager.greenMarbleLv];
+				dataManager.sushi -= dataManager.nextExp[dataManager.greenMarbleLv];
 				dataManager.greenMarbleLv++;
 			}
 		}
@@ -190,7 +190,7 @@ public class UIMapping : MonoBehaviour
 
 	public void UpdateLobbyUI()
 	{
-		fishText.text = "" + dataManager.fish;
+		sushiText.text = "" + dataManager.sushi;
 		silverMarbleText.text = "" + dataManager.silverMarble + "/30";
 	}
 

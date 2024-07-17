@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyCost: 0
-  fishCost: 0
+  sushiCost: 0
   cannedFoodCost: 0
   quantity: 0
   itemID: 0
@@ -59,8 +59,11 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   contentTransform: {fileID: 0}
   OverlayButton: {fileID: 0}
-  fishCostText: {fileID: 0}
+  costText: {fileID: 0}
   quantityText: {fileID: 0}
+  button: {fileID: 0}
+  icon: {fileID: 0}
+  background: {fileID: 0}
 --- !u!1 &1444878433507063567
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +496,7 @@ GameObject:
   - component: {fileID: 3418431331135084581}
   - component: {fileID: 152802530022128491}
   m_Layer: 5
-  m_Name: Fish Cost
+  m_Name: Sushi Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
