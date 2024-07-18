@@ -43,9 +43,11 @@ public class DataManager : MonoBehaviour
 	public int brokenRed;//활주시간
 	public int brokenGreen;//점프횟수
 	public int sushi;//인게임 재화
+
 	public int goldMarble;
 	public int silverMarble;
 	public int resurrection;
+	
 	public int money;//유료 재화 
 	
 

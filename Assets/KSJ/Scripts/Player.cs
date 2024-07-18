@@ -9,7 +9,10 @@ public class Player : MonoBehaviour , IDamagable
 {
 	private Rigidbody2D rb;
 	private Animator anim;
-	
+	private BoxCollider2D playerCollider;
+	private Vector2 originalColliderSize;
+	private Vector2 originalColliderOffset;
+
 	public GameObject glideCooltimeUI;
 	public TMP_Text glideCooltimeText;
 	public GameObject jumpButton;
@@ -92,6 +95,10 @@ public class Player : MonoBehaviour , IDamagable
 		anim = GetComponent<Animator>();
 		anim.runtimeAnimatorController = DataManager.Instance.playerSkin[DataManager.Instance.skinID];
 		originalGlideButtonColor = glideButton.GetComponent<Image>().color;
+		playerCollider = GetComponent<BoxCollider2D>();
+		originalColliderOffset = playerCollider.offset;
+		originalColliderSize = playerCollider.size;//슬라이드가 끝났을 때 사용
+
 		// 점프 트리거
 		EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
 		AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, OnJumpButtonDown);
@@ -263,6 +270,16 @@ public class Player : MonoBehaviour , IDamagable
 	{
 		isSlide = _isSlide;
 		anim.SetBool("isSlide", _isSlide);
+
+		if (_isSlide)
+		{
+			playerCollider.size = new Vector2(playerCollider.size.x, originalColliderSize.y / 2);
+			playerCollider.offset = new Vector2(originalColliderOffset.x, originalColliderOffset.y - originalColliderSize.y / 4);
+		}
+		else
+		{
+			playerCollider.size = originalColliderSize;
+		}
 	}
 
 	private void AddEventTrigger(EventTrigger trigger, EventTriggerType eventType, UnityEngine.Events.UnityAction action)
