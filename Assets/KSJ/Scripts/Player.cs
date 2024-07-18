@@ -12,7 +12,9 @@ public class Player : MonoBehaviour , IDamagable
 	private BoxCollider2D playerCollider;
 	private Vector2 originalColliderSize;
 	private Vector2 originalColliderOffset;
-
+	private SpriteRenderer spriteRenderer;
+	private Color originalColor;
+	public Color heatColor;
 	public GameObject glideCooltimeUI;
 	public TMP_Text glideCooltimeText;
 	public GameObject jumpButton;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour , IDamagable
 	private const float healthDamageInterval = 5f;
 
 	[Header("# Player State")]
+	public bool isDead = false;
 	public bool isGrounded = false;
 	public bool isSlide;
 	public bool isJumpButtonHeld = false;
@@ -48,7 +51,8 @@ public class Player : MonoBehaviour , IDamagable
 	public bool isInvincible = false;
 	public bool isFirstShiled = false;
 	public bool isSecondShiled = false;
-	public float glideButtonHoldTimer = 0f;
+	public bool isBooster = false;
+	private float glideButtonHoldTimer = 0f;
 	
 	//활주 관련 
 	public bool canGlide = true;
@@ -98,7 +102,9 @@ public class Player : MonoBehaviour , IDamagable
 		playerCollider = GetComponent<BoxCollider2D>();
 		originalColliderOffset = playerCollider.offset;
 		originalColliderSize = playerCollider.size;//슬라이드가 끝났을 때 사용
-
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		originalColor = spriteRenderer.color;
+		heatColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f);//히트 시 적용 되는 색
 		// 점프 트리거
 		EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
 		AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, OnJumpButtonDown);
@@ -136,6 +142,11 @@ public class Player : MonoBehaviour , IDamagable
 
 	void Update()
 	{
+		if (isDead)
+		{
+			Die();
+			return;
+		}
 		//활공 중 이속 빨라짐
 		if(isGlide)
 			transform.position += new Vector3(speed*1.2f * Time.deltaTime, 0, 0);
@@ -228,8 +239,10 @@ public class Player : MonoBehaviour , IDamagable
 			// -1은 현재 애니메이터 레이어, 0f는 애니메이션 시작 부분(0~1)
 			Debug.Log("점프");
 			anim.Play("Jump", -1, 0f);
+			
 			rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 			jumpCount++;
+			// TODO : 사운드 추가
 		}
 	}
 
@@ -362,15 +375,34 @@ public class Player : MonoBehaviour , IDamagable
 
 	public void TakeDamage(int damage)
 	{
-		
+
 		//발판형, 고정형 , 방해물 , 버프
 
-		if(!isInvincible && !isFirstShiled && !isSecondShiled)//무적,첫번째 쉴드, 두번째 쉴드
+		if (!isInvincible && !isFirstShiled && !isSecondShiled && !isBooster)//무적,첫번째 쉴드, 두번째 쉴드
+		{
+
+			Debug.Log("hit");
 			health -= (damage - allRes);
+			StartCoroutine(HitEffect());
+		}
 		Debug.Log("Player took damage: " + (damage - allRes) + ", current health: " + health + " allRes : "+allRes);
 
 		
 	}
+
+	private IEnumerator HitEffect()
+	{
+		spriteRenderer.color = heatColor; // 밝게 설정
+		// TODO : 사운드
+		yield return new WaitForSeconds(0.2f); // 잠시 대기
+		spriteRenderer.color = originalColor; // 원래 색으로 복원
+		yield return new WaitForSeconds(0.1f);
+		
+		spriteRenderer.color = heatColor; // 밝게 설정
+		yield return new WaitForSeconds(0.2f); // 잠시 대기
+		spriteRenderer.color = originalColor; // 원래 색으로 복원
+	}
+
 	public int FloorObstacleDamage(int damage)
 	{
 		return damage -= floorRes;
@@ -381,9 +413,10 @@ public class Player : MonoBehaviour , IDamagable
 	{
 		return damage -= flyRes;
 	}
-	private void Die()
+	public void Die()
 	{
-		// TODO : 플레이어 사망 추가
+		anim.SetTrigger("isDead");
+		// TODD : 사운드
 		Debug.Log("플레이어가 죽었습니다.");
 	}
 
@@ -465,9 +498,11 @@ public class Player : MonoBehaviour , IDamagable
 
 	private IEnumerator BoostRoutine(float duration)
 	{
+		isBooster = true;
 		speed += 20;
 		yield return new WaitForSeconds(duration);
 		speed -= 20;
+		isBooster = false;
 	}
 
 	// 쉴드 : 장애물 1회 방어(낙사 제외)
@@ -493,6 +528,10 @@ public class Player : MonoBehaviour , IDamagable
 			{
 				isFirstShiled = false;
 				
+			}
+			if (isBooster)
+			{
+				Destroy(other.gameObject);
 			}
 		}
 
