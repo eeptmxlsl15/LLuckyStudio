@@ -16,13 +16,13 @@ public class SkinEquipButton : MonoBehaviour
 	{
 		// 현재 게임 오브젝트와 모든 자식 오브젝트에서 버튼 컴포넌트를 찾아서 리스트에 추가
 		Button[] foundButtons = GetComponentsInChildren<Button>(true);
-		int index = 0;
 
-		foreach (Button button in foundButtons)
+		for (int i = 0; i < foundButtons.Length; i++)
 		{
-			button.onClick.AddListener(() => OnClickSkinEquip(index));
-			buttons.Add(button);
-			index++;
+			int index = i; // 캡처하기 위해 새 변수 생성
+			Debug.Log("adad");
+			foundButtons[i].onClick.AddListener(() => OnClickSkinEquip(index));
+			buttons.Add(foundButtons[i]);
 		}
 
 		//장착 여부를 데이터매니져가 알아야함
@@ -39,7 +39,7 @@ public class SkinEquipButton : MonoBehaviour
 		}
 
 		buttons[value].interactable = false;
-		
+
 	}
 
 }

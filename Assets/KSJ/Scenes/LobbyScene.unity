@@ -1169,7 +1169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSkin:
   - {fileID: 9100000, guid: 209c64997684e774a8312ab654e80f27, type: 2}
-  skinID: 0
+  - {fileID: 9100000, guid: 96f293e6d836edf4690a0e9a545771ac, type: 2}
+  skinID: 1
   health: 0
   maxHealth: 100
   speed: 10
@@ -5564,6 +5565,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skin item (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8323318099230105408, guid: f8e4649291b67784b992e740dc0f7ef7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5944,8 +5949,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1399198038}
   m_HandleRect: {fileID: 1399198037}
   m_Direction: 2
-  m_Value: 0.00000031060614
-  m_Size: 0.0000002034505
+  m_Value: 0.000000103535406
+  m_Size: 0.5087417
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6743,7 +6748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneManager: {fileID: 619423929}
-  sceneName: GameScene
+  sceneName: TestScene
 --- !u!1 &1206320935
 GameObject:
   m_ObjectHideFlags: 0
@@ -6931,6 +6936,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2452713039652191499, guid: f8e4649291b67784b992e740dc0f7ef7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f2b798bd5611c3c4e87a71d667ffb4a6, type: 3}
     - target: {fileID: 8323318099230105408, guid: f8e4649291b67784b992e740dc0f7ef7, type: 3}
       propertyPath: m_Name
       value: Skin item (1)
@@ -9456,7 +9465,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1498233585}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11089,7 +11098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.0007324219, y: 589.5099}
+  m_AnchoredPosition: {x: 0.0007324219, y: 589.50995}
   m_SizeDelta: {x: 652.793, y: 1200}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1841471176
@@ -12633,7 +12642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 91810440, y: -17939986}
+  m_AnchoredPosition: {x: 105255624, y: -20587128}
   m_SizeDelta: {x: 0, y: 1295.045}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1961608554

@@ -145,7 +145,7 @@ public class Player : MonoBehaviour , IDamagable
 		if (isDead)
 		{
 			Die();
-			return;
+			//TODO : 게임 멈춤
 		}
 		//활공 중 이속 빨라짐
 		if(isGlide)
@@ -292,6 +292,7 @@ public class Player : MonoBehaviour , IDamagable
 		else
 		{
 			playerCollider.size = originalColliderSize;
+			playerCollider.offset = originalColliderOffset;
 		}
 	}
 
@@ -416,7 +417,7 @@ public class Player : MonoBehaviour , IDamagable
 	public void Die()
 	{
 		anim.SetTrigger("isDead");
-		// TODD : 사운드
+		isDead = true;
 		Debug.Log("플레이어가 죽었습니다.");
 	}
 
