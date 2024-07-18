@@ -84,6 +84,7 @@ public class BerserkSystemManager : MonoBehaviour
 			list.Add(new BerserkTime { zodiacSign = item, startHour = time, endHour = time + 2 });
 			time += 2;
 		}
+		berserkTime = list.ToArray();
 
 		//디버프 초기화
 		//zodiacSignDebuff = new ZodiacSignDebuff[]

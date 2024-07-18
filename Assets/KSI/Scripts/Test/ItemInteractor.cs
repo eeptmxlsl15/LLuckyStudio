@@ -10,7 +10,7 @@ public class ItemInteractor : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			GameManager.Score.AddJellyCoin(scoreValue);
+			GameManager.Score.AddJellyPaw(scoreValue);
 			Destroy(gameObject);
 		}
 	}

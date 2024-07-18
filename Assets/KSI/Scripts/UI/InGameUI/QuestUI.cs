@@ -11,10 +11,9 @@ public class QuestUI : MonoBehaviour
 	private void Start()
     {
 		questCompleteUI.SetActive(false);
-
 	}
 
-	public void ShowQuestCompleteUI(string questName)
+	public void ShowQuestCompleteUI(Quest.QuestName questName)
 	{
 		questCompleteText.text = questName + " CLEAR!";
 		questCompleteUI.SetActive(true);
