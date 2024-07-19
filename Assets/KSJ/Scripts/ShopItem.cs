@@ -50,7 +50,7 @@ public class ShopItem : MonoBehaviour
 		}
 
 		UpdateText();
-		LoadButtonState(); // Load the saved button state on start
+		
 	}
 
 	private void Update() { }
@@ -92,22 +92,22 @@ public class ShopItem : MonoBehaviour
 			case 1: // 통조림
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.cannedFood += quantity;
-				DisableButton();
+				Destroy(gameObject);
 				break;
 			case 2: // 은방울
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.silverMarble += quantity;
-				DisableButton();
+				Destroy(gameObject);
 				break;
 			case 3: // 금방울
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.goldMarble += quantity;
-				DisableButton();
+				Destroy(gameObject);
 				break;
 			case 4: // 부활권
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.resurrection += quantity;
-				DisableButton();
+				Destroy(gameObject);
 				break;
 			case 5:
 			case 6:
@@ -127,13 +127,7 @@ public class ShopItem : MonoBehaviour
 		OverlayButton.transform.localScale = new Vector3(0, 0, 0);
 	}
 
-	private void DisableButton()
-	{
-		button.interactable = false;
-		icon.color = Color.gray;
-		background.color = Color.gray;
-		SaveButtonState(); // 버튼 상태 저장
-	}
+
 
 	public void UpdateText()
 	{
@@ -145,20 +139,5 @@ public class ShopItem : MonoBehaviour
 			costText.text = "Canned Food : " + cannedFoodCost;
 	}
 
-	private void SaveButtonState()
-	{
-		PlayerPrefs.SetInt("ShopItem_" + itemID + "_Disabled", button.interactable ? 0 : 1);
-		PlayerPrefs.Save();
-	}
-
-	private void LoadButtonState()
-	{
-		int disabled = PlayerPrefs.GetInt("ShopItem_" + itemID + "_Disabled", 0);
-		if (disabled == 1)
-		{
-			button.interactable = false;
-			icon.color = Color.gray;
-			background.color = Color.gray;
-		}
-	}
+	
 }

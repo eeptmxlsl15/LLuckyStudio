@@ -15,7 +15,7 @@ public class DataManager : MonoBehaviour
 	//스탯
 	[Header("# Player Skin")]
 	public RuntimeAnimatorController[] playerSkin;
-
+	public List<bool> havePlayerSkin;
 	[Header("# Player Stat")]
 	public int skinID;
 	public float health;

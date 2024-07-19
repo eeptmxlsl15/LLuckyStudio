@@ -16,7 +16,14 @@ public class ShopList : MonoBehaviour
 
 	private List<GameObject> spawnedItems = new List<GameObject>(); // 생성된 아이템을 추적하기 위한 리스트
 
-	
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			PickRandomItems();
+			DisplayRandomItems();
+		}
+	}
 
 	public void DisplayRandomItems()
 	{
@@ -41,7 +48,7 @@ public class ShopList : MonoBehaviour
 			GameObject itemPrefab = itemPrefabs[index];
 
 			Transform spawnPoint = spawnPoints[i];
-			Debug.Log(spawnPoint.localPosition.x+spawnPoint.localPosition.y);
+			Debug.Log(spawnPoint.localPosition.x + spawnPoint.localPosition.y);
 			GameObject spawnedItem = Instantiate(itemPrefab, transform);
 
 			// localPosition을 사용하여 정확한 위치 설정
@@ -60,7 +67,16 @@ public class ShopList : MonoBehaviour
 		{
 			return;
 			//실패 사운드
+			//3번째에도 안되게 해야함
+			//시간이 12시일때 
 		}
+		PickRandomItems();
+		DataManager.Instance.sushi -= resetCost;
+		DisplayRandomItems();
+	}
+
+	public void PickRandomItems()//데이터매니져에 리셋 아이템 리스트를 랜덤하게 바꿈
+	{
 		for (int i = 0; i < spawnPoints.Count; i++) //아이템의 수
 		{
 			int randomIndex = Random.Range(0, itemPrefabs.Count); //아이템의 종류
@@ -68,14 +84,13 @@ public class ShopList : MonoBehaviour
 			{
 				DataManager.Instance.resetItemID[i] = randomIndex;
 			}
+
+			
 		}
-		DataManager.Instance.sushi -= resetCost;
-		DisplayRandomItems();
 	}
 
 	public void OnClickContent()
 	{
-		
 		transform.parent.localScale = new Vector3(1, 1, 1);
 		DisplayRandomItems();
 	}

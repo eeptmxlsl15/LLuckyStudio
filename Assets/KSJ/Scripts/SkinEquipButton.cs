@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class SkinEquipButton : MonoBehaviour
 {
 	// Start is called before the first frame update
 	public List<Button> buttons = new List<Button>();
+	public List<GameObject> skinPrefabs; // 스킨 프리팹 리스트
+	public Transform contentTransform; // 스킨 프리팹을 배치할 부모 Transform
 
 	void Start()
 	{
 		CollectAllButtons();
+		ArrangeSkins();
 	}
 
 	void CollectAllButtons()
@@ -20,13 +24,79 @@ public class SkinEquipButton : MonoBehaviour
 		for (int i = 0; i < foundButtons.Length; i++)
 		{
 			int index = i; // 캡처하기 위해 새 변수 생성
-			Debug.Log("adad");
 			foundButtons[i].onClick.AddListener(() => OnClickSkinEquip(index));
 			buttons.Add(foundButtons[i]);
 		}
+	}
 
-		//장착 여부를 데이터매니져가 알아야함
-		//데이터 매니져의 아이디를 가져와서 그 순서의 버튼을 비활성화 시킴
+	void ArrangeSkins()
+	{
+		List<GameObject> ownedHeroSkins = new List<GameObject>();
+		List<GameObject> ownedNormalSkins = new List<GameObject>();
+		List<GameObject> notOwnedSkins = new List<GameObject>();
+
+		// 스킨을 가진지 여부에 따라 분류
+		for (int i = 0; i < skinPrefabs.Count; i++)
+		{
+			if (DataManager.Instance.havePlayerSkin[i])
+			{
+				if (IsHeroSkin(i))
+				{
+					ownedHeroSkins.Add(skinPrefabs[i]);
+				}
+				else
+				{
+					ownedNormalSkins.Add(skinPrefabs[i]);
+				}
+			}
+			else
+			{
+				notOwnedSkins.Add(skinPrefabs[i]);
+			}
+		}
+
+		// 영웅 등급 스킨을 먼저 배치
+		foreach (var skin in ownedHeroSkins)
+		{
+			InstantiateSkin(skin, true);
+		}
+
+		// 일반 등급 스킨을 배치
+		foreach (var skin in ownedNormalSkins)
+		{
+			InstantiateSkin(skin, true);
+		}
+
+		// 가지지 않은 스킨을 뒤에 배치하고 회색으로 변경, 버튼 비활성화
+		foreach (var skin in notOwnedSkins)
+		{
+			InstantiateSkin(skin, false);
+		}
+	}
+
+	bool IsHeroSkin(int index)
+	{
+		// 영웅 등급 스킨의 인덱스를 0과 1로 가정
+		return index == 0 || index == 1;
+	}
+
+	void InstantiateSkin(GameObject skinPrefab, bool isOwned)
+	{
+		GameObject skinInstance = Instantiate(skinPrefab, contentTransform);
+		Button button = skinInstance.GetComponentInChildren<Button>();
+
+		if (!isOwned)
+		{
+			button.interactable = false;
+			Image[] images = skinInstance.GetComponentsInChildren<Image>();
+			foreach (Image img in images)
+			{
+				img.color = Color.gray;
+			}
+		}
+
+		// 버튼 리스트에 추가
+		buttons.Add(button);
 	}
 
 	public void OnClickSkinEquip(int value)
@@ -39,7 +109,5 @@ public class SkinEquipButton : MonoBehaviour
 		}
 
 		buttons[value].interactable = false;
-
 	}
-
 }
