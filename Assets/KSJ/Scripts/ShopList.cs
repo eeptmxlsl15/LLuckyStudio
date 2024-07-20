@@ -18,11 +18,7 @@ public class ShopList : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			PickRandomItems();
-			DisplayRandomItems();
-		}
+		
 	}
 
 	public void DisplayRandomItems()
@@ -77,16 +73,19 @@ public class ShopList : MonoBehaviour
 
 	public void PickRandomItems()//데이터매니져에 리셋 아이템 리스트를 랜덤하게 바꿈
 	{
-		for (int i = 0; i < spawnPoints.Count; i++) //아이템의 수
+		DataManager.Instance.resetItemID.Clear();
+		
+		while (DataManager.Instance.resetItemID.Count!=2)
 		{
-			int randomIndex = Random.Range(0, itemPrefabs.Count); //아이템의 종류
+			int randomIndex = Random.Range(0, itemPrefabs.Count);
 			if (!DataManager.Instance.resetItemID.Contains(randomIndex))
 			{
-				DataManager.Instance.resetItemID[i] = randomIndex;
+				DataManager.Instance.resetItemID.Add(randomIndex);
 			}
-
-
 		}
+		
+		
+		
 		
 
 	}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class ButtonController : MonoBehaviour
 {
@@ -18,12 +18,12 @@ public class ButtonController : MonoBehaviour
     {
 		scrollbar = GetComponentInChildren<Scrollbar>();
 		desireStates = new Dictionary<Button, bool>();
-
-        // 각 버튼의 상태 초기화 및 클릭 이벤트 설정
-        foreach (Button button in desires)
+		
+		// 각 버튼의 상태 초기화 및 클릭 이벤트 설정
+		foreach (Button button in desires)
         {
             desireStates[button] = false; // 초기 상태는 Off
-			button.GetComponentInChildren<Text>().text = "장착";
+			button.GetComponentInChildren<TMP_Text>().text = "장착";
 			button.onClick.AddListener(() => ToggleButton(button));
             button.GetComponent<Image>().color = Color.gray;
         }
@@ -39,7 +39,7 @@ public class ButtonController : MonoBehaviour
             if (currentOnCount < maxOnButtons)
             {
                 desireStates[button] = true; // 버튼을 On으로 설정
-				button.GetComponentInChildren<Text>().text = "장착 해제";
+				button.GetComponentInChildren<TMP_Text>().text = "해제";
 				button.GetComponent<Image>().color = Color.white;
                 currentOnCount++;
             }
@@ -48,7 +48,7 @@ public class ButtonController : MonoBehaviour
         else
         {
             desireStates[button] = false; // 버튼을 Off로 설정
-			button.GetComponentInChildren<Text>().text = "장착";
+			button.GetComponentInChildren<TMP_Text>().text = "장착";
 			button.GetComponent<Image>().color = Color.gray;
             currentOnCount--;
         }

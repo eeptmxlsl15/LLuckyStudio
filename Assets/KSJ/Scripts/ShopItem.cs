@@ -91,57 +91,70 @@ public class ShopItem : MonoBehaviour
 	{
 		switch (_itemID)
 		{
-			case 1: // 통조림
+			case 0: // 통조림
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.cannedFood += quantity;
 				gameObject.SetActive(false);
 				break;
-			case 2: // 은방울
+			case 1: // 은방울
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.silverMarble += quantity;
 				gameObject.SetActive(false);
 				break;
-			case 3: // 금방울
+			case 2: // 금방울
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.goldMarble += quantity;
 				gameObject.SetActive(false);
 				break;
-			case 4: // 부활권
+			case 3: // 부활권
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.resurrection += quantity;
 				gameObject.SetActive(false);
 				break;
+			case 4:
 			case 5:
-			case 6:
-			case 7: // 유료 재화
+			case 6: // 유료 재화
 				DataManager.Instance.money -= moneyCost;
 				DataManager.Instance.cannedFood += quantity;
 				break;
+			case 7:
 			case 8:
 			case 9:
-			case 10:
 				DataManager.Instance.cannedFood -= cannedFoodCost;
 				DataManager.Instance.sushi += quantity;
 				break;
 		}
+
+
+
+		List<int> itemsToRemove = new List<int>();
 		foreach (int item in DataManager.Instance.resetItemID)
 		{
-			if (itemID == item)
-				DataManager.Instance.resetItemID.Remove(item);
+			if (_itemID == item)
+			{
+				itemsToRemove.Add(item);
+			}
 		}
+
+		// 반복이 끝난 후에 컬렉션을 수정
+		foreach (int item in itemsToRemove)
+		{
+			DataManager.Instance.resetItemID.Remove(item);
+		}
+
 		isBuyUI.transform.localScale = new Vector3(0, 0, 0);
 		OverlayButton.transform.localScale = new Vector3(0, 0, 0);
 	}
 
 	
-
+		
 	
 
 	public void UpdateText()
 	{
 		quantityText.text = "" + quantity;
 		costText.text = "Sushi : " + sushiCost;
-		if (itemID == 5 || itemID == 6 || itemID == 7)
+		if (itemID == 4 || itemID == 5 || itemID == 6)
 			costText.text = "Money : " + moneyCost;
 		else if (itemID > 7)
 			costText.text = "Canned Food : " + cannedFoodCost;
