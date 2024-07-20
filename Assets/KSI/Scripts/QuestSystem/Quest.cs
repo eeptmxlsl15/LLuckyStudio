@@ -1,33 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Quest;
 
 [CreateAssetMenu(fileName = "New Quest", menuName = "QuestSystem/Quest")]
 public class Quest : ScriptableObject
 {
-	public string questName;
-	public string description;
+	public enum QuestName
+	{
+		Quest_SUB,
+		Quest_BOSS,
+		Quest_BERSERKBOSS,
+		Quest_INFINITE,
+		//Quest_DAILY
+	}
+	public QuestName curQuestName;
+
 	public bool isComplete;
-	public int scoreTarget;
-	public int reward;
+	public int targetScore;
+	public int rewardSushi;
+	public bool rewardDesirePiece;
+	public int rewardValue;
 
 	public void CheckCompleteQuest(int score)
 	{
-		Debug.Log($"{questName} 완료 체크, 현재 점수 : {score}, 목표 점수: {scoreTarget}");
-		if (score >= scoreTarget)
+		Debug.Log($"{curQuestName} 완료 체크, 현재 점수 : {score}, 목표 점수: {targetScore}");
+		if (score >= targetScore)
 		{
 			isComplete = true;
-			Debug.Log(questName + " 완료");
+			Debug.Log(curQuestName + " 완료");
 		}
 		else
 		{
-			Debug.Log($"{questName} 완료 못함. 현재 점수 : {score}, 목표 점수: {scoreTarget}");
+			Debug.Log($"{curQuestName} 완료 못함. 현재 점수 : {score}, 목표 점수: {targetScore}");
 		}
 	}
 
 	public int GetReward()
 	{
-		// 젤리 발바닥 1개당 초밥 5개로 계산
-		return reward * 5;
+		return rewardSushi * 5;
+	}
+
+	public int GetDesirePiece()
+	{
+		return rewardValue;
 	}
 }

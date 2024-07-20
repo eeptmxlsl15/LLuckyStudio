@@ -6,20 +6,30 @@ using UnityEngine.SceneManagement;
 
 public class SoleJellyUI : MonoBehaviour
 {
-	[SerializeField] private TMP_Text jellyCoinUI;
+	[SerializeField] private TMP_Text jellyPawUI;
 
 	private void OnEnable()
 	{
-		GameManager.Score.OnJellyCoinChanged += UpdateScoreText;
+		if (jellyPawUI == null)
+		{
+			Debug.LogError("jellyCoinUI 할당되지 않음");
+			return;
+		}
+		GameManager.Score.OnJellyPawChanged += UpdateScoreText;
 	}
 
 	private void OnDisable()
 	{
-		GameManager.Score.OnJellyCoinChanged -= UpdateScoreText;
+		if (jellyPawUI == null)
+		{
+			Debug.LogError("jellyCoinUI 할당되지 않음");
+			return;
+		}
+		GameManager.Score.OnJellyPawChanged -= UpdateScoreText;
 	}
 
 	private void UpdateScoreText(int value)
 	{
-		jellyCoinUI.text = "Sole Jelly : " + value.ToString();
+		jellyPawUI.text = "Sole Jelly : " + value.ToString();
 	}
 }

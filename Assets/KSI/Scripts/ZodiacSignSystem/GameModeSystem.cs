@@ -11,7 +11,6 @@ using UnityEngine;
 // 무한 모드 스테이지 : 십이지신의 디버프 중 랜덤으로 2개 적용
 public class GameModeSystem : MonoBehaviour
 {
-	// 게임 모드를 나타내는 열거형(enum)
 	public enum GameMode
 	{
 		SUB,
@@ -19,7 +18,6 @@ public class GameModeSystem : MonoBehaviour
 		BERSERKBOSS,
 		INFINITE
 	}
-
 	public GameMode curGameMode;
 
 	private BerserkSystemManager berserkSystem;	
@@ -74,7 +72,7 @@ public class GameModeSystem : MonoBehaviour
 		Debug.Log($"보스 스테이지 : {curZodiacSign}이 적용됨");
 
 		// 해당 십이지신의 디버프를 적용
-		berserkSystem.ApplyDebuff(curZodiacSign);
+		//berserkSystem.ApplyDebuff(curZodiacSign);
 	}
 
 	// 광폭 보스 스테이지 디버프
@@ -85,7 +83,7 @@ public class GameModeSystem : MonoBehaviour
 		Debug.Log($"광폭 보스 스테이지 : {curZodiacSign}이 적용됨");
 
 		// 해당 십이지신의 디버프를 적용
-		berserkSystem.ApplyDebuff(curZodiacSign);
+		//berserkSystem.ApplyDebuff(curZodiacSign);
 	}
 
 	// 무한 모드 스테이지 디버프
