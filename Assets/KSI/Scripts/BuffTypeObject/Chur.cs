@@ -12,6 +12,6 @@ public class Chur : BuffTypeObject
 {
 	public override void Buff()
 	{
-		player.Heal(10);
+		player.HealByChur(10);
 	}
 }
