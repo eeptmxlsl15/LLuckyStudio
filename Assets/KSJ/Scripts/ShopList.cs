@@ -85,8 +85,10 @@ public class ShopList : MonoBehaviour
 				DataManager.Instance.resetItemID[i] = randomIndex;
 			}
 
-			
+
 		}
+		
+
 	}
 
 	public void OnClickContent()

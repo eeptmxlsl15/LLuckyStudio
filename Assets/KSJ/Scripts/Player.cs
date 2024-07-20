@@ -7,6 +7,8 @@ using TMPro;
 
 public class Player : MonoBehaviour , IDamagable
 {
+	
+
 	private Rigidbody2D rb;
 	private Animator anim;
 	private BoxCollider2D playerCollider;
@@ -138,10 +140,13 @@ public class Player : MonoBehaviour , IDamagable
 
 		// 염원 적용 후 최대 체력에 맞게 조정
 		health = maxHealth;
+		// 점프 파티클 위치
+		
 	}
 
 	void Update()
 	{
+		
 		if (isDead)
 		{
 			Die();
@@ -243,6 +248,8 @@ public class Player : MonoBehaviour , IDamagable
 			rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 			jumpCount++;
 			// TODO : 사운드 추가
+
+			
 		}
 	}
 

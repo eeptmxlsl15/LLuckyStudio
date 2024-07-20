@@ -67,6 +67,7 @@ public class DataManager : MonoBehaviour
 
 	[Header("# Reset Item")]
 	public List<int> resetItemID;
+	
 	public int resetNum;
 	public int resetMaxNum;
 	

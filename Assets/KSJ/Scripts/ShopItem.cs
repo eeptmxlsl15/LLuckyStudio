@@ -25,6 +25,8 @@ public class ShopItem : MonoBehaviour
 	public Image icon;
 	public Image background;
 
+	public static object Instance { get; internal set; }
+
 	private void Start()
 	{
 		costText = transform.Find("Button/Sushi Cost").GetComponent<TMP_Text>();
@@ -92,22 +94,22 @@ public class ShopItem : MonoBehaviour
 			case 1: // 통조림
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.cannedFood += quantity;
-				Destroy(gameObject);
+				gameObject.SetActive(false);
 				break;
 			case 2: // 은방울
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.silverMarble += quantity;
-				Destroy(gameObject);
+				gameObject.SetActive(false);
 				break;
 			case 3: // 금방울
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.goldMarble += quantity;
-				Destroy(gameObject);
+				gameObject.SetActive(false);
 				break;
 			case 4: // 부활권
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.resurrection += quantity;
-				Destroy(gameObject);
+				gameObject.SetActive(false);
 				break;
 			case 5:
 			case 6:
@@ -122,12 +124,18 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.sushi += quantity;
 				break;
 		}
-
+		foreach (int item in DataManager.Instance.resetItemID)
+		{
+			if (itemID == item)
+				DataManager.Instance.resetItemID.Remove(item);
+		}
 		isBuyUI.transform.localScale = new Vector3(0, 0, 0);
 		OverlayButton.transform.localScale = new Vector3(0, 0, 0);
 	}
 
+	
 
+	
 
 	public void UpdateText()
 	{
