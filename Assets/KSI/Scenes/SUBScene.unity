@@ -269,7 +269,6 @@ GameObject:
   - component: {fileID: 653934879}
   - component: {fileID: 653934884}
   - component: {fileID: 653934882}
-  - component: {fileID: 653934883}
   m_Layer: 0
   m_Name: Background2
   m_TagString: Untagged
@@ -326,7 +325,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653934878}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &653934881
 Transform:
   m_ObjectHideFlags: 0
@@ -335,13 +334,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653934878}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0.8663, y: 1.5308, z: 3.4}
-  m_LocalScale: {x: 3.1847892, y: 1, z: 1.3645144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0021, y: 2.1459, z: 3.4}
+  m_LocalScale: {x: 29.814333, y: 14.966026, z: 1.3645144}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1804659686}
-  m_LocalEulerAnglesHint: {x: 90, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &653934882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,20 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5825c3a5eaeb414c8225f7f2e03c775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
---- !u!114 &653934883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653934878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b5b648b5fcc2942b87da4633c84e1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 0.4
 --- !u!64 &653934884
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13388,19 +13374,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4535276205487014440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6227278693843457061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b5b648b5fcc2942b87da4633c84e1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!1 &4538098057431172687
 GameObject:
   m_ObjectHideFlags: 0
@@ -18571,7 +18544,6 @@ GameObject:
   - component: {fileID: 8080528081288961200}
   - component: {fileID: 5904900964805811587}
   - component: {fileID: 7582460156145946115}
-  - component: {fileID: 4535276205487014440}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
