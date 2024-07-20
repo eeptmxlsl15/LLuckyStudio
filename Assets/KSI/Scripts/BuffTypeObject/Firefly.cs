@@ -18,7 +18,7 @@ public class Firefly : BuffTypeObject
 
 	public override void Buff()
 	{
-		player.Heal(10);
+		player.HealByFirfly(10);
 	}
 
 	private void Start()

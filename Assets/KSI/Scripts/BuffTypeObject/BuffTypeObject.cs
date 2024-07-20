@@ -8,7 +8,7 @@ public abstract class BuffTypeObject : MonoBehaviour
 {
 	public float speed = 10f;
 
-	protected KSIPlayerController player;
+	protected Player player;
 
 	public abstract void Buff();
 
@@ -26,7 +26,7 @@ public abstract class BuffTypeObject : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		player = other.GetComponent<KSIPlayerController>();
+		player = other.GetComponent<Player>();
 		if (player != null)
 		{
 			Buff();
