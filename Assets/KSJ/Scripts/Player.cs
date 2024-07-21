@@ -197,7 +197,7 @@ public class Player : MonoBehaviour , IDamagable
 			glideCooltimeUI.SetActive(true);
 
 			glideCooldownTimer += Time.deltaTime;
-			glideCooltimeText.text = ""+ (glideCooldown - glideCooldownTimer).ToString("F1")+" sec";
+			glideCooltimeText.text = ""+ (glideCooldown - glideCooldownTimer).ToString("F1")+" 초";
 
 			Color glideButtonColor = Color.black;
 			glideButtonColor.a = 101/255f;
@@ -294,7 +294,7 @@ public class Player : MonoBehaviour , IDamagable
 		if (_isSlide)
 		{
 			playerCollider.size = new Vector2(playerCollider.size.x, originalColliderSize.y / 2);
-			playerCollider.offset = new Vector2(originalColliderOffset.x, originalColliderOffset.y - originalColliderSize.y / 4);
+			playerCollider.offset = new Vector2(originalColliderOffset.x, originalColliderOffset.y - (originalColliderSize.y / 4)+0.05f);
 		}
 		else
 		{

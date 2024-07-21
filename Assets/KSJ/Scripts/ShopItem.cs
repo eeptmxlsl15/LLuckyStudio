@@ -153,11 +153,11 @@ public class ShopItem : MonoBehaviour
 	public void UpdateText()
 	{
 		quantityText.text = "" + quantity;
-		costText.text = "Sushi : " + sushiCost;
+		costText.text = "초밥 : " + sushiCost;
 		if (itemID == 4 || itemID == 5 || itemID == 6)
-			costText.text = "Money : " + moneyCost;
+			costText.text = "돈 : " + moneyCost;
 		else if (itemID > 7)
-			costText.text = "Canned Food : " + cannedFoodCost;
+			costText.text = "통조림 : " + cannedFoodCost;
 	}
 
 	

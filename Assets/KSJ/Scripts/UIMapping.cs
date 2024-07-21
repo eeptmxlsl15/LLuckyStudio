@@ -77,11 +77,11 @@ public class UIMapping : MonoBehaviour
 	public void UpdateCharacterUI()
 	{
 		// 스탯창
-		maxHealthText.text = "HP : " + (dataManager.maxHealth + dataManager.redMarbleValue[dataManager.redMarbleLv]);
-		glideTimeText.text = "Glide Time : " + (dataManager.glideTime + dataManager.greenMarbleValue[dataManager.greenMarbleLv]);
-		speedText.text = "Speed : " + dataManager.speed;
-		jumpForceText.text = "JumpForce : " + dataManager.jumpForce;
-		jumpCountText.text = "JumpCount : " + dataManager.maxJumpCount;
+		maxHealthText.text = "체력 : " + (dataManager.maxHealth + dataManager.redMarbleValue[dataManager.redMarbleLv]);
+		glideTimeText.text = "활공 시간 : " + (dataManager.glideTime + dataManager.greenMarbleValue[dataManager.greenMarbleLv]);
+		speedText.text = "속도 : " + dataManager.speed;
+		jumpForceText.text = "점프력 : " + dataManager.jumpForce;
+		jumpCountText.text = "점프 횟수 : " + dataManager.maxJumpCount;
 
 		// 염원 잔여/필요
 		brokenBlueText.text = "" + dataManager.brokenBlue + "/" + dataManager.nextExp[dataManager.blueMarbleLv];
@@ -90,19 +90,19 @@ public class UIMapping : MonoBehaviour
 
 		// 생선 잔여/필요
 		if (dataManager.redMarbleLv == 10)
-			needRedSushi.text = "Master";
+			needRedSushi.text = "강화 완료";
 		else
-			needRedSushi.text = "Upgrade : " + dataManager.nextExp[dataManager.redMarbleLv];
+			needRedSushi.text = "강화 : " + dataManager.nextExp[dataManager.redMarbleLv];
 
 		if (dataManager.blueMarbleLv == 10)
-			needBlueSushi.text = "Master";
+			needBlueSushi.text = "강화 완료";
 		else
-			needBlueSushi.text = "Upgrade : " + dataManager.nextExp[dataManager.blueMarbleLv];
+			needBlueSushi.text = "강화 : " + dataManager.nextExp[dataManager.blueMarbleLv];
 
 		if(dataManager.greenMarbleLv == 10)
-			needGreenSushi.text = "Master";
+			needGreenSushi.text = "강화 완료";
 		else
-			needGreenSushi.text = "Upgrade : " + dataManager.nextExp[dataManager.greenMarbleLv];
+			needGreenSushi.text = "강화 : " + dataManager.nextExp[dataManager.greenMarbleLv];
 	}
 
 	public void UpdateCatsDesire()
@@ -215,7 +215,7 @@ public class UIMapping : MonoBehaviour
 		// 남은 시간을 시간, 분, 초로 변환
 		TimeSpan timeRemaining = TimeSpan.FromSeconds(secondsRemaining);
 		// 남은 시간을 텍스트로 표시
-		dayTimeText.text = string.Format("Reset : {0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds);
+		dayTimeText.text = string.Format("초기화 시간 : {0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds);
 	}
 
 	
