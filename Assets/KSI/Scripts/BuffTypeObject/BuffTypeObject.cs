@@ -21,7 +21,7 @@ public abstract class BuffTypeObject : MonoBehaviour
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-		Destroy(gameObject, 5f);
+		//Destroy(gameObject, 5f);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)

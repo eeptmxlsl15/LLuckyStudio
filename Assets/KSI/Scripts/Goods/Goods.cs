@@ -19,9 +19,6 @@ public abstract class Goods : MonoBehaviour
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-		if (transform.position.x < -10f)
-		{
-			Destroy(gameObject);
-		}
+		//Destroy(gameObject, 5f);
 	}
 }
