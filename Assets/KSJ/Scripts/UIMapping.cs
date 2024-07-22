@@ -14,7 +14,7 @@ public class UIMapping : MonoBehaviour
 	// 인게임 재화
 	public TMP_Text sushiText;
 	public TMP_Text silverMarbleText;
-
+	public TMP_Text cannedFoodText;
 	// 스탯창에 표시되는 텍스트
 	public TMP_Text maxHealthText;
 	public TMP_Text speedText;
@@ -192,6 +192,8 @@ public class UIMapping : MonoBehaviour
 	{
 		sushiText.text = "" + dataManager.sushi;
 		silverMarbleText.text = "" + dataManager.silverMarble + "/30";
+
+		cannedFoodText.text = "" + dataManager.cannedFood;
 	}
 
 	public void UpdateDayTime()
