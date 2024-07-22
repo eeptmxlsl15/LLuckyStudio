@@ -27,7 +27,7 @@ namespace ObjectPooling
 		}
 
 		Coroutine releaseRoutine;
-		IEnumerator ReleaseRoutine()
+		private IEnumerator ReleaseRoutine()
 		{
 			yield return new WaitForSeconds(releaseTime);
 			if (pool != null)

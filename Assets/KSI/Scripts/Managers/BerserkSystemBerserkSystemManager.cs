@@ -2,38 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 // 광폭 시스템
-// 해(돼지)시 : 21 ~ 23시  
-// 술(개)시 : 19 ~ 21시
-// 유(닭)시 : 17 ~ 19시
-// 신(원숭이)시 : 15 ~17시
-// 미(양)시 : 13 ~ 15시
-// 오(말) : 11 ~ 13시
-// 사(뱀)시 : 09 ~ 11시
-// 진(용)시 : 07 ~ 09시
-// 묘(토끼)시 : 05 ~ 07시
-// 인(호랑이)시 : 03 ~ 05시
-// 축(소)시 : 01 ~ 03시
-// 자(쥐)시 : 23 ~ 01시
+// 자축인묘 : 23 ~ 07 (녹)
+// 진사오미 : 07 ~ 15 (청)
+// 신유술해 : 15 ~ 23 (적)
+
 public class BerserkSystemManager : MonoBehaviour
 {
 	public enum ZodiacSign
 	{
-		PIG,
-		DOG,
-		CHICKEN,
-		MONKEY,
-		SHEEP,
-		HORSE,
-		SNAKE,
-		DRAGON,
-		RABBIT,
-		TIGER,
-		COW,
-		MOUSE
+		RABBITTIGERCOWMOUSE,
+		SHEEPHORSESNAKEDRAGON,
+		PIGDOGCHICKENMONKEY
 	}
 
 	[Serializable]
@@ -59,21 +43,12 @@ public class BerserkSystemManager : MonoBehaviour
 	{
 		debuffSystem = GetComponent<DebuffSystem>();
 
-		//// 십이지신 시간 초기화
+		// 십이지신 시간대 초기화
 		//berserkTime = new BerserkTime[]
 		//{
-		//	new BerserkTime { zodiacSign = ZodiacSign.PIG, startHour = 21, endHour = 23},
-		//	new BerserkTime { zodiacSign = ZodiacSign.DOG, startHour = 19, endHour = 21},
-		//	new BerserkTime { zodiacSign = ZodiacSign.CHICKEN, startHour = 17, endHour = 19},
-		//	new BerserkTime { zodiacSign = ZodiacSign.MONKEY, startHour= 15, endHour = 17},
-		//	new BerserkTime { zodiacSign = ZodiacSign.SHEEP, startHour= 13, endHour = 15},
-		//	new BerserkTime { zodiacSign = ZodiacSign.HORSE, startHour= 11, endHour = 13},
-		//	new BerserkTime { zodiacSign = ZodiacSign.SNAKE, startHour= 9, endHour = 11},
-		//	new BerserkTime { zodiacSign = ZodiacSign.DRAGON, startHour= 7, endHour = 9},
-		//	new BerserkTime { zodiacSign = ZodiacSign.RABBIT, startHour= 5, endHour = 7},
-		//	new BerserkTime { zodiacSign = ZodiacSign.TIGER, startHour= 3, endHour = 5},
-		//	new BerserkTime { zodiacSign = ZodiacSign.COW, startHour= 1, endHour = 3},
-		//	new BerserkTime { zodiacSign = ZodiacSign.MOUSE, startHour= 23, endHour = 1}
+		//	new BerserkTime { zodiacSign = ZodiacSign.RABBITTIGERCOWMOUSE, startHour = 23, endHour = 7},
+		//	new BerserkTime { zodiacSign = ZodiacSign.SHEEPHORSESNAKEDRAGON, startHour = 7, endHour = 15},
+		//	new BerserkTime { zodiacSign = ZodiacSign.PIGDOGCHICKENMONKEY, startHour = 15, endHour = 23}
 		//};
 
 		List<BerserkTime> list = new List<BerserkTime>();
@@ -81,8 +56,8 @@ public class BerserkSystemManager : MonoBehaviour
 		byte time = 0;
 		foreach (var item in values)
 		{
-			list.Add(new BerserkTime { zodiacSign = item, startHour = time, endHour = time + 2 });
-			time += 2;
+			list.Add(new BerserkTime { zodiacSign = item, startHour = time, endHour = time + 8 });
+			time += 8;
 		}
 		berserkTime = list.ToArray();
 
@@ -125,15 +100,15 @@ public class BerserkSystemManager : MonoBehaviour
 			}
 
 			// 쥐시는 익일(23:00 - 01:00)까지 연결되기 때문에 따로 처리
-			if (zodiacSignTime.zodiacSign == ZodiacSign.MOUSE && (currentHour >= 23 || currentHour < 1))
+			if (zodiacSignTime.zodiacSign == ZodiacSign.RABBITTIGERCOWMOUSE && (currentHour >= 23 || currentHour < 7))
 			{
 				// 쥐시 반환
-				return ZodiacSign.MOUSE;
+				return ZodiacSign.RABBITTIGERCOWMOUSE;
 			}
 		}
 
 		// 기본값으로 쥐시 반환 
-		return ZodiacSign.MOUSE; 
+		return ZodiacSign.RABBITTIGERCOWMOUSE; 
 	}
 
 	// 특정 십이지신에 해당하는 디버프를 적용하는 메소드
