@@ -73,6 +73,9 @@ public class ShopList : MonoBehaviour
 
 	public void PickRandomItems()//데이터매니져에 리셋 아이템 리스트를 랜덤하게 바꿈
 	{
+		if (DataManager.Instance.resetNum == 3)
+			return;
+
 		DataManager.Instance.resetItemID.Clear();
 		
 		while (DataManager.Instance.resetItemID.Count!=2)
@@ -83,9 +86,8 @@ public class ShopList : MonoBehaviour
 				DataManager.Instance.resetItemID.Add(randomIndex);
 			}
 		}
-		
-		
-		
+
+		DataManager.Instance.resetNum++;
 		
 
 	}

@@ -36,7 +36,7 @@ public class ButtonManager : MonoBehaviour
 		}
 		foreach (var uiWindow in uiWindows)
 		{
-			uiWindow.transform.localScale = new Vector3(1, 1, 1);
+			uiWindow.transform.localScale = new Vector3(1f, 1f, 1f);
 			
 			uiWindow.transform.localScale = new Vector3(0, 0, 0);
 		}

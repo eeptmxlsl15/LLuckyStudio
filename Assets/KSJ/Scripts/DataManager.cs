@@ -67,9 +67,14 @@ public class DataManager : MonoBehaviour
 
 	[Header("# Reset Item")]
 	public List<int> resetItemID;
-	
+
+	//일일 초기화 시resetNum , advResetNum 은 0으로 초기화
+	//UIMapping 스크립트
 	public int resetNum;
 	public int resetMaxNum;
+
+	public int advResetNum;
+	public int advResetMaxNum;
 	
 	private void Awake()
     {

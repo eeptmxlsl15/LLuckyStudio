@@ -199,7 +199,7 @@ public class Player : MonoBehaviour , IDamagable
 			glideCooldownTimer += Time.deltaTime;
 			glideCooltimeText.text = ""+ (glideCooldown - glideCooldownTimer).ToString("F1")+" 초";
 
-			Color glideButtonColor = Color.black;
+			Color glideButtonColor = Color.gray;
 			glideButtonColor.a = 101/255f;
 			
 			glideButton.GetComponent<Image>().color = glideButtonColor;

@@ -52,6 +52,10 @@ public class UIMapping : MonoBehaviour
 	// 일일 상점 초기화 시간 텍스트
 	public TMP_Text dayTimeText;
 
+	// 일일 상점 리셋 횟수
+	public TMP_Text IngameResetText;
+	public TMP_Text AdvResetText;
+
 	void Start()
 	{
 		// DataManager 인스턴스 캐싱
@@ -72,6 +76,7 @@ public class UIMapping : MonoBehaviour
 		UpdateUpgrade();
 		UpdateSliderValue();
 		UpdateDayTime();
+		UpdateResetText();
 	}
 
 	public void UpdateCharacterUI()
@@ -209,9 +214,11 @@ public class UIMapping : MonoBehaviour
 		// 남은 시간 계산
 		long secondsRemaining = endOfDayUnixTime - (currentUnixTime + 32400); // UTC에서 9시간(32400초)을 더하면 한국 시간
 		if (secondsRemaining == 0)
-		{// 하루가 바뀔 때 
+		{// 하루가 바뀔 때 리셋되는 것들
 			ShopList.Instance.PickRandomItems();
 			ShopList.Instance.DisplayRandomItems();
+			dataManager.resetNum = 0;
+			dataManager.advResetNum = 0;
 		}
 
 		// 남은 시간을 시간, 분, 초로 변환
@@ -220,5 +227,9 @@ public class UIMapping : MonoBehaviour
 		dayTimeText.text = string.Format("초기화 시간 : {0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds);
 	}
 
-	
+	public void UpdateResetText()
+	{
+		IngameResetText.text = "10\n" + dataManager.resetNum +"/"+ dataManager.resetMaxNum;
+		AdvResetText.text = "광고 보기\n" + dataManager.advResetNum + "/" + dataManager.advResetMaxNum;
+	}
 }
