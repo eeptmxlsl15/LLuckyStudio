@@ -21,17 +21,6 @@ public abstract class BuffTypeObject : MonoBehaviour
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-		Destroy(gameObject, 5f);
-	}
-
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		player = other.GetComponent<Player>();
-		if (player != null)
-		{
-			Buff();
-			Destroy(gameObject);
-			Debug.Log("버프");
-		}
+		//Destroy(gameObject, 5f);
 	}
 }

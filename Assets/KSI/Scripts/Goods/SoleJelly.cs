@@ -28,6 +28,7 @@ public class jellyPaw : Goods
 		QuestManager questManager = FindObjectOfType<QuestManager>();
 		if (questManager != null)
 		{
+			Debug.Log($"퀘스트 진행 상황 업데이트 호출 / 퀘스트 이름: {questName}, 전달 점수 : {scoreValue}");
 			questManager.UpdateQuestProgress(questName, scoreValue);
 		}
 		else
