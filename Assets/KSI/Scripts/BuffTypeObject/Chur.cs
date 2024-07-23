@@ -14,4 +14,14 @@ public class Chur : BuffTypeObject
 	{
 		player.HealByChur(10);
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			Destroy(gameObject);
+			Buff();
+			Debug.Log("츄르");
+		}
+	}
 }

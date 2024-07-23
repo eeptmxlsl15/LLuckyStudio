@@ -23,15 +23,4 @@ public abstract class BuffTypeObject : MonoBehaviour
 
 		//Destroy(gameObject, 5f);
 	}
-
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		player = other.GetComponent<Player>();
-		if (player != null)
-		{
-			Buff();
-			Destroy(gameObject);
-			Debug.Log("버프");
-		}
-	}
 }

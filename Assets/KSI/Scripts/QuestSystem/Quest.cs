@@ -20,7 +20,8 @@ public class Quest : ScriptableObject
 	public int targetScore;
 	public int rewardSushi;
 	public bool rewardDesirePiece;
-	public int rewardValue;
+	public int rewardValue; 
+	public int currentScore;
 
 	public void CheckCompleteQuest(int score)
 	{

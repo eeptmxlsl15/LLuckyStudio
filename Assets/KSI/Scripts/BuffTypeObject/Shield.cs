@@ -14,4 +14,14 @@ public class Shield : BuffTypeObject
 	{
 		player.BlockObstacle();
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			Destroy(gameObject);
+			Buff();
+			Debug.Log("쉴드");
+		}
+	}
 }

@@ -14,4 +14,14 @@ public class Booster : BuffTypeObject
 	{
 		player.Booster(3f);
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			Destroy(gameObject);
+			Buff();
+			Debug.Log("부스터");
+		}
+	}
 }
