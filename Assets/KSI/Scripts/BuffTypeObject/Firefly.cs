@@ -23,7 +23,6 @@ public class Firefly : BuffTypeObject
 
 	private void Start()
 	{
-		// 초기 위치 저장
 		startPosition = transform.position; 
 	}
 
@@ -33,5 +32,15 @@ public class Firefly : BuffTypeObject
 		float y = Mathf.Sin(Time.time * cycle) * range;
 		// 오른쪽에서 왼쪽으로 이동하면서 위아래로 움직이면서 날아옴
 		transform.position = startPosition + Vector3.left * speed * Time.time + Vector3.up * y;
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			Destroy(gameObject);
+			Buff();		
+			Debug.Log("반딧불");
+		}
 	}
 }

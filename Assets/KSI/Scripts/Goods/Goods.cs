@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Goods : MonoBehaviour
 {
 	[SerializeField] private float speed = 10f;
-	[SerializeField] protected int scoreValue;
+	[SerializeField] protected int scoreValue = 100;
 	protected IScore scoreAdapter;
 
 	public abstract void Contact();
@@ -19,9 +19,6 @@ public abstract class Goods : MonoBehaviour
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-		if (transform.position.x < -10f)
-		{
-			Destroy(gameObject);
-		}
+		//Destroy(gameObject, 5f);
 	}
 }

@@ -52,7 +52,7 @@ public class KSIPlayerController : MonoBehaviour, IDamagable
 	public void TakeDamage(int damage)
 	{
 		health -= damage;
-		Debug.Log("플레이어가 데미지를 입었습니다. 현재 체력: " + health);
+		//Debug.Log("플레이어가 데미지를 입었습니다. 현재 체력: " + health);
 		if (health <= 0)
 		{
 			Die();

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 
 // 입장 재화
-public class BellGenerator : MonoBehaviour
+public class KeyGenerator : MonoBehaviour
 {
 	[Header("Bell")]
 	[SerializeField] private int maxBells;
