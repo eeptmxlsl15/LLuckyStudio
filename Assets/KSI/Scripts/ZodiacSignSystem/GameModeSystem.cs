@@ -13,6 +13,7 @@ public class GameModeSystem : MonoBehaviour
 {
 	public enum GameMode
 	{
+		LOBBY,
 		SUB,
 		BOSS,
 		BERSERKBOSS,
@@ -46,6 +47,9 @@ public class GameModeSystem : MonoBehaviour
 	{
 		switch (gameMode)
 		{
+			case GameMode.LOBBY:
+				Debug.Log("로비");
+				break;
 			case GameMode.SUB:
 				Debug.Log("디버프 적용 없음");
 				break;
@@ -72,7 +76,7 @@ public class GameModeSystem : MonoBehaviour
 		Debug.Log($"보스 스테이지 : {curZodiacSign}이 적용됨");
 
 		// 해당 십이지신의 디버프를 적용
-		//berserkSystem.ApplyDebuff(curZodiacSign);
+		berserkSystem.ApplyDebuff(curZodiacSign);
 	}
 
 	// 광폭 보스 스테이지 디버프
@@ -83,7 +87,7 @@ public class GameModeSystem : MonoBehaviour
 		Debug.Log($"광폭 보스 스테이지 : {curZodiacSign}이 적용됨");
 
 		// 해당 십이지신의 디버프를 적용
-		//berserkSystem.ApplyDebuff(curZodiacSign);
+		berserkSystem.ApplyDebuff(curZodiacSign);
 	}
 
 	// 무한 모드 스테이지 디버프

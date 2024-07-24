@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
 	static ScoreManager scoreManager;
 	static BerserkSystemManager berserkSystemManager;
 
-
 	public static GameManager Instance { get { return instance; } }
 	public static ResourceManager Resource { get { return resourceManager; } }
 	public static PoolManager Pool { get { return poolManager; } }

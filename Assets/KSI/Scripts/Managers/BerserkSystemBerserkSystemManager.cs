@@ -15,9 +15,18 @@ public class BerserkSystemManager : MonoBehaviour
 {
 	public enum ZodiacSign
 	{
-		RABBITTIGERCOWMOUSE,
-		SHEEPHORSESNAKEDRAGON,
-		PIGDOGCHICKENMONKEY
+		RABBIT,
+		TIGER,
+		COW,
+		MOUSE,
+		SHEEP,
+		HORSE,
+		SNAKE,
+		DRAGON,
+		PIG,
+		DOG,
+		CHICKEN,
+		MONKEY
 	}
 
 	[Serializable]
@@ -41,7 +50,13 @@ public class BerserkSystemManager : MonoBehaviour
 
 	private void Start()
 	{
-		debuffSystem = GetComponent<DebuffSystem>();
+		//debuffSystem = GetComponent<DebuffSystem>();
+		debuffSystem = FindObjectOfType<DebuffSystem>();
+		if (debuffSystem == null)
+		{
+			Debug.LogError("DebuffSystem 컴포넌트가 존재하지 않습니다!");
+			return;
+		}
 
 		// 십이지신 시간대 초기화
 		//berserkTime = new BerserkTime[]
@@ -56,27 +71,28 @@ public class BerserkSystemManager : MonoBehaviour
 		byte time = 0;
 		foreach (var item in values)
 		{
-			list.Add(new BerserkTime { zodiacSign = item, startHour = time, endHour = time + 8 });
-			time += 8;
+			list.Add(new BerserkTime { zodiacSign = item, startHour = time, endHour = time + 2 });
+			time += 2;
 		}
 		berserkTime = list.ToArray();
 
 		//디버프 초기화
-		//zodiacSignDebuff = new ZodiacSignDebuff[]
-		//{
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.PIG, applyDebuff = () => debuffSystem.OnPigDebuffChanged(20)},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.DOG, applyDebuff = () => debuffSystem.OnDogDebuffChanged(20)},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.CHICKEN, applyDebuff = () => debuffSystem.OnChickenDebuffChanged(5)},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.MONKEY, applyDebuff = () => debuffSystem.OnMonkeyDebuffChanged(5)},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.SHEEP, applyDebuff = () => debuffSystem.OnSheepDebuffChanged(5)},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.HORSE, applyDebuff = () => debuffSystem.OnHorseDebuffChanged(1.5f)},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.SNAKE,applyDebuff = () => debuffSystem.OnSnakeDebuffChanged(5)},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.DRAGON, applyDebuff = () => debuffSystem.OnDragonDebuffChanged(1.5f)},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.RABBIT, applyDebuff = () => debuffSystem.OnSnakeDebuffChanged(5)},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.TIGER, applyDebuff = debuffSystem.OnTigerDebuffChanged},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.COW, applyDebuff = () => debuffSystem.OnCowDebufChanged(1)},
-		//	new ZodiacSignDebuff { zodiacSign = ZodiacSign.MOUSE,applyDebuff = () => debuffSystem.OnMouseDebuffChanged(1, 5)}
-		//};
+		zodiacSignDebuff = new ZodiacSignDebuff[]
+		{
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.PIG, applyDebuff = () => debuffSystem.OnPigDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.DOG, applyDebuff = () => debuffSystem.OnDogDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.CHICKEN, applyDebuff = () => debuffSystem.OnChickenDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.MONKEY, applyDebuff = () => debuffSystem.OnMonkeyDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.SHEEP, applyDebuff = () => debuffSystem.OnSheepDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.HORSE, applyDebuff = () => debuffSystem.OnHorseDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.SNAKE,applyDebuff = () => debuffSystem.OnSnakeDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.DRAGON, applyDebuff = () => debuffSystem.OnDragonDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.RABBIT, applyDebuff = () => debuffSystem.OnSnakeDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.TIGER, applyDebuff = debuffSystem.OnTigerDebuffChanged},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.COW, applyDebuff = () => debuffSystem.OnCowDebufChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.MOUSE,applyDebuff = () => debuffSystem.OnMouseDebuffChanged()}
+		};
+		//Debug.Log("디버프 초기화 성공");
 	}
 
 	// 현재 시간을 기준으로 십이지신을 반환하는 메소드
@@ -100,30 +116,29 @@ public class BerserkSystemManager : MonoBehaviour
 			}
 
 			// 쥐시는 익일(23:00 - 01:00)까지 연결되기 때문에 따로 처리
-			if (zodiacSignTime.zodiacSign == ZodiacSign.RABBITTIGERCOWMOUSE && (currentHour >= 23 || currentHour < 7))
+			if (zodiacSignTime.zodiacSign == ZodiacSign.MOUSE && (currentHour >= 23 || currentHour < 1))
 			{
 				// 쥐시 반환
-				return ZodiacSign.RABBITTIGERCOWMOUSE;
+				return ZodiacSign.MOUSE;
 			}
 		}
 
 		// 기본값으로 쥐시 반환 
-		return ZodiacSign.RABBITTIGERCOWMOUSE; 
+		return ZodiacSign.MOUSE;
 	}
 
 	// 특정 십이지신에 해당하는 디버프를 적용하는 메소드
 	public void ApplyDebuff(ZodiacSign zodiacSign)
 	{
-		//foreach (ZodiacSignDebuff debuff in zodiacSignDebuff)
-		//{
-		//	if (debuff.zodiacSign == zodiacSign)
-		//	{
-		//		// 해당 디버프를 적용
-		//		debuff.applyDebuff?.Invoke(); 
-		//		return;
-		//	}
-		//}
-		Debug.Log("디버프 적용");
+		foreach (ZodiacSignDebuff debuff in zodiacSignDebuff)
+		{
+			if (debuff.zodiacSign == zodiacSign)
+			{
+				// 해당 디버프를 적용
+				debuff.applyDebuff?.Invoke();
+				return;
+			}
+		}
 	}
 
 	// 현재 시간을 Unix 타임스탬프로 변환

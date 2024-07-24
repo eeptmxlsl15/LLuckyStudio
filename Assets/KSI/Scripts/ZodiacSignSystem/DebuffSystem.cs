@@ -18,20 +18,18 @@ using UnityEngine.Events;
 // 자(쥐) : 체력이 5초당 1 감소
 public class DebuffSystem : MonoBehaviour
 {
-	public UnityAction<int> OnPigDebuffChanged;
-	public UnityAction<int> OnDogDebuffChanged;
-	public UnityAction<int> OnChickenDebuffChanged;
-	public UnityAction<int> OnMonkeyDebuffChanged;
-	public UnityAction<int> OnSheepDebuffChanged;
-	public UnityAction<float> OnHorseDebuffChanged;
-	public UnityAction<int> OnSnakeDebuffChanged;
-	public UnityAction<float> OnDragonDebuffChanged;
-	public UnityAction<int> OnRabbitDebuffChanged;
+	public UnityAction OnPigDebuffChanged;
+	public UnityAction OnDogDebuffChanged;
+	public UnityAction OnChickenDebuffChanged;
+	public UnityAction OnMonkeyDebuffChanged;
+	public UnityAction OnSheepDebuffChanged;
+	public UnityAction OnHorseDebuffChanged;
+	public UnityAction OnSnakeDebuffChanged;
+	public UnityAction OnDragonDebuffChanged;
+	public UnityAction OnRabbitDebuffChanged;
 	public UnityAction OnTigerDebuffChanged;
-	public UnityAction<int> OnCowDebufChanged;
-	public UnityAction<int, int> OnMouseDebuffChanged;
-
-	[SerializeField] private int MaxHealth = 100;
+	public UnityAction OnCowDebufChanged;
+	public UnityAction OnMouseDebuffChanged;
 
 	private Player player;
 
@@ -42,95 +40,125 @@ public class DebuffSystem : MonoBehaviour
 		{
 			Debug.LogError("씬에 플레이어 없음");
 		}
-
 	}
 
-	public void PigDebuff(int value)
+	public void PigDebuff()
 	{
 		if (player != null)
 		{
-			player.maxHealth -= value;
-			//player.ReduceMaxHealth(value);
+			player.PigDebuff();
 		}
 
-		OnPigDebuffChanged?.Invoke(value);
-		Debug.Log($"최대 체력 감소 {value}, 남은 최대 쳬력 {MaxHealth}");
+		OnPigDebuffChanged?.Invoke();
 	}
 
-	public void DogDebuff(int value)
+	public void DogDebuff()
 	{
-		// TODO : 이동 속도 20 감소
-		OnDogDebuffChanged?.Invoke(value);
-		Debug.Log($"이동 속도 {value} 감소");
+		if (player != null)
+		{
+			player.DogDebuff();
+		}
+
+		OnDogDebuffChanged?.Invoke();
 	}
 
-	public void ChickenDebuff(int value)
+	public void ChickenDebuff()
 	{
-		// TODO : 고정형 장애물 오브젝트 피해 수치 5 증가
-		OnChickenDebuffChanged?.Invoke(value);
-		Debug.Log($"고정형 장애물 오브젝트 피해 수치 {value} 증가");
+		if (player != null)
+		{
+			player.RoosterDebuff();
+		}
+
+		OnChickenDebuffChanged?.Invoke();
 	}
 
 	public void MonkeyDebuff(int value)
 	{
-		// TODO : 젤리 코인 점수 5 감소
-		OnMonkeyDebuffChanged?.Invoke(value);
-		Debug.Log($"젤리 코인 점수 {value} 감소");
+		if (player != null)
+		{
+			player.MonkeyDebuff();
+		}
+
+		OnMonkeyDebuffChanged?.Invoke();
 	}
 
-	public void SheepDebuff(int value)
+	public void SheepDebuff()
 	{
-		// TODO : 반딧불 회복량 5 감소
-		OnSheepDebuffChanged?.Invoke(value);
-		Debug.Log($"반딧불 회복량 {value} 감소");
+		if (player != null)
+		{
+			player.LamnDebuff();
+		}
+
+		OnSheepDebuffChanged?.Invoke();
 	}
 
-	public void HorseDebuff(float value)
+	public void HorseDebuff()
 	{
-		// TODO : 부스터 아이템 지속시간 1.5초 감소
-		OnHorseDebuffChanged?.Invoke(value);
-		Debug.Log($"부스터 아이템 지속시간 {value} 감소");
+		if (player != null)
+		{
+			player.HorseDebuff();
+		}
+
+		OnHorseDebuffChanged?.Invoke();
 	}
 
-	public void SnakeDebuff(int value)
+	public void SnakeDebuff()
 	{
-		// TODO : 날아오는 장애물 오브젝트 피해 수치 5 증가
-		OnSnakeDebuffChanged?.Invoke(value);
-		Debug.Log($"날아오는 장애물 오브젝트 피해 수치 {value} 증가");
+		if (player != null)
+		{
+			player.SnakeDebuff();
+		}
+
+		OnSnakeDebuffChanged?.Invoke();
 	}
 
-	public void DragonDebuff(float value)
+	public void DragonDebuff()
 	{
-		// TODO : 무적 아이템 지속시간 1.5초 감소
-		OnDragonDebuffChanged?.Invoke(value);
-		Debug.Log($"무적 아이템 지속시간 {value}초 감소");
+		if (player != null)
+		{
+			player.DragonDebuff();
+		}
+
+		OnDragonDebuffChanged?.Invoke();
 	}
 
-	public void RabbitDebuff(int value)
+	public void RabbitDebuff()
 	{
-		// TODO : 츄르의 회복량 5 감소
-		OnRabbitDebuffChanged?.Invoke(value);
-		Debug.Log($"츄르의 회복량 {value} 감소");
+		if (player != null)
+		{
+			player.RabbitDebuff();
+		}
+
+		OnRabbitDebuffChanged?.Invoke();
 	}
 
 	public void TigerDebuff()
 	{
-		// TODO : 쉴드 효과 무효화
+		if (player != null)
+		{
+			player.TigerDebuff();
+		}
+
 		OnTigerDebuffChanged?.Invoke();
-		Debug.Log($"쉴드 효과 무효화");
 	}
 
-	public void CowDebuff(int value)
+	public void CowDebuff()
 	{
-		// TODO : 활공 1초 감소
-		OnCowDebufChanged?.Invoke(value);
-		Debug.Log($"활공 {value} 감소");
+		if (player != null)
+		{
+			player.OxDebuff();
+		}
+
+		OnCowDebufChanged?.Invoke();
 	}
 
-	public void MouseDebuff(int value, int persecond)
+	public void MouseDebuff()
 	{
-		// TODO : 체력이 5초당 1 감소
-		OnMouseDebuffChanged?.Invoke(value, persecond);
-		Debug.Log($"체력이 {value} 초당 {value} 감소");
+		if (player != null)
+		{
+			player.RatDebuff();
+		}
+
+		OnMouseDebuffChanged?.Invoke();
 	}
 }
