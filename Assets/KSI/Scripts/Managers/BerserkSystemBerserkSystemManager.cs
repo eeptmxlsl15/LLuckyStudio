@@ -58,12 +58,21 @@ public class BerserkSystemManager : MonoBehaviour
 			return;
 		}
 
-		// 십이지신 시간대 초기화
+		// 십이지신 시간 초기화
 		//berserkTime = new BerserkTime[]
 		//{
-		//	new BerserkTime { zodiacSign = ZodiacSign.RABBITTIGERCOWMOUSE, startHour = 23, endHour = 7},
-		//	new BerserkTime { zodiacSign = ZodiacSign.SHEEPHORSESNAKEDRAGON, startHour = 7, endHour = 15},
-		//	new BerserkTime { zodiacSign = ZodiacSign.PIGDOGCHICKENMONKEY, startHour = 15, endHour = 23}
+		//	new BerserkTime { zodiacSign = ZodiacSign.PIG, startHour = 21, endHour = 23},
+		//	new BerserkTime { zodiacSign = ZodiacSign.DOG, startHour = 19, endHour = 21},
+		//	new BerserkTime { zodiacSign = ZodiacSign.CHICKEN, startHour = 17, endHour = 19},
+		//	new BerserkTime { zodiacSign = ZodiacSign.MONKEY, startHour= 15, endHour = 17},
+		//	new BerserkTime { zodiacSign = ZodiacSign.SHEEP, startHour= 13, endHour = 15},
+		//	new BerserkTime { zodiacSign = ZodiacSign.HORSE, startHour= 11, endHour = 13},
+		//	new BerserkTime { zodiacSign = ZodiacSign.SNAKE, startHour= 9, endHour = 11},
+		//	new BerserkTime { zodiacSign = ZodiacSign.DRAGON, startHour= 7, endHour = 9},
+		//	new BerserkTime { zodiacSign = ZodiacSign.RABBIT, startHour= 5, endHour = 7},
+		//	new BerserkTime { zodiacSign = ZodiacSign.TIGER, startHour= 3, endHour = 5},
+		//	new BerserkTime { zodiacSign = ZodiacSign.COW, startHour= 1, endHour = 3},
+		//	new BerserkTime { zodiacSign = ZodiacSign.MOUSE, startHour= 23, endHour = 1}
 		//};
 
 		List<BerserkTime> list = new List<BerserkTime>();
