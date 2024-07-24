@@ -43,11 +43,11 @@ public class QuestManager : MonoBehaviour
 
 				if (!quest.isComplete)
 				{
-					int previousScore = quest.currentScore; // 이전 점수
-					quest.currentScore += score; // 점수 누적
+					int previousScore = quest.currentScore;
+					quest.currentScore += score;
 					Debug.Log($"퀘스트: {quest.curQuestName}, 이전 점수: {previousScore}, 현재 점수: {quest.currentScore}");
 
-					quest.CheckCompleteQuest(quest.currentScore); // 변경된 점수로 체크
+					quest.CheckCompleteQuest(quest.currentScore);
 					
 					if (quest.isComplete)
 					{

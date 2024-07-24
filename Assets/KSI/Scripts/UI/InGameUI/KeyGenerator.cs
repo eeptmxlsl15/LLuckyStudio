@@ -28,7 +28,6 @@ public class KeyGenerator : MonoBehaviour
 		timerText.gameObject.SetActive(false);
 		generatorTimer = 0;
 		curBells = maxBells;
-		// 마지막 시간을 현재로 초기화
 		lastTime = GetUnixTimestamp();
 		StartCoroutine(UpdateUIRoutine());
 
@@ -45,7 +44,6 @@ public class KeyGenerator : MonoBehaviour
 			isTimerRunning = true;
 			timerText.gameObject.SetActive(true);
 
-			// 1개당 충전 시간
 			generatorTimer += chargingTime * bellsUsed;
 
 			UpdateTimerUI();
@@ -61,7 +59,7 @@ public class KeyGenerator : MonoBehaviour
 		while (true)
 		{
 			BellText.text = $"{curBells}/{maxBells}";
-			// 타이머가 실행 중인 경우
+
 			if (isTimerRunning)
 			{
 				UpdateTimerUI();
@@ -75,23 +73,17 @@ public class KeyGenerator : MonoBehaviour
 
 	private void UpdateTimerUI()
 	{
-		// 경과 시간 계산(현재 시간 - 마지막으로 타이머를 시작한 시간)
 		double timePassed = GetUnixTimestamp() - lastTime;
-		// 남은 시간 계산
 		double timeLeft = generatorTimer - timePassed;
 
-		// 남은 시간이 있는 경우
 		if (timeLeft > 0)
 		{
-			// 남은 시간을 시간:분:초로 변환
 			TimeSpan timeSpan = TimeSpan.FromSeconds(timeLeft);
 			timerText.text = $"{(int)timeSpan.TotalHours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
 		}
-		// 남은 시간이 없는 경우
 		else
 		{
 			if (curBells < maxBells)
-				// 입장 재화 충전
 				curBells += 1;
 
 			lastTime = GetUnixTimestamp();
@@ -110,7 +102,6 @@ public class KeyGenerator : MonoBehaviour
 		}
 	}
 
-	// 현재 시간을 Unix 타임스탬프로 변환
 	private double GetUnixTimestamp()
 	{
 		return (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;

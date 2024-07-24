@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-// 각 씬 마다 있는 BaseScene 찾아서 가져다 줌
 public class SceneManager : MonoBehaviour
 {
 	public void StartGame()
