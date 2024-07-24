@@ -152,17 +152,20 @@ public class Player : MonoBehaviour , IDamagable
 			Die();
 			//TODO : 게임 멈춤
 		}
+
+		/*
 		//활공 중 이속 빨라짐
 		if(isGlide)
 			transform.position += new Vector3(speed*1.2f * Time.deltaTime, 0, 0);
 		else
 			transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
-
+		*/
+		
 		if (isSlide)
 		{
 			rb.AddForce(Vector2.down, (ForceMode2D)ForceMode.Acceleration);
 		}
-
+		
 
 		//쥐의 염원이 있을때 : 10초당 체력 1 회복
 		if (ratDesire)
