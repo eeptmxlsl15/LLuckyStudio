@@ -91,38 +91,62 @@ public class ShopItem : MonoBehaviour
 	{
 		switch (_itemID)
 		{
-			case 0: // 통조림
-				DataManager.Instance.sushi -= sushiCost;
-				DataManager.Instance.cannedFood += quantity;
-				gameObject.SetActive(false);
-				break;
-			case 1: // 은방울
+			
+			case 0: // 은방울
+				if (DataManager.Instance.sushi - sushiCost < 0)
+					break;
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.silverMarble += quantity;
 				gameObject.SetActive(false);
 				break;
-			case 2: // 금방울
+			case 1: // 금방울
+				if (DataManager.Instance.sushi - sushiCost < 0)
+					break;
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.goldMarble += quantity;
 				gameObject.SetActive(false);
 				break;
-			case 3: // 부활권
+			case 2: // 부활권
+				if (DataManager.Instance.sushi - sushiCost < 0)
+					break;
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.resurrection += quantity;
 				gameObject.SetActive(false);
 				break;
-			case 4:
-			case 5:
-			case 6: // 유료 재화
-				DataManager.Instance.money -= moneyCost;
-				DataManager.Instance.cannedFood += quantity;
+			case 3: // 적 깨진 염원 조각
+				if (DataManager.Instance.sushi - sushiCost < 0)
+					break;
+				DataManager.Instance.sushi -= sushiCost;
+				DataManager.Instance.brokenRed += quantity;
+				gameObject.SetActive(false);
 				break;
-			case 7:
-			case 8:
-			case 9:
+			case 4: // 청 깨진 염원 조각
+				if (DataManager.Instance.sushi - sushiCost < 0)
+					break;
+				DataManager.Instance.sushi -= sushiCost;
+				DataManager.Instance.brokenBlue += quantity;
+				gameObject.SetActive(false);
+				break;
+			case 5: // 녹 깨진 염원 조각
+				if (DataManager.Instance.sushi - sushiCost < 0)
+					break;
+				DataManager.Instance.sushi -= sushiCost;
+				DataManager.Instance.brokenGreen += quantity;
+				gameObject.SetActive(false);
+				break;
+
+
+			case 100: // 통조림으로 은열쇠 구입
+				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.silverMarble == DataManager.Instance.maxSilverMarvle)
+					//못 사는 사운드
+					break;
 				DataManager.Instance.cannedFood -= cannedFoodCost;
-				DataManager.Instance.sushi += quantity;
+				DataManager.Instance.silverMarble += quantity;
 				break;
+			default:
+
+				break;
+
 		}
 
 
@@ -152,12 +176,18 @@ public class ShopItem : MonoBehaviour
 
 	public void UpdateText()
 	{
+		if (itemID == 100)
+		{
+			quantityText.text = "" + quantity;
+			costText.text = "통조림 : " + cannedFoodCost;
+		}
+		else
+		{
 		quantityText.text = "" + quantity;
 		costText.text = "초밥 : " + sushiCost;
-		if (itemID == 4 || itemID == 5 || itemID == 6)
-			costText.text = "돈 : " + moneyCost;
-		else if (itemID > 7)
-			costText.text = "통조림 : " + cannedFoodCost;
+
+		}
+
 	}
 
 	

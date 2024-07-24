@@ -46,6 +46,7 @@ public class DataManager : MonoBehaviour
 
 	public int goldMarble;
 	public int silverMarble;
+	public int maxSilverMarvle;
 	public int resurrection;
 	
 	public int money;//유료 재화 

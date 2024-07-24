@@ -107,7 +107,7 @@ public class UIMapping : MonoBehaviour
 		if(dataManager.greenMarbleLv == 10)
 			needGreenSushi.text = "강화 완료";
 		else
-			needGreenSushi.text = "강화 : " + dataManager.nextExp[dataManager.greenMarbleLv] + "초밥";
+			needGreenSushi.text = "강화 : " + dataManager.nextExp[dataManager.greenMarbleLv] + "	초밥";
 	}
 
 	public void UpdateCatsDesire()

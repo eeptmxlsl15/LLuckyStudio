@@ -59,7 +59,7 @@ public class ShopList : MonoBehaviour
 
 	public void OnClickIngameReset()
 	{
-		if (DataManager.Instance.sushi - resetCost < 0)
+		if (DataManager.Instance.sushi - resetCost < 0 || DataManager.Instance.resetNum == DataManager.Instance.advResetMaxNum)
 		{
 			return;
 			//실패 사운드
