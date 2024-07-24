@@ -10,7 +10,6 @@ public class BaseUI : MonoBehaviour
 	protected Dictionary<string, Button> buttons;
 	protected Dictionary<string, TMP_Text> texts;
 	protected Dictionary<string, Image> images;
-	// TODO : add UI component
 
 	protected virtual void Awake()
 	{
@@ -24,8 +23,6 @@ public class BaseUI : MonoBehaviour
 		texts = new Dictionary<string, TMP_Text>();
 		images = new Dictionary<string, Image>();
 
-		// 전체 게임오브젝트를 순회
-		// RectTransform은 모든 게임오브젝트에 있기 때문에 다 찾을 수 있음
 		RectTransform[] children = GetComponentsInChildren<RectTransform>();
 		foreach (RectTransform child in children)
 		{

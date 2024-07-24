@@ -10,7 +10,7 @@ public class PoolManager : MonoBehaviour
 	Transform poolRoot;
 	Canvas canvasRoot;
 
-	void Awake()
+	private void Awake()
 	{
 		InitPool();
 	}

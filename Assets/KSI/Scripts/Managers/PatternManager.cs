@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PatternManager : MonoBehaviour
 {
-	public List<GameObject> patterns; // 다양한 패턴 프리팹 리스트
-	public float spawnDistance = 20.0f; // 패턴 생성 거리
-	public int maxPatterns = 5; // 최대 활성 패턴 수
+	public List<GameObject> patterns; 
+	public float spawnDistance = 20.0f;
+	public int maxPatterns = 5;
 
 	private List<GameObject> activePatterns = new List<GameObject>();
 	private Transform playerTransform;

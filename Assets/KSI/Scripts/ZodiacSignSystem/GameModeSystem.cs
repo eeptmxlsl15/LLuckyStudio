@@ -13,6 +13,7 @@ public class GameModeSystem : MonoBehaviour
 {
 	public enum GameMode
 	{
+		LOBBY,
 		SUB,
 		BOSS,
 		BERSERKBOSS,
@@ -46,6 +47,9 @@ public class GameModeSystem : MonoBehaviour
 	{
 		switch (gameMode)
 		{
+			case GameMode.LOBBY:
+				Debug.Log("로비");
+				break;
 			case GameMode.SUB:
 				Debug.Log("디버프 적용 없음");
 				break;
@@ -64,29 +68,22 @@ public class GameModeSystem : MonoBehaviour
 		}
 	}
 
-	// 보스 스테이지 디버프
 	private void ApplyBossDebuff()
 	{
-		// 현재 시간에 해당하는 십이지신을 가져옴
 		BerserkSystemManager.ZodiacSign curZodiacSign = berserkSystem.GetCurZodiacSign();
 		Debug.Log($"보스 스테이지 : {curZodiacSign}이 적용됨");
 
-		// 해당 십이지신의 디버프를 적용
-		//berserkSystem.ApplyDebuff(curZodiacSign);
+		berserkSystem.ApplyDebuff(curZodiacSign);
 	}
 
-	// 광폭 보스 스테이지 디버프
 	private void ApplyBerserkBossDebuff()
 	{
-		// 현재 시간에 해당하는 십이지신을 가져옴
 		BerserkSystemManager.ZodiacSign curZodiacSign = berserkSystem.GetCurZodiacSign();
 		Debug.Log($"광폭 보스 스테이지 : {curZodiacSign}이 적용됨");
 
-		// 해당 십이지신의 디버프를 적용
-		//berserkSystem.ApplyDebuff(curZodiacSign);
+		berserkSystem.ApplyDebuff(curZodiacSign);
 	}
 
-	// 무한 모드 스테이지 디버프
 	private void ApplyInfiniteDebuff()
 	{
 		berserkSystem.ApplyDebuff(GameManager.Instance.InfiniteDebuff1);
@@ -100,7 +97,6 @@ public class GameModeSystem : MonoBehaviour
 		System.Random random = new System.Random();
 		GameManager.Instance.InfiniteDebuff1 = (BerserkSystemManager.ZodiacSign)values.GetValue(random.Next(values.Length));
 
-		// 최초 실행 보장과 중복 방지
 		BerserkSystemManager.ZodiacSign tempZodiac;
 		do
 		{
@@ -123,7 +119,6 @@ public class GameModeSystem : MonoBehaviour
 		}
 	}
 
-	// TODO : 게임 끝나는 시점에 호출하기
 	private void InfinitGameEnd()
 	{
 		if (curGameMode == GameMode.INFINITE)

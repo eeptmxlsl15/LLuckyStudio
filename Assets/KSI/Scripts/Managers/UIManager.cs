@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
 	private Canvas popUpCanvas;
 	private Canvas windowCanvas;
 	private Canvas inGameCanvas;
-	private Stack<PopUpUI> popUpStack; // 편리하게 UI 관리를 위힌 Stack 구조 사용
+	private Stack<PopUpUI> popUpStack;
 
 	private void Awake()
 	{
@@ -38,10 +38,8 @@ public class UIManager : MonoBehaviour
 		Awake();
 	}
 
-	// 만든 ShowPopUpUI은 일반화를 적용하면 PopUpUI를 상속받는 다른 팝업 UI를 반환받게끔 함
 	public void ShowPopUpUI(PopUpUI popUpUI)
 	{
-		// 이전의 팝업 UI가 있다면 잠깐 안 보이게 함
 		if (popUpStack.Count > 0)
 		{
 			PopUpUI prevUI = popUpStack.Peek();
@@ -51,10 +49,8 @@ public class UIManager : MonoBehaviour
 		PopUpUI ui = GameManager.Pool.GetUI(popUpUI);
 		ui.transform.SetParent(popUpCanvas.transform, false);
 
-		// UI 관리를 위힌 Stack 구조 사용
 		popUpStack.Push(ui);
 
-		// 팝업이 있을 때 시간 멈추게 함
 		Time.timeScale = 0;
 	}
 
@@ -67,10 +63,9 @@ public class UIManager : MonoBehaviour
 	public void ClosePopUpUI()
 	{
 		PopUpUI ui = popUpStack.Pop();
-		// 풀 매니저를 통해서 UI 반납함
+
 		GameManager.Pool.ReleaseUI(ui.gameObject);
 
-		// 가장 위에 있는 현재 UI를 활성화시켜서 보이게 함
 		if (popUpStack.Count > 0)
 		{
 			PopUpUI curUI = popUpStack.Peek();
@@ -78,7 +73,6 @@ public class UIManager : MonoBehaviour
 		}
 		else
 		{
-			// 팝업이 없을 때 시간 멈추게 함
 			Time.timeScale = 1f;
 		}
 	}
@@ -105,7 +99,6 @@ public class UIManager : MonoBehaviour
 
 	public void SelectWindowUI(WindowUI windowUI)
 	{
-		// 선택한 UI가 계층 구조 상에서 가장 아래로 내려가짐
 		windowUI.transform.SetAsLastSibling();
 	}
 
@@ -123,7 +116,6 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
-	// 일반화가 꼭 필요함
 	public T ShowInGameUI<T>(T gameUi) where T : InGameUI
 	{
 		T ui = GameManager.Pool.GetUI(gameUi);

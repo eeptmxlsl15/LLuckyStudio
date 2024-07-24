@@ -11,8 +11,8 @@ using UnityEngine;
 // 획득 시 사라짐
 public class Firefly : BuffTypeObject
 {
-	public float range = 1f; // 이동 범위
-	public float cycle = 1f; // 이동 주기
+	public float range = 1f;
+	public float cycle = 1f;
 
 	private Vector3 startPosition;
 
@@ -28,9 +28,7 @@ public class Firefly : BuffTypeObject
 
 	private void Update()
 	{
-		// Sin을 사용하여 위아래 움직임 계산
 		float y = Mathf.Sin(Time.time * cycle) * range;
-		// 오른쪽에서 왼쪽으로 이동하면서 위아래로 움직이면서 날아옴
 		transform.position = startPosition + Vector3.left * speed * Time.time + Vector3.up * y;
 	}
 
