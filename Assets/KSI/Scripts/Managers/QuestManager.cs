@@ -11,11 +11,11 @@ public class QuestManager : MonoBehaviour
 	private void Start()
 	{
 		InitializeQuests();
-		questUI = FindObjectOfType<QuestUI>();
-		if (questUI == null)
-		{
-			Debug.LogError("QuestUIManager 찾을 수 없음");
-		}
+		//questUI = FindObjectOfType<QuestUI>();
+		//if (questUI == null)
+		//{
+		//	Debug.LogError("QuestUIManager 찾을 수 없음");
+		//}
 	}
 
 	private void InitializeQuests()

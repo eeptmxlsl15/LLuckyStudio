@@ -6,7 +6,6 @@ using UnityEngine;
 public class INFINITEScenePopUpUI : MonoBehaviour
 {
 	[SerializeField] private GameObject popupPanel;
-	//[SerializeField] private TextMeshProUGUI messageText;
 
 	private void Start()
 	{
@@ -23,5 +22,10 @@ public class INFINITEScenePopUpUI : MonoBehaviour
 	{
 		popupPanel.SetActive(false); 
 		Time.timeScale = 1f;
+	}
+
+	private void GameStart()
+	{
+		GameManager.Scene.StartGame();
 	}
 }

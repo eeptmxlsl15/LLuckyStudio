@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 	static SceneManager sceneManager;
 	static ScoreManager scoreManager;
 	static BerserkSystemManager berserkSystemManager;
+	static GameModeSystem gameModeSystem;
 
 	public static GameManager Instance { get { return instance; } }
 	public static ResourceManager Resource { get { return resourceManager; } }
@@ -22,10 +23,11 @@ public class GameManager : MonoBehaviour
 	public static SceneManager Scene { get { return sceneManager; } }
 	public static ScoreManager Score { get { return scoreManager; } }
 	public static BerserkSystemManager BerserkSystem { get { return berserkSystemManager; } }
-
-	public BerserkSystemManager.ZodiacSign InfiniteDebuff1;
-	public BerserkSystemManager.ZodiacSign InfiniteDebuff2;
 	
+	public BerserkSystemManager.ZodiacSign BossDebuff { get; set; }
+	public BerserkSystemManager.ZodiacSign InfiniteDebuff1 { get; set; }
+	public BerserkSystemManager.ZodiacSign InfiniteDebuff2 { get; set; }
+
 
 	private void Awake()
 	{
@@ -78,11 +80,21 @@ public class GameManager : MonoBehaviour
 		berserkSystemObject.name = "BerserkSystemManager";
 		berserkSystemObject.transform.parent = transform;
 		berserkSystemManager = berserkSystemObject.AddComponent<BerserkSystemManager>();
+
+		GameObject gameModeSystemObject = new GameObject();
+		gameModeSystemObject.name = "GameModeSystem ";
+		gameModeSystemObject.transform.parent = transform;
+		gameModeSystem = gameModeSystemObject.AddComponent<GameModeSystem>();
+	}
+
+	public void ResetBossDebuff()
+	{
+		BossDebuff = default(BerserkSystemManager.ZodiacSign);
 	}
 
 	public void ResetInfiniteDebuff()
 	{
-		InfiniteDebuff1 = default;
-		InfiniteDebuff2 = default;
+		InfiniteDebuff1 = default(BerserkSystemManager.ZodiacSign);
+		InfiniteDebuff2 = default(BerserkSystemManager.ZodiacSign);
 	}
 }

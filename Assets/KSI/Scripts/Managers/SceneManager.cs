@@ -7,7 +7,7 @@ public class SceneManager : MonoBehaviour
 {
 	public void StartGame()
 	{
-		UnitySceneManager.LoadScene("KSITestScene");
+		UnitySceneManager.LoadScene("INFINITEScene");
 		Time.timeScale = 1;
 	}
 
