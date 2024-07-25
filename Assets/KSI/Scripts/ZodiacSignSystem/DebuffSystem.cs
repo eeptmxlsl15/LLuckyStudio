@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -28,137 +29,166 @@ public class DebuffSystem : MonoBehaviour
 	public UnityAction OnDragonDebuffChanged;
 	public UnityAction OnRabbitDebuffChanged;
 	public UnityAction OnTigerDebuffChanged;
-	public UnityAction OnCowDebufChanged;
+	public UnityAction OnCowDebuffChanged;
 	public UnityAction OnMouseDebuffChanged;
 
 	private Player player;
-
+	private DebuffSystem debuffSystem;
+	
 	private void Start()
 	{
 		player = FindObjectOfType<Player>();
-		if (player == null)
-		{
-			Debug.LogError("씬에 플레이어 없음");
-		}
+		debuffSystem = FindObjectOfType<DebuffSystem>();
+
+		OnPigDebuffChanged += PigDebuff;
+		OnDogDebuffChanged += DogDebuff;
+		OnChickenDebuffChanged += ChickenDebuff;
+		OnMonkeyDebuffChanged += MonkeyDebuff;
+		OnSheepDebuffChanged += SheepDebuff;
+		OnHorseDebuffChanged += HorseDebuff;
+		OnSnakeDebuffChanged += SnakeDebuff;
+		OnDragonDebuffChanged += DragonDebuff;
+		OnRabbitDebuffChanged += RabbitDebuff;
+		OnTigerDebuffChanged += TigerDebuff;
+		OnCowDebuffChanged += CowDebuff;
+		OnMouseDebuffChanged += MouseDebuff;
 	}
 
 	public void PigDebuff()
 	{
-		if (player != null)
-		{
-			player.PigDebuff();
-		}
-
-		OnPigDebuffChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.PigDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.PigDebuff();
 	}
 
 	public void DogDebuff()
 	{
-		if (player != null)
-		{
-			player.DogDebuff();
-		}
-
-		OnDogDebuffChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.DogDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.DogDebuff();
 	}
 
 	public void ChickenDebuff()
 	{
-		if (player != null)
-		{
-			player.RoosterDebuff();
-		}
-
-		OnChickenDebuffChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.RoosterDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.RoosterDebuff();
 	}
 
-	public void MonkeyDebuff(int value)
+	public void MonkeyDebuff()
 	{
-		if (player != null)
-		{
-			player.MonkeyDebuff();
-		}
-
-		OnMonkeyDebuffChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.MonkeyDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.MonkeyDebuff();
 	}
 
 	public void SheepDebuff()
 	{
-		if (player != null)
-		{
-			player.LamnDebuff();
-		}
-
-		OnSheepDebuffChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.LamnDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.LamnDebuff();
 	}
 
 	public void HorseDebuff()
 	{
-		if (player != null)
-		{
-			player.HorseDebuff();
-		}
-
-		OnHorseDebuffChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.HorseDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.HorseDebuff();
 	}
 
 	public void SnakeDebuff()
 	{
-		if (player != null)
-		{
-			player.SnakeDebuff();
-		}
-
-		OnSnakeDebuffChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.SnakeDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.SnakeDebuff();
 	}
 
 	public void DragonDebuff()
 	{
-		if (player != null)
-		{
-			player.DragonDebuff();
-		}
-
-		OnDragonDebuffChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.DragonDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.DragonDebuff();
 	}
 
 	public void RabbitDebuff()
 	{
-		if (player != null)
-		{
-			player.RabbitDebuff();
-		}
-
-		OnRabbitDebuffChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.RabbitDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.RabbitDebuff();
 	}
 
 	public void TigerDebuff()
 	{
-		if (player != null)
-		{
-			player.TigerDebuff();
-		}
-
-		OnTigerDebuffChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.TigerDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.TigerDebuff();
 	}
 
 	public void CowDebuff()
 	{
-		if (player != null)
-		{
-			player.OxDebuff();
-		}
-
-		OnCowDebufChanged?.Invoke();
+		//if (player != null)
+		//{
+		//	player.OxDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.OxDebuff();
 	}
 
 	public void MouseDebuff()
 	{
-		if (player != null)
-		{
-			player.RatDebuff();
-		}
+		//if (player != null)
+		//{
+		//	player.RatDebuff();
+		//}
+		//player = FindObjectOfType<Player>();
+		FindPlayer();
+		player.RatDebuff();
+	}
 
-		OnMouseDebuffChanged?.Invoke();
+	public void FindPlayer()
+	{
+		if (player == null)
+			player = FindObjectOfType<Player>();
 	}
 }

@@ -44,7 +44,7 @@ public class BerserkSystemManager : MonoBehaviour
 	}
 
 	public BerserkTime[] berserkTime;
-	public ZodiacSignDebuff[] zodiacSignDebuff;
+	public ZodiacSignDebuff[] zodiacSignDebuff = new ZodiacSignDebuff[12];
 
 	private DebuffSystem debuffSystem;
 
@@ -56,6 +56,7 @@ public class BerserkSystemManager : MonoBehaviour
 			Debug.LogError("DebuffSystem 컴포넌트가 존재하지 않습니다!");
 			return;
 		}
+		debuffSystem.FindPlayer();
 
 		List<BerserkTime> list = new List<BerserkTime>();
 		var values = Enum.GetValues(typeof(BerserkSystemManager.ZodiacSign)).Cast<BerserkSystemManager.ZodiacSign>().ToList();
@@ -77,9 +78,9 @@ public class BerserkSystemManager : MonoBehaviour
 			new ZodiacSignDebuff { zodiacSign = ZodiacSign.HORSE, applyDebuff = () => debuffSystem.OnHorseDebuffChanged()},
 			new ZodiacSignDebuff { zodiacSign = ZodiacSign.SNAKE,applyDebuff = () => debuffSystem.OnSnakeDebuffChanged()},
 			new ZodiacSignDebuff { zodiacSign = ZodiacSign.DRAGON, applyDebuff = () => debuffSystem.OnDragonDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.RABBIT, applyDebuff = () => debuffSystem.OnSnakeDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.TIGER, applyDebuff = debuffSystem.OnTigerDebuffChanged},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.COW, applyDebuff = () => debuffSystem.OnCowDebufChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.RABBIT, applyDebuff = () => debuffSystem.OnRabbitDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.TIGER, applyDebuff = () => debuffSystem.OnTigerDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.COW, applyDebuff = () => debuffSystem.OnCowDebuffChanged()},
 			new ZodiacSignDebuff { zodiacSign = ZodiacSign.MOUSE,applyDebuff = () => debuffSystem.OnMouseDebuffChanged()}
 		};
 	}

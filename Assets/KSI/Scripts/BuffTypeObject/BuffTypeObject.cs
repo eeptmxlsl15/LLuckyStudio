@@ -14,7 +14,10 @@ public abstract class BuffTypeObject : MonoBehaviour
 
 	private void Update()
 	{
-		Move();
+		if (GameManager.Instance != null && GameManager.Instance.IsGameStarted)
+		{
+			Move();
+		}
 	}
 
 	protected virtual void Move()

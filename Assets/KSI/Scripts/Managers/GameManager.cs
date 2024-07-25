@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 	public BerserkSystemManager.ZodiacSign InfiniteDebuff1 { get; set; }
 	public BerserkSystemManager.ZodiacSign InfiniteDebuff2 { get; set; }
 
+	public bool IsGameStarted { get; private set; } = false;
 
 	private void Awake()
 	{
@@ -87,14 +88,24 @@ public class GameManager : MonoBehaviour
 		gameModeSystem = gameModeSystemObject.AddComponent<GameModeSystem>();
 	}
 
+	public void StartGame()
+	{
+		IsGameStarted = true;
+	}
+
+	public void StopGame()
+	{
+		IsGameStarted = false;
+	}
+
 	public void ResetBossDebuff()
 	{
-		BossDebuff = default(BerserkSystemManager.ZodiacSign);
+		BossDebuff = default;
 	}
 
 	public void ResetInfiniteDebuff()
 	{
-		InfiniteDebuff1 = default(BerserkSystemManager.ZodiacSign);
-		InfiniteDebuff2 = default(BerserkSystemManager.ZodiacSign);
+		InfiniteDebuff1 = default;
+		InfiniteDebuff2 = default;
 	}
 }
