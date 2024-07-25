@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Resources;
 using System.Runtime.Serialization;
 using UnityEngine;
+using UnityEngine.Events;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class GameManager : MonoBehaviour
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
 	public BerserkSystemManager.ZodiacSign BossDebuff { get; set; }
 	public BerserkSystemManager.ZodiacSign InfiniteDebuff1 { get; set; }
 	public BerserkSystemManager.ZodiacSign InfiniteDebuff2 { get; set; }
+
+	public static UnityAction OnGameEnded;
 
 	public bool IsGameStarted { get; private set; } = false;
 

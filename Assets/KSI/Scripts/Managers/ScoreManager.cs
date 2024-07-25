@@ -29,4 +29,9 @@ public class ScoreManager : MonoBehaviour
 	//	cannedFoodText += score;
 	//	OnCannedFoodChanged?.Invoke(cannedFoodText);
 	//}
+
+	public int GetTotalScore()
+	{
+		return jellyPawText;
+	}
 }

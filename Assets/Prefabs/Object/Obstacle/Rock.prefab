@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8777400223220984825}
   - component: {fileID: 1164846096054275239}
-  - component: {fileID: 5201045815799882691}
   - component: {fileID: 3876175400840472343}
+  - component: {fileID: 7544440984361448617}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Obstacle
@@ -86,8 +86,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &5201045815799882691
-CapsuleCollider2D:
+--- !u!114 &3876175400840472343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392438277726131276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0c8ba03f9f7024da111984e6882205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  damage: 10
+--- !u!58 &7544440984361448617
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -115,23 +129,9 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000023869365, y: -0.24756683}
-  m_Size: {x: 6.000002, y: 4.9292727}
-  m_Direction: 1
---- !u!114 &3876175400840472343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392438277726131276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0c8ba03f9f7024da111984e6882205, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  damage: 10
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.016
