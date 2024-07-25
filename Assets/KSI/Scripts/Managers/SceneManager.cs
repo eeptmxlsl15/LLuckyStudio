@@ -8,6 +8,7 @@ public class SceneManager : MonoBehaviour
 	public void StartGame()
 	{
 		UnitySceneManager.LoadScene("INFINITEScene");
+		Time.timeScale = 0;
 		Time.timeScale = 1;
 	}
 

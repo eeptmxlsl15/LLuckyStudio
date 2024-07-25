@@ -23190,19 +23190,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1777216380082216759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065383485204787908}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56948a9e5a55dc8419421b0134256256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupPanel: {fileID: 7689540818198506017}
 --- !u!212 &1779057323464582640
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27297,7 +27284,7 @@ GameObject:
   - component: {fileID: 1884110737906580465}
   - component: {fileID: 6456749546824482475}
   - component: {fileID: 839781509133109869}
-  - component: {fileID: 1777216380082216759}
+  - component: {fileID: 6456749546824482476}
   - component: {fileID: 4786074465328458258}
   m_Layer: 0
   m_Name: INFINITEScene
@@ -48391,7 +48378,6 @@ GameObject:
   - component: {fileID: 4731916630264849307}
   - component: {fileID: 8857127157120492074}
   - component: {fileID: 7157371014999895425}
-  - component: {fileID: 8621920953444829582}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -58510,9 +58496,9 @@ RectTransform:
   - {fileID: 2574995144831390608}
   m_Father: {fileID: 6397227962547944629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 207.4895, y: -133.199}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 297.567, y: 212.301}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &4485037436584183993
@@ -83073,9 +83059,9 @@ RectTransform:
   - {fileID: 206578948149792532}
   m_Father: {fileID: 6397227962547944629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 622.4685, y: -133.199}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 297.567, y: 212.301}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &6242783932508183428
@@ -85186,9 +85172,9 @@ RectTransform:
   - {fileID: 6240973898786617589}
   m_Father: {fileID: 2638366423768454102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 448.5855, y: -126.9615}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 829.958, y: 266.398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &6397572283314277119
@@ -85862,6 +85848,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curGameMode: 4
+--- !u!114 &6456749546824482476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065383485204787908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cb2220bbf62434a957a95bb97b9b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPanel: {fileID: 7689540818198506017}
 --- !u!61 &6461721333860099101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -93754,9 +93753,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8621920953444829582}
-        m_TargetAssemblyTypeName: StoryModeSelectUI, Assembly-CSharp
-        m_MethodName: LoadGameModeScene
+      - m_Target: {fileID: 6456749546824482476}
+        m_TargetAssemblyTypeName: INFINITEScene, Assembly-CSharp
+        m_MethodName: StartButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -101307,7 +101306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &7690786230407101884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112825,19 +112824,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4687108824781462304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8621920953444829582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3706344526536301599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameModeSceneToLoad: INFINITEScene
 --- !u!224 &8622701573989603979
 RectTransform:
   m_ObjectHideFlags: 0

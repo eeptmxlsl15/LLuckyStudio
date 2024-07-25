@@ -20,11 +20,12 @@ public class INFINITEScenePopUpUI : MonoBehaviour
 
 	public void ClosePopup()
 	{
-		popupPanel.SetActive(false); 
+		popupPanel.SetActive(false);
+		GameStart();
 		Time.timeScale = 1f;
 	}
 
-	private void GameStart()
+	public void GameStart()
 	{
 		GameManager.Scene.StartGame();
 	}
