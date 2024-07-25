@@ -34,4 +34,9 @@ public class ScoreManager : MonoBehaviour
 	{
 		return jellyPawText;
 	}
+
+	public void Reset()
+	{
+		jellyPawText = 0;
+	}
 }

@@ -22,6 +22,7 @@ public class Quest : ScriptableObject
 	public bool rewardDesirePiece;
 	public int rewardValue; 
 	public int currentScore;
+	public int fail;
 
 	public void CheckCompleteQuest(int score)
 	{
@@ -37,9 +38,18 @@ public class Quest : ScriptableObject
 		}
 	}
 
+	public bool CheckFailureCondition(int score)
+	{
+		if (score < fail)
+		{
+			return true;
+		}
+		return false;
+	}
+
 	public int GetReward()
 	{
-		return rewardSushi * 5;
+		return currentScore / 100;
 	}
 
 	public int GetDesirePiece()
