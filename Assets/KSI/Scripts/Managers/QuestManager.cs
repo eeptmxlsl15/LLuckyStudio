@@ -6,16 +6,16 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
 	public List<Quest> quests;
-	private QuestUI questUI;
+	private ResultUI resultUI;
+	private DeathUI deathUI;
 
 	private void Start()
 	{
 		InitializeQuests();
-		//questUI = FindObjectOfType<QuestUI>();
-		//if (questUI == null)
-		//{
-		//	Debug.LogError("QuestUIManager 찾을 수 없음");
-		//}
+		resultUI = FindObjectOfType<ResultUI>();
+		deathUI = FindObjectOfType<DeathUI>();
+
+		GameManager.OnGameEndChanged += OnGameEnd;
 	}
 
 	private void InitializeQuests()
@@ -48,10 +48,10 @@ public class QuestManager : MonoBehaviour
 					Debug.Log($"퀘스트: {quest.curQuestName}, 이전 점수: {previousScore}, 현재 점수: {quest.currentScore}");
 
 					quest.CheckCompleteQuest(quest.currentScore);
-					
+
 					if (quest.isComplete)
 					{
-						//questUI.ShowQuestCompleteUI(quest.curQuestName);
+						resultUI.DisplayResultUI();
 						GiveReward(quest);
 					}
 				}
@@ -91,15 +91,28 @@ public class QuestManager : MonoBehaviour
 
 	private void GiveSushi(Quest quest)
 	{
-		int reward = quest.GetReward();
+		int reward = quest.GetReward() * 5;
 		Debug.Log($"퀘스트 보상 : '{quest.curQuestName}' / 초밥 {reward} 개 ");
-		//DataManager.Instance.sushi += reward;
+		DataManager.Instance.sushi += reward;
+		resultUI.UpdateRewardSushiText(reward);
 	}
 
 	private void GiveDesirePiece(Quest quest)
 	{
 		int rewardValue = quest.GetDesirePiece();
 		Debug.Log($"퀘스트 보상 : '{quest.curQuestName}' / 깨진 염원 조각 {rewardValue} 개");
-		// TODO : 보상 로직 추가
+		resultUI.UpdateDesirePieceiText(rewardValue);
+	}
+
+	private void OnGameEnd()
+	{
+		foreach (var quest in quests)
+		{
+			if (quest.curQuestName == Quest.QuestName.Quest_INFINITE)
+			{
+				resultUI.DisplayResultUI();
+				GiveReward(quest);
+			}
+		}
 	}
 }

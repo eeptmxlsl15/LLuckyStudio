@@ -56,132 +56,76 @@ public class DebuffSystem : MonoBehaviour
 
 	public void PigDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.PigDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
 		FindPlayer();
 		player.PigDebuff();
 	}
 
 	public void DogDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.DogDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
 		FindPlayer();
 		player.DogDebuff();
 	}
 
 	public void ChickenDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.RoosterDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
 		FindPlayer();
 		player.RoosterDebuff();
 	}
 
 	public void MonkeyDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.MonkeyDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
+
 		FindPlayer();
 		player.MonkeyDebuff();
 	}
 
 	public void SheepDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.LamnDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
 		FindPlayer();
 		player.LamnDebuff();
 	}
 
 	public void HorseDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.HorseDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
 		FindPlayer();
 		player.HorseDebuff();
 	}
 
 	public void SnakeDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.SnakeDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
 		FindPlayer();
 		player.SnakeDebuff();
 	}
 
 	public void DragonDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.DragonDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
 		FindPlayer();
 		player.DragonDebuff();
 	}
 
 	public void RabbitDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.RabbitDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
 		FindPlayer();
 		player.RabbitDebuff();
 	}
 
 	public void TigerDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.TigerDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
+
 		FindPlayer();
 		player.TigerDebuff();
 	}
 
 	public void CowDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.OxDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
+
 		FindPlayer();
 		player.OxDebuff();
 	}
 
 	public void MouseDebuff()
 	{
-		//if (player != null)
-		//{
-		//	player.RatDebuff();
-		//}
-		//player = FindObjectOfType<Player>();
+
 		FindPlayer();
 		player.RatDebuff();
 	}

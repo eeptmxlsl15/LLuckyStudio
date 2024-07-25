@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static GameModeSystem;
 
 // 게임 모드
 // 서브 스테이지 : 디버프 적용 없음
@@ -21,7 +22,8 @@ public class GameModeSystem : MonoBehaviour
 	}
 	public GameMode curGameMode;
 
-	private BerserkSystemManager berserkSystem;	
+	private BerserkSystemManager berserkSystem;
+	private DebuffSystem debuffSystem;
 	private InfiniteRandomDebuffUI infiniteRandomDebuffUI;
 	private BossDebuffUI bossDebuffUI;
 
@@ -30,11 +32,12 @@ public class GameModeSystem : MonoBehaviour
 		berserkSystem = GameManager.BerserkSystem;
 		infiniteRandomDebuffUI = FindAnyObjectByType<InfiniteRandomDebuffUI>();
 		bossDebuffUI = FindAnyObjectByType<BossDebuffUI>();
+		debuffSystem = FindObjectOfType<DebuffSystem>();
 
-		if (curGameMode == GameMode.BOSS && GameManager.Instance.BossDebuff == default)
-		{
-			UpdateBossDebuff();
-		}
+		//if (curGameMode == GameMode.BOSS && GameManager.Instance.BossDebuff == default)
+		//{
+		//	UpdateBossDebuff();
+		//}
 
 		if (curGameMode == GameMode.INFINITE)
 		{
@@ -44,8 +47,8 @@ public class GameModeSystem : MonoBehaviour
 			}
 			UpdateInfiniteRandomDebuff();
 		}
-		
 
+		debuffSystem.OnPigDebuffChanged += ApplyBossDebuff;
 		ApplyDebuff(curGameMode);
 	}
 
@@ -76,28 +79,20 @@ public class GameModeSystem : MonoBehaviour
 
 	private void ApplyBossDebuff()
 	{
-		BerserkSystemManager.ZodiacSign curZodiacSign = berserkSystem.GetCurZodiacSign();
-		Debug.Log($"보스 스테이지 : {curZodiacSign}이 적용됨");
+		//BerserkSystemManager.ZodiacSign zodiacSign;
 
-		berserkSystem.ApplyDebuff(curZodiacSign);
-		GameManager.Instance.BossDebuff = curZodiacSign;
-		UpdateBossDebuff();
+		//berserkSystem.ApplyDebuff(zodiacSign);
+
+		//GameManager.Instance.BossDebuff = zodiacSign;
+		//UpdateBossDebuff();
 	}
 
 	private void UpdateBossDebuff()
 	{
-		if (bossDebuffUI != null)
-		{
-			bossDebuffUI.DisplayBossDebuff(GameManager.Instance.BossDebuff);
-		}
-	}
-
-	private void BossGameEnd()
-	{
-		if (curGameMode == GameMode.INFINITE)
-		{
-			GameManager.Instance.ResetBossDebuff();
-		}
+		//if (bossDebuffUI != null)
+		//{
+		//	bossDebuffUI.DisplayBossDebuff(GameManager.Instance.BossDebuff);
+		//}
 	}
 
 	private void ApplyBerserkBossDebuff()
@@ -106,6 +101,7 @@ public class GameModeSystem : MonoBehaviour
 		Debug.Log($"광폭 보스 스테이지 : {curZodiacSign}이 적용됨");
 
 		berserkSystem.ApplyDebuff(curZodiacSign);
+		GameManager.Instance.BossDebuff = curZodiacSign;
 	}
 
 	private void ApplyInfiniteDebuff()

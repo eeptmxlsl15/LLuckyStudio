@@ -24,13 +24,13 @@ public class GameManager : MonoBehaviour
 	public static SceneManager Scene { get { return sceneManager; } }
 	public static ScoreManager Score { get { return scoreManager; } }
 	public static BerserkSystemManager BerserkSystem { get { return berserkSystemManager; } }
-	
+
 	public BerserkSystemManager.ZodiacSign BossDebuff { get; set; }
 	public BerserkSystemManager.ZodiacSign InfiniteDebuff1 { get; set; }
 	public BerserkSystemManager.ZodiacSign InfiniteDebuff2 { get; set; }
 
-	public static UnityAction OnGameEnded;
-
+	public static UnityAction OnGameEndChanged;
+	
 	public bool IsGameStarted { get; private set; } = false;
 
 	private void Awake()
@@ -46,13 +46,11 @@ public class GameManager : MonoBehaviour
 
 		InitManagers();
 	}
-
 	private void OnDestroy()
 	{
 		if (instance == this)
 			instance = null;
 	}
-
 	private void InitManagers()
 	{
 		GameObject resourceObject = new GameObject();
@@ -101,6 +99,12 @@ public class GameManager : MonoBehaviour
 		IsGameStarted = false;
 	}
 
+	public void EndGame()
+	{
+		Debug.Log("게임 종료");
+		OnGameEndChanged?.Invoke();
+	}
+
 	public void ResetBossDebuff()
 	{
 		BossDebuff = default;
@@ -110,5 +114,11 @@ public class GameManager : MonoBehaviour
 	{
 		InfiniteDebuff1 = default;
 		InfiniteDebuff2 = default;
+	}
+
+	public void ResetAllDebuffs()
+	{
+		ResetBossDebuff();
+		ResetInfiniteDebuff();
 	}
 }

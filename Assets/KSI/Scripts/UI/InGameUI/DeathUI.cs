@@ -4,48 +4,37 @@ using TMPro;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class ResultUI : MonoBehaviour
+public class DeathUI : MonoBehaviour
 {
 	[Header("Scene")]
 	[SerializeField] private string gameModeSceneToLoad;
 	[Space]
 	[Header("UI")]
-	[SerializeField] private GameObject resultUI;
+
+	[SerializeField] private GameObject deathUI;
 	[SerializeField] private TextMeshProUGUI totalScoreText;
-	[SerializeField] private TextMeshProUGUI rewardSushiText;
-	[SerializeField] private TextMeshProUGUI DesirePieceiText;
 
 	private void Start()
-    {
-		GameManager.OnGameEndChanged += DisplayResultUI;
-		resultUI.SetActive(false);
+	{
+		GameManager.OnGameEndChanged += DisplayDeathUI;
+		deathUI.SetActive(false);
 	}
 
 	private void OnDestroy()
 	{
-		GameManager.OnGameEndChanged -= DisplayResultUI;
+		GameManager.OnGameEndChanged -= DisplayDeathUI;
 	}
 
-	public void DisplayResultUI()
+	public void DisplayDeathUI()
 	{
 		Time.timeScale = 0f;
 		int totalScore = GameManager.Score.GetTotalScore();
 		totalScoreText.text = totalScore.ToString();
-		resultUI.SetActive(true);
-	}
-
-	public void UpdateRewardSushiText(int reward)
-	{
-		rewardSushiText.text = "초밥 : " + reward;
-	}
-
-	public void UpdateDesirePieceiText(int rewardValue)
-	{
-		DesirePieceiText.text = "깨진 염원 조각 : " + rewardValue;
+		deathUI.SetActive(true);
 	}
 
 	public void RestartButton()
-	{	
+	{
 		Time.timeScale = 1f;
 		GameManager.Score.Reset();
 		GameManager.Instance.ResetAllDebuffs();

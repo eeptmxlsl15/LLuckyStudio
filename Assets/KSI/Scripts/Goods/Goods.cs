@@ -5,17 +5,16 @@ using UnityEngine;
 public abstract class Goods : MonoBehaviour
 {
 	[SerializeField] private float speed = 10f;
-	[SerializeField] protected int scoreValue = 100;
+	protected int scoreValue = 100;
 	protected IScore scoreAdapter;
 
 	public abstract void Contact();
 
 	private void Update()
 	{
-		if (GameManager.Instance != null && GameManager.Instance.IsGameStarted)
-		{
-			Move();
-		}
+
+		Move();
+
 	}
 
 	protected virtual void Move()

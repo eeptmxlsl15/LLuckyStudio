@@ -15,18 +15,18 @@ public class BerserkSystemManager : MonoBehaviour
 {
 	public enum ZodiacSign
 	{
-		RABBIT,
-		TIGER,
-		COW,
 		MOUSE,
-		SHEEP,
-		HORSE,
-		SNAKE,
+		COW,
+		TIGER,
+		RABBIT,
 		DRAGON,
-		PIG,
-		DOG,
+		SNAKE,
+		HORSE,
+		SHEEP,
+		MONKEY,
 		CHICKEN,
-		MONKEY
+		DOG, 
+		PIG	
 	}
 
 	[Serializable]
@@ -70,18 +70,18 @@ public class BerserkSystemManager : MonoBehaviour
 
 		zodiacSignDebuff = new ZodiacSignDebuff[]
 		{
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.PIG, applyDebuff = () => debuffSystem.OnPigDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.DOG, applyDebuff = () => debuffSystem.OnDogDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.CHICKEN, applyDebuff = () => debuffSystem.OnChickenDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.MONKEY, applyDebuff = () => debuffSystem.OnMonkeyDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.SHEEP, applyDebuff = () => debuffSystem.OnSheepDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.HORSE, applyDebuff = () => debuffSystem.OnHorseDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.SNAKE,applyDebuff = () => debuffSystem.OnSnakeDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.DRAGON, applyDebuff = () => debuffSystem.OnDragonDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.RABBIT, applyDebuff = () => debuffSystem.OnRabbitDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.TIGER, applyDebuff = () => debuffSystem.OnTigerDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.MOUSE,applyDebuff = () => debuffSystem.OnMouseDebuffChanged()},
 			new ZodiacSignDebuff { zodiacSign = ZodiacSign.COW, applyDebuff = () => debuffSystem.OnCowDebuffChanged()},
-			new ZodiacSignDebuff { zodiacSign = ZodiacSign.MOUSE,applyDebuff = () => debuffSystem.OnMouseDebuffChanged()}
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.TIGER, applyDebuff = () => debuffSystem.OnTigerDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.RABBIT, applyDebuff = () => debuffSystem.OnRabbitDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.DRAGON, applyDebuff = () => debuffSystem.OnDragonDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.SNAKE,applyDebuff = () => debuffSystem.OnSnakeDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.HORSE, applyDebuff = () => debuffSystem.OnHorseDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.SHEEP, applyDebuff = () => debuffSystem.OnSheepDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.MONKEY, applyDebuff = () => debuffSystem.OnMonkeyDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.CHICKEN, applyDebuff = () => debuffSystem.OnChickenDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.DOG, applyDebuff = () => debuffSystem.OnDogDebuffChanged()},
+			new ZodiacSignDebuff { zodiacSign = ZodiacSign.PIG, applyDebuff = () => debuffSystem.OnPigDebuffChanged()},			
 		};
 	}
 
@@ -95,7 +95,7 @@ public class BerserkSystemManager : MonoBehaviour
 		{
 			if (zodiacSignTime.startHour <= currentHour && currentHour < zodiacSignTime.endHour)
 			{
-				return zodiacSignTime.zodiacSign; 
+				return zodiacSignTime.zodiacSign;
 			}
 
 			if (zodiacSignTime.zodiacSign == ZodiacSign.MOUSE && (currentHour >= 23 || currentHour < 1))

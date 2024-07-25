@@ -55,21 +55,21 @@ public class ZodiacSignUI : MonoBehaviour
 	{
 		switch (zodiacSign)
 		{
-			case BerserkSystemManager.ZodiacSign.RABBIT:				
-			case BerserkSystemManager.ZodiacSign.TIGER:				
-			case BerserkSystemManager.ZodiacSign.COW:
 			case BerserkSystemManager.ZodiacSign.MOUSE:
+			case BerserkSystemManager.ZodiacSign.COW:
+			case BerserkSystemManager.ZodiacSign.TIGER:
+			case BerserkSystemManager.ZodiacSign.RABBIT:							
 				return ("자/축/인/묘\n23~07", "자시/23~01\n축시/01~03\n인시/03~05\n묘시/05~07");
-			case BerserkSystemManager.ZodiacSign.SHEEP:				
-			case BerserkSystemManager.ZodiacSign.HORSE:				
-			case BerserkSystemManager.ZodiacSign.SNAKE:				
 			case BerserkSystemManager.ZodiacSign.DRAGON:
+			case BerserkSystemManager.ZodiacSign.SNAKE:
+			case BerserkSystemManager.ZodiacSign.HORSE:
+			case BerserkSystemManager.ZodiacSign.SHEEP:				
 				return ("진/사/오/미\n07~15", "진시/07~09)\n사시/09~11\n오시/11~13\n미시/13~15");
-			case BerserkSystemManager.ZodiacSign.PIG:			
-			case BerserkSystemManager.ZodiacSign.DOG:				
-			case BerserkSystemManager.ZodiacSign.CHICKEN:
 			case BerserkSystemManager.ZodiacSign.MONKEY:
-				return ("신/유/술/해\n15~11", "신시/15~17\n유시/17~19\n술시/19~21\n해시/21~23");
+			case BerserkSystemManager.ZodiacSign.CHICKEN:
+			case BerserkSystemManager.ZodiacSign.DOG:
+			case BerserkSystemManager.ZodiacSign.PIG:						
+				return ("신/유/술/해\n15~23", "신시/15~17\n유시/17~19\n술시/19~21\n해시/21~23");
 			default:
 				return ("-", "-");
 		}
