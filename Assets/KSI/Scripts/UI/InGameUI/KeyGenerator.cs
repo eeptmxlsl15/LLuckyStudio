@@ -8,10 +8,10 @@ using TMPro;
 // 입장 재화
 public class KeyGenerator : MonoBehaviour
 {
-	[Header("Bell")]
-	[SerializeField] private int maxBells;
-	[SerializeField] private int minBells;
-	[SerializeField] private double generatorTimer = 300f;
+	[Header("Key")]
+	[SerializeField] private int maxBells = 30;
+	[SerializeField] private int minBells = 5;
+	[SerializeField] private double generatorTimer = 300;
 	[SerializeField] private double chargingTime;
 
 	[Space]
@@ -26,8 +26,8 @@ public class KeyGenerator : MonoBehaviour
 	private void Start()
 	{
 		timerText.gameObject.SetActive(false);
-		generatorTimer = 0;
 		curBells = maxBells;
+		generatorTimer = 0;	
 		lastTime = GetUnixTimestamp();
 		StartCoroutine(UpdateUIRoutine());
 

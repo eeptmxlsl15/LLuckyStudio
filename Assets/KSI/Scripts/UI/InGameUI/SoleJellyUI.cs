@@ -14,6 +14,13 @@ public class JellyPawUI : MonoBehaviour
 		//	Debug.LogError("jellyPawText 할당되지 않음"); 
 		//	return;
 		//}
+
+		if (GameManager.Score == null)
+		{
+			Debug.LogError("GameManager.Score가 초기화되지 않았습니다.");
+			return;
+		}
+
 		GameManager.Score.OnJellyPawChanged += UpdateScoreText;
 	}
 
@@ -29,6 +36,6 @@ public class JellyPawUI : MonoBehaviour
 
 	private void UpdateScoreText(int value)
 	{
-		jellyPawText.text = "Jelly Paw : " + value.ToString();
+		jellyPawText.text = value.ToString();
 	}
 }

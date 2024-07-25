@@ -22,14 +22,19 @@ public class GameModeSystem : MonoBehaviour
 	public GameMode curGameMode;
 
 	private BerserkSystemManager berserkSystem;	
-	private LobbySceneUI lobbySceneUI;
-	private KSITestSceneUI testSceneUI;
+	private InfiniteRandomDebuffUI infiniteRandomDebuffUI;
+	private BossDebuffUI bossDebuffUI;
 
 	private void Start()
 	{
 		berserkSystem = GameManager.BerserkSystem;
-		lobbySceneUI = FindAnyObjectByType<LobbySceneUI>();
-		testSceneUI = FindAnyObjectByType<KSITestSceneUI>();
+		infiniteRandomDebuffUI = FindAnyObjectByType<InfiniteRandomDebuffUI>();
+		bossDebuffUI = FindAnyObjectByType<BossDebuffUI>();
+
+		if (curGameMode == GameMode.BOSS && GameManager.Instance.BossDebuff == default)
+		{
+			UpdateBossDebuff();
+		}
 
 		if (curGameMode == GameMode.INFINITE)
 		{
@@ -39,6 +44,7 @@ public class GameModeSystem : MonoBehaviour
 			}
 			UpdateInfiniteRandomDebuff();
 		}
+		
 
 		ApplyDebuff(curGameMode);
 	}
@@ -74,6 +80,24 @@ public class GameModeSystem : MonoBehaviour
 		Debug.Log($"보스 스테이지 : {curZodiacSign}이 적용됨");
 
 		berserkSystem.ApplyDebuff(curZodiacSign);
+		GameManager.Instance.BossDebuff = curZodiacSign;
+		UpdateBossDebuff();
+	}
+
+	private void UpdateBossDebuff()
+	{
+		if (bossDebuffUI != null)
+		{
+			bossDebuffUI.DisplayBossDebuff(GameManager.Instance.BossDebuff);
+		}
+	}
+
+	private void BossGameEnd()
+	{
+		if (curGameMode == GameMode.INFINITE)
+		{
+			GameManager.Instance.ResetBossDebuff();
+		}
 	}
 
 	private void ApplyBerserkBossDebuff()
@@ -108,14 +132,9 @@ public class GameModeSystem : MonoBehaviour
 
 	private void UpdateInfiniteRandomDebuff()
 	{
-		if (lobbySceneUI != null )
+		if (infiniteRandomDebuffUI != null )
 		{
-			lobbySceneUI.DisplayInfiniteRandomDebuff(GameManager.Instance.InfiniteDebuff1, GameManager.Instance.InfiniteDebuff2);
-		}
-
-		if (testSceneUI != null)
-		{
-			testSceneUI.DisplayInfiniteRandomDebuff(GameManager.Instance.InfiniteDebuff1, GameManager.Instance.InfiniteDebuff2);
+			infiniteRandomDebuffUI.DisplayInfiniteRandomDebuff(GameManager.Instance.InfiniteDebuff1, GameManager.Instance.InfiniteDebuff2);
 		}
 	}
 

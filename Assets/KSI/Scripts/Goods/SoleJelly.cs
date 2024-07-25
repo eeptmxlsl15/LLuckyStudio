@@ -25,9 +25,17 @@ public class jellyPaw : Goods
 		Debug.Log("발바닥 젤리 점수 : " + scoreValue);
 		scoreAdapter.AddScore(scoreValue);
 
+		
+
 		QuestManager questManager = FindObjectOfType<QuestManager>();
 		if (questManager != null)
 		{
+			if (questName == QuestName.Quest_INFINITE)
+			{
+				Debug.Log("무한모드에서는 퀘스트를 업데이트하지 않습니다.");
+				return;
+			}
+
 			Debug.Log($"퀘스트 진행 상황 업데이트 호출 / 퀘스트 이름: {questName}, 전달 점수 : {scoreValue}");
 			questManager.UpdateQuestProgress(questName, scoreValue);
 		}
