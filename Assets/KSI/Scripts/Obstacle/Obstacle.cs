@@ -13,10 +13,10 @@ public abstract class Obstacle : MonoBehaviour, IDamagable
 
 	private void Update()
 	{
-		if (GameManager.Instance != null && GameManager.Instance.IsGameStarted)
-		{
+		//if (GameManager.Instance != null && GameManager.Instance.IsGameStarted)
+		//{
 			Move();
-		}
+		//}
 	}
 
 	protected virtual void Move()
