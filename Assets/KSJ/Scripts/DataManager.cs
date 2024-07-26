@@ -76,7 +76,8 @@ public class DataManager : MonoBehaviour
 
 	public int advResetNum;
 	public int advResetMaxNum;
-	
+
+	public bool isDead = false;
 	private void Awake()
     {
         // 싱글톤 패턴 구현

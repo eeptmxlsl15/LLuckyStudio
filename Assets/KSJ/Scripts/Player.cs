@@ -97,6 +97,7 @@ public class Player : MonoBehaviour , IDamagable
 
 	void Start()
 	{
+		
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
 		anim.runtimeAnimatorController = DataManager.Instance.playerSkin[DataManager.Instance.skinID];
@@ -146,9 +147,8 @@ public class Player : MonoBehaviour , IDamagable
 
 	void Update()
 	{
-		if (health <= 0 && !isDead)
+		if (health <= 0)
 		{
-			isDead = true;
 			Die();
 		}
 
@@ -316,6 +316,8 @@ public class Player : MonoBehaviour , IDamagable
 	//시작시 DataManager의 스탯을 가져옴
 	public void SetStat()
 	{
+		
+		isDead = DataManager.Instance.isDead;
 		health = DataManager.Instance.health;
 		maxHealth = DataManager.Instance.maxHealth+DataManager.Instance.redMarbleValue[DataManager.Instance.redMarbleLv];
 		speed = DataManager.Instance.speed;
@@ -426,11 +428,12 @@ public class Player : MonoBehaviour , IDamagable
 	}
 	public void Die()
 	{
-		anim.SetTrigger("isDead");
+		if (isDead) return;
 		isDead = true;
+		anim.SetTrigger("isDead");
 		Debug.Log("플레이어가 죽었습니다.");
+		
 		GameManager.Instance.EndGame();
-		GameManager.Instance.StopGame();
 	}
 
 	// 츄르 : 체력 10회복
