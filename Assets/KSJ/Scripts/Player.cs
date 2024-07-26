@@ -146,11 +146,10 @@ public class Player : MonoBehaviour , IDamagable
 
 	void Update()
 	{
-		
-		if (isDead)
+		if (health <= 0 && !isDead)
 		{
+			isDead = true;
 			Die();
-			//TODO : 게임 멈춤
 		}
 
 		/*
@@ -160,9 +159,10 @@ public class Player : MonoBehaviour , IDamagable
 		else
 			transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
 		*/
-		
+
 		if (isSlide)
 		{
+			
 			rb.AddForce(Vector2.down, (ForceMode2D)ForceMode.Acceleration);
 		}
 		
@@ -429,6 +429,8 @@ public class Player : MonoBehaviour , IDamagable
 		anim.SetTrigger("isDead");
 		isDead = true;
 		Debug.Log("플레이어가 죽었습니다.");
+		GameManager.Instance.EndGame();
+		GameManager.Instance.StopGame();
 	}
 
 	// 츄르 : 체력 10회복
@@ -549,7 +551,7 @@ public class Player : MonoBehaviour , IDamagable
 		if (other.gameObject.CompareTag("FallZone"))
 		{
 			// TODO : 낙사 확인
-			Die();
+			isDead = true;
 		}
 	}
 
