@@ -96,14 +96,14 @@ public class ShopItem : MonoBehaviour
 				if (DataManager.Instance.sushi - sushiCost < 0)
 					break;
 				DataManager.Instance.sushi -= sushiCost;
-				DataManager.Instance.silverMarble += quantity;
+				DataManager.Instance.silverKey += quantity;
 				gameObject.SetActive(false);
 				break;
 			case 1: // 금방울
 				if (DataManager.Instance.sushi - sushiCost < 0)
 					break;
 				DataManager.Instance.sushi -= sushiCost;
-				DataManager.Instance.goldMarble += quantity;
+				DataManager.Instance.goldKey += quantity;
 				gameObject.SetActive(false);
 				break;
 			case 2: // 부활권
@@ -137,11 +137,11 @@ public class ShopItem : MonoBehaviour
 
 
 			case 100: // 통조림으로 은열쇠 구입
-				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.silverMarble == DataManager.Instance.maxSilverMarvle)
+				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.silverKey == DataManager.Instance.maxSilverKey)
 					//못 사는 사운드
 					break;
 				DataManager.Instance.cannedFood -= cannedFoodCost;
-				DataManager.Instance.silverMarble += quantity;
+				DataManager.Instance.silverKey += quantity;
 				break;
 			default:
 

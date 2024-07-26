@@ -44,9 +44,18 @@ public class DataManager : MonoBehaviour
 	public int brokenGreen;//점프횟수
 	public int sushi;//인게임 재화
 
-	public int goldMarble;
-	public int silverMarble;
-	public int maxSilverMarvle;
+
+	/// <summary>
+	/// silverKey : 현재 은열쇠 수
+	/// maxSilverKey : 최대 보유 가능한 은열쇠 수 
+	/// goldKey : 현재 금열쇠 수
+	/// goldKey : 최대 보유 가능한 금열쇠 수
+	/// </summary>
+	public int silverKey;
+	public int maxSilverKey;
+	public int goldKey;
+	public int maxGoldKey;
+	
 	public int resurrection;
 	
 	public int money;//유료 재화 

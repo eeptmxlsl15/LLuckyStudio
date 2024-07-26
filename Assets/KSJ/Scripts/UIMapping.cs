@@ -13,7 +13,7 @@ public class UIMapping : MonoBehaviour
 	[Header("# UI Mapping")]
 	// 인게임 재화
 	public TMP_Text sushiText;
-	public TMP_Text silverMarbleText;
+	public TMP_Text silverKeyText;
 	public TMP_Text cannedFoodText;
 	// 스탯창에 표시되는 텍스트
 	public TMP_Text maxHealthText;
@@ -68,8 +68,8 @@ public class UIMapping : MonoBehaviour
 		// 최대치 관리
 		if (dataManager.sushi > 999999998)
 			dataManager.sushi = 999999999;
-		if (dataManager.silverMarble > 30)
-			dataManager.silverMarble = 30;
+		if (dataManager.silverKey > 30)
+			dataManager.silverKey = 30;
 		UpdateCatsDesire();
 		UpdateCharacterUI();
 		UpdateLobbyUI();
@@ -196,7 +196,7 @@ public class UIMapping : MonoBehaviour
 	public void UpdateLobbyUI()
 	{
 		sushiText.text = "" + dataManager.sushi;
-		silverMarbleText.text = "" + dataManager.silverMarble + "/30";
+		silverKeyText.text = "" + dataManager.silverKey + "/" + dataManager.maxSilverKey;
 
 		cannedFoodText.text = "" + dataManager.cannedFood;
 	}
