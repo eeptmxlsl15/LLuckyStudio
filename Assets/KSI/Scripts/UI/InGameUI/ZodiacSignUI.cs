@@ -47,7 +47,7 @@ public class ZodiacSignUI : MonoBehaviour
 		{
 			UpdateZodiacSignUI();
 
-			yield return new WaitForSeconds(8 * 3600);
+			yield return new WaitForSeconds(1);
 		}
 	}
 
