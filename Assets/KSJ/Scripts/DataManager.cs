@@ -59,7 +59,13 @@ public class DataManager : MonoBehaviour
 	public int resurrection;
 	
 	public int money;//유료 재화 
-	
+	[Header("# Effect & Wallpaper")]
+	//이펙트
+	public int effectID;
+
+	//배경
+	public int wallpaper;
+
 
 	public int[] nextExp = { 10, 20	, 30, 40, 50, 60, 70, 80 , 90,100,110};
 	[Header("# Cat's Desire Level")]

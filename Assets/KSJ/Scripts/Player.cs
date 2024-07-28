@@ -23,6 +23,9 @@ public class Player : MonoBehaviour , IDamagable
 	public GameObject slideButton;
 	public GameObject glideButton;
 	private Color originalGlideButtonColor;
+
+	public EffectPoolManager effectPool;//이펙트 풀 매니져
+
 	[Header("# Player Stat")]
 	public float health;
 	public float maxHealth = 100f;
@@ -74,7 +77,12 @@ public class Player : MonoBehaviour , IDamagable
 	public bool isTigerDebuff = false;
 	public bool isOxDebuff = false;
 	public bool isRatDebuff = false;
+
+	[Header("# Effect")]
+	public int effectID;
 	
+
+
 	static class Constants
 	{
 		public const int Pig = 0;
@@ -108,6 +116,8 @@ public class Player : MonoBehaviour , IDamagable
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		originalColor = spriteRenderer.color;
 		heatColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f);//히트 시 적용 되는 색
+		
+		
 		// 점프 트리거
 		EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
 		AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, OnJumpButtonDown);
@@ -252,8 +262,31 @@ public class Player : MonoBehaviour , IDamagable
 			jumpCount++;
 			// TODO : 사운드 추가
 
-			
+			Effect();
 		}
+	}
+
+	public void Effect()
+	{
+		Vector3 offset = new Vector3(-0.3f,-0.15f,0);
+		Transform effect = effectPool.Get(effectID).transform;
+		effect.position = transform.position+ offset;
+		StartCoroutine(DestroyEffect(effect));
+	}
+
+	IEnumerator DestroyEffect(Transform effect)
+	{
+		yield return null;
+
+		float destroyTime = 1f;
+		float timer = 0f;
+		while (timer < destroyTime)
+		{
+			
+			timer += Time.deltaTime;
+			yield return null;
+		}
+		effect.gameObject.SetActive(false);
 	}
 
 	public void Glide(bool _isGlide)
@@ -318,6 +351,9 @@ public class Player : MonoBehaviour , IDamagable
 	{
 		
 		isDead = DataManager.Instance.isDead;
+		//이펙트 
+		effectID = DataManager.Instance.effectID;
+
 		health = DataManager.Instance.health;
 		maxHealth = DataManager.Instance.maxHealth+DataManager.Instance.redMarbleValue[DataManager.Instance.redMarbleLv];
 		speed = DataManager.Instance.speed;
