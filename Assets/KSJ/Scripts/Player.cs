@@ -172,8 +172,8 @@ public class Player : MonoBehaviour , IDamagable
 
 		if (isSlide)
 		{
-			
-			rb.AddForce(Vector2.down, (ForceMode2D)ForceMode.Acceleration);
+
+			rb.AddForce(Vector2.down * 2f, (ForceMode2D)ForceMode.Acceleration);
 		}
 		
 
@@ -293,7 +293,7 @@ public class Player : MonoBehaviour , IDamagable
 	{
 		
 		isGlide = _isGlide;
-		if (!_isGlide)
+		if (!_isGlide && !isGrounded)
 		{
 			canGlide = false;
 			glideButtonHoldTimer = 0f;
