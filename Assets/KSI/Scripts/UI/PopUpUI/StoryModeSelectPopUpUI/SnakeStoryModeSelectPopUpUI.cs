@@ -10,7 +10,7 @@ public class SnakeStoryModeSelectPopUpUI : PopUpUI
 		base.Awake();
 
 		buttons["SnakeSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
-		buttons["SnakeBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/PigBossPopUpUI"); });
+		buttons["SnakeBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/SnakeBossPopUpUI"); });
 		buttons["SnakeStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 

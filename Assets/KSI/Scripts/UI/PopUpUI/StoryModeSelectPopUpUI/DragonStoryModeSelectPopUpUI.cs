@@ -10,7 +10,7 @@ public class DragonStoryModeSelectPopUpUI : PopUpUI
 		base.Awake();
 
 		buttons["DragonSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
-		buttons["DragonBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/PigBossPopUpUI"); });
+		buttons["DragonBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/DragonBossPopUpUI"); });
 		buttons["DragonStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 

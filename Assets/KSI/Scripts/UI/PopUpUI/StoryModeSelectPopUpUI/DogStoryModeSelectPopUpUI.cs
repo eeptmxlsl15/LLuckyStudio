@@ -10,7 +10,7 @@ public class DogStoryModeSelectPopUpUI : PopUpUI
 		base.Awake();
 
 		buttons["DogSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
-		buttons["DogBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/PigBossPopUpUI"); });
+		buttons["DogBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/DogBossPopUpUI"); });
 		buttons["DogStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 

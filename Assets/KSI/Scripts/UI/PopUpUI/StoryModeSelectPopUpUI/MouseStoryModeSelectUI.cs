@@ -10,7 +10,7 @@ public class MouseStoryModeSelectUI : PopUpUI
 		base.Awake();
 
 		buttons["MouseSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
-		buttons["MouseBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/PigBossPopUpUI"); });
+		buttons["MouseBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/MouseBossPopUpUI"); });
 		buttons["MouseStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 

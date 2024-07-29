@@ -10,7 +10,7 @@ public class ChickenStoryModeSelectPopUpUI : PopUpUI
 		base.Awake();
 
 		buttons["ChickenSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
-		buttons["ChickenBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/PigBossPopUpUI"); });
+		buttons["ChickenBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/ChickenBossPopUpUI"); });
 		buttons["ChickenStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 

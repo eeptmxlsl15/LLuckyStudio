@@ -10,7 +10,7 @@ public class SheepStoryModeSelectPopUpUI : PopUpUI
 		base.Awake();
 
 		buttons["SheepSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
-		buttons["SheepBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/PigBossPopUpUI"); });
+		buttons["SheepBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/SheepBossPopUpUI"); });
 		buttons["SheepStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 

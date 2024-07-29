@@ -10,7 +10,7 @@ public class RabbitStoryModeSelectPopUpUI : PopUpUI
 		base.Awake();
 
 		buttons["RabbitSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
-		buttons["RabbitBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/PigBossPopUpUI"); });
+		buttons["RabbitBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/RabbitBossPopUpUI"); });
 		buttons["RabbitStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 

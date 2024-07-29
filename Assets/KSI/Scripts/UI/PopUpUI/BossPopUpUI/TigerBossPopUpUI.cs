@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class PigBossPopUpUI : PopUpUI
+public class TigerBossPopUpUI : PopUpUI
 {
 	protected override void Awake()
 	{
 		base.Awake();
 
-		buttons["PigBossEntranceButton"].onClick.AddListener(() => { LoadBOSSScene(); });
-		buttons["PigBossPopUpBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["TigergBossEntranceButton"].onClick.AddListener(() => { LoadBOSScene(); });
+		buttons["TigerBossPopUpBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
-	public void LoadBOSSScene()
+	public void LoadBOSScene()
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();

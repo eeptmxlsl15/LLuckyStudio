@@ -10,7 +10,7 @@ public class TigerStoryModeSelectUI : PopUpUI
 		base.Awake();
 
 		buttons["TigerSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
-		buttons["TigerBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/PigBossPopUpUI"); });
+		buttons["TigerBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/TigerBossPopUpUI"); });
 		buttons["TigerStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
