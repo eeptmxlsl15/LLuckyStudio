@@ -8,6 +8,9 @@ public class ZodiacSignUI : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI zodiacSignText;
 	[SerializeField] private TextMeshProUGUI zodiacTimeText;
 
+	private const float updateCycle = 1f;
+	private float lastUpdate = 0f;
+
 	private void Start()
 	{
 		if (zodiacSignText == null)
@@ -28,9 +31,20 @@ public class ZodiacSignUI : MonoBehaviour
 			return;
 		}
 
-		UpdateZodiacSignUI();
+		//UpdateZodiacSignUI();
 
-		StartCoroutine(UpdateZodiacSignRoutine());
+		//StartCoroutine(UpdateZodiacSignRoutine());
+	}
+
+	private void Update()
+	{
+		lastUpdate += Time.deltaTime;
+
+		if (lastUpdate >= updateCycle)
+		{
+			UpdateZodiacSignUI();
+			lastUpdate = 0f;
+		}
 	}
 
 	private void UpdateZodiacSignUI()
@@ -41,15 +55,15 @@ public class ZodiacSignUI : MonoBehaviour
 		zodiacTimeText.text = timeText;
 	}
 
-	private IEnumerator UpdateZodiacSignRoutine()
-	{
-		while (true)
-		{
-			UpdateZodiacSignUI();
+	//private IEnumerator UpdateZodiacSignRoutine()
+	//{
+	//	while (true)
+	//	{
+	//		UpdateZodiacSignUI();
 
-			yield return new WaitForSeconds(1);
-		}
-	}
+	//		yield return new WaitForSeconds(1);
+	//	}
+	//}
 
 	private (string, string) GetDisplayTextForZodiacSign(BerserkSystemManager.ZodiacSign zodiacSign)
 	{
@@ -64,7 +78,7 @@ public class ZodiacSignUI : MonoBehaviour
 			case BerserkSystemManager.ZodiacSign.SNAKE:
 			case BerserkSystemManager.ZodiacSign.HORSE:
 			case BerserkSystemManager.ZodiacSign.SHEEP:				
-				return ("진/사/오/미\n07~15", "진시/07~09)\n사시/09~11\n오시/11~13\n미시/13~15");
+				return ("진/사/오/미\n07~15", "진시/07~09\n사시/09~11\n오시/11~13\n미시/13~15");
 			case BerserkSystemManager.ZodiacSign.MONKEY:
 			case BerserkSystemManager.ZodiacSign.CHICKEN:
 			case BerserkSystemManager.ZodiacSign.DOG:
