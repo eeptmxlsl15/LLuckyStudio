@@ -17,7 +17,7 @@ public class MonkeyBossPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("BOSSScene");
+		UnitySceneManager.LoadScene("BOSSSceneMonkey");
 		Time.timeScale = 1f;
 	}
 }

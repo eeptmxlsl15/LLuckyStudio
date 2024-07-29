@@ -17,7 +17,7 @@ public class ChickenBossPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("BOSSScene");
+		UnitySceneManager.LoadScene("BOSSSceneChicken");
 		Time.timeScale = 1f;
 	}
 }

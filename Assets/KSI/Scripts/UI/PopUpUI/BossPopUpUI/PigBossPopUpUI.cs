@@ -17,7 +17,7 @@ public class PigBossPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("BOSSScene");
+		UnitySceneManager.LoadScene("BOSSScenePig");
 		Time.timeScale = 1f;
 	}
 }

@@ -17,7 +17,7 @@ public class HorseBossPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("BOSSScene");
+		UnitySceneManager.LoadScene("BOSSSceneHorse");
 		Time.timeScale = 1f;
 	}
 }

@@ -17,7 +17,7 @@ public class RabbitBossPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("BOSSScene");
+		UnitySceneManager.LoadScene("BOSSSceneRabbit");
 		Time.timeScale = 1f;
 	}
 }
