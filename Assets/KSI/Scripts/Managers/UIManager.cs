@@ -6,11 +6,12 @@ using UnityEngine.EventSystems;
 public class UIManager : MonoBehaviour
 {
 	private EventSystem eventSystem;
+	private Stack<PopUpUI> popUpStack;
+
 	private Canvas popUpCanvas;
 	private Canvas windowCanvas;
 	private Canvas inGameCanvas;
-	private Stack<PopUpUI> popUpStack;
-
+	
 	private void Awake()
 	{
 		eventSystem = GameManager.Resource.Instantiate<EventSystem>("UI/EventSystem");
@@ -19,26 +20,29 @@ public class UIManager : MonoBehaviour
 		popUpCanvas = GameManager.Resource.Instantiate<Canvas>("UI/Canvas");
 		popUpCanvas.gameObject.name = "PopUpCanvas";
 		popUpCanvas.sortingOrder = 100;
+		popUpCanvas.transform.SetParent(transform);
 		popUpStack = new Stack<PopUpUI>();
 
 		windowCanvas = GameManager.Resource.Instantiate<Canvas>("UI/Canvas");
 		windowCanvas.gameObject.name = "WindowCanvas";
 		windowCanvas.sortingOrder = 10;
+		windowCanvas.transform.SetParent(transform);
 
 		//gameSceneCanvas.sortingOrder = 1;
 
 		inGameCanvas = GameManager.Resource.Instantiate<Canvas>("UI/Canvas");
 		inGameCanvas.gameObject.name = "InGameCanvas";
 		inGameCanvas.sortingOrder = 0;
+		 inGameCanvas.transform.SetParent(transform);
 	}
 
-	public void UIRestart()
-	{
-		Destroy(eventSystem.gameObject);
-		Awake();
-	}
+	//public void UIRestart()
+	//{
+	//	Destroy(eventSystem.gameObject);
+	//	Awake();
+	//}
 
-	public void ShowPopUpUI(PopUpUI popUpUI)
+	public T ShowPopUpUI<T>(T popUpUI) where T : PopUpUI
 	{
 		if (popUpStack.Count > 0)
 		{
@@ -46,24 +50,25 @@ public class UIManager : MonoBehaviour
 			prevUI.gameObject.SetActive(false);
 		}
 
-		PopUpUI ui = GameManager.Pool.GetUI(popUpUI);
+		T ui = GameManager.Pool.GetUI(popUpUI);
 		ui.transform.SetParent(popUpCanvas.transform, false);
 
 		popUpStack.Push(ui);
 
 		Time.timeScale = 0;
+
+		return ui;
 	}
 
-	public void ShowPopUpUI(string path)
+	public T ShowPopUpUI<T>(string path) where T : PopUpUI
 	{
-		PopUpUI ui = GameManager.Resource.Load<PopUpUI>(path);
-		ShowPopUpUI(ui);
+		T ui = GameManager.Resource.Load<T>(path);
+		return ShowPopUpUI(ui);
 	}
 
 	public void ClosePopUpUI()
 	{
 		PopUpUI ui = popUpStack.Pop();
-
 		GameManager.Pool.ReleaseUI(ui.gameObject);
 
 		if (popUpStack.Count > 0)

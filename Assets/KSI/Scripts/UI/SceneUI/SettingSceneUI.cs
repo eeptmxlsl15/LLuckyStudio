@@ -13,6 +13,6 @@ public class SettingSceneUI : SceneUI
 
 	public void OpenPausePopUpUI()
 	{
-		GameManager.UI.ShowPopUpUI("UI/SettingPopUpUI");
+		GameManager.UI.ShowPopUpUI<SettingPopUpUI>("UI/SettingPopUpUI");
 	}
 }

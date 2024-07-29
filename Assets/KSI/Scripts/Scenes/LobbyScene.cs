@@ -6,13 +6,11 @@ public class LobbyScene : MonoBehaviour
 {
 	[Header("UI")]
 	[SerializeField] private GameObject storyModeEntranceUI;
-	[SerializeField] private GameObject storyModeSelectUI;
 	[SerializeField] private GameObject InfiniteModeEntranceUI;
 
 	private void Start()
     {
 		storyModeEntranceUI.SetActive(false);
-		storyModeSelectUI.SetActive(false);
 		InfiniteModeEntranceUI.SetActive(false);
 	}
 }
