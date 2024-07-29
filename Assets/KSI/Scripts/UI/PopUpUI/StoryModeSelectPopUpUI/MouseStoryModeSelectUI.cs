@@ -18,7 +18,7 @@ public class MouseStoryModeSelectUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("SUBScene");
+		UnitySceneManager.LoadScene("SUBSceneMouse");
 		Time.timeScale = 1f;	
 	}
 }

@@ -18,7 +18,7 @@ public class SheepStoryModeSelectPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("SUBScene");
+		UnitySceneManager.LoadScene("SUBSceneSheep");
 		Time.timeScale = 1f;	
 	}
 }

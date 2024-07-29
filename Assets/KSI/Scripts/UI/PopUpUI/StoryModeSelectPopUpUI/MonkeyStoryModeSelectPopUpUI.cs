@@ -18,7 +18,7 @@ public class MonkeyStoryModeSelectPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("SUBScene");
+		UnitySceneManager.LoadScene("SUBSceneMonkey");
 		Time.timeScale = 1f;	
 	}
 }

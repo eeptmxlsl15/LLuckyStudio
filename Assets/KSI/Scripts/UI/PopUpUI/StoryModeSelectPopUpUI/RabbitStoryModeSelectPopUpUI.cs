@@ -18,7 +18,7 @@ public class RabbitStoryModeSelectPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("SUBScene");
+		UnitySceneManager.LoadScene("SUBSceneRabbit");
 		Time.timeScale = 1f;	
 	}
 }

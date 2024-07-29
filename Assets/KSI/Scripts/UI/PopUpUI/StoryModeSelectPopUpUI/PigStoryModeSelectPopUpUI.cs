@@ -18,7 +18,7 @@ public class PigStoryModeSelectPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("SUBScene");
+		UnitySceneManager.LoadScene("SUBScenePig");
 		Time.timeScale = 1f;	
 	}
 }

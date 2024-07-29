@@ -18,7 +18,7 @@ public class SnakeStoryModeSelectPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
-		UnitySceneManager.LoadScene("SUBScene");
+		UnitySceneManager.LoadScene("SUBSceneSnake");
 		Time.timeScale = 1f;	
 	}
 }
