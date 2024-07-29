@@ -10,18 +10,15 @@ public class PigStoryModeSelectPopUpUI : PopUpUI
 		base.Awake();
 
 		buttons["PigSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
-		buttons["PigBOSSButton"].onClick.AddListener(() => { OpenPigBossPopUpUI();  });
+		buttons["PigBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/PigBossPopUpUI"); });
+		buttons["PigStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
 	public void LoadSUBScene()
 	{
 		GameManager.UI.ClosePopUpUI();
+		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("SUBScene");
 		Time.timeScale = 1f;	
-	}
-
-	public void OpenPigBossPopUpUI()
-	{
-		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/PigBossPopUpUI");
 	}
 }
