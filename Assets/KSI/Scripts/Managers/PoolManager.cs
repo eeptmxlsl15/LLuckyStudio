@@ -20,7 +20,9 @@ public class PoolManager : MonoBehaviour
 		poolDic = new Dictionary<string, ObjectPool<GameObject>>();
 		poolContainer = new Dictionary<string, Transform>();
 		poolRoot = new GameObject("PoolRoot").transform;
+		poolRoot.SetParent(transform);
 		canvasRoot = GameManager.Resource.Instantiate<Canvas>("UI/Canvas");
+		canvasRoot.transform.SetParent(transform);
 	}
 
 	public T Get<T>(T original, Vector3 position, Quaternion rotation, Transform parent) where T : Object

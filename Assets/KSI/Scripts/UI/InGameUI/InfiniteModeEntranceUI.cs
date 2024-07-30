@@ -5,8 +5,6 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class InfiniteModeEntranceUI : MonoBehaviour
 {
-	public string gameModeSceneToLoad;
-
 	private bool isCloseButtonPressed = false;
 
 	public void LoadGameModeScene()
@@ -22,7 +20,9 @@ public class InfiniteModeEntranceUI : MonoBehaviour
 
 		if (!isCloseButtonPressed)
 		{
-			UnitySceneManager.LoadScene(gameModeSceneToLoad);
+			GameManager.UI.ClosePopUpUI();
+			GameManager.UI.ClearPopUpUI();
+			UnitySceneManager.LoadScene("INFINITEScene");
 		}
 	}
 
