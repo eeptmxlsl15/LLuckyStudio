@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("게임 종료");
 		OnGameEndChanged?.Invoke();
+		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/DeathPopUpUI");
 	}
 
 	public void ResetBossDebuff()

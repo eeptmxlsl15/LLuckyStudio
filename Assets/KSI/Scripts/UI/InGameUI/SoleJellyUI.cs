@@ -6,6 +6,7 @@ using UnityEngine;
 public class JellyPawUI : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI jellyPawText;
+	[SerializeField] private TextMeshProUGUI jellyPawCountText;
 
 	private void OnEnable()
 	{
@@ -22,6 +23,7 @@ public class JellyPawUI : MonoBehaviour
 		}
 
 		GameManager.Score.OnJellyPawChanged += UpdateScoreText;
+		GameManager.Score.OnJellyPawChanged += UpdateCountText;
 	}
 
 	private void OnDisable()
@@ -37,5 +39,10 @@ public class JellyPawUI : MonoBehaviour
 	private void UpdateScoreText(int value)
 	{
 		jellyPawText.text = value.ToString();
+	}
+
+	private void UpdateCountText(int count)
+	{
+		jellyPawCountText.text = (count/100).ToString();
 	}
 }

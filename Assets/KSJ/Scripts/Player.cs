@@ -31,7 +31,6 @@ public class Player : MonoBehaviour , IDamagable
 	public float maxHealth = 100f;
 	public float speed = 10f;
 	public float jumpForce = 10f;
-	public float fallValue = 1f;
 	public int jumpCount = 0;
 	public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
 	public int floorRes = 0; // 발판형 장애물 저항
@@ -170,13 +169,6 @@ public class Player : MonoBehaviour , IDamagable
 		else
 			transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
 		*/
-		
-
-		// 낙하 속도 증가
-		if (rb.velocity.y < 0)
-		{
-			rb.velocity += Vector2.up * Physics2D.gravity.y * fallValue * Time.deltaTime;
-		}
 
 		if (isSlide)
 		{
@@ -267,7 +259,6 @@ public class Player : MonoBehaviour , IDamagable
 			anim.Play("Jump", -1, 0f);
 			
 			rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-			
 			jumpCount++;
 			// TODO : 사운드 추가
 
@@ -363,11 +354,8 @@ public class Player : MonoBehaviour , IDamagable
 		//이펙트 
 		effectID = DataManager.Instance.effectID;
 
-		
 		health = DataManager.Instance.health;
 		maxHealth = DataManager.Instance.maxHealth+DataManager.Instance.redMarbleValue[DataManager.Instance.redMarbleLv];
-		if (DataManager.Instance.skinID == 5)// 해골냥 : 체력 10 증가
-			maxHealth += 10;
 		speed = DataManager.Instance.speed;
 		jumpForce = DataManager.Instance.jumpForce;
 		jumpCount = DataManager.Instance.jumpCount;
@@ -378,11 +366,6 @@ public class Player : MonoBehaviour , IDamagable
 		flyRes = DataManager.Instance.flyRes; // 날아오는 장애물 저항
 		healthRegen = DataManager.Instance.healthRegen;
 		glideTime = DataManager.Instance.glideTime+DataManager.Instance.greenMarbleValue[DataManager.Instance.greenMarbleLv];
-
-		if (DataManager.Instance.skinID == 4)//천사냥 : 활주 시간 2초  증가
-			glideTime += 2f;
-
-
 		if (DataManager.Instance.greenMarbleLv == 10)
 			glideCooldown = DataManager.Instance.glideCooldown - 30;
 		else

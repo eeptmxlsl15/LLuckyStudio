@@ -12,7 +12,6 @@ public class Quest : ScriptableObject
 		Quest_BOSS,
 		Quest_BERSERKBOSS,
 		Quest_INFINITE,
-		//Quest_DAILY
 	}
 	public QuestName curQuestName;
 
@@ -22,7 +21,6 @@ public class Quest : ScriptableObject
 	public bool rewardDesirePiece;
 	public int rewardValue; 
 	public int currentScore;
-	public int fail;
 
 	public void CheckCompleteQuest(int score)
 	{
@@ -36,15 +34,6 @@ public class Quest : ScriptableObject
 		{
 			Debug.Log($"{curQuestName} 완료 못함. 현재 점수 : {score}, 목표 점수: {targetScore}");
 		}
-	}
-
-	public bool CheckFailureCondition(int score)
-	{
-		if (score < fail)
-		{
-			return true;
-		}
-		return false;
 	}
 
 	public int GetReward()

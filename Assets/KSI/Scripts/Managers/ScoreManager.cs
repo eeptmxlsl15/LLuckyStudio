@@ -7,28 +7,22 @@ using UnityEngine.Events;
 public class ScoreManager : MonoBehaviour
 {
 	public int jellyPawText;
-	//public int cannedFoodText;
+	public int jellyPawCountText;
 
 	public UnityAction<int> OnJellyPawChanged;
-	//public UnityAction<int> OnCannedFoodChanged;
+	public UnityAction<int> OnJellyPawCountChanged;
 
-	private void Start()
-	{
-		Debug.Log("ScoreManager initialized with jellyPawScore: " + jellyPawText);
-
-	}
 	public void AddJellyPaw(int score)
 	{
 		jellyPawText += score;
-		Debug.Log("New jellyPawScore: " + jellyPawText);
 		OnJellyPawChanged?.Invoke(jellyPawText);
 	}
 
-	//public void AddCannedFood(int score)
-	//{
-	//	cannedFoodText += score;
-	//	OnCannedFoodChanged?.Invoke(cannedFoodText);
-	//}
+	public void AddJellyPawCount(int count)
+	{
+		jellyPawCountText += count;
+		OnJellyPawCountChanged?.Invoke(jellyPawCountText);
+	}
 
 	public int GetTotalScore()
 	{
@@ -38,5 +32,6 @@ public class ScoreManager : MonoBehaviour
 	public void Reset()
 	{
 		jellyPawText = 0;
+		jellyPawCountText = 0;
 	}
 }
