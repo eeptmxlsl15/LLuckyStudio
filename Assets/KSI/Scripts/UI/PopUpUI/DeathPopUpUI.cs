@@ -4,20 +4,22 @@ using TMPro;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class DeathUI : MonoBehaviour
+public class DeathPopUpUI : PopUpUI
 {
-	[Header("Scene")]
-	[SerializeField] private string gameModeSceneToLoad;
-	[Space]
 	[Header("UI")]
-
-	[SerializeField] private GameObject deathUI;
 	[SerializeField] private TextMeshProUGUI totalScoreText;
 
-	private void Start()
+	protected override void Awake()
+	{
+		base.Awake();
+
+		buttons["DeathUIReplayButton"].onClick.AddListener(() => { RestartButton(); });
+		buttons["DeathUIQuitButton"].onClick.AddListener(() => { QuitButton(); });
+	}
+
+	private void OnEnable()
 	{
 		GameManager.OnGameEndChanged += DisplayDeathUI;
-		deathUI.SetActive(false);
 	}
 
 	private void OnDestroy()
@@ -30,12 +32,12 @@ public class DeathUI : MonoBehaviour
 		Time.timeScale = 0f;
 		int totalScore = GameManager.Score.GetTotalScore();
 		totalScoreText.text = totalScore.ToString();
-		deathUI.SetActive(true);
 	}
 
 	public void RestartButton()
 	{
 		Time.timeScale = 1f;
+		GameManager.UI.ClearPopUpUI();
 		GameManager.Score.Reset();
 		GameManager.Instance.ResetAllDebuffs();
 		UnitySceneManager.LoadScene(UnitySceneManager.GetActiveScene().buildIndex);
@@ -44,8 +46,9 @@ public class DeathUI : MonoBehaviour
 	public void QuitButton()
 	{
 		Time.timeScale = 1f;
+		GameManager.UI.ClearPopUpUI();
 		GameManager.Score.Reset();
 		GameManager.Instance.ResetAllDebuffs();
-		UnitySceneManager.LoadScene(gameModeSceneToLoad);
+		UnitySceneManager.LoadScene("LobbyScene");
 	}
 }

@@ -4,21 +4,24 @@ using TMPro;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class ResultUI : MonoBehaviour
+public class ResultPopUpUI : PopUpUI
 {
-	[Header("Scene")]
-	[SerializeField] private string gameModeSceneToLoad;
-	[Space]
 	[Header("UI")]
-	[SerializeField] private GameObject resultUI;
 	[SerializeField] private TextMeshProUGUI totalScoreText;
 	[SerializeField] private TextMeshProUGUI rewardSushiText;
 	[SerializeField] private TextMeshProUGUI DesirePieceiText;
 
+	protected override void Awake()
+	{
+		base.Awake();
+
+		buttons["ResultUIReplayButton"].onClick.AddListener(() => { RestartButton(); });
+		buttons["ResultUIQuitButton"].onClick.AddListener(() => { QuitButton(); });
+	}
+
 	private void Start()
     {
 		GameManager.OnGameEndChanged += DisplayResultUI;
-		resultUI.SetActive(false);
 	}
 
 	private void OnDestroy()
@@ -31,7 +34,6 @@ public class ResultUI : MonoBehaviour
 		Time.timeScale = 0f;
 		int totalScore = GameManager.Score.GetTotalScore();
 		totalScoreText.text = totalScore.ToString();
-		resultUI.SetActive(true);
 	}
 
 	public void UpdateRewardSushiText(int reward)
@@ -45,7 +47,9 @@ public class ResultUI : MonoBehaviour
 	}
 
 	public void RestartButton()
-	{	
+	{
+		GameManager.UI.ClosePopUpUI();
+		GameManager.UI.ClearPopUpUI();
 		Time.timeScale = 1f;
 		GameManager.Score.Reset();
 		GameManager.Instance.ResetAllDebuffs();
@@ -54,9 +58,11 @@ public class ResultUI : MonoBehaviour
 
 	public void QuitButton()
 	{
+		GameManager.UI.ClosePopUpUI();
+		GameManager.UI.ClearPopUpUI();
 		Time.timeScale = 1f;
 		GameManager.Score.Reset();
 		GameManager.Instance.ResetAllDebuffs();
-		UnitySceneManager.LoadScene(gameModeSceneToLoad);
+		UnitySceneManager.LoadScene("LobbyScene");
 	}
 }

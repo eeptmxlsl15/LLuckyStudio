@@ -10,14 +10,14 @@ public class QuestManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI scoreText;
 
 	public List<Quest> quests;
-	private ResultUI resultUI;
-	private DeathUI deathUI;
+	private ResultPopUpUI resultUI;
+	private DeathPopUpUI deathUI;
 
 	private void Start()
 	{
 		InitializeQuests();
-		resultUI = FindObjectOfType<ResultUI>();
-		deathUI = FindObjectOfType<DeathUI>();
+		resultUI = FindObjectOfType<ResultPopUpUI>();
+		deathUI = FindObjectOfType<DeathPopUpUI>();
 
 		GameManager.OnGameEndChanged += OnGameEnd;
 	}
