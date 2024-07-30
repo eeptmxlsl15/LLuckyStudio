@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BERSERKBOSSScenePig : MonoBehaviour
+public class BERSERKBOSSSceneCow : MonoBehaviour
 {
 	private DebuffSystem debuffSystem;
 
@@ -10,7 +10,7 @@ public class BERSERKBOSSScenePig : MonoBehaviour
     {
 		debuffSystem = FindObjectOfType<DebuffSystem>();
 
-		debuffSystem.OnPigDebuffChanged.Invoke();
-		Debug.Log("OnPigDebuffChanged.");
+		debuffSystem.OnCowDebuffChanged.Invoke();
+		Debug.Log("OnCowDebuffChanged.");
 	}
 }

@@ -42,7 +42,7 @@ public class DebuffSystem : MonoBehaviour
 	{
 		player = FindObjectOfType<Player>();
 		debuffSystem = FindObjectOfType<DebuffSystem>();
-		debuffText = GameObject.Find("DebuffText").GetComponent<TextMeshProUGUI>();
+		debuffText = FindObjectOfType<TextMeshProUGUI>();
 
 		OnPigDebuffChanged += PigDebuff;
 		OnDogDebuffChanged += DogDebuff;
@@ -76,6 +76,10 @@ public class DebuffSystem : MonoBehaviour
 	{
 		FindPlayer();
 		player.RoosterDebuff();
+		UpdateDebuffText("유시 디버프");
+		UpdateDebuffText("유시 디버프");
+		UpdateDebuffText("유시 디버프");
+		UpdateDebuffText("유시 디버프");
 		UpdateDebuffText("유시 디버프");
 	}
 
