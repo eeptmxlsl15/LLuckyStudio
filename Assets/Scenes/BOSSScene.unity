@@ -701,6 +701,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592709826}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1866033203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1866033205}
+  - component: {fileID: 1866033204}
+  m_Layer: 0
+  m_Name: EffectPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1866033204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866033203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc91d84a6f9eb34d988afd96b69af7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 6675302182551818641, guid: 5bc9a0bf98f67d240a936bf476ba2082, type: 3}
+  - {fileID: 5933602760919840800, guid: fcb74f28d107e284e80af037bfec14ca, type: 3}
+--- !u!4 &1866033205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866033203}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.2, y: -3.3835, z: -1.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1913921465
 GameObject:
   m_ObjectHideFlags: 0
@@ -8142,10 +8189,12 @@ MonoBehaviour:
   jumpButton: {fileID: 8872395589655577561}
   slideButton: {fileID: 2409942619053672141}
   glideButton: {fileID: 7530874594622482771}
+  effectPool: {fileID: 1866033204}
   health: 0
   maxHealth: 100
   speed: 10
   jumpForce: 10
+  fallValue: 1
   jumpCount: 0
   maxJumpCount: 2
   floorRes: 0
@@ -8177,6 +8226,7 @@ MonoBehaviour:
   isTigerDebuff: 0
   isOxDebuff: 0
   isRatDebuff: 0
+  effectID: 0
   activeDesires: 010100000000000000000000
 --- !u!4 &769600492996785937
 Transform:
@@ -96938,3 +96988,4 @@ SceneRoots:
   - {fileID: 7782602280906714439}
   - {fileID: 6956610425585705203}
   - {fileID: 3747285950740672225}
+  - {fileID: 1866033205}
