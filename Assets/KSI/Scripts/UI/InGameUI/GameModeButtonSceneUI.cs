@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameModeButtonSceneUI : SceneUI
 {
+	private bool isCloseButtonPressed = false;
+
 	protected override void Awake()
 	{
 		base.Awake();

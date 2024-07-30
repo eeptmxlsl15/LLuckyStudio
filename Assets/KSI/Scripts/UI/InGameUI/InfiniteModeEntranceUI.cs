@@ -17,7 +17,6 @@ public class InfiniteModeEntranceUI : MonoBehaviour
 	public void LoadGameModeScene()
 	{
 		isCloseButtonPressed = false;
-
 		StartCoroutine(LoadGameModeSceneDelayRoutine(3.0f));
 	}
 
@@ -34,6 +33,6 @@ public class InfiniteModeEntranceUI : MonoBehaviour
 	public void CloseButton()
 	{
 		isCloseButtonPressed = true;
-		infiniteModeEntranceUI.SetActive(false);
 	}
+
 }

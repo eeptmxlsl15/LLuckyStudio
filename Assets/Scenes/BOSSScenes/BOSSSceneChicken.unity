@@ -1349,7 +1349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa84a916b2234f47aa291d0305570ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: LobbyScene
   pauseUI: {fileID: 5259004944864913153}
   resumeButton: {fileID: 8927199784334282401}
   quitButton: {fileID: 756152073520919252}
@@ -5374,21 +5373,6 @@ RectTransform:
   m_AnchoredPosition: {x: 55.502, y: -1.914}
   m_SizeDelta: {x: 1933.503, y: 1091.393}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &455461726057239121
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8256864188684309537}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.82}
-  m_LocalScale: {x: 4.236173, y: 4.2749033, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5124966867488718218}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &458360308366867962
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -8142,6 +8126,7 @@ MonoBehaviour:
   jumpButton: {fileID: 8872395589655577561}
   slideButton: {fileID: 2409942619053672141}
   glideButton: {fileID: 7530874594622482771}
+  effectPool: {fileID: 0}
   health: 0
   maxHealth: 100
   speed: 10
@@ -8177,6 +8162,7 @@ MonoBehaviour:
   isTigerDebuff: 0
   isOxDebuff: 0
   isRatDebuff: 0
+  effectID: 0
   activeDesires: 010100000000000000000000
 --- !u!4 &769600492996785937
 Transform:
@@ -22015,22 +22001,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1979297018204512523
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5124966867488718218}
-  m_Layer: 0
-  m_Name: Tumble
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!224 &1983796887597189799
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30399,19 +30369,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6423580904992070515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2821674718014904160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8256864188684309537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5825c3a5eaeb414c8225f7f2e03c775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.5
 --- !u!58 &2824111633204185924
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -54627,22 +54584,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 10
---- !u!4 &5124966867488718218
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979297018204512523}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.0188248, y: -2.13, z: 8.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 455461726057239121}
-  m_Father: {fileID: 5695569847549513602}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5130702232523908526
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -60431,7 +60372,6 @@ Transform:
   - {fileID: 6108106271439398118}
   - {fileID: 1760357031178736625}
   - {fileID: 304214996}
-  - {fileID: 5124966867488718218}
   - {fileID: 1255865854048687005}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -86304,75 +86244,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &8256864188684309537
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 455461726057239121}
-  - component: {fileID: 8256864188684309539}
-  - component: {fileID: 8256864188684309538}
-  - component: {fileID: 2821674718014904160}
-  m_Layer: 0
-  m_Name: BUSH FOREGROUND 1-1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &8256864188684309538
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8256864188684309537}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: f6ec0c33c72574147a6d0636fb40903c, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &8256864188684309539
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8256864188684309537}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &8258089264646860449
 Transform:
   m_ObjectHideFlags: 0
