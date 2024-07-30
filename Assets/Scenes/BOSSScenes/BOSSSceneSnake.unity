@@ -1349,7 +1349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa84a916b2234f47aa291d0305570ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: LobbyScene
   pauseUI: {fileID: 5259004944864913153}
   resumeButton: {fileID: 8927199784334282401}
   quitButton: {fileID: 756152073520919252}
@@ -8142,6 +8141,7 @@ MonoBehaviour:
   jumpButton: {fileID: 8872395589655577561}
   slideButton: {fileID: 2409942619053672141}
   glideButton: {fileID: 7530874594622482771}
+  effectPool: {fileID: 0}
   health: 0
   maxHealth: 100
   speed: 10
@@ -8177,6 +8177,7 @@ MonoBehaviour:
   isTigerDebuff: 0
   isOxDebuff: 0
   isRatDebuff: 0
+  effectID: 0
   activeDesires: 010100000000000000000000
 --- !u!4 &769600492996785937
 Transform:
@@ -64029,7 +64030,7 @@ GameObject:
   - component: {fileID: 5014171300107571074}
   - component: {fileID: 6956610425585705204}
   m_Layer: 0
-  m_Name: BOSSScene
+  m_Name: BOSSSceneSnake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72685,7 +72686,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6006930646973005397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c6b32aa1a14554badc00d60afc8d46, type: 3}
+  m_Script: {fileID: 11500000, guid: eed04e65cf942ad42af7186f383d819c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &6959350168859343953

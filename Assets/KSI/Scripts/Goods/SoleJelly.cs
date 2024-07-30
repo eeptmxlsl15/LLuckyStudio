@@ -25,8 +25,6 @@ public class jellyPaw : Goods
 		Debug.Log("발바닥 젤리 점수 : " + scoreValue);
 		scoreAdapter.AddScore(scoreValue);
 
-		
-
 		QuestManager questManager = FindObjectOfType<QuestManager>();
 		if (questManager != null)
 		{

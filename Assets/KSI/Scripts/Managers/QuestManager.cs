@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
+	[SerializeField] private TextMeshProUGUI scoreText;
+
 	public List<Quest> quests;
 	private ResultUI resultUI;
 	private DeathUI deathUI;
@@ -48,6 +52,11 @@ public class QuestManager : MonoBehaviour
 					Debug.Log($"퀘스트: {quest.curQuestName}, 이전 점수: {previousScore}, 현재 점수: {quest.currentScore}");
 
 					quest.CheckCompleteQuest(quest.currentScore);
+
+					if (scoreText != null)
+					{
+						scoreText.text = $"{quest.currentScore} / {quest.targetScore}";
+					}
 
 					if (quest.isComplete)
 					{
