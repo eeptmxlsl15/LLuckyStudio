@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
-	[SerializeField] private TextMeshProUGUI scoreText;
+	//[SerializeField] private TextMeshProUGUI scoreText;
 
 	public List<Quest> quests;
 	private ResultPopUpUI resultUI;
@@ -53,10 +53,10 @@ public class QuestManager : MonoBehaviour
 
 					quest.CheckCompleteQuest(quest.currentScore);
 
-					if (scoreText != null)
-					{
-						scoreText.text = $"{quest.currentScore} / {quest.targetScore}";
-					}
+					//if (scoreText != null)
+					//{
+					//	scoreText.text = $"{quest.currentScore} / {quest.targetScore}";
+					//}
 
 					if (quest.isComplete)
 					{
