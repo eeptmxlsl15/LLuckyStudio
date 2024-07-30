@@ -15,8 +15,8 @@ public class ResultPopUpUI : PopUpUI
 	{
 		base.Awake();
 
-		buttons["ResultUIReplayButton"].onClick.AddListener(() => { RestartButton(); });
-		buttons["ResultUIQuitButton"].onClick.AddListener(() => { QuitButton(); });
+		buttons["ResultPopUpUIReplayButton"].onClick.AddListener(() => { RestartButton(); });
+		buttons["ResultPopUpUIQuitButton"].onClick.AddListener(() => { QuitButton(); });
 	}
 
 	private void Start()
@@ -38,17 +38,16 @@ public class ResultPopUpUI : PopUpUI
 
 	public void UpdateRewardSushiText(int reward)
 	{
-		rewardSushiText.text = "초밥 : " + reward;
+		rewardSushiText.text = reward.ToString();
 	}
 
 	public void UpdateDesirePieceiText(int rewardValue)
 	{
-		DesirePieceiText.text = "깨진 염원 조각 : " + rewardValue;
+		DesirePieceiText.text = rewardValue.ToString();
 	}
 
 	public void RestartButton()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		Time.timeScale = 1f;
 		GameManager.Score.Reset();
@@ -58,7 +57,6 @@ public class ResultPopUpUI : PopUpUI
 
 	public void QuitButton()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		Time.timeScale = 1f;
 		GameManager.Score.Reset();

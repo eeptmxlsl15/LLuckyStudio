@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,6 +33,8 @@ public class DebuffSystem : MonoBehaviour
 	public UnityAction OnCowDebuffChanged;
 	public UnityAction OnMouseDebuffChanged;
 
+	[SerializeField] private TextMeshProUGUI debuffText;
+
 	private Player player;
 	private DebuffSystem debuffSystem;
 	
@@ -39,6 +42,7 @@ public class DebuffSystem : MonoBehaviour
 	{
 		player = FindObjectOfType<Player>();
 		debuffSystem = FindObjectOfType<DebuffSystem>();
+		debuffText = GameObject.Find("DebuffText").GetComponent<TextMeshProUGUI>();
 
 		OnPigDebuffChanged += PigDebuff;
 		OnDogDebuffChanged += DogDebuff;
@@ -58,18 +62,21 @@ public class DebuffSystem : MonoBehaviour
 	{
 		FindPlayer();
 		player.PigDebuff();
+		UpdateDebuffText("해시 디버프");
 	}
 
 	public void DogDebuff()
 	{
 		FindPlayer();
 		player.DogDebuff();
+		UpdateDebuffText("술시 디버프");
 	}
 
 	public void ChickenDebuff()
 	{
 		FindPlayer();
 		player.RoosterDebuff();
+		UpdateDebuffText("유시 디버프");
 	}
 
 	public void MonkeyDebuff()
@@ -77,36 +84,42 @@ public class DebuffSystem : MonoBehaviour
 
 		FindPlayer();
 		player.MonkeyDebuff();
+		UpdateDebuffText("신시 디버프");
 	}
 
 	public void SheepDebuff()
 	{
 		FindPlayer();
 		player.LamnDebuff();
+		UpdateDebuffText("미시 디버프");
 	}
 
 	public void HorseDebuff()
 	{
 		FindPlayer();
 		player.HorseDebuff();
+		UpdateDebuffText("오시 디버프");
 	}
 
 	public void SnakeDebuff()
 	{
 		FindPlayer();
 		player.SnakeDebuff();
+		UpdateDebuffText("사시 디버프");
 	}
 
 	public void DragonDebuff()
 	{
 		FindPlayer();
 		player.DragonDebuff();
+		UpdateDebuffText("진시 디버프");
 	}
 
 	public void RabbitDebuff()
 	{
 		FindPlayer();
 		player.RabbitDebuff();
+		UpdateDebuffText("묘시 디버프");
 	}
 
 	public void TigerDebuff()
@@ -114,6 +127,7 @@ public class DebuffSystem : MonoBehaviour
 
 		FindPlayer();
 		player.TigerDebuff();
+		UpdateDebuffText("인시 디버프");
 	}
 
 	public void CowDebuff()
@@ -121,6 +135,7 @@ public class DebuffSystem : MonoBehaviour
 
 		FindPlayer();
 		player.OxDebuff();
+		UpdateDebuffText("축시 디버프");
 	}
 
 	public void MouseDebuff()
@@ -128,6 +143,15 @@ public class DebuffSystem : MonoBehaviour
 
 		FindPlayer();
 		player.RatDebuff();
+		UpdateDebuffText("자시 디버프");
+	}
+
+	private void UpdateDebuffText(string message)
+	{
+		if (debuffText != null)
+		{
+			debuffText.text = message;
+		}
 	}
 
 	public void FindPlayer()

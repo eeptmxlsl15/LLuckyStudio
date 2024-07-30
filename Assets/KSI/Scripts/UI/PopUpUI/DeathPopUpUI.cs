@@ -13,8 +13,8 @@ public class DeathPopUpUI : PopUpUI
 	{
 		base.Awake();
 
-		buttons["DeathUIReplayButton"].onClick.AddListener(() => { RestartButton(); });
-		buttons["DeathUIQuitButton"].onClick.AddListener(() => { QuitButton(); });
+		buttons["DeathPopUpUIReplayButton"].onClick.AddListener(() => { RestartButton(); });
+		buttons["DeathPopUpUIQuitButton"].onClick.AddListener(() => { QuitButton(); });
 	}
 
 	private void OnEnable()
