@@ -1431,7 +1431,7 @@ MonoBehaviour:
   brokenGreen: 24
   sushi: 1000
   silverKey: 0
-  maxSilverKey: 30
+  maxSilverKey: 999
   goldKey: 0
   maxGoldKey: 30
   resurrection: 0
@@ -2196,7 +2196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.00000086968, y: 0.000061035156}
+  m_AnchoredPosition: {x: -0.00000086968, y: 0}
   m_SizeDelta: {x: 599.6035, y: 912.2627}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &203926676 stripped
@@ -7086,7 +7086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &644422055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7839,7 +7839,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbcb4a3b6908874f99843da4ef71e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: INFINITEScene
 --- !u!114 &691182188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11938,7 +11937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1023606707
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12501,8 +12500,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 717541420}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.6377114}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17214,7 +17213,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1498233586}
   m_HandleRect: {fileID: 1498233585}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 1.0000001
   m_Size: 0.44581458
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -21865,9 +21864,9 @@ RectTransform:
   m_Father: {fileID: 1371447179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2029638633
 MonoBehaviour:
@@ -22950,7 +22949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!224 &32553463603351794
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23236,7 +23234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!224 &261586100126357476
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23298,7 +23295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!114 &347854489429211096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23466,7 +23462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!1 &606600466307073486
 GameObject:
   m_ObjectHideFlags: 0
@@ -23797,16 +23792,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2315553744302115219}
-        m_TargetAssemblyTypeName: StoryModeSelectUI, Assembly-CSharp
-        m_MethodName: LoadGameModeScene
-        m_Mode: 1
+      - m_Target: {fileID: 619423929}
+        m_TargetAssemblyTypeName: CustomSceneManager, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SUBScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &871607465058104298
@@ -24011,7 +24006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!222 &984328780803302430
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24569,7 +24563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: BOSSScene
 --- !u!222 &1461437610022148580
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25254,7 +25247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!114 &2418091730875901099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25669,7 +25661,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!1 &2805749570607260457
 GameObject:
   m_ObjectHideFlags: 0
@@ -25720,7 +25711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!114 &2853642428633441574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26487,7 +26477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3627476816893839625
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28965,7 +28955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!224 &6419332858770141006
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29631,7 +29620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!224 &7065508553003124537
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29682,7 +29670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!222 &7157389661517649723
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30548,9 +30535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989260dcc858bd848b620cb470175c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storyModeEntranceUI: {fileID: 7499723489979302191}
-  storyModeSelectUI: {fileID: 9216980030621867416}
-  InfiniteModeEntranceUI: {fileID: 2096290700167690569}
 --- !u!1 &8326944982427550955
 GameObject:
   m_ObjectHideFlags: 0
@@ -30876,7 +30860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c8183a5e6d0e46b02d40b63db4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: SUBScene
 --- !u!1 &8722010921740197610
 GameObject:
   m_ObjectHideFlags: 0

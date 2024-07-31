@@ -407,6 +407,97 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &830727444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 830727446}
+  - component: {fileID: 830727445}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &830727445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830727444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9506bac9314fa614296c3da0e811294a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heatColor: {r: 0, g: 0, b: 0, a: 0}
+  glideCooltimeUI: {fileID: 4864687348116815368}
+  glideCooltimeText: {fileID: 2356595378629200546}
+  jumpButton: {fileID: 1452619510768687542}
+  slideButton: {fileID: 383434951733751632}
+  glideButton: {fileID: 8651424123638223274}
+  cameraShake: {fileID: 0}
+  effectPool: {fileID: 1768872119}
+  shakeTime: 0.2
+  jumpForce: 10
+  jumpCount: 0
+  maxJumpCount: 2
+  fallSpeed: 2
+  fallStart: 8
+  glideTime: 3
+  glideCooldown: 10
+  health: 0
+  maxHealth: 100
+  speed: 10
+  floorRes: 0
+  flyRes: 0
+  allRes: 0
+  healthRegen: 0
+  isDead: 0
+  isGrounded: 0
+  isSlide: 0
+  isJumpButtonHeld: 0
+  isGlide: 0
+  isInvincible: 0
+  isFirstShiled: 0
+  isSecondShiled: 0
+  isBooster: 0
+  canGlide: 1
+  isPigDebuff: 0
+  isDogDebuff: 0
+  isRoosterDebuff: 0
+  isMonkeyDebuff: 0
+  isLambDebuff: 0
+  isHoresDebuff: 0
+  isSnakeDebuff: 0
+  isDragonDebuff: 0
+  isRabbitDebuff: 0
+  isTigerDebuff: 0
+  isOxDebuff: 0
+  isRatDebuff: 0
+  effectID: 0
+  activeDesires: 010100000000000000000000
+--- !u!4 &830727446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830727444}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -136.0157, y: 28.290134, z: -5.609817}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1343198256
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,6 +2524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jellyPawText: {fileID: 7948342247849561859}
+  jellyPawCountText: {fileID: 0}
 --- !u!58 &206863042987435408
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3754,6 +3846,7 @@ GameObject:
   - component: {fileID: 4706806339605921395}
   - component: {fileID: 1963348703568333985}
   - component: {fileID: 8374503381458444370}
+  - component: {fileID: 8374503381458444371}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10035,6 +10128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a055c762eff7b2a43a05f17689d902a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
   quests:
   - {fileID: 11400000, guid: 9394e49f2bb65a64794e876c942233ed, type: 2}
 --- !u!212 &931424757992304207
@@ -34037,18 +34131,23 @@ MonoBehaviour:
   jumpButton: {fileID: 1452619510768687542}
   slideButton: {fileID: 383434951733751632}
   glideButton: {fileID: 8651424123638223274}
+  cameraShake: {fileID: 0}
   effectPool: {fileID: 1768872119}
-  health: 0
-  maxHealth: 100
-  speed: 10
+  shakeTime: 0.2
   jumpForce: 10
   jumpCount: 0
   maxJumpCount: 2
+  fallSpeed: 2
+  fallStart: 8
+  glideTime: 3
+  glideCooldown: 10
+  health: 0
+  maxHealth: 100
+  speed: 10
   floorRes: 0
   flyRes: 0
   allRes: 0
   healthRegen: 0
-  glideTime: 3
   isDead: 0
   isGrounded: 0
   isSlide: 0
@@ -34059,8 +34158,6 @@ MonoBehaviour:
   isSecondShiled: 0
   isBooster: 0
   canGlide: 1
-  glideCooldown: 10
-  glideCooldownTimer: 0
   isPigDebuff: 0
   isDogDebuff: 0
   isRoosterDebuff: 0
@@ -36695,10 +36792,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa84a916b2234f47aa291d0305570ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: LobbyScene
-  pauseUI: {fileID: 6004858891155834907}
-  resumeButton: {fileID: 5334356052711718421}
-  quitButton: {fileID: 6768946469167062930}
 --- !u!1 &3409894265678171721
 GameObject:
   m_ObjectHideFlags: 0
@@ -49293,8 +49386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c6b35c69a321449948c53b2cc598dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: LobbyScene
-  deathUI: {fileID: 2257798365288571788}
   totalScoreText: {fileID: 1887604784149293614}
 --- !u!4 &4706806339605921395
 Transform:
@@ -60706,8 +60797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5e76fe7ecb8a94a88f8e9e138cadc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameModeSceneToLoad: LobbyScene
-  resultUI: {fileID: 1369023271822479795}
   totalScoreText: {fileID: 7242082592114863650}
   rewardSushiText: {fileID: 1463775763324534392}
   DesirePieceiText: {fileID: 2700702955968035282}
@@ -86682,6 +86771,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332182845145966387}
   m_Enabled: 1
+--- !u!114 &8374503381458444371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332182845145966387}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea7e1469032b544db9710c75b06f9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeForce: 1000
+  offset: {x: 0, y: 0, z: 10}
+  shakeDuration: 0.1
 --- !u!114 &8375152875823506698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95827,3 +95931,4 @@ SceneRoots:
   - {fileID: 2459116311944716998}
   - {fileID: 7490483483461537595}
   - {fileID: 1768872120}
+  - {fileID: 830727446}

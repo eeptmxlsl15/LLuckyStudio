@@ -68,8 +68,8 @@ public class UIMapping : MonoBehaviour
 		// 최대치 관리
 		if (dataManager.sushi > 999999998)
 			dataManager.sushi = 999999999;
-		if (dataManager.silverKey > 30)
-			dataManager.silverKey = 30;
+		if (dataManager.silverKey > dataManager.maxSilverKey)
+			dataManager.silverKey = dataManager.maxSilverKey;
 		UpdateCatsDesire();
 		UpdateCharacterUI();
 		UpdateLobbyUI();

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
+
+
 public class Player : MonoBehaviour , IDamagable
 {
 	
@@ -22,23 +24,32 @@ public class Player : MonoBehaviour , IDamagable
 	public GameObject jumpButton;
 	public GameObject slideButton;
 	public GameObject glideButton;
+
+	public CameraShake cameraShake;
 	private Color originalGlideButtonColor;
 
 	public EffectPoolManager effectPool;//이펙트 풀 매니져
+	[Header("# Camera Shake Time")]
+	public float shakeTime=0.2f;
 
+	[Header("# Player Jump")]
+	public float jumpForce = 10f;
+	public int jumpCount = 0;
+	public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
+	public float fallSpeed=2;
+	public float fallStart=5;
+	public float glideTime = 0;
+	public float glideCooldown = 10f;
+	private float glideCooldownTimer = 0f;
 	[Header("# Player Stat")]
 	public float health;
 	public float maxHealth = 100f;
 	public float speed = 10f;
-	public float jumpForce = 10f;
-	public int jumpCount = 0;
-	public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
 	public int floorRes = 0; // 발판형 장애물 저항
 	public int flyRes = 0; // 날아오는 장애물 저항
 	public int allRes = 0; // 모든 피해 수치 감소 
 	public float healthRegen = 0;
-	public float glideTime = 0;
-	//쥐의 염원 회복 관련
+	
 	private bool ratDesire;
 	private float healthRegenTimer = 0f;
 	private const float healthRegenInterval = 10f;//10초당 healthRegan 만큼 회복
@@ -46,6 +57,8 @@ public class Player : MonoBehaviour , IDamagable
 	//쥐의 디버프 관련
 	private float healthDamageTimer = 0f;
 	private const float healthDamageInterval = 5f;
+
+	//쥐의 염원 회복 관련
 
 	[Header("# Player State")]
 	public bool isDead = false;
@@ -61,8 +74,6 @@ public class Player : MonoBehaviour , IDamagable
 	
 	//활주 관련 
 	public bool canGlide = true;
-	public float glideCooldown = 10f;
-	public float glideCooldownTimer = 0f;
 
 	[Header("# Debuff State")]
 	public bool isPigDebuff = false;
@@ -116,8 +127,9 @@ public class Player : MonoBehaviour , IDamagable
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		originalColor = spriteRenderer.color;
 		heatColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f);//히트 시 적용 되는 색
-		
-		
+		cameraShake = Camera.main.GetComponent<CameraShake>();
+
+
 		// 점프 트리거
 		EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
 		AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, OnJumpButtonDown);
@@ -169,13 +181,17 @@ public class Player : MonoBehaviour , IDamagable
 		else
 			transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
 		*/
-
+		
 		if (isSlide)
 		{
 
 			rb.AddForce(Vector2.down * 2f, (ForceMode2D)ForceMode.Acceleration);
 		}
-		
+		//하강 가속도
+		if (rb.velocity.y < fallStart)
+		{
+			rb.velocity += Vector2.up * Physics2D.gravity.y * fallSpeed * Time.deltaTime;
+		}
 
 		//쥐의 염원이 있을때 : 10초당 체력 1 회복
 		if (ratDesire)
@@ -427,7 +443,7 @@ public class Player : MonoBehaviour , IDamagable
 
 		//발판형, 고정형 , 방해물 , 버프
 
-		if (!isInvincible && !isFirstShiled && !isSecondShiled && !isBooster)//무적,첫번째 쉴드, 두번째 쉴드
+		if (!isInvincible && !isFirstShiled && !isSecondShiled && !isBooster && !isGlide)//무적,첫번째 쉴드, 두번째 쉴드
 		{
 
 			Debug.Log("hit");
@@ -570,8 +586,10 @@ public class Player : MonoBehaviour , IDamagable
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
+		
 		if (other.gameObject.CompareTag("Obstacle"))
 		{
+			//보호막
 			if(!isFirstShiled && isSecondShiled)
 			{
 				isSecondShiled = false;
@@ -581,19 +599,23 @@ public class Player : MonoBehaviour , IDamagable
 				isFirstShiled = false;
 				
 			}
-			if (isBooster)
+			//부스터나 활공 시 장애물 파괴
+			if (isBooster || isGlide)
 			{
 				Destroy(other.gameObject);
+				//cameraShake.ShakeStart();
+
 			}
 		}
 
 		if (other.gameObject.CompareTag("FallZone"))
 		{
-			// TODO : 낙사 확인
+			// 낙사
 			isDead = true;
 		}
 	}
 
+	
 	//디버프 메서드
 	public void PigDebuff()// 최대체력 20감소
 	{

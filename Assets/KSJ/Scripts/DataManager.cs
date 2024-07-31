@@ -52,7 +52,7 @@ public class DataManager : MonoBehaviour
 	/// goldKey : 최대 보유 가능한 금열쇠 수
 	/// </summary>
 	public int silverKey;
-	public int maxSilverKey;
+	public int maxSilverKey = 999;
 	public int goldKey;
 	public int maxGoldKey;
 	
