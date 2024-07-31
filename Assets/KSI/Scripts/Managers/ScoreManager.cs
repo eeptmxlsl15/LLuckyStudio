@@ -7,10 +7,9 @@ using UnityEngine.Events;
 public class ScoreManager : MonoBehaviour
 {
 	public int jellyPawText;
-	public int jellyPawCountText;
 
 	public UnityAction<int> OnJellyPawChanged;
-	public UnityAction<int> OnJellyPawCountChanged;
+	//public UnityAction<int> OnJellyPawCountChanged;
 
 	public void AddJellyPaw(int score)
 	{
@@ -18,10 +17,10 @@ public class ScoreManager : MonoBehaviour
 		OnJellyPawChanged?.Invoke(jellyPawText);
 	}
 
-	public void AddJellyPawCount(int count)
+	public void AddJellyPawCount(int score)
 	{
-		jellyPawCountText += count;
-		OnJellyPawCountChanged?.Invoke(jellyPawCountText);
+		jellyPawText += score;
+		OnJellyPawChanged?.Invoke(jellyPawText);
 	}
 
 	public int GetTotalScore()
@@ -32,6 +31,6 @@ public class ScoreManager : MonoBehaviour
 	public void Reset()
 	{
 		jellyPawText = 0;
-		jellyPawCountText = 0;
+		//jellyPawCountText = 0;
 	}
 }

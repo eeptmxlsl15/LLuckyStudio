@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class ResultPopUpUI : PopUpUI
@@ -10,6 +11,13 @@ public class ResultPopUpUI : PopUpUI
 	[SerializeField] private TextMeshProUGUI totalScoreText;
 	[SerializeField] private TextMeshProUGUI rewardSushiText;
 	[SerializeField] private TextMeshProUGUI DesirePieceiText;
+	
+	public UnityAction OnDisplayDeathUIChanged;
+
+	private void OnEnable()
+	{
+		OnDisplayDeathUIChanged += DisplayResultUI;
+	}
 
 	protected override void Awake()
 	{
@@ -20,35 +28,20 @@ public class ResultPopUpUI : PopUpUI
 	}
 
 	private void Start()
-    {
-		GameManager.OnGameEndChanged += DisplayResultUI;
+	{
+		totalScoreText = GameObject.Find("TotalScoreText").GetComponent<TextMeshProUGUI>();
+		rewardSushiText = GameObject.Find("SushiText").GetComponent<TextMeshProUGUI>();
+		DesirePieceiText = GameObject.Find("DesireText").GetComponent<TextMeshProUGUI>();
 	}
 
-	private void OnDestroy()
+	private void Update()
 	{
-		GameManager.OnGameEndChanged -= DisplayResultUI;
-	}
-
-	public void DisplayResultUI()
-	{
-		Time.timeScale = 0f;
-		int totalScore = GameManager.Score.GetTotalScore();
-		totalScoreText.text = totalScore.ToString();
-	}
-
-	public void UpdateRewardSushiText(int reward)
-	{
-		rewardSushiText.text = reward.ToString();
-	}
-
-	public void UpdateDesirePieceiText(int rewardValue)
-	{
-		DesirePieceiText.text = rewardValue.ToString();
+		DisplayResultUI();
 	}
 
 	public void RestartButton()
 	{
-		GameManager.UI.ClearPopUpUI();
+		GameManager.UI.ClosePopUpUI();
 		Time.timeScale = 1f;
 		GameManager.Score.Reset();
 		GameManager.Instance.ResetAllDebuffs();
@@ -62,5 +55,21 @@ public class ResultPopUpUI : PopUpUI
 		GameManager.Score.Reset();
 		GameManager.Instance.ResetAllDebuffs();
 		UnitySceneManager.LoadScene("LobbyScene");
+	}
+
+	public void DisplayResultUI()
+	{
+		int totalScore = GameManager.Score.GetTotalScore();
+		totalScoreText.text = totalScore.ToString();	
+	}
+
+	public void UpdateRewardSushiText(int reward)
+	{
+		rewardSushiText.text = reward.ToString();
+	}
+
+	public void UpdateDesirePieceiText(int rewardValue)
+	{
+		DesirePieceiText.text = rewardValue.ToString();
 	}
 }

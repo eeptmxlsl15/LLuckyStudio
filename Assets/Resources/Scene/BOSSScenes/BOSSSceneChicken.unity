@@ -227,6 +227,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 957213450287609073, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 769298057188043117}
     - target: {fileID: 1213448332473089230, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -447,6 +451,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &306962294 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2381198178359723457, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
+  m_PrefabInstance: {fileID: 306962292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &306962295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4343333414017793471, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
+  m_PrefabInstance: {fileID: 306962292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &306962296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6406207494050650257, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
+  m_PrefabInstance: {fileID: 306962292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &306962297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4579663881318318694, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
+  m_PrefabInstance: {fileID: 306962292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &306962298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6601473862995160043, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
+  m_PrefabInstance: {fileID: 306962292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &306962299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1400098712747709884, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
+  m_PrefabInstance: {fileID: 306962292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &306962300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5377913508005100555, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
+  m_PrefabInstance: {fileID: 306962292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &318635794
 GameObject:
   m_ObjectHideFlags: 0
@@ -7651,11 +7708,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heatColor: {r: 0, g: 0, b: 0, a: 0}
-  glideCooltimeUI: {fileID: 0}
-  glideCooltimeText: {fileID: 0}
-  jumpButton: {fileID: 0}
-  slideButton: {fileID: 0}
-  glideButton: {fileID: 0}
+  glideCooltimeUI: {fileID: 306962297}
+  glideCooltimeText: {fileID: 306962296}
+  jumpButton: {fileID: 306962298}
+  slideButton: {fileID: 306962300}
+  glideButton: {fileID: 306962299}
   effectPool: {fileID: 0}
   health: 0
   maxHealth: 100
@@ -65006,8 +65063,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b01684623ef634cac094d058623d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jellyPawText: {fileID: 0}
-  jellyPawCountText: {fileID: 0}
+  jellyPawText: {fileID: 306962295}
+  jellyPawCountText: {fileID: 306962294}
 --- !u!58 &6660513137579260144
 CircleCollider2D:
   m_ObjectHideFlags: 0

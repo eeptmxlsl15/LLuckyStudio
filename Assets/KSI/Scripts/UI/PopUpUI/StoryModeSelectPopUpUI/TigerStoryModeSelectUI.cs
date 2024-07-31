@@ -17,7 +17,6 @@ public class TigerStoryModeSelectUI : PopUpUI
 	public void LoadSUBScene()
 	{
 		GameManager.UI.ClosePopUpUI();
-		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("SUBSceneTiger");
 		Time.timeScale = 1f;	
 	}

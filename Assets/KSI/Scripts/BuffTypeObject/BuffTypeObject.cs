@@ -6,8 +6,7 @@ using UnityEngine;
 // 파괴됨
 public abstract class BuffTypeObject : MonoBehaviour
 {
-	public float speed = 10f;
-
+	protected float speed = 10f;
 	protected Player player;
 
 	public abstract void Buff();

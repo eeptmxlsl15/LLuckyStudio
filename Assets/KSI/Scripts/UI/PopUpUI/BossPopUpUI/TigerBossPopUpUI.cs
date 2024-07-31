@@ -9,13 +9,12 @@ public class TigerBossPopUpUI : PopUpUI
 	{
 		base.Awake();
 
-		buttons["TigergBossEntranceButton"].onClick.AddListener(() => { LoadBOSScene(); });
+		buttons["TigerBossEntranceButton"].onClick.AddListener(() => { LoadBOSScene(); });
 		buttons["TigerBossPopUpBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
 	public void LoadBOSScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSSceneTiger");
 		Time.timeScale = 1f;
