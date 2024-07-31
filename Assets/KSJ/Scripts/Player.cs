@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
+
+
 public class Player : MonoBehaviour , IDamagable
 {
 	
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour , IDamagable
 	private Color originalGlideButtonColor;
 
 	public EffectPoolManager effectPool;//이펙트 풀 매니져
+	
 
 	[Header("# Player Stat")]
 	public float health;
@@ -427,7 +430,7 @@ public class Player : MonoBehaviour , IDamagable
 
 		//발판형, 고정형 , 방해물 , 버프
 
-		if (!isInvincible && !isFirstShiled && !isSecondShiled && !isBooster)//무적,첫번째 쉴드, 두번째 쉴드
+		if (!isInvincible && !isFirstShiled && !isSecondShiled && !isBooster && !isGlide)//무적,첫번째 쉴드, 두번째 쉴드
 		{
 
 			Debug.Log("hit");
@@ -570,8 +573,10 @@ public class Player : MonoBehaviour , IDamagable
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
+		
 		if (other.gameObject.CompareTag("Obstacle"))
 		{
+			//보호막
 			if(!isFirstShiled && isSecondShiled)
 			{
 				isSecondShiled = false;
@@ -581,7 +586,8 @@ public class Player : MonoBehaviour , IDamagable
 				isFirstShiled = false;
 				
 			}
-			if (isBooster)
+			//부스터나 활공 시 장애물 파괴
+			if (isBooster || isGlide)
 			{
 				Destroy(other.gameObject);
 			}
@@ -589,7 +595,7 @@ public class Player : MonoBehaviour , IDamagable
 
 		if (other.gameObject.CompareTag("FallZone"))
 		{
-			// TODO : 낙사 확인
+			// 낙사
 			isDead = true;
 		}
 	}
