@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static Quest;
 
 [CreateAssetMenu(fileName = "New Quest", menuName = "QuestSystem/Quest")]
 public class Quest : ScriptableObject

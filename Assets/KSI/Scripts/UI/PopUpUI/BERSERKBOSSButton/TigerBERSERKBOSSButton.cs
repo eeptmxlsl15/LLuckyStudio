@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class StoryModeSelect : MonoBehaviour
+public class TigerBERSERKBOSSButton : MonoBehaviour
 {
 	private const float updateCycle = 1f;
 	private float lastUpdate = 0f;
@@ -10,7 +8,7 @@ public class StoryModeSelect : MonoBehaviour
 
 	private void Awake()
 	{
-		berserkBossButton = GameObject.Find("PigBERSERKBOSSButton");
+		berserkBossButton = GameObject.Find("TigerBERSERKBOSSButton");
 		berserkBossButton.SetActive(false);
 		UpdateBERSERKBOSSButton();
 	}
@@ -37,13 +35,13 @@ public class StoryModeSelect : MonoBehaviour
 	{
 		switch (zodiacSign)
 		{
-			case BerserkSystemManager.ZodiacSign.PIG:
+			case BerserkSystemManager.ZodiacSign.TIGER:
 				berserkBossButton.SetActive(true);
-				Debug.Log("PigBERSERKBOSSButton activated.");
+				Debug.Log("TigerBERSERKBOSSButton activated.");
 				break;
 			default:
 				berserkBossButton.SetActive(false);
-				Debug.Log("PigBERSERKBOSSButton deactivated.");
+				Debug.Log("TigerBERSERKBOSSButton deactivated.");
 				break;
 		}
 	}

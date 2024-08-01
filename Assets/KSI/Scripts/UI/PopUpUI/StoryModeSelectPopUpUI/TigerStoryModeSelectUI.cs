@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
@@ -10,7 +8,8 @@ public class TigerStoryModeSelectUI : PopUpUI
 		base.Awake();
 
 		buttons["TigerSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
-		buttons["TigerBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/TigerBossPopUpUI"); });
+		buttons["TigerBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BOSSPopUpUI/TigerBOSSPopUpUI"); });
+		buttons["TigerBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBOSSPopUpUI/TigerBERSERKBOSSPopUpUI"); });
 		buttons["TigerStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
