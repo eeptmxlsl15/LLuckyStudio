@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BerserkBOSSScenePig : MonoBehaviour
+public class BERSERKBOSSScenePig : MonoBehaviour
 {
 	private DebuffSystem debuffSystem;
 

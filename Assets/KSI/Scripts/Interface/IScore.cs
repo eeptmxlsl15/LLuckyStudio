@@ -6,5 +6,5 @@ public interface IScore
 {
 	void AddScore(int score);
 
-	void AddCount(int count);
+	//void AddCount(int count);
 }

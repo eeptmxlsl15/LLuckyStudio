@@ -7,19 +7,16 @@ using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
-	[SerializeField] private TextMeshProUGUI scoreText;
+	//[Header("UI")]
+	//[SerializeField] private TextMeshProUGUI scoreText;
 
 	public List<Quest> quests;
-	private ResultPopUpUI resultUI;
-	private DeathPopUpUI deathUI;
+	private ResultPopUpUI resultPopUpUI;
 
 	private void Start()
 	{
 		InitializeQuests();
-		resultUI = FindObjectOfType<ResultPopUpUI>();
-		deathUI = FindObjectOfType<DeathPopUpUI>();
-
-		GameManager.OnGameEndChanged += OnGameEnd;
+		resultPopUpUI = FindObjectOfType<ResultPopUpUI>();
 	}
 
 	private void InitializeQuests()
@@ -53,16 +50,17 @@ public class QuestManager : MonoBehaviour
 
 					quest.CheckCompleteQuest(quest.currentScore);
 
-					if (scoreText != null)
-					{
-						scoreText.text = $"{quest.currentScore} / {quest.targetScore}";
-					}
+					//if (scoreText != null)
+					//{
+					//	scoreText.text = $"{quest.currentScore} / {quest.targetScore}";
+					//}
 
 					if (quest.isComplete)
 					{
-						resultUI.DisplayResultUI();
+						Time.timeScale = 0f;
+						resultPopUpUI.DisplayResultUI();
 						GiveReward(quest);
-					}
+					}	
 				}
 				else
 				{
@@ -102,24 +100,25 @@ public class QuestManager : MonoBehaviour
 	{
 		int reward = quest.GetReward() * 5;
 		Debug.Log($"퀘스트 보상 : '{quest.curQuestName}' / 초밥 {reward} 개 ");
-		DataManager.Instance.sushi += reward;
-		resultUI.UpdateRewardSushiText(reward);
+		resultPopUpUI.UpdateRewardSushiText(reward);
+		//DataManager.Instance.sushi += reward;	
 	}
 
 	private void GiveDesirePiece(Quest quest)
 	{
 		int rewardValue = quest.GetDesirePiece();
 		Debug.Log($"퀘스트 보상 : '{quest.curQuestName}' / 깨진 염원 조각 {rewardValue} 개");
-		resultUI.UpdateDesirePieceiText(rewardValue);
+		resultPopUpUI.UpdateDesirePieceiText(rewardValue);
 	}
 
-	private void OnGameEnd()
+	public void OnGameEnd()
 	{
 		foreach (var quest in quests)
 		{
 			if (quest.curQuestName == Quest.QuestName.Quest_INFINITE)
 			{
-				resultUI.DisplayResultUI();
+				GameManager.Instance.InfiniteEndGame();
+				resultPopUpUI.DisplayResultUI();
 				GiveReward(quest);
 			}
 		}

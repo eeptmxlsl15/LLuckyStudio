@@ -34,5 +34,4 @@ public class InfiniteModeEntranceUI : MonoBehaviour
 	{
 		isCloseButtonPressed = true;
 	}
-
 }

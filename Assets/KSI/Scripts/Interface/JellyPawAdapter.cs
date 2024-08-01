@@ -11,8 +11,8 @@ public class JellyPawAdapter : IScore
 		GameManager.Score.AddJellyPaw(score);
 	}
 
-	public void AddCount(int count)
-	{
-		GameManager.Score.AddJellyPawCount(count);
-	}
+	//public void AddCount(int count)
+	//{
+	//	GameManager.Score.AddJellyPawCount(count);
+	//}
 }

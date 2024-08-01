@@ -38,7 +38,7 @@ public class Quest : ScriptableObject
 
 	public int GetReward()
 	{
-		return currentScore / 100;
+		return currentScore;
 	}
 
 	public int GetDesirePiece()

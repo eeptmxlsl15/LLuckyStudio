@@ -10,20 +10,18 @@ public class PausePopUpUI : PopUpUI
 	{
 		base.Awake();
 
-		buttons["PauseUIResumeButton"].onClick.AddListener(() => { ResumeGame(); });
-		buttons["PauseUIQuitButton"].onClick.AddListener(() => { QuitGame(); });
+		buttons["PausePopUpUIResumeButton"].onClick.AddListener(() => { ResumeGame(); });
+		buttons["PausePopUpUIQuitButton"].onClick.AddListener(() => { QuitGame(); });
 	}
 
 	public void ResumeGame()
 	{
-		GameManager.UI.ClosePopUpUI();
-		GameManager.UI.ClearPopUpUI();
+		GameManager.UI.ClosePopUpUI();		
 		Time.timeScale = 1f;
 	}
 
 	public void QuitGame()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		Time.timeScale = 1f;
 		UnitySceneManager.LoadScene("LobbyScene");

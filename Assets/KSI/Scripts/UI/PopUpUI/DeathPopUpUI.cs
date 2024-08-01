@@ -13,25 +13,13 @@ public class DeathPopUpUI : PopUpUI
 	{
 		base.Awake();
 
-		buttons["DeathUIReplayButton"].onClick.AddListener(() => { RestartButton(); });
-		buttons["DeathUIQuitButton"].onClick.AddListener(() => { QuitButton(); });
+		buttons["DeathPopUpUIReplayButton"].onClick.AddListener(() => { RestartButton(); });
+		buttons["DeathPopUpUIQuitButton"].onClick.AddListener(() => { QuitButton(); });	
 	}
 
-	private void OnEnable()
+	private void Update()
 	{
-		GameManager.OnGameEndChanged += DisplayDeathUI;
-	}
-
-	private void OnDestroy()
-	{
-		GameManager.OnGameEndChanged -= DisplayDeathUI;
-	}
-
-	public void DisplayDeathUI()
-	{
-		Time.timeScale = 0f;
-		int totalScore = GameManager.Score.GetTotalScore();
-		totalScoreText.text = totalScore.ToString();
+		DisplayDeathUI();
 	}
 
 	public void RestartButton()
@@ -50,5 +38,11 @@ public class DeathPopUpUI : PopUpUI
 		GameManager.Score.Reset();
 		GameManager.Instance.ResetAllDebuffs();
 		UnitySceneManager.LoadScene("LobbyScene");
+	}
+	
+	public void DisplayDeathUI()
+	{
+		int totalScore = GameManager.Score.GetTotalScore();
+		totalScoreText.text = totalScore.ToString();
 	}
 }
