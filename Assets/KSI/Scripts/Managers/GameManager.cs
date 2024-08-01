@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Resources;
-using System.Runtime.Serialization;
 using UnityEngine;
-using UnityEngine.Events;
-using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class GameManager : MonoBehaviour
 {
