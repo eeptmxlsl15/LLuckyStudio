@@ -29,6 +29,7 @@ public class Player : MonoBehaviour , IDamagable
 	private Color originalGlideButtonColor;
 
 	public EffectPoolManager effectPool;//이펙트 풀 매니져
+
 	[Header("# Camera Shake Time")]
 	public float shakeTime=0.2f;
 
@@ -90,10 +91,20 @@ public class Player : MonoBehaviour , IDamagable
 	public bool isRatDebuff = false;
 
 	[Header("# Effect")]
-	public int effectID;
-	
+	public int jumpEffectID;
+	public int glideEffectID;
 
+	private GameObject currentGlideEffect;
 
+	public enum EffectType
+	{
+		JumpEffect,
+		GlideEffect,
+		DestroyEffect,
+		HitEffect,
+		ShieldEffect,
+		BoosterEffect
+	}
 	static class Constants
 	{
 		public const int Pig = 0;
@@ -242,6 +253,26 @@ public class Player : MonoBehaviour , IDamagable
 			}
 			
 		}
+		//활주 이펙트
+		if (isGlide)
+		{
+			Vector3 offset = new Vector3(-4f, 0, -1f);
+			if (currentGlideEffect == null || !currentGlideEffect.activeSelf)
+			{
+				currentGlideEffect = effectPool.Get(glideEffectID, (int)EffectType.GlideEffect);
+				currentGlideEffect.transform.position = transform.position+ offset;
+				currentGlideEffect.SetActive(true);
+			}
+			currentGlideEffect.transform.position = transform.position+ offset;
+		}
+		else
+		{
+			
+			if (currentGlideEffect != null && currentGlideEffect.activeSelf)
+			{
+				currentGlideEffect.SetActive(false);
+			}
+		}
 
 		//쥐 디버프일 때 : 5초당 체력 1 감소 
 		if (isRatDebuff)
@@ -278,23 +309,23 @@ public class Player : MonoBehaviour , IDamagable
 			jumpCount++;
 			// TODO : 사운드 추가
 
-			Effect();
+			JumpEffect();
 		}
 	}
 
-	public void Effect()
+	public void JumpEffect()
 	{
 		Vector3 offset = new Vector3(-0.3f,-0.15f,0);
-		Transform effect = effectPool.Get(effectID).transform;
-		effect.position = transform.position+ offset;
-		StartCoroutine(DestroyEffect(effect));
+		Transform effect = effectPool.Get(jumpEffectID, (int)EffectType.JumpEffect).transform;
+		effect.position = transform.position + offset;
+		StartCoroutine(SetActiveFalseEffect(effect,1f));
 	}
 
-	IEnumerator DestroyEffect(Transform effect)
+	IEnumerator SetActiveFalseEffect(Transform effect ,float destroyTime)
 	{
 		yield return null;
 
-		float destroyTime = 1f;
+		
 		float timer = 0f;
 		while (timer < destroyTime)
 		{
@@ -307,12 +338,16 @@ public class Player : MonoBehaviour , IDamagable
 
 	public void Glide(bool _isGlide)
 	{
+		//땅에서 활공을 누를 경우 얼리 리턴
 		if (!canGlide || isGrounded)
 		{
 			isGlide = false;
 			return;
 		}
+
 		isGlide = _isGlide;
+
+		//버튼업일 경우
 		if (!_isGlide && !isGrounded)
 		{
 			canGlide = false;
@@ -320,6 +355,8 @@ public class Player : MonoBehaviour , IDamagable
 		}
 
 	}
+
+	
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
@@ -372,7 +409,7 @@ public class Player : MonoBehaviour , IDamagable
 		
 		isDead = DataManager.Instance.isDead;
 		//이펙트 
-		effectID = DataManager.Instance.effectID;
+		jumpEffectID = DataManager.Instance.effectID;
 
 		health = DataManager.Instance.health;
 		maxHealth = DataManager.Instance.maxHealth+DataManager.Instance.redMarbleValue[DataManager.Instance.redMarbleLv];
@@ -621,15 +658,23 @@ public class Player : MonoBehaviour , IDamagable
 			//부스터나 활공 시 장애물 파괴
 			if (isBooster)
 			{
+
+				
+				Transform effect = effectPool.Get(0, (int)EffectType.HitEffect).transform;
+				effect.position = other.transform.position;
+				StartCoroutine(SetActiveFalseEffect(effect, 0.5f));
 				Destroy(other.gameObject);
-				CameraShake.Instance.ShakeCamera(10f, 0.1f);
-				//cameraShake.ShakeStart();
+				//CameraShake.Instance.ShakeCamera(10f, 0.1f);
+
 
 			}
 			if(isGlide && canGlide)
 			{
+				Transform effect = effectPool.Get(0, (int)EffectType.DestroyEffect).transform;
+				effect.position = other.transform.position;
+				StartCoroutine(SetActiveFalseEffect(effect, 0.5f));
 				Destroy(other.gameObject);
-				CameraShake.Instance.ShakeCamera(10f, 0.1f);
+				//CameraShake.Instance.ShakeCamera(10f, 0.1f);
 			}
 		}
 

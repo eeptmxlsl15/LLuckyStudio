@@ -6,9 +6,11 @@ public class EffectPoolManager : MonoBehaviour
 {
 	public static EffectPoolManager Instance { get; private set; }
 
-	public GameObject[] prefabs;//프리펩을 보관하는 변수
+	public GameObject[] jumpEffects;  // 프리팹을 보관하는 변수
+	public GameObject[] glideEffects;
+	public GameObject[] destroyObjectEffects;
 
-	List<GameObject>[] pools;//풀 담당을 하는 리스트들
+	private Dictionary<string, List<GameObject>> pools; // 풀 담당을 하는 딕셔너리
 
 	void Awake()
 	{
@@ -20,48 +22,83 @@ public class EffectPoolManager : MonoBehaviour
 		else
 		{
 			Destroy(gameObject); // 중복된 인스턴스 제거
+			return;
 		}
 
+		// Initialize pools dictionary
+		pools = new Dictionary<string, List<GameObject>>();
 
-		pools = new List<GameObject>[prefabs.Length]; //리스트이기 때문에 new를 써야함. 풀을 담는 배열 초기화
-
-		for (int index = 0; index < prefabs.Length; index++)
-		{
-			pools[index] = new List<GameObject>();//배열안에 리스트도 초기화
-
-		}
-
+		// Create pools for each type
+		InitializePools(jumpEffects);
+		InitializePools(glideEffects);
+		InitializePools(destroyObjectEffects);
 	}
-	public GameObject Get(int index)//비어있는 오브젝트를 반환하는 함수
+
+	private void InitializePools(GameObject[] effects)
+	{
+		foreach (GameObject effect in effects)
+		{
+			string effectName = effect.name;
+			if (!pools.ContainsKey(effectName))
+			{
+				pools[effectName] = new List<GameObject>();
+			}
+		}
+	}
+
+	public GameObject Get(int index, int type) // 비어있는 오브젝트를 반환하는 함수
 	{
 		GameObject select = null;
+		string effectName = GetEffectName(index, type);
 
-		//선택한 풀에 놀고있는 게임 오브젝트 접근
-		//발견하면  select 할당
-		foreach (GameObject item in pools[index])
+		// 해당 풀의 리스트를 탐색하여 비활성화된 오브젝트를 찾기
+		if (pools.ContainsKey(effectName))
 		{
-			if (!item.activeSelf)// 만약 활성화되지않았다면
+			foreach (GameObject item in pools[effectName])
 			{
-				select = item;
-				select.SetActive(true);// 활성화
-				break;
-
+				if (!item.activeSelf)
+				{
+					select = item;
+					select.SetActive(true); // 활성화
+					return select;
+				}
 			}
 		}
 
-		//모두 쓰고있다면 생성해서 select에 할당
+		// 모두 사용 중이면 새로운 오브젝트를 인스턴스화
 		if (select == null)
 		{
-			select = Instantiate(prefabs[index], transform);// 오브젝트를 복사하는 함수. 원본 , 자기 자신에게 넣음
-			pools[index].Add(select);//pools에 등록
-
-
+			GameObject prefab = GetPrefab(index, type);
+			if (prefab != null)
+			{
+				select = Instantiate(prefab, transform); // 오브젝트를 복사하는 함수. 원본 , 자기 자신에게 넣음
+				select.name = effectName; // 이름 설정
+				pools[effectName].Add(select); // pools에 등록
+			}
 		}
-		return select;
 
+		return select;
 	}
 
+	private string GetEffectName(int index, int type)
+	{
+		switch (type)
+		{
+			case 0: return jumpEffects[index].name;
+			case 1: return glideEffects[index].name;
+			case 2: return destroyObjectEffects[index].name;
+			default: return null;
+		}
+	}
 
-
-
+	private GameObject GetPrefab(int index, int type)
+	{
+		switch (type)
+		{
+			case 0: return jumpEffects[index];
+			case 1: return glideEffects[index];
+			case 2: return destroyObjectEffects[index];
+			default: return null;
+		}
+	}
 }

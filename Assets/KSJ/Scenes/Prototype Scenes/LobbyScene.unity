@@ -2468,6 +2468,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &258467507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 258467509}
+  - component: {fileID: 258467508}
+  m_Layer: 0
+  m_Name: EffectPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &258467508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258467507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc91d84a6f9eb34d988afd96b69af7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpEffects:
+  - {fileID: 6675302182551818641, guid: 5bc9a0bf98f67d240a936bf476ba2082, type: 3}
+  - {fileID: 5933602760919840800, guid: fcb74f28d107e284e80af037bfec14ca, type: 3}
+  glideEffects:
+  - {fileID: 5008211542219613822, guid: 7554b456fde2ed24fb80330eb1896049, type: 3}
+  destroyObjectEffects:
+  - {fileID: 9206679829297978600, guid: 6717158e14cf86545a3a25e296697374, type: 3}
+--- !u!4 &258467509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258467507}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.2, y: -3.3835, z: -1.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &265855612
 GameObject:
   m_ObjectHideFlags: 0
@@ -31451,3 +31502,4 @@ SceneRoots:
   - {fileID: 2136529676}
   - {fileID: 4394272781797156699}
   - {fileID: 1471850785}
+  - {fileID: 258467509}
