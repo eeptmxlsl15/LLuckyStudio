@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameModeButtonSceneUI : SceneUI
 {
@@ -9,6 +10,6 @@ public class GameModeButtonSceneUI : SceneUI
 		base.Awake();
 
 		//buttons["INFINITEButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/InfiniteModeEntranceUI"); });
-		buttons["STROYButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI"); });
+		buttons["STROYButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI"); });	
 	}
 }
