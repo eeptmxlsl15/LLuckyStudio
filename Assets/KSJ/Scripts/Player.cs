@@ -129,7 +129,7 @@ public class Player : MonoBehaviour , IDamagable
 		heatColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f);//히트 시 적용 되는 색
 		cameraShake = Camera.main.GetComponent<CameraShake>();
 
-
+		effectPool = EffectPoolManager.Instance;
 		// 점프 트리거
 		EventTrigger jumpTrigger = jumpButton.GetComponent<EventTrigger>();
 		AddEventTrigger(jumpTrigger, EventTriggerType.PointerDown, OnJumpButtonDown);

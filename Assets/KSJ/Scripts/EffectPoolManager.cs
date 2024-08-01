@@ -4,12 +4,25 @@ using UnityEngine;
 
 public class EffectPoolManager : MonoBehaviour
 {
+	public static EffectPoolManager Instance { get; private set; }
+
 	public GameObject[] prefabs;//프리펩을 보관하는 변수
 
 	List<GameObject>[] pools;//풀 담당을 하는 리스트들
 
 	void Awake()
 	{
+		if (Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject); // 씬 전환 시 객체 유지
+		}
+		else
+		{
+			Destroy(gameObject); // 중복된 인스턴스 제거
+		}
+
+
 		pools = new List<GameObject>[prefabs.Length]; //리스트이기 때문에 new를 써야함. 풀을 담는 배열 초기화
 
 		for (int index = 0; index < prefabs.Length; index++)
