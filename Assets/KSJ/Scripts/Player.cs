@@ -307,7 +307,11 @@ public class Player : MonoBehaviour , IDamagable
 
 	public void Glide(bool _isGlide)
 	{
-		
+		if (!canGlide || isGrounded)
+		{
+			isGlide = false;
+			return;
+		}
 		isGlide = _isGlide;
 		if (!_isGlide && !isGrounded)
 		{
@@ -443,7 +447,7 @@ public class Player : MonoBehaviour , IDamagable
 
 		//발판형, 고정형 , 방해물 , 버프
 
-		if (!isInvincible && !isFirstShiled && !isSecondShiled && !isBooster && !isGlide)//무적,첫번째 쉴드, 두번째 쉴드
+		if (!isInvincible && !isFirstShiled && !isSecondShiled && !isBooster && !isGlide)//무적,첫번째 쉴드, 두번째 쉴드 , 활공 중
 		{
 
 			Debug.Log("hit");
@@ -484,8 +488,23 @@ public class Player : MonoBehaviour , IDamagable
 		isDead = true;
 		anim.SetTrigger("isDead");
 		Debug.Log("플레이어가 죽었습니다.");
-		
-		GameManager.Instance.EndGame();
+		Time.timeScale = 0f;
+		if (GameManager.GameModeSystem.curGameMode == GameModeSystem.GameMode.INFINITE)
+		{
+			GameManager.Instance.InfiniteEndGame();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/ResultPopUpUI");
+
+			QuestManager questManager = FindObjectOfType<QuestManager>();
+			if (questManager != null)
+			{
+				questManager.OnGameEnd();
+			}
+		}
+		else
+		{
+			GameManager.Instance.EndGame();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/DeathPopUpUI");
+		}
 	}
 
 	// 츄르 : 체력 10회복
@@ -597,15 +616,20 @@ public class Player : MonoBehaviour , IDamagable
 			if (isFirstShiled)
 			{
 				isFirstShiled = false;
-				
+
 			}
 			//부스터나 활공 시 장애물 파괴
-			if (isBooster || isGlide)
+			if (isBooster)
 			{
 				Destroy(other.gameObject);
 				CameraShake.Instance.ShakeCamera(10f, 0.1f);
 				//cameraShake.ShakeStart();
 
+			}
+			if(isGlide && canGlide)
+			{
+				Destroy(other.gameObject);
+				CameraShake.Instance.ShakeCamera(10f, 0.1f);
 			}
 		}
 
