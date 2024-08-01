@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.SceneManagement;
 
 public class UIMapping : MonoBehaviour
 {
