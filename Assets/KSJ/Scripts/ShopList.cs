@@ -14,6 +14,7 @@ public class ShopList : MonoBehaviour
 
 	private List<GameObject> spawnedItems = new List<GameObject>(); // 생성된 아이템을 추적하기 위한 리스트
 
+	private KSJSoundManager soundManager;
 	private void Update()
 	{
 		
@@ -59,8 +60,9 @@ public class ShopList : MonoBehaviour
 	{
 		if (DataManager.Instance.sushi - resetCost < 0 || DataManager.Instance.resetNum == DataManager.Instance.advResetMaxNum)
 		{
+			soundManager.PlaySfx(KSJSoundManager.Sfx.Negative);
 			return;
-			//실패 사운드
+			
 			//3번째에도 안되게 해야함
 			//시간이 12시일때 
 		}

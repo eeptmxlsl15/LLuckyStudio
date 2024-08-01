@@ -671,7 +671,14 @@ public class Player : MonoBehaviour , IDamagable
 			if(isGlide && canGlide)
 			{
 				Transform effect = effectPool.Get(0, (int)EffectType.DestroyEffect).transform;
-				effect.position = other.transform.position;
+				Vector3 effectPosition = other.transform.position;
+
+				
+				float randomZRotation = Random.Range(0f, 360f);
+				effect.rotation = Quaternion.Euler(0f, 0f, randomZRotation);
+
+				effect.position = effectPosition;
+
 				StartCoroutine(SetActiveFalseEffect(effect, 0.5f));
 				Destroy(other.gameObject);
 				//CameraShake.Instance.ShakeCamera(10f, 0.1f);
