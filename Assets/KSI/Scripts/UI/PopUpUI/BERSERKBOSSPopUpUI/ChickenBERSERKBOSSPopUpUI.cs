@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class ChickenBERSERKBossPopUpUI : PopUpUI
+public class ChickenBERSERKBOSSPopUpUI : PopUpUI
 {
 	protected override void Awake()
 	{
 		base.Awake();
 
-		buttons["ChickenBERSERKBossEntranceButton"].onClick.AddListener(() => { LoadBERSERKBOSScene(); });
-		buttons["ChickenBERSERKBossPopUpBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["ChickenBERSERKBOSSEntranceButton"].onClick.AddListener(() => { LoadBERSERKBOSScene(); });
+		buttons["ChickenBERSERKBOSSPopUpBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
 	public void LoadBERSERKBOSScene()

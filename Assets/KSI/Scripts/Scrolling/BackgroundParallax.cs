@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundParallax : MonoBehaviour
@@ -13,7 +11,6 @@ public class BackgroundParallax : MonoBehaviour
 	private void Start()
     {
 		mat = GetComponent<Renderer>().material;
-
 	}
 
 	private void Update()

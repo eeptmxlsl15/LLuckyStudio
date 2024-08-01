@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 // 바위
 // 고정형 오브젝트(1단 점프)
 // 생성 위치 : 발판
