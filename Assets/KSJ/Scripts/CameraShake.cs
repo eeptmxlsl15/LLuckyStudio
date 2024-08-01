@@ -1,54 +1,52 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-	public float shakeForce = 0f;
-	public Vector3 offset = Vector3.zero;
-	public float shakeDuration = 0.1f; // 카메라 흔들림 지속 시간
+	public static CameraShake Instance { get; private set; }
+	private CinemachineVirtualCamera cam;
 
-	Quaternion originRotation;
+	private float shakeTimer;
+	private float shakeTimerTotal;
+	private float startingIntensity;
 
-	void Start()
+	private void Awake()
 	{
-		originRotation = transform.rotation;
+		Instance = this;
+		cam = GetComponent<CinemachineVirtualCamera>();
 	}
 
-	public void ShakeStart()
+	public void ShakeCamera(float intensity, float time)
 	{
-		StartCoroutine(ShakeCoroutine());
+		CinemachineBasicMultiChannelPerlin bmcp = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+		bmcp.m_AmplitudeGain = intensity;
+		bmcp.m_FrequencyGain = intensity;
+
+		startingIntensity = intensity;
+		shakeTimerTotal = time;
+		shakeTimer = time;
 	}
 
-	IEnumerator ShakeCoroutine()
+	private void Update()
 	{
-		Vector3 originEuler = transform.eulerAngles;
-		float tiem = 0f;
-
-		while (tiem < shakeDuration)
+		if (shakeTimer > 0)
 		{
-			float rotX = Random.Range(-offset.x, offset.x);
-			float rotY = Random.Range(-offset.y, offset.y);
-			float rotZ = Random.Range(-offset.z, offset.z);
-
-			Vector3 randomRotation = originEuler + new Vector3(rotX, rotY, rotZ);
-			Quaternion rot = Quaternion.Euler(randomRotation);
-
-			while (Quaternion.Angle(transform.rotation, rot) > 0.1f)
+			shakeTimer -= Time.deltaTime;
+			if (shakeTimer <= 0f)
 			{
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, shakeForce * Time.deltaTime);
-				yield return null;
+				CinemachineBasicMultiChannelPerlin bmcp = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+				bmcp.m_AmplitudeGain = 0f;
+				bmcp.m_FrequencyGain = 0f;
 			}
-
-			tiem += Time.deltaTime;
-			yield return null;
-		}
-
-		// 흔들림이 끝난 후 원래 회전으로 복원
-		while (Quaternion.Angle(transform.rotation, originRotation) > 0f)
-		{
-			transform.rotation = Quaternion.RotateTowards(transform.rotation, originRotation, shakeForce * Time.deltaTime);
-			yield return null;
+			else
+			{
+				CinemachineBasicMultiChannelPerlin bmcp = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+				float currentIntensity = Mathf.Lerp(startingIntensity, 0f, 1 - (shakeTimer / shakeTimerTotal));
+				bmcp.m_AmplitudeGain = currentIntensity;
+				bmcp.m_FrequencyGain = currentIntensity;
+			}
 		}
 	}
 }

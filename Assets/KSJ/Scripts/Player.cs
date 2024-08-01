@@ -603,6 +603,7 @@ public class Player : MonoBehaviour , IDamagable
 			if (isBooster || isGlide)
 			{
 				Destroy(other.gameObject);
+				CameraShake.Instance.ShakeCamera(10f, 0.1f);
 				//cameraShake.ShakeStart();
 
 			}
