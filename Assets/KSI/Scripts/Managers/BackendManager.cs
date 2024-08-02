@@ -1,29 +1,24 @@
+using BackEnd;
 using UnityEngine;
-using BackEnd;      // µÚ³¡ SDK
 
 public class BackendManager : MonoBehaviour
 {
 	private void Awake()
 	{
-		// µÚ³¡ ¼­¹ö ÃÊ±âÈ­
 		BackendSetup();
 	}
 
 	private void BackendSetup()
 	{
-		// µÚ³¡ ÃÊ±âÈ­
 		var bro = Backend.Initialize(true);
 
-		// µÚ³¡ ÃÊ±âÈ­¿¡ ´ëÇÑ ÀÀ´ä°ª
 		if (bro.IsSuccess())
 		{
-			// ÃÊ±âÈ­ ¼º°ø ½Ã statusCode 204 Success
-			Debug.Log($"ÃÊ±âÈ­ ¼º°ø : {bro}");
+			Debug.Log($"ì´ˆê¸°í™” ì„±ê³µ : {bro}");
 		}
 		else
 		{
-			// ÃÊ±âÈ­ ½ÇÆĞ ½Ã statusCode 400´ë ¿¡·¯ ¹ß»ı
-			Debug.LogError($"ÃÊ±âÈ­ ½ÇÆĞ : {bro}");
+			Debug.LogError($"ì´ˆê¸°í™” ì‹¤íŒ¨ : {bro}");
 		}
 	}
 }

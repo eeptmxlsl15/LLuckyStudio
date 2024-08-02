@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Resources;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,13 +7,26 @@ public class GameManager : MonoBehaviour
 	static PoolManager poolManager;
 	static UIManager uiManager;
 	static SceneManager sceneManager;
+	static ScoreManager scoreManager;
+	static BerserkSystemManager berserkSystemManager;
+	static GameModeSystem gameModeSystem;
+
 	public static GameManager Instance { get { return instance; } }
 	public static ResourceManager Resource { get { return resourceManager; } }
 	public static PoolManager Pool { get { return poolManager; } }
 	public static UIManager UI { get { return uiManager; } }
 	public static SceneManager Scene { get { return sceneManager; } }
+	public static ScoreManager Score { get { return scoreManager; } }
+	public static BerserkSystemManager BerserkSystem { get { return berserkSystemManager; } }
+	public static GameModeSystem GameModeSystem { get { return gameModeSystem; } }
 
-	void Awake()
+	public BerserkSystemManager.ZodiacSign BossDebuff { get; set; }
+	public BerserkSystemManager.ZodiacSign InfiniteDebuff1 { get; set; }
+	public BerserkSystemManager.ZodiacSign InfiniteDebuff2 { get; set; }
+
+	public bool IsGameStarted { get; private set; } = false;
+
+	private void Awake()
 	{
 		if (instance != null)
 		{
@@ -31,13 +40,13 @@ public class GameManager : MonoBehaviour
 		InitManagers();
 	}
 
-	void OnDestroy()
+	private void OnDestroy()
 	{
 		if (instance == this)
 			instance = null;
 	}
 
-	void InitManagers()
+	private void InitManagers()
 	{
 		GameObject resourceObject = new GameObject();
 		resourceObject.name = "ResourceManager";
@@ -58,5 +67,57 @@ public class GameManager : MonoBehaviour
 		sceneObject.name = "SceneManager";
 		sceneObject.transform.parent = transform;
 		sceneManager = sceneObject.AddComponent<SceneManager>();
+
+		GameObject scoreObject = new GameObject();
+		scoreObject.name = "ScoreManager";
+		scoreObject.transform.parent = transform;
+		scoreManager = scoreObject.AddComponent<ScoreManager>();
+
+		GameObject berserkSystemObject = new GameObject();
+		berserkSystemObject.name = "BerserkSystemManager";
+		berserkSystemObject.transform.parent = transform;
+		berserkSystemManager = berserkSystemObject.AddComponent<BerserkSystemManager>();
+
+		GameObject gameModeSystemObject = new GameObject();
+		gameModeSystemObject.name = "GameModeSystem ";
+		gameModeSystemObject.transform.parent = transform;
+		gameModeSystem = gameModeSystemObject.AddComponent<GameModeSystem>();
+	}
+
+	public void StartGame()
+	{
+		IsGameStarted = true;
+	}
+
+	public void StopGame()
+	{
+		IsGameStarted = false;
+	}
+
+	public void EndGame()
+	{
+		ResetAllDebuffs(); 
+	}
+
+	public void InfiniteEndGame()
+	{ 
+		ResetAllDebuffs();
+	}
+
+	public void ResetBossDebuff()
+	{
+		BossDebuff = default;
+	}
+
+	public void ResetInfiniteDebuff()
+	{
+		InfiniteDebuff1 = default;
+		InfiniteDebuff2 = default;
+	}
+
+	public void ResetAllDebuffs()
+	{
+		ResetBossDebuff();
+		ResetInfiniteDebuff();
 	}
 }
