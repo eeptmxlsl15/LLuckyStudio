@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 // 버프형 오브젝트
 // 파괴됨

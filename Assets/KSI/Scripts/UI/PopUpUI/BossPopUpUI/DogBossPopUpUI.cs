@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class DogBOSSPopUpUI : PopUpUI
+public class DogBossPopUpUI : PopUpUI
 {
 	protected override void Awake()
 	{
@@ -13,6 +15,7 @@ public class DogBOSSPopUpUI : PopUpUI
 
 	public void LoadBOSScene()
 	{
+		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSSceneDog");
 		Time.timeScale = 1f;

@@ -1,18 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class DragonBERSERKBOSSPopUpUI : PopUpUI
+public class DragonBERSERKBossPopUpUI : PopUpUI
 {
 	protected override void Awake()
 	{
 		base.Awake();
 
-		buttons["DragonBERSERKBOSSEntranceButton"].onClick.AddListener(() => { LoadBERSERKBOSScene(); });
-		buttons["DragonBERSERKBOSSPopUpBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["DragonBERSERKBossEntranceButton"].onClick.AddListener(() => { LoadBERSERKBOSScene(); });
+		buttons["DragonBERSERKBossPopUpBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
 	public void LoadBERSERKBOSScene()
 	{
+		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BERSERKBOSSSceneDragon");
 		Time.timeScale = 1f;

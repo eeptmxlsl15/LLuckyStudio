@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class TigerBERSERKBOSSPopUpUI : PopUpUI
+public class TigerBERSERKBossPopUpUI : PopUpUI
 {
 	protected override void Awake()
 	{
