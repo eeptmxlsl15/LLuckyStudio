@@ -16,6 +16,7 @@ public class SkinButtonController : MonoBehaviour
 	}
 	public void OnClickSkin()
 	{
+		KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Positive);
 		transform.localScale = new Vector3(1f, 1f, 1f);
 		//인벤토리 열고 닫을 때 스크롤이 가장 밑에 있는 문제 해결
 		StartCoroutine(SetScrollbarValue());
@@ -23,6 +24,7 @@ public class SkinButtonController : MonoBehaviour
 
 	public void OnClickDesire()
 	{
+		KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Positive);
 		transform.localScale = new Vector3(0f, 0f, 0f);
 	}
 	private IEnumerator SetScrollbarValue()

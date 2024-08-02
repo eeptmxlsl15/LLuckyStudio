@@ -14,7 +14,7 @@ public class ShopList : MonoBehaviour
 
 	private List<GameObject> spawnedItems = new List<GameObject>(); // 생성된 아이템을 추적하기 위한 리스트
 
-	private KSJSoundManager soundManager;
+	
 	private void Update()
 	{
 		
@@ -60,7 +60,7 @@ public class ShopList : MonoBehaviour
 	{
 		if (DataManager.Instance.sushi - resetCost < 0 || DataManager.Instance.resetNum == DataManager.Instance.advResetMaxNum)
 		{
-			soundManager.PlaySfx(KSJSoundManager.Sfx.Negative);
+			KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 			return;
 			
 			//3번째에도 안되게 해야함
@@ -69,6 +69,7 @@ public class ShopList : MonoBehaviour
 		PickRandomItems();
 		DataManager.Instance.sushi -= resetCost;
 		DisplayRandomItems();
+		KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Positive);
 	}
 
 	public void PickRandomItems()//데이터매니져에 리셋 아이템 리스트를 랜덤하게 바꿈
@@ -94,7 +95,10 @@ public class ShopList : MonoBehaviour
 
 	public void OnClickContent()
 	{
+		KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Positive);
 		transform.parent.localScale = new Vector3(1, 1, 1);
 		DisplayRandomItems();
 	}
+
+	
 }

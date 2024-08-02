@@ -18,7 +18,7 @@ public class ShopItem : MonoBehaviour
 
 	public TMP_Text costText;
 	public TMP_Text quantityText;
-
+	
 	// 한번 샀을 때 색을 바꿈
 	public Button button;
 	public Image icon;
@@ -59,7 +59,11 @@ public class ShopItem : MonoBehaviour
 	public void OnClick()
 	{
 		if (DataManager.Instance.sushi - sushiCost < 0)
+		{
+			KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 			return;
+		}
+		KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Positive);
 		Debug.Log("클릭됨");
 		// isBuyUI를 활성화하고 위치를 고정된 위치로 설정
 		isBuyUI.transform.localScale = new Vector3(1, 1, 1);
@@ -90,7 +94,7 @@ public class ShopItem : MonoBehaviour
 	{
 		switch (_itemID)
 		{
-			
+
 			case 0: // 은방울
 				if (DataManager.Instance.sushi - sushiCost < 0)
 					break;
@@ -137,8 +141,10 @@ public class ShopItem : MonoBehaviour
 
 			case 100: // 통조림으로 은열쇠 구입
 				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.silverKey == DataManager.Instance.maxSilverKey)
-					//못 사는 사운드
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
+				}
 				DataManager.Instance.cannedFood -= cannedFoodCost;
 				DataManager.Instance.silverKey += quantity;
 				break;

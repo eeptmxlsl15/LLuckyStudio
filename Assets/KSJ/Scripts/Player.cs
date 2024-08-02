@@ -308,7 +308,7 @@ public class Player : MonoBehaviour , IDamagable
 			rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 			jumpCount++;
 			// TODO : 사운드 추가
-
+			KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Jump);
 			JumpEffect();
 		}
 	}
@@ -318,7 +318,7 @@ public class Player : MonoBehaviour , IDamagable
 		Vector3 offset = new Vector3(-0.3f,-0.15f,0);
 		Transform effect = effectPool.Get(jumpEffectID, (int)EffectType.JumpEffect).transform;
 		effect.position = transform.position + offset;
-		StartCoroutine(SetActiveFalseEffect(effect,1f));
+		StartCoroutine(SetActiveFalseEffect(effect,0.25f));
 	}
 
 	IEnumerator SetActiveFalseEffect(Transform effect ,float destroyTime)
@@ -406,13 +406,16 @@ public class Player : MonoBehaviour , IDamagable
 	//시작시 DataManager의 스탯을 가져옴
 	public void SetStat()
 	{
-		
+		KSJSoundManager.Instance.channels = 10;
 		isDead = DataManager.Instance.isDead;
 		//이펙트 
 		jumpEffectID = DataManager.Instance.effectID;
 
 		health = DataManager.Instance.health;
 		maxHealth = DataManager.Instance.maxHealth+DataManager.Instance.redMarbleValue[DataManager.Instance.redMarbleLv];
+		if (DataManager.Instance.skinID == 5)// 해골냥 : 체력 10 증가
+			maxHealth += 10;
+
 		speed = DataManager.Instance.speed;
 		jumpForce = DataManager.Instance.jumpForce;
 		jumpCount = DataManager.Instance.jumpCount;
@@ -423,8 +426,11 @@ public class Player : MonoBehaviour , IDamagable
 		flyRes = DataManager.Instance.flyRes; // 날아오는 장애물 저항
 		healthRegen = DataManager.Instance.healthRegen;
 		glideTime = DataManager.Instance.glideTime+DataManager.Instance.greenMarbleValue[DataManager.Instance.greenMarbleLv];
+		if (DataManager.Instance.skinID == 4)//천사냥 : 활주 시간 2초  증가
+			glideTime += 2f;
+
 		if (DataManager.Instance.greenMarbleLv == 10)
-			glideCooldown = DataManager.Instance.glideCooldown - 30;
+			glideCooldown = DataManager.Instance.glideCooldown *(0.8f);
 		else
 			glideCooldown = DataManager.Instance.glideCooldown;
 		allRes = DataManager.Instance.allRes+DataManager.Instance.blueMarbleValue[DataManager.Instance.blueMarbleLv];
@@ -489,6 +495,7 @@ public class Player : MonoBehaviour , IDamagable
 
 			Debug.Log("hit");
 			health -= (damage - allRes);
+			KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Hit);
 			StartCoroutine(HitEffect());
 		}
 		Debug.Log("Player took damage: " + (damage - allRes) + ", current health: " + health + " allRes : "+allRes);
@@ -662,6 +669,7 @@ public class Player : MonoBehaviour , IDamagable
 				
 				Transform effect = effectPool.Get(0, (int)EffectType.HitEffect).transform;
 				effect.position = other.transform.position;
+				KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Destroy);
 				StartCoroutine(SetActiveFalseEffect(effect, 0.5f));
 				Destroy(other.gameObject);
 				//CameraShake.Instance.ShakeCamera(10f, 0.1f);
@@ -678,7 +686,7 @@ public class Player : MonoBehaviour , IDamagable
 				effect.rotation = Quaternion.Euler(0f, 0f, randomZRotation);
 
 				effect.position = effectPosition;
-
+				KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Destroy);
 				StartCoroutine(SetActiveFalseEffect(effect, 0.5f));
 				Destroy(other.gameObject);
 				//CameraShake.Instance.ShakeCamera(10f, 0.1f);

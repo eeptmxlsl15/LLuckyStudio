@@ -53,7 +53,7 @@ public class ButtonManager : MonoBehaviour
 		}
 
 		
-
+		KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Positive);
 		// 클릭된 버튼과 관련된 UI 창을 표시
 		clickedUIWindow.transform.localScale = new Vector3(1f,1f,1f);
 		//열리는 창에 스크롤바가 하나만 있다는 가정하에
@@ -66,8 +66,8 @@ public class ButtonManager : MonoBehaviour
 	{
 		// 클릭된 버튼과 관련된 UI 창을 가져옴
 		GameObject closeUIWindow = closeToUIMap[closeButton];
-
-
+		
+		KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Positive);
 		// 클릭된 버튼과 관련된 UI 창을 표시
 		closeUIWindow.transform.localScale = new Vector3(0f, 0f, 0f);
 		//열리는 창에 스크롤바가 하나만 있다는 가정하에

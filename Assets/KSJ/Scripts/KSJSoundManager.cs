@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KSJSoundManager : MonoBehaviour
 {
-	public static KSJSoundManager instance; // 어디에서나 쓸 수 있게 정적 메모리에 담음
+	public static KSJSoundManager Instance; // 어디에서나 쓸 수 있게 정적 메모리에 담음
 
 	[Header("BGM")]
 	public AudioClip bgmClip;
@@ -22,16 +22,25 @@ public class KSJSoundManager : MonoBehaviour
 	{
 		Positive,
 		Negative, 
-		Destroy,
+		Hit,
 		Jump,
 		Slide, 
 		Glide,
+		Destroy,
 		Booster
 	}
 
 	void Awake()
 	{
-		instance = this;
+		if (Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject); // 씬 전환 시 객체 유지
+		}
+		else
+		{
+			Destroy(gameObject); // 중복된 인스턴스 제거
+		}
 		Init();
 
 	}
@@ -71,8 +80,6 @@ public class KSJSoundManager : MonoBehaviour
 			int loopIndex = (index + channelIndex) % sfxPlayers.Length;
 
 
-			if (sfxPlayers[loopIndex].isPlaying)
-				continue;
 			channelIndex = loopIndex;
 			sfxPlayers[loopIndex].clip = sfxClips[(int)sfx];
 			sfxPlayers[loopIndex].Play();

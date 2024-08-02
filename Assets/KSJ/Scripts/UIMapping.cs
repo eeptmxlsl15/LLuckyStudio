@@ -194,7 +194,7 @@ public class UIMapping : MonoBehaviour
 	public void UpdateLobbyUI()
 	{
 		sushiText.text = "" + dataManager.sushi;
-		silverKeyText.text = "" + dataManager.silverKey + "/" + dataManager.maxSilverKey;
+		silverKeyText.text = "" + dataManager.silverKey + "/30";
 
 		cannedFoodText.text = "" + dataManager.cannedFood;
 	}
