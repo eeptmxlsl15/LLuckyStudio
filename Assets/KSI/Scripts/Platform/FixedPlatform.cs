@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 // 고정형 발판
 public class FixedPlatform : Platform
 {

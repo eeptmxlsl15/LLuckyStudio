@@ -1,3 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
 public class GameModeButtonSceneUI : SceneUI
 {
 	protected override void Awake()

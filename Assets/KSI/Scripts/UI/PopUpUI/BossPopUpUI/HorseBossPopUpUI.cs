@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class HorseBOSSPopUpUI : PopUpUI
+public class HorseBossPopUpUI : PopUpUI
 {
 	protected override void Awake()
 	{
@@ -13,6 +15,7 @@ public class HorseBOSSPopUpUI : PopUpUI
 
 	public void LoadBOSScene()
 	{
+		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSSceneHorse");
 		Time.timeScale = 1f;

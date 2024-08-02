@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class ChickenBOSSPopUpUI : PopUpUI
+public class ChickenBossPopUpUI : PopUpUI
 {
 	protected override void Awake()
 	{
@@ -13,6 +15,7 @@ public class ChickenBOSSPopUpUI : PopUpUI
 
 	public void LoadBOSScene()
 	{
+		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSSceneChicken");
 		Time.timeScale = 1f;

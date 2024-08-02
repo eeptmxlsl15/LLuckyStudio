@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 // 입장 재화
 public class KeyGenerator : MonoBehaviour

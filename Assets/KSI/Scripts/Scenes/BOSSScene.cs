@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BOSSSceneHorse : MonoBehaviour
+public class BOSSScene : MonoBehaviour
 {
 	private DebuffSystem debuffSystem;
 
@@ -10,7 +10,7 @@ public class BOSSSceneHorse : MonoBehaviour
     {
 		debuffSystem = FindObjectOfType<DebuffSystem>();
 
-		debuffSystem.OnHorseDebuffChanged.Invoke();
-		Debug.Log("OnHorseDebuffChanged.");
+		debuffSystem.OnPigDebuffChanged.Invoke();
+		Debug.Log("OnPigDebuffChanged.");
 	}
 }

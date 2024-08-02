@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class PigBOSSPopUpUI : PopUpUI
+public class PigBossPopUpUI : PopUpUI
 {
 	protected override void Awake()
 	{
@@ -13,6 +15,7 @@ public class PigBOSSPopUpUI : PopUpUI
 
 	public void LoadBOSScene()
 	{
+		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSScenePig");
 		Time.timeScale = 1f;

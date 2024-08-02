@@ -10,7 +10,9 @@ public abstract class Goods : MonoBehaviour
 
 	private void Update()
 	{
+
 		Move();
+
 	}
 
 	protected virtual void Move()

@@ -1,18 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class RabbitBERSERKBOSSPopUpUI : PopUpUI
+public class RabbitBERSERKBossPopUpUI : PopUpUI
 {
 	protected override void Awake()
 	{
 		base.Awake();
 
-		buttons["RabbitBERSERKBOSSEntranceButton"].onClick.AddListener(() => { LoadBERSERKBOSScene(); });
-		buttons["RabbitBERSERKBOSSPopUpBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["RabbitBERSERKBossEntranceButton"].onClick.AddListener(() => { LoadBERSERKBOSScene(); });
+		buttons["RabbitBERSERKBossPopUpBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
 	public void LoadBERSERKBOSScene()
 	{
+		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BERSERKBOSSSceneRabbit");
 		Time.timeScale = 1f;

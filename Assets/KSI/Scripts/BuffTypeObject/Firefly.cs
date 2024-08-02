@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 // 반딧불
 // 버프형 오브젝트
