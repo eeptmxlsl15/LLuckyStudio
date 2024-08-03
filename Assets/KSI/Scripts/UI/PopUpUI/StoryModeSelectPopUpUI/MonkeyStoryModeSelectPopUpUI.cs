@@ -11,6 +11,7 @@ public class MonkeyStoryModeSelectPopUpUI : PopUpUI
 
 		buttons["MonkeySUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["MonkeyBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/MonkeyBossPopUpUI"); });
+		buttons["MonkeyBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/MonkeyBERSERKBossPopUpUI"); });
 		buttons["MonkeyStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 

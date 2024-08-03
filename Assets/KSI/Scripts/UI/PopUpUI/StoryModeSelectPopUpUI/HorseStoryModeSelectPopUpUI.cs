@@ -11,6 +11,7 @@ public class HorseStoryModeSelectPopUpUI : PopUpUI
 
 		buttons["HorseSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["HorseBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/HorseBossPopUpUI"); });
+		buttons["HorseBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/HorseBERSERKBossPopUpUI"); });
 		buttons["HorseStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
