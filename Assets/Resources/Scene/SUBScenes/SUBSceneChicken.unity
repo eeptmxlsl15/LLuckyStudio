@@ -134,58 +134,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2021062571904180670}
-    - target: {fileID: 2574749366631991533, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2574749366631991533, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2574749366631991533, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2574749366631991533, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4343333414017793471, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_margin.z
-      value: 10.1972885
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849546277098551815, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849546277098551815, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849546277098551815, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849546277098551815, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6022608519825556580, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6022608519825556580, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6022608519825556580, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6022608519825556580, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7666385145328635384, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -19191,18 +19139,23 @@ MonoBehaviour:
   jumpButton: {fileID: 79083463}
   slideButton: {fileID: 79083462}
   glideButton: {fileID: 79083461}
+  cameraShake: {fileID: 0}
   effectPool: {fileID: 0}
-  health: 0
-  maxHealth: 100
-  speed: 10
+  shakeTime: 0.2
   jumpForce: 10
   jumpCount: 0
   maxJumpCount: 2
+  fallSpeed: 2
+  fallStart: 5
+  glideTime: 3
+  glideCooldown: 10
+  health: 0
+  maxHealth: 100
+  speed: 10
   floorRes: 0
   flyRes: 0
   allRes: 0
   healthRegen: 0
-  glideTime: 3
   isDead: 0
   isGrounded: 0
   isSlide: 0
@@ -19213,8 +19166,6 @@ MonoBehaviour:
   isSecondShiled: 0
   isBooster: 0
   canGlide: 1
-  glideCooldown: 10
-  glideCooldownTimer: 0
   isPigDebuff: 0
   isDogDebuff: 0
   isRoosterDebuff: 0
@@ -19227,7 +19178,8 @@ MonoBehaviour:
   isTigerDebuff: 0
   isOxDebuff: 0
   isRatDebuff: 0
-  effectID: 0
+  jumpEffectID: 0
+  glideEffectID: 0
   activeDesires: 010100000000000000000000
 --- !u!61 &2021085224821175061
 BoxCollider2D:
@@ -80421,6 +80373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d856882a99c4cb74a9a8b9a208887b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debuffText: {fileID: 0}
 --- !u!114 &8258086772764363183
 MonoBehaviour:
   m_ObjectHideFlags: 0

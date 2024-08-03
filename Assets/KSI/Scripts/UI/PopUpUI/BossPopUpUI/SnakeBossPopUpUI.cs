@@ -15,9 +15,9 @@ public class SnakeBossPopUpUI : PopUpUI
 
 	public void LoadBOSScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSSceneSnake");
+		GameManager.Scene.LoadBOSS();
 		Time.timeScale = 1f;
 	}
 }

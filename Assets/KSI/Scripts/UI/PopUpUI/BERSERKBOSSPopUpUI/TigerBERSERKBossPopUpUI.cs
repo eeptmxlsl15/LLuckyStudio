@@ -17,6 +17,7 @@ public class TigerBERSERKBossPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BERSERKBOSSSceneTiger");
+		GameManager.Scene.LoadBERSERKBOSS();
 		Time.timeScale = 1f;
 	}
 }

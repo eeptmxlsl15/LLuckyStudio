@@ -23,6 +23,7 @@ public class INFINITEScenePopUpUI : MonoBehaviour
 		popupPanel.SetActive(false);
 		GameStart();
 		Time.timeScale = 0.1f;
+
 	}
 
 	public void GameStart()

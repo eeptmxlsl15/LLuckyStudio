@@ -15,9 +15,9 @@ public class DragonBossPopUpUI : PopUpUI
 
 	public void LoadBOSScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSSceneDragon");
+		GameManager.Scene.LoadBOSS();
 		Time.timeScale = 1f;
 	}
 }

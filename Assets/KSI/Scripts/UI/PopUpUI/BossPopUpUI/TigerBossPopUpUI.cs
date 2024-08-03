@@ -17,6 +17,7 @@ public class TigerBossPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSSceneTiger");
+		GameManager.Scene.LoadBOSS();
 		Time.timeScale = 1f;
 	}
 }

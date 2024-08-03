@@ -17,6 +17,7 @@ public class DogStoryModeSelectPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("SUBSceneDog");
+		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
 	}
 }

@@ -15,9 +15,9 @@ public class MouseBossPopUpUI : PopUpUI
 
 	public void LoadBOSScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSSceneMouse");
+		GameManager.Scene.LoadBOSS();
 		Time.timeScale = 1f;
 	}
 }
