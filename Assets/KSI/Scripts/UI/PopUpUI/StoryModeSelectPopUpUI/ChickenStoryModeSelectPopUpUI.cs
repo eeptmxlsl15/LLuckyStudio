@@ -17,6 +17,7 @@ public class ChickenStoryModeSelectPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("SUBSceneChicken");
+		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;
 	}
 }

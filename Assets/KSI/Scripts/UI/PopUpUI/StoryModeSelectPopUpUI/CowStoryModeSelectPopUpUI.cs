@@ -16,9 +16,9 @@ public class CowStoryModeSelectPopUpUI : PopUpUI
 
 	public void LoadSUBScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("SUBSceneCow");
+		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
 	}
 }

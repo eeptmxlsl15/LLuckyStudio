@@ -36,7 +36,7 @@ public class ResultPopUpUI : PopUpUI
 
 	private void Update()
 	{
-		DisplayResultUI();
+		//DisplayResultUI();
 	}
 
 	public void RestartButton()

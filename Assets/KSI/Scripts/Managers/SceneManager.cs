@@ -10,6 +10,31 @@ public class SceneManager : MonoBehaviour
 		Time.timeScale = 1;
 	}
 
+	public void LoadLOBBY()
+	{
+		GameManager.GameModeSystem.curGameMode = GameModeSystem.GameMode.LOBBY;
+	}
+
+	public void LoadSUB()
+	{
+		GameManager.GameModeSystem.curGameMode = GameModeSystem.GameMode.SUB;
+	}
+
+	public void LoadBOSS()
+	{
+		GameManager.GameModeSystem.curGameMode = GameModeSystem.GameMode.BOSS;
+	}
+
+	public void LoadBERSERKBOSS()
+	{
+		GameManager.GameModeSystem.curGameMode = GameModeSystem.GameMode.BERSERKBOSS;
+	}
+
+	public void LoadINFINITE()
+	{
+		GameManager.GameModeSystem.curGameMode = GameModeSystem.GameMode.INFINITE;
+	}
+
 	//private LoadingUI loadingUI;
 
 	//BaseScene curScene;

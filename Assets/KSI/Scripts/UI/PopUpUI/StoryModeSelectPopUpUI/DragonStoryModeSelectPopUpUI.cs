@@ -16,9 +16,9 @@ public class DragonStoryModeSelectPopUpUI : PopUpUI
 
 	public void LoadSUBScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("SUBSceneDragon");
+		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
 	}
 }

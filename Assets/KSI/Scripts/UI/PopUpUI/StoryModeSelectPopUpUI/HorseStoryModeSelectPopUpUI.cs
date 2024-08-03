@@ -16,9 +16,9 @@ public class HorseStoryModeSelectPopUpUI : PopUpUI
 
 	public void LoadSUBScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("SUBSceneHorse");
+		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
 	}
 }
