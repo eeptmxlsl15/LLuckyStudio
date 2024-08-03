@@ -11,6 +11,7 @@ public class MouseStoryModeSelectUI : PopUpUI
 
 		buttons["MouseSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["MouseBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/MouseBossPopUpUI"); });
+		buttons["MouseBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/MouseBERSERKBossPopUpUI"); });
 		buttons["MouseStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
