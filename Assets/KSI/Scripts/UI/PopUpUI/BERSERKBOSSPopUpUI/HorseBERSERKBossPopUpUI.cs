@@ -15,9 +15,9 @@ public class HorseBERSERKBossPopUpUI : PopUpUI
 
 	public void LoadBERSERKBOSScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BERSERKBOSSSceneHorse");
+		GameManager.Scene.LoadBERSERKBOSS();
 		Time.timeScale = 1f;
 	}
 }

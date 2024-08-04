@@ -15,9 +15,9 @@ public class RabbitBERSERKBossPopUpUI : PopUpUI
 
 	public void LoadBERSERKBOSScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BERSERKBOSSSceneRabbit");
+		GameManager.Scene.LoadBERSERKBOSS();
 		Time.timeScale = 1f;
 	}
 }

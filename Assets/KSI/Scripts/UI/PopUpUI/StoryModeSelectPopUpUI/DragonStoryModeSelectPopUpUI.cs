@@ -11,14 +11,15 @@ public class DragonStoryModeSelectPopUpUI : PopUpUI
 
 		buttons["DragonSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["DragonBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/DragonBossPopUpUI"); });
+		buttons["DragonBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/DragonBERSERKBossPopUpUI"); });
 		buttons["DragonStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
 	public void LoadSUBScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("SUBSceneDragon");
+		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
 	}
 }

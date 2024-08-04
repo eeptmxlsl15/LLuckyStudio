@@ -7,6 +7,7 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 public class DeathPopUpUI : PopUpUI
 {
 	[Header("UI")]
+	[SerializeField] private TextMeshProUGUI resultTitleText;
 	[SerializeField] private TextMeshProUGUI totalScoreText;
 
 	protected override void Awake()
@@ -44,5 +45,16 @@ public class DeathPopUpUI : PopUpUI
 	{
 		int totalScore = GameManager.Score.GetTotalScore();
 		totalScoreText.text = totalScore.ToString();
+
+		GameModeSystem gameModeSystem = FindObjectOfType<GameModeSystem>();
+		Debug.Log($"Current Game Mode: {GameManager.GameModeSystem.curGameMode}");
+		if (GameManager.GameModeSystem.curGameMode == GameModeSystem.GameMode.INFINITE)
+		{
+			resultTitleText.text = "RESULT";		
+		}
+		else
+		{
+			resultTitleText.text = "FAIL";		
+		}
 	}
 }

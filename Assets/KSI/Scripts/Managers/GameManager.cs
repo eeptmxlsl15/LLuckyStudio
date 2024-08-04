@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(this);
 
 		InitManagers();
+
+		OnApplicationPause();
 	}
 
 	private void OnDestroy()
@@ -82,6 +85,19 @@ public class GameManager : MonoBehaviour
 		gameModeSystemObject.name = "GameModeSystem ";
 		gameModeSystemObject.transform.parent = transform;
 		gameModeSystem = gameModeSystemObject.AddComponent<GameModeSystem>();
+	}
+
+	private void OnApplicationPause()
+	{
+		Screen.orientation = ScreenOrientation.AutoRotation;
+
+		Screen.autorotateToPortrait = false;
+
+		Screen.autorotateToPortraitUpsideDown = false;
+
+		Screen.autorotateToLandscapeLeft = true;
+
+		Screen.autorotateToLandscapeRight = true;
 	}
 
 	public void StartGame()

@@ -15,9 +15,9 @@ public class SheepBossPopUpUI : PopUpUI
 
 	public void LoadBOSScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSSceneSheep");
+		GameManager.Scene.LoadBOSS();
 		Time.timeScale = 1f;
 	}
 }

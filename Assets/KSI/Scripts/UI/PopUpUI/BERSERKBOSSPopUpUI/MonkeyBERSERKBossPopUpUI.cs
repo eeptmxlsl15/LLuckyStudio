@@ -15,9 +15,9 @@ public class MonkeyBERSERKBossPopUpUI : PopUpUI
 
 	public void LoadBERSERKBOSScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BERSERKBOSSSceneMonkey");
+		GameManager.Scene.LoadBERSERKBOSS();
 		Time.timeScale = 1f;
 	}
 }

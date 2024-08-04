@@ -11,14 +11,15 @@ public class SnakeStoryModeSelectPopUpUI : PopUpUI
 
 		buttons["SnakeSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["SnakeBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/SnakeBossPopUpUI"); });
+		buttons["SnakeBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/SnakeBERSERKBossPopUpUI"); });
 		buttons["SnakeStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
 	public void LoadSUBScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("SUBSceneSnake");
+		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
 	}
 }

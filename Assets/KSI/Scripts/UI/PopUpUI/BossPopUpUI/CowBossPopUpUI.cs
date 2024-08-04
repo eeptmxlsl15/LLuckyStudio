@@ -15,9 +15,9 @@ public class CowBossPopUpUI : PopUpUI
 
 	public void LoadBOSScene()
 	{
-		GameManager.UI.ClosePopUpUI();
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("BOSSSceneCow");
+		GameManager.Scene.LoadBOSS();
 		Time.timeScale = 1f;
 	}
 }

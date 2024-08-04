@@ -9,7 +9,7 @@ public class PigStoryModeSelectPopUpUI : PopUpUI
 
 		buttons["PigSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["PigBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/PigBossPopUpUI"); });
-		//buttons["PigBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBOSSPopUpUI/PigBERSERKBOSSPopUpUI"); });
+		buttons["PigBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpU/PigBERSERKBossPopUpU"); });
 		buttons["PigStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
 	}
 
@@ -17,6 +17,7 @@ public class PigStoryModeSelectPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClearPopUpUI();
 		UnitySceneManager.LoadScene("SUBScenePig");
+		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
 	}
 }
