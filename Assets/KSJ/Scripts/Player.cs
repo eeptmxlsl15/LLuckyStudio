@@ -533,22 +533,8 @@ public class Player : MonoBehaviour , IDamagable
 		anim.SetTrigger("isDead");
 		Debug.Log("플레이어가 죽었습니다.");
 		Time.timeScale = 0f;
-		if (GameManager.GameModeSystem.curGameMode == GameModeSystem.GameMode.INFINITE)
-		{
-			GameManager.Instance.InfiniteEndGame();
-			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/ResultPopUpUI");
-
-			QuestManager questManager = FindObjectOfType<QuestManager>();
-			if (questManager != null)
-			{
-				questManager.OnGameEnd();
-			}
-		}
-		else
-		{
-			GameManager.Instance.EndGame();
-			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/DeathPopUpUI");
-		}
+		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/DeathPopUpUI");
+		GameManager.Instance.EndGame();
 	}
 
 	// 츄르 : 체력 10회복
