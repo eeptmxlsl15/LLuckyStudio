@@ -529,6 +529,7 @@ public class Player : MonoBehaviour , IDamagable
 	public void Die()
 	{
 		if (isDead) return;
+
 		isDead = true;
 		anim.SetTrigger("isDead");
 		Debug.Log("플레이어가 죽었습니다.");
