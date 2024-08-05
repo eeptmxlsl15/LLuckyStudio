@@ -127,7 +127,7 @@ public class Player : MonoBehaviour , IDamagable
 
 	void Start()
 	{
-		
+		Debug.Log("플레이어 스타트");
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
 		anim.runtimeAnimatorController = DataManager.Instance.playerSkin[DataManager.Instance.skinID];
@@ -529,7 +529,7 @@ public class Player : MonoBehaviour , IDamagable
 	public void Die()
 	{
 		if (isDead) return;
-
+		
 		isDead = true;
 		anim.SetTrigger("isDead");
 		Debug.Log("플레이어가 죽었습니다.");
