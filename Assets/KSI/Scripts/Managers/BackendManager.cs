@@ -26,6 +26,7 @@ public class BackendManager : MonoBehaviour
 	{
 		await Task.Run(() => {
 			CustomLogin("강수인", "1234");
+			UpdateNickname("LLucky Studio");
 			// TODO : 뒤끝 회원가입 함수
 			Debug.Log("테스트를 종료합니다.");
 		});
@@ -60,6 +61,22 @@ public class BackendManager : MonoBehaviour
 		else
 		{
 			Debug.LogError("로그인이 실패했습니다. : " + bro);
+		}
+	}
+
+	public void UpdateNickname(string nickname)
+	{
+		Debug.Log("닉네임 변경을 요청합니다.");
+
+		var bro = Backend.BMember.UpdateNickname(nickname);
+
+		if (bro.IsSuccess())
+		{
+			Debug.Log("닉네임 변경에 성공했습니다 : " + bro);
+		}
+		else
+		{
+			Debug.LogError("닉네임 변경에 실패했습니다 : " + bro);
 		}
 	}
 }
