@@ -48,7 +48,7 @@ public class Player : MonoBehaviour , IDamagable
 	public float speed = 10f;
 	public int floorRes = 0; // 발판형 장애물 저항
 	public int flyRes = 0; // 날아오는 장애물 저항
-	public int allRes = 0; // 모든 피해 수치 감소 
+	public float allRes = 0; // 모든 피해 수치 감소 
 	public float healthRegen = 0;
 	
 	private bool ratDesire;
@@ -196,7 +196,7 @@ public class Player : MonoBehaviour , IDamagable
 		if (isSlide)
 		{
 
-			rb.AddForce(Vector2.down * 2f, (ForceMode2D)ForceMode.Acceleration);
+			rb.AddForce(Vector2.down * 20f, (ForceMode2D)ForceMode.Impulse);
 		}
 		//하강 가속도
 		if (rb.velocity.y < fallStart)
@@ -446,10 +446,10 @@ public class Player : MonoBehaviour , IDamagable
 				maxHealth += 20;
 				health = maxHealth;
 				break;
-			case Constants.Dog:// 이동 속도 20 증가
-				speed += 20f;
+			case Constants.Dog:// 점프 +1회
+				maxJumpCount++;
 				break;
-			case Constants.Rooster:// 물기둥 둔화 면역
+			case Constants.Rooster:// 물기둥 데미지 10 감소
 				//floorRes += 5;
 				break;
 			case Constants.Monkey:// 젤리코인 점수 5점 증가
@@ -461,22 +461,22 @@ public class Player : MonoBehaviour , IDamagable
 			case Constants.Horse:// 부스터 아이템 지속 시간 1.5초 증가
 				//완료		
 				break;
-			case Constants.Snake:// 날아오는 장애물 오브젝트 피해 수치 5 감소
-				flyRes += 3;
+			case Constants.Snake:// 날아오는 장애물 오브젝트 피해 수치 2 감소
+				flyRes += 2;
 				break;
 			case Constants.Dragon:// 무적 아이템 지속 시간 증가
 				//완료
 				break;
-			case Constants.Rabbit:// 츄르의 체력 회복량 5 증가
+			case Constants.Rabbit:// 츄르->회복의 체력 회복량 5 증가
 				//완료
 				break;
 			case Constants.Tiger://  쉴드 효과 횟수 1회 증가
 				Debug.Log("호랑이 염원");
 				break;
-			case Constants.Ox:// 활공 시간 증가
+			case Constants.Ox:// 활공 1초 시간 증가
 				glideTime += 1f;
 				break;
-			case Constants.Rat://10초당 체력 재생
+			case Constants.Rat://10초당 체력 1 회복
 				ratDesire = true;
 				healthRegen += 1f;
 				break;
@@ -525,6 +525,13 @@ public class Player : MonoBehaviour , IDamagable
 	public int FlyObstacleDamage(int damage)
 	{
 		return damage -= flyRes;
+	}
+
+	public int WaterPillarDamage(int damage)
+	{
+		if (activeDesires[2])//닭 염원
+			return damage -= 10;
+		return damage;
 	}
 	public void Die()
 	{

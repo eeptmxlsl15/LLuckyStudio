@@ -95,29 +95,29 @@ public class UIMapping : MonoBehaviour
 		if (dataManager.redMarbleLv == 10)
 			needRedSushi.text = "강화 완료";
 		else
-			needRedSushi.text = "강화 : " + dataManager.nextExp[dataManager.redMarbleLv]+"초밥";
+			needRedSushi.text = "강화 : " + dataManager.nextSushi[dataManager.redMarbleLv]+"초밥";
 
 		if (dataManager.blueMarbleLv == 10)
 			needBlueSushi.text = "강화 완료";
 		else
-			needBlueSushi.text = "강화 : " + dataManager.nextExp[dataManager.blueMarbleLv] + "초밥";
+			needBlueSushi.text = "강화 : " + dataManager.nextSushi[dataManager.blueMarbleLv] + "초밥";
 
 		if(dataManager.greenMarbleLv == 10)
 			needGreenSushi.text = "강화 완료";
 		else
-			needGreenSushi.text = "강화 : " + dataManager.nextExp[dataManager.greenMarbleLv] + "	초밥";
+			needGreenSushi.text = "강화 : " + dataManager.nextSushi[dataManager.greenMarbleLv] + "	초밥";
 	}
 
 	public void UpdateCatsDesire()
 	{
-		blueMarble.text = "Lv." + dataManager.blueMarbleLv + " 모든 피해 " + dataManager.blueMarbleValue[dataManager.blueMarbleLv]+" 감소";
 		redMarble.text = "Lv." + dataManager.redMarbleLv + " 최대 체력 " + dataManager.redMarbleValue[dataManager.redMarbleLv]+" 증가";
+		blueMarble.text = "Lv." + dataManager.blueMarbleLv + " 모든 피해 " + dataManager.blueMarbleValue[dataManager.blueMarbleLv]+" 감소";
 		greenMarble.text = "Lv. " + dataManager.greenMarbleLv + " 활공  " + dataManager.greenMarbleValue[dataManager.greenMarbleLv]+"초 증가";
 	}
 
 	public void UpdateUpgrade()
 	{
-		if (dataManager.brokenBlue < dataManager.nextExp[dataManager.blueMarbleLv] || dataManager.sushi < dataManager.nextExp[dataManager.blueMarbleLv] || dataManager.blueMarbleLv == 11)
+		if (dataManager.brokenBlue < dataManager.nextExp[dataManager.blueMarbleLv] || dataManager.sushi < dataManager.nextSushi[dataManager.blueMarbleLv] || dataManager.blueMarbleLv == 11)
 		{
 			upgradeBlueHP.GetComponent<Image>().color = Color.gray;
 			upgradeBlueHP.interactable = false; // 버튼 비활성화
@@ -128,7 +128,7 @@ public class UIMapping : MonoBehaviour
 			upgradeBlueHP.interactable = true; // 버튼 활성화
 		}
 
-		if (dataManager.brokenRed < dataManager.nextExp[dataManager.redMarbleLv] || dataManager.sushi < dataManager.nextExp[dataManager.redMarbleLv] || dataManager.redMarbleLv == 11)
+		if (dataManager.brokenRed < dataManager.nextExp[dataManager.redMarbleLv] || dataManager.sushi < dataManager.nextSushi[dataManager.redMarbleLv] || dataManager.redMarbleLv == 11)
 		{
 			upgradeRedGlide.GetComponent<Image>().color = Color.gray;
 			upgradeRedGlide.interactable = false; // 버튼 비활성화
@@ -139,7 +139,7 @@ public class UIMapping : MonoBehaviour
 			upgradeRedGlide.interactable = true; // 버튼 활성화
 		}
 
-		if (dataManager.brokenGreen < dataManager.nextExp[dataManager.greenMarbleLv] || dataManager.sushi < dataManager.nextExp[dataManager.greenMarbleLv] || dataManager.greenMarbleLv == 11)
+		if (dataManager.brokenGreen < dataManager.nextExp[dataManager.greenMarbleLv] || dataManager.sushi < dataManager.nextSushi[dataManager.greenMarbleLv] || dataManager.greenMarbleLv == 11)
 		{
 			upgradeGreenCount.GetComponent<Image>().color = Color.gray;
 			upgradeGreenCount.interactable = false; // 버튼 비활성화
@@ -155,28 +155,28 @@ public class UIMapping : MonoBehaviour
 	{
 		if (color == 1) // 적
 		{
-			if (dataManager.brokenRed >= dataManager.nextExp[dataManager.redMarbleLv] && dataManager.sushi >= dataManager.nextExp[dataManager.redMarbleLv] && dataManager.redMarbleLv < 10)
+			if (dataManager.brokenRed >= dataManager.nextExp[dataManager.redMarbleLv] && dataManager.sushi >= dataManager.nextSushi[dataManager.redMarbleLv] && dataManager.redMarbleLv < 10)
 			{
 				dataManager.brokenRed -= dataManager.nextExp[dataManager.redMarbleLv];
-				dataManager.sushi -= dataManager.nextExp[dataManager.redMarbleLv];
+				dataManager.sushi -= dataManager.nextSushi[dataManager.redMarbleLv];
 				dataManager.redMarbleLv++;
 			}
 		}
 		if (color == 2) // 청
 		{
-			if (dataManager.brokenBlue >= dataManager.nextExp[dataManager.blueMarbleLv] && dataManager.sushi >= dataManager.nextExp[dataManager.blueMarbleLv] && dataManager.blueMarbleLv < 10)
+			if (dataManager.brokenBlue >= dataManager.nextExp[dataManager.blueMarbleLv] && dataManager.sushi >= dataManager.nextSushi[dataManager.blueMarbleLv] && dataManager.blueMarbleLv < 10)
 			{
 				dataManager.brokenBlue -= dataManager.nextExp[dataManager.blueMarbleLv];
-				dataManager.sushi -= dataManager.nextExp[dataManager.blueMarbleLv];
+				dataManager.sushi -= dataManager.nextSushi[dataManager.blueMarbleLv];
 				dataManager.blueMarbleLv++;
 			}
 		}
 		if (color == 3) // 녹
 		{
-			if (dataManager.brokenGreen >= dataManager.nextExp[dataManager.greenMarbleLv] && dataManager.sushi >= dataManager.nextExp[dataManager.greenMarbleLv] && dataManager.greenMarbleLv < 10)
+			if (dataManager.brokenGreen >= dataManager.nextExp[dataManager.greenMarbleLv] && dataManager.sushi >= dataManager.nextSushi[dataManager.greenMarbleLv] && dataManager.greenMarbleLv < 10)
 			{
 				dataManager.brokenGreen -= dataManager.nextExp[dataManager.greenMarbleLv];
-				dataManager.sushi -= dataManager.nextExp[dataManager.greenMarbleLv];
+				dataManager.sushi -= dataManager.nextSushi[dataManager.greenMarbleLv];
 				dataManager.greenMarbleLv++;
 			}
 		}
