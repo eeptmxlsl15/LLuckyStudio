@@ -97,6 +97,20 @@ public class BackendManager : MonoBehaviour
 			Debug.Log("게스트 회원 탈퇴 실패 : " + bro);
 		}
 	}
+
+	public void CustomWithdraw()
+	{
+		var bro = Backend.BMember.WithdrawAccount();
+
+		if (bro.IsSuccess())
+		{
+			Debug.Log("게스트 회원 탈퇴 성공 : " + bro);
+		}
+		else
+		{
+			Debug.Log("게스트 회원 탈퇴 실패 : " + bro);
+		}
+	}
 }
 
 
