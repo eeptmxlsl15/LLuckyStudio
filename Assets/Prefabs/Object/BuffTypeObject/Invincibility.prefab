@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5845558588231439516}
   - component: {fileID: 2333647734972205270}
-  - component: {fileID: 6639094852976369392}
-  - component: {fileID: 991157393220351370}
+  - component: {fileID: 2999462362265573222}
   - component: {fileID: 1284130798840247228}
   m_Layer: 0
   m_Name: Invincibility
@@ -29,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 9059013056837627540}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.49, y: -3.22, z: 1.3298589}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5ecd06060e1dcfd47adac521acbfb085, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ac192e1b25838a4d8cec1d32855695c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,29 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6639094852976369392
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9059013056837627540}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fdf7d30ee57af314e897d8b04e54e749, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!58 &991157393220351370
-CircleCollider2D:
+--- !u!70 &2999462362265573222
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -140,9 +118,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003645134, y: 0.0063790083}
-  serializedVersion: 2
-  m_Radius: 0.10170162
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 5.56, y: 5.56}
+  m_Direction: 0
 --- !u!114 &1284130798840247228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,4 +133,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02509f37979513438d2bdc401f6db1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
