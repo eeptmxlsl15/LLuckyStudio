@@ -26,8 +26,8 @@ public class BackendManager : MonoBehaviour
 	{
 		await Task.Run(() => {
 			CustomLogin("강수인", "1234");
-			UpdateNickname("LLucky Studio");
-			// TODO : 뒤끝 회원가입 함수
+			// UpdateNickname("LLucky Studio");
+			// TODO : 게임 정보 기능 구현 로직 추가
 			Debug.Log("테스트를 종료합니다.");
 		});
 	}
