@@ -63,7 +63,7 @@ public class DataManager : MonoBehaviour
 	//배경
 	public int wallpaper;
 
-
+	public int[] nextSushi = { 10000, 15000, 18000, 20000, 26000, 30000, 40000, 50000, 55000, 60000 };
 	public int[] nextExp = { 10, 20	, 30, 40, 50, 60, 70, 80 , 90,100,110};
 	[Header("# Cat's Desire Level")]
 	public bool haveCatsDesire = true;
