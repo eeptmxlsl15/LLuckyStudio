@@ -196,7 +196,7 @@ public class Player : MonoBehaviour , IDamagable
 		if (isSlide)
 		{
 
-			rb.AddForce(Vector2.down * 2f, (ForceMode2D)ForceMode.Acceleration);
+			rb.AddForce(Vector2.down * 20f, (ForceMode2D)ForceMode.Impulse);
 		}
 		//하강 가속도
 		if (rb.velocity.y < fallStart)
