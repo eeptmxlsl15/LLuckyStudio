@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	static ScoreManager scoreManager;
 	static BerserkSystemManager berserkSystemManager;
 	static GameModeSystem gameModeSystem;
+	static BackendManager backend;
 
 	public static GameManager Instance { get { return instance; } }
 	public static ResourceManager Resource { get { return resourceManager; } }
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
 	public static ScoreManager Score { get { return scoreManager; } }
 	public static BerserkSystemManager BerserkSystem { get { return berserkSystemManager; } }
 	public static GameModeSystem GameModeSystem { get { return gameModeSystem; } }
+	public static BackendManager Backend { get { return backend; } }
 
 	public BerserkSystemManager.ZodiacSign BossDebuff { get; set; }
 	public BerserkSystemManager.ZodiacSign InfiniteDebuff1 { get; set; }
