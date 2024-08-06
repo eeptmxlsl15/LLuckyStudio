@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
 		OnApplicationPause();
 
-		Application.targetFrameRate = 200;
+		Application.targetFrameRate = 60;
 	}
 
 	private void OnDestroy()
