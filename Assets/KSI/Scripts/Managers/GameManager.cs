@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 		InitManagers();
 
 		OnApplicationPause();
+
+		Application.targetFrameRate = 200;
 	}
 
 	private void OnDestroy()
