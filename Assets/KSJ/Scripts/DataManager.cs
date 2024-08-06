@@ -31,7 +31,7 @@ public class DataManager : MonoBehaviour
 	public float healthRegenTimer = 0f;
 	private const float healthRegenInterval = 10f;
 
-	public float glideCooldown = 120f;
+	public float glideCooldown = 45;
 	public float glideCooldownTimer = 0f;
 
 	[Header("# Player Items")]
@@ -69,14 +69,14 @@ public class DataManager : MonoBehaviour
 	public bool haveCatsDesire = true;
 
 	public int redMarbleLv;//체력
-	public int[] redMarbleValue =  { 5, 5, 5, 5, 5, 10, 10, 10, 10, 10,20 };
+	public int[] redMarbleValue =  { 0, 2, 4, 6, 8, 10, 12, 14, 16, 18,20 };
 
 	public int blueMarbleLv;//피해 수치 감소
-	public int[] blueMarbleValue = { 1, 1, 1, 1, 1, 3, 3, 3, 3, 3,5 };
+	public float[] blueMarbleValue = { 0, 0.5f, 1f, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f, 4.5f,5f};
 	
 	
 	public int greenMarbleLv;//활공 시간
-	public float[] greenMarbleValue = { 5f, 5f, 5f, 5f, 5f,7f, 7f, 7f, 7f, 7f,10f };
+	public float[] greenMarbleValue = { 0f, 0.5f, 1f, 1.5f, 2f,2.5f, 3f, 3.5f, 4f, 4.5f,5f };
 
 	[Header("# Reset Item")]
 	public List<int> resetItemID;

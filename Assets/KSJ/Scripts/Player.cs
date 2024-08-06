@@ -48,7 +48,7 @@ public class Player : MonoBehaviour , IDamagable
 	public float speed = 10f;
 	public int floorRes = 0; // 발판형 장애물 저항
 	public int flyRes = 0; // 날아오는 장애물 저항
-	public int allRes = 0; // 모든 피해 수치 감소 
+	public float allRes = 0; // 모든 피해 수치 감소 
 	public float healthRegen = 0;
 	
 	private bool ratDesire;
