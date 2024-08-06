@@ -25,7 +25,7 @@ public class BackendManager : MonoBehaviour
 	async void Test()
 	{
 		await Task.Run(() => {
-			CustomSignUp("강수인", "1234");
+			CustomLogin("강수인", "1234");
 			// TODO : 뒤끝 회원가입 함수
 			Debug.Log("테스트를 종료합니다.");
 		});
@@ -44,6 +44,22 @@ public class BackendManager : MonoBehaviour
 		else
 		{
 			Debug.LogError("회원가입에 실패했습니다. : " + bro);
+		}
+	}
+
+	public void CustomLogin(string id, string pw)
+	{
+		Debug.Log("로그인을 요청합니다.");
+
+		var bro = Backend.BMember.CustomLogin(id, pw);
+
+		if (bro.IsSuccess())
+		{
+			Debug.Log("로그인이 성공했습니다. : " + bro);
+		}
+		else
+		{
+			Debug.LogError("로그인이 실패했습니다. : " + bro);
 		}
 	}
 }
