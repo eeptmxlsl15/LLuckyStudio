@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using BackEnd;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class BackendLogin : BackendLoginBase
 {
@@ -49,6 +50,9 @@ public class BackendLogin : BackendLoginBase
 			if (callback.IsSuccess())
 			{
 				SetMessage($"환영합니다. \"{inputFieldID.text}\".");
+				UnitySceneManager.LoadScene("LobbyScene");
+				GameManager.Scene.LoadLOBBY();
+				Time.timeScale = 1f;
 			}
 			// 로그인 실패
 			else
