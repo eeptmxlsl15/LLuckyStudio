@@ -95,17 +95,17 @@ public class UIMapping : MonoBehaviour
 		if (dataManager.redMarbleLv == 10)
 			needRedSushi.text = "강화 완료";
 		else
-			needRedSushi.text = "강화 : " + dataManager.nextSushi[dataManager.redMarbleLv]+"초밥";
+			needRedSushi.text = "강화    " + dataManager.nextSushi[dataManager.redMarbleLv];
 
 		if (dataManager.blueMarbleLv == 10)
 			needBlueSushi.text = "강화 완료";
 		else
-			needBlueSushi.text = "강화 : " + dataManager.nextSushi[dataManager.blueMarbleLv] + "초밥";
+			needBlueSushi.text = "강화    " + dataManager.nextSushi[dataManager.blueMarbleLv];
 
 		if(dataManager.greenMarbleLv == 10)
 			needGreenSushi.text = "강화 완료";
 		else
-			needGreenSushi.text = "강화 : " + dataManager.nextSushi[dataManager.greenMarbleLv] + "	초밥";
+			needGreenSushi.text = "강화    " + dataManager.nextSushi[dataManager.greenMarbleLv];
 	}
 
 	public void UpdateCatsDesire()
