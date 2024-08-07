@@ -7,20 +7,36 @@ using BackEnd.MultiCharacter;
 
 public class BackendManager : MonoBehaviour
 {
-	private void Start()
+	private void Awake()
 	{
+		BackendSetup();
+	}
+
+	private void Update()
+	{
+		// 서버의 비동기 메소드 호출(콜백 함수 풀링)을 위해 작성
+		if (Backend.IsInitialized)
+		{
+			Backend.AsyncPoll();
+		}
+	}
+
+	private void BackendSetup()
+	{
+		// 뒤끝 초기화 (콜백 함수 풀링을 사용하려면 매개변수를 true로 설정)
 		var bro = Backend.Initialize(true);
 
+		// 뒤끝 초기화에 대한 응답값
 		if (bro.IsSuccess())
 		{
-			Debug.Log("초기화 성공 : " + bro);
+			// 초기화 성공 시 statusCode 204 Success
+			Debug.Log($"초기화 성공 : {bro}");
 		}
 		else
 		{
-			Debug.LogError("초기화 실패 : " + bro);
+			// 초기화 실패 시 statusCode 400대 에러 발생
+			Debug.LogError($"초기화 실패 : {bro}");
 		}
-
-		//StartCoroutine(TestRoutine());
 	}
 
 	private IEnumerator TestRoutine()
