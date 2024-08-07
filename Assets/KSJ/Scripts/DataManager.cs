@@ -25,7 +25,7 @@ public class DataManager : MonoBehaviour
 	public int flyRes = 0; // 날아오는 장애물 저항
 	public int allRes = 0; // 모든 피해 수치 감소 
 	public float healthRegen = 0;
-	public float glideTime=0;
+	public float glideTime = 0;
 
 	public bool ratDesire;
 	public float healthRegenTimer = 0f;
@@ -52,9 +52,9 @@ public class DataManager : MonoBehaviour
 	public int maxSilverKey = 999;
 	public int goldKey;
 	public int maxGoldKey;
-	
+
 	public int resurrection;
-	
+
 	public int money;//유료 재화 
 	[Header("# Effect & Wallpaper")]
 	//이펙트
@@ -64,19 +64,19 @@ public class DataManager : MonoBehaviour
 	public int wallpaper;
 
 	public int[] nextSushi = { 10000, 15000, 18000, 20000, 26000, 30000, 40000, 50000, 55000, 60000 };
-	public int[] nextExp = { 10, 20	, 30, 40, 50, 60, 70, 80 , 90,100,110};
+	public int[] nextExp = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 };
 	[Header("# Cat's Desire Level")]
 	public bool haveCatsDesire = true;
 
 	public int redMarbleLv;//체력
-	public int[] redMarbleValue =  { 0, 2, 4, 6, 8, 10, 12, 14, 16, 18,20 };
+	public int[] redMarbleValue = { 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 };
 
 	public int blueMarbleLv;//피해 수치 감소
-	public float[] blueMarbleValue = { 0, 0.5f, 1f, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f, 4.5f,5f};
-	
-	
+	public float[] blueMarbleValue = { 0, 0.5f, 1f, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f, 4.5f, 5f };
+
+
 	public int greenMarbleLv;//활공 시간
-	public float[] greenMarbleValue = { 0f, 0.5f, 1f, 1.5f, 2f,2.5f, 3f, 3.5f, 4f, 4.5f,5f };
+	public float[] greenMarbleValue = { 0f, 0.5f, 1f, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f, 4.5f, 5f };
 
 	[Header("# Reset Item")]
 	public List<int> resetItemID;
@@ -90,6 +90,16 @@ public class DataManager : MonoBehaviour
 	public int advResetMaxNum;
 
 	public bool isDead = false;
+
+	[Header("# Package")]
+	public float catGage;
+	public float premiumGage;
+
+	public List<int> haveSkin = new List<int>();
+	public List<int> haveWallpaper = new List<int>();
+	public List<int> haveEffect = new List<int>();
+
+
 	private void Awake()
     {
         // 싱글톤 패턴 구현
