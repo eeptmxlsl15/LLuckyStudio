@@ -20,7 +20,7 @@ public class BackendManager : MonoBehaviour
 			Debug.LogError("초기화 실패 : " + bro);
 		}
 
-		StartCoroutine(TestRoutine());
+		//StartCoroutine(TestRoutine());
 	}
 
 	private IEnumerator TestRoutine()

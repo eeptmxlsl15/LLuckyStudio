@@ -13,10 +13,10 @@ public class LoadingUI : MonoBehaviour
 
 	public void Play(UnityAction action = null)
 	{
-		StartCoroutine(OnProgress(action));
+		StartCoroutine(OnProgressRoutine(action));
 	}
 
-	private IEnumerator OnProgress(UnityAction action)
+	private IEnumerator OnProgressRoutine(UnityAction action)
 	{
 		float current = 0;
 		float percent = 0;

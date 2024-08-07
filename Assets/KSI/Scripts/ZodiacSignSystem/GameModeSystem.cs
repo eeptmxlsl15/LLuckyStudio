@@ -15,6 +15,7 @@ public class GameModeSystem : MonoBehaviour
 {
 	public enum GameMode
 	{
+		LOGIN,
 		LOBBY,
 		SUB,
 		BOSS,

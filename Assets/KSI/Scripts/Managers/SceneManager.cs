@@ -3,7 +3,8 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public enum SceneNames
 { 
-	Login
+	LoadingScene,
+	LoginScene
 }
 
 public class SceneManager : MonoBehaviour
