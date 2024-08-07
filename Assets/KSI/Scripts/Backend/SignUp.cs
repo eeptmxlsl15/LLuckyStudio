@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class SignUp : BackendLoginBase
 {
@@ -73,8 +74,10 @@ public class SignUp : BackendLoginBase
 					{
 						SetMessage($"계정 생성 성공. {inputFieldID.text}님 환영합니다.");
 
-						// Lobby 씬으로 이동
-						SceneManager.LoadScene(SceneNames.LobbyScene);
+						// Lobby 씬으로 이동				
+						UnitySceneManager.LoadScene("LobbyScene");
+						GameManager.Scene.LoadLOBBY();
+						Time.timeScale = 1f;
 					}
 				});
 			}
