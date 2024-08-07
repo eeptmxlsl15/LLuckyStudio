@@ -4,7 +4,8 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 public enum SceneNames
 { 
 	LoadingScene,
-	LoginScene
+	LoginScene,
+	LobbyScene
 }
 
 public class SceneManager : MonoBehaviour
