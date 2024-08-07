@@ -25,7 +25,7 @@ public class BackendManager : MonoBehaviour
 
 	private IEnumerator TestRoutine()
 	{
-		yield return StartCoroutine(CustomSignUpAsyncRoutine("kangsooin", "1234"));
+		//yield return StartCoroutine(CustomSignUpAsyncRoutine("kangsooin", "1234"));
 
 		yield return StartCoroutine(CustomLoginAsyncRoutine("kangsooin", "1234"));
 	}
@@ -35,18 +35,14 @@ public class BackendManager : MonoBehaviour
 		StartCoroutine(CustomSignUpAsyncRoutine(id, pw));
 	}
 
-	// 비동기 방식으로 회원가입 요청 처리
-	IEnumerator CustomSignUpAsyncRoutine(string id, string pw)
+	private IEnumerator CustomSignUpAsyncRoutine(string id, string pw)
 	{
-		// Task.Run을 사용하여 백그라운드 스레드에서 실행될 비동기 작업 시작
 		yield return new WaitTask(Task.Run(() =>
 		{
 			Debug.Log("회원가입 요청합니다.");
 
-			// 뒤끝 서버 SDK를 이용한 사용자 정의 회원가입 요청
 			var bro = Backend.BMember.CustomSignUp(id, pw);
 
-			// 회원가입 요청 결과에 따른 처리
 			if (bro.IsSuccess())
 			{
 				Debug.Log("회원가입 성공했습니다. : " + bro);
@@ -63,17 +59,14 @@ public class BackendManager : MonoBehaviour
 		StartCoroutine(CustomLoginAsyncRoutine(id, pw));
 	}
 
-	IEnumerator CustomLoginAsyncRoutine(string id, string pw)
+	private IEnumerator CustomLoginAsyncRoutine(string id, string pw)
 	{
-		// Task.Run을 사용하여 백그라운드 스레드에서 실행될 비동기 작업 시작
 		yield return new WaitTask(Task.Run(() =>
 		{
 			Debug.Log("로그인 요청합니다.");
 
-			// 뒤끝 서버 SDK를 이용한 사용자 정의 로그인 요청
 			var bro = Backend.BMember.CustomLogin(id, pw);
 
-			// 로그인 요청 결과에 따른 처리
 			if (bro.IsSuccess())
 			{
 				Debug.Log("로그인 성공했습니다. : " + bro);

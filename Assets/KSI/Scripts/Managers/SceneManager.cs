@@ -1,8 +1,35 @@
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
+public enum SceneNames
+{ 
+	Login
+}
+
 public class SceneManager : MonoBehaviour
 {
+	public static string GetActiveScene()
+	{ 
+		return UnitySceneManager.GetActiveScene().name;
+	}
+
+	public static void LoadScene(string sceneName = "")
+	{
+		if (sceneName == "")
+		{
+			UnitySceneManager.LoadScene(GetActiveScene());
+		}
+		else
+		{
+			UnitySceneManager.LoadScene(sceneName);
+		}
+	}
+
+	public static void LoadScene(SceneNames sceneName)
+	{
+		UnitySceneManager.LoadScene(sceneName.ToString());
+	}
+
 	public void StartGame()
 	{
 		UnitySceneManager.LoadScene("INFINITEScene");
