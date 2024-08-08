@@ -8,15 +8,15 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class SignUp : BackendLoginBase
 {
-	[SerializeField] private Image imageID;              // ID 필드 색상 변경
-	[SerializeField] private TMP_InputField inputFieldID;            // ID 필드 텍스트 정보 추출
-	[SerializeField] private Image imagePW;              // PW 필드 색상 변경
-	[SerializeField] private TMP_InputField inputFieldPW;            // PW 필드 텍스트 정보 추출
-	[SerializeField] private Image imageConfirmPW;           // Confirm PW 필드 색상 변경
+	[SerializeField] private Image imageID; // ID 필드 색상 변경
+	[SerializeField] private TMP_InputField inputFieldID; // ID 필드 텍스트 정보 추출
+	[SerializeField] private Image imagePW; // PW 필드 색상 변경
+	[SerializeField] private TMP_InputField inputFieldPW; // PW 필드 텍스트 정보 추출
+	[SerializeField] private Image imageConfirmPW; // Confirm PW 필드 색상 변경
 	[SerializeField] private TMP_InputField inputFieldConfirmPW; // Confirm PW 필드 텍스트 정보 추출
-	[SerializeField] private Image imageEmail;               // E-mail 필드 색상 변경
-	[SerializeField] private TMP_InputField inputFieldEmail;     // E-mail 필드 텍스트 정보 추출
-	[SerializeField] private Button signUpButton;      // "계정 생성" 버튼 (상호작용 가능/불가능)
+	[SerializeField] private Image imageEmail; // E-mail 필드 색상 변경
+	[SerializeField] private TMP_InputField inputFieldEmail;  // E-mail 필드 텍스트 정보 추출
+	[SerializeField] private Button signUpButton; // "계정 생성" 버튼 (상호작용 가능/불가능)
 
 	/// <summary>
 	/// "계정 생성" 버튼을 눌렀을 때 호출
@@ -112,4 +112,6 @@ public class SignUp : BackendLoginBase
 			}
 		});
 	}
+
+
 }

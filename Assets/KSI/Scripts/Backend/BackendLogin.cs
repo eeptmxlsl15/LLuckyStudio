@@ -28,7 +28,7 @@ public class BackendLogin : BackendLoginBase
 		// 로그인 버튼을 연타하지 못하도록 상호작용 비활성화
 		btnLogin.interactable = false;
 
-		// 새비에 로그인 요청하는 동안 화면에 호출하는 내용 업데이트
+		// 서버에 로그인 요청하는 동안 화면에 호출하는 내용 업데이트
 		// 예: 로그인 관련 텍스트 출력, 로딩바 아이콘 회전 등
 		StartCoroutine(nameof(LoginProcessRoutine));
 
@@ -50,9 +50,8 @@ public class BackendLogin : BackendLoginBase
 			if (callback.IsSuccess())
 			{
 				SetMessage($"환영합니다. \"{inputFieldID.text}\".");
-				UnitySceneManager.LoadScene("LobbyScene");
+				SceneManager.LoadScene("LobbyScene");
 				GameManager.Scene.LoadLOBBY();
-				Time.timeScale = 1f;
 			}
 			// 로그인 실패
 			else
