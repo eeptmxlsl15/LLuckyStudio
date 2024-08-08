@@ -211,9 +211,16 @@ public class UIMapping : MonoBehaviour
 		long endOfDayUnixTime = endOfDay.ToUnixTimeSeconds();
 
 		// 남은 시간 계산
-		long secondsRemaining = endOfDayUnixTime - (currentUnixTime + 32400); // UTC에서 9시간(32400초)을 더하면 한국 시간
-		if (secondsRemaining == 0)
-		{// 하루가 바뀔 때 리셋되는 것들
+		long secondsRemaining = endOfDayUnixTime - (currentUnixTime + 32400);
+
+		// 자정이 지나면 다음 자정까지의 시간 계산
+		if (secondsRemaining < 0)
+		{
+			DateTimeOffset nextEndOfDay = endOfDay.AddDays(1); // 다음 자정 시간
+			endOfDayUnixTime = nextEndOfDay.ToUnixTimeSeconds();
+			secondsRemaining = endOfDayUnixTime - (currentUnixTime+  32400);
+
+			// 하루가 바뀔 때 리셋되는 것들
 			ShopList.Instance.PickRandomItems();
 			ShopList.Instance.DisplayRandomItems();
 			dataManager.resetNum = 0;
