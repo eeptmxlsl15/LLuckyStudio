@@ -127,7 +127,8 @@ public class SkinEquipButton : MonoBehaviour
 				
 			}
 
-			buttons[index].interactable = true;
+			else
+				buttons[index].interactable = true;
 		}
 	}
 }

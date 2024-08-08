@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class SelectButton : MonoBehaviour
 {
-   public enum Item
+
+	
+	public enum Item
 	{
 		Effect,
 		Wallpaper

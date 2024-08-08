@@ -160,9 +160,9 @@ public class DataManager : MonoBehaviour
 			brokenGreen = brokenGreen,
 			sushi = sushi,
 			silverKey = silverKey,
-			maxSilverKey = maxSilverKey,
+			
 			goldKey = goldKey,
-			maxGoldKey = maxGoldKey,
+			
 			resurrection = resurrection,
 			effectID = effectID,
 			wallpaper = wallpaper,
@@ -196,9 +196,9 @@ public class DataManager : MonoBehaviour
 			brokenGreen = saveData.brokenGreen;
 			sushi = saveData.sushi;
 			silverKey = saveData.silverKey;
-			maxSilverKey = saveData.maxSilverKey;
+			
 			goldKey = saveData.goldKey;
-			maxGoldKey = saveData.maxGoldKey;
+			
 			resurrection = saveData.resurrection;
 			effectID = saveData.effectID;
 			wallpaper = saveData.wallpaper;
