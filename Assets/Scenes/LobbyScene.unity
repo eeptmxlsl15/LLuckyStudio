@@ -1285,130 +1285,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96016272}
   m_CullTransparentMesh: 1
---- !u!1 &99262354
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 99262356}
-  - component: {fileID: 99262355}
-  m_Layer: 0
-  m_Name: Data Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &99262355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99262354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6cf9d55009f3d64989e3aaaaaae379a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSkin:
-  - {fileID: 9100000, guid: 209c64997684e774a8312ab654e80f27, type: 2}
-  - {fileID: 9100000, guid: 9f1c38d251803804887e2f9fcd0ca5a7, type: 2}
-  - {fileID: 9100000, guid: 71d1e12f112d9e84898875bc62991f52, type: 2}
-  - {fileID: 9100000, guid: 405622f96148d2b4fbeba6c17b90795d, type: 2}
-  - {fileID: 9100000, guid: 96f293e6d836edf4690a0e9a545771ac, type: 2}
-  - {fileID: 9100000, guid: 4f8fc8923a96f274db8daecfa91bc9ff, type: 2}
-  - {fileID: 9100000, guid: f45343d47d00aab41b69b38357da785a, type: 2}
-  havePlayerSkin: 
-  skinID: 1
-  health: 0
-  maxHealth: 100
-  speed: 10
-  jumpForce: 13
-  jumpCount: 0
-  maxJumpCount: 2
-  floorRes: 0
-  flyRes: 0
-  allRes: 0
-  healthRegen: 0
-  glideTime: 0
-  ratDesire: 0
-  healthRegenTimer: 0
-  glideCooldown: 45
-  glideCooldownTimer: 0
-  cannedFood: 10000
-  brokenBlue: 34
-  brokenRed: 52
-  brokenGreen: 24
-  sushi: 1000
-  silverKey: 0
-  maxSilverKey: 999
-  goldKey: 0
-  maxGoldKey: 30
-  resurrection: 0
-  money: 0
-  effectID: 0
-  wallpaper: 0
-  nextSushi: 10270000983a000050460000204e00009065000030750000409c000050c30000d8d6000060ea0000
-  nextExp: 050000000a0000000f0000001100000014000000180000001c00000021000000250000002a0000002e000000
-  haveCatsDesire: 1
-  redMarbleLv: 0
-  redMarbleValue: 00000000020000000400000006000000080000000a0000000c0000000e000000100000001200000014000000
-  blueMarbleLv: 0
-  blueMarbleValue:
-  - 0
-  - 0.5
-  - 1
-  - 1.5
-  - 2
-  - 2.5
-  - 3
-  - 3.5
-  - 4
-  - 4.5
-  - 5
-  greenMarbleLv: 0
-  greenMarbleValue:
-  - 0
-  - 0.5
-  - 1
-  - 1.5
-  - 2
-  - 2.5
-  - 3
-  - 3.5
-  - 4
-  - 4.5
-  - 5
-  resetItemID: 0000000001000000
-  resetNum: 0
-  resetMaxNum: 3
-  advResetNum: 0
-  advResetMaxNum: 3
-  isDead: 0
-  catGage: 0
-  premiumGage: 0
-  haveSkin: 
-  haveWallpaper: 
-  haveEffect: 
---- !u!4 &99262356
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99262354}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &104548359
 GameObject:
   m_ObjectHideFlags: 0
@@ -2374,7 +2250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.00000086968, y: 3543888.5}
+  m_AnchoredPosition: {x: -0.00000086968, y: 3554798}
   m_SizeDelta: {x: 599.604, y: 870.45}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &203926676 stripped
@@ -24047,6 +23923,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!4 &1707775652816139625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477498691769680675}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &2003272315891735079
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24368,6 +24259,98 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6899369611409124323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477498691769680675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cf9d55009f3d64989e3aaaaaae379a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSkin:
+  - {fileID: 9100000, guid: 209c64997684e774a8312ab654e80f27, type: 2}
+  - {fileID: 9100000, guid: 9f1c38d251803804887e2f9fcd0ca5a7, type: 2}
+  - {fileID: 9100000, guid: 71d1e12f112d9e84898875bc62991f52, type: 2}
+  - {fileID: 9100000, guid: 405622f96148d2b4fbeba6c17b90795d, type: 2}
+  - {fileID: 9100000, guid: 96f293e6d836edf4690a0e9a545771ac, type: 2}
+  - {fileID: 9100000, guid: 4f8fc8923a96f274db8daecfa91bc9ff, type: 2}
+  - {fileID: 9100000, guid: f45343d47d00aab41b69b38357da785a, type: 2}
+  havePlayerSkin: 
+  skinID: 1
+  health: 0
+  maxHealth: 100
+  speed: 10
+  jumpForce: 13
+  jumpCount: 0
+  maxJumpCount: 2
+  floorRes: 0
+  flyRes: 0
+  allRes: 0
+  healthRegen: 0
+  glideTime: 0
+  ratDesire: 0
+  healthRegenTimer: 0
+  glideCooldown: 45
+  glideCooldownTimer: 0
+  cannedFood: 10000
+  brokenBlue: 34
+  brokenRed: 52
+  brokenGreen: 24
+  sushi: 1000
+  silverKey: 0
+  maxSilverKey: 999
+  goldKey: 0
+  maxGoldKey: 30
+  resurrection: 0
+  money: 0
+  effectID: 0
+  wallpaper: 0
+  nextSushi: 10270000983a000050460000204e00009065000030750000409c000050c30000d8d6000060ea0000
+  nextExp: 050000000a0000000f0000001100000014000000180000001c00000021000000250000002a0000002e000000
+  haveCatsDesire: 1
+  redMarbleLv: 0
+  redMarbleValue: 00000000020000000400000006000000080000000a0000000c0000000e000000100000001200000014000000
+  blueMarbleLv: 0
+  blueMarbleValue:
+  - 0
+  - 0.5
+  - 1
+  - 1.5
+  - 2
+  - 2.5
+  - 3
+  - 3.5
+  - 4
+  - 4.5
+  - 5
+  greenMarbleLv: 0
+  greenMarbleValue:
+  - 0
+  - 0.5
+  - 1
+  - 1.5
+  - 2
+  - 2.5
+  - 3
+  - 3.5
+  - 4
+  - 4.5
+  - 5
+  resetItemID: 0000000001000000
+  resetNum: 0
+  resetMaxNum: 3
+  advResetNum: 0
+  advResetMaxNum: 3
+  isDead: 0
+  catGage: 0
+  premiumGage: 0
+  haveSkin: 
+  haveWallpaper: 
+  haveEffect: 
 --- !u!114 &8311434941296621568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24381,6 +24364,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curGameMode: 0
+--- !u!1 &8477498691769680675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1707775652816139625}
+  - component: {fileID: 6899369611409124323}
+  m_Layer: 0
+  m_Name: Data Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &8767636856901770517
 GameObject:
   m_ObjectHideFlags: 0
@@ -24407,7 +24407,7 @@ SceneRoots:
   - {fileID: 320009618}
   - {fileID: 619423930}
   - {fileID: 1249149161}
-  - {fileID: 99262356}
+  - {fileID: 1707775652816139625}
   - {fileID: 2136529676}
   - {fileID: 4394272781797156699}
   - {fileID: 810210570}
