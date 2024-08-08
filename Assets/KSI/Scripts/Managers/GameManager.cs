@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 	static PoolManager poolManager;
 	static UIManager uiManager;
 	static SceneManager sceneManager;
+	static SoundManager soundManager;
 	static ScoreManager scoreManager;
 	static BerserkSystemManager berserkSystemManager;
 	static GameModeSystem gameModeSystem;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
 	public static PoolManager Pool { get { return poolManager; } }
 	public static UIManager UI { get { return uiManager; } }
 	public static SceneManager Scene { get { return sceneManager; } }
+	public static SoundManager Sound { get { return soundManager; } }
 	public static ScoreManager Score { get { return scoreManager; } }
 	public static BerserkSystemManager BerserkSystem { get { return berserkSystemManager; } }
 	public static GameModeSystem GameModeSystem { get { return gameModeSystem; } }
@@ -79,6 +81,11 @@ public class GameManager : MonoBehaviour
 		scoreObject.name = "ScoreManager";
 		scoreObject.transform.parent = transform;
 		scoreManager = scoreObject.AddComponent<ScoreManager>();
+
+		GameObject soundObject = new GameObject();
+		soundObject.name = "SoundManager"; 
+		soundObject.transform.parent = transform;
+		soundManager = soundObject.AddComponent<SoundManager>();
 
 		GameObject berserkSystemObject = new GameObject();
 		berserkSystemObject.name = "BerserkSystemManager";

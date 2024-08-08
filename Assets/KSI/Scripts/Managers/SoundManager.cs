@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public void SFXPlay(string sfxName, AudioClip clip)
+	{
+		GameObject go = new GameObject(sfxName + "Sound");
+		AudioSource audioSource = go.AddComponent<AudioSource>();
+		audioSource.clip = clip;
+		audioSource.Play();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		Destroy(go, clip.length);
+	}
 }

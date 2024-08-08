@@ -6,6 +6,7 @@ using System.Collections;
 public abstract class BuffTypeObject : MonoBehaviour
 {
 	[SerializeField] protected float speed = 10f;
+	protected AudioClip getSound;
 	protected Player player;
 
 	public abstract void Buff();

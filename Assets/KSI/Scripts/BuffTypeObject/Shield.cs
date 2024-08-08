@@ -8,6 +8,11 @@ using UnityEngine;
 // 획득 시 사라짐
 public class Shield : BuffTypeObject
 {
+	private void Awake()
+	{
+		getSound = GameManager.Resource.Load<AudioClip>("Sound/051_use_item_01");
+	}
+
 	public override void Buff()
 	{
 		player.BlockObstacle();
@@ -17,6 +22,7 @@ public class Shield : BuffTypeObject
 	{
 		if (collision.gameObject.tag == "Player")
 		{
+			GameManager.Sound.SFXPlay("Sound/051_use_item_01", getSound);
 			Destroy(gameObject);
 			Buff();
 			Debug.Log("쉴드");
