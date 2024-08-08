@@ -173,6 +173,7 @@ public class ShopItem : MonoBehaviour
 
 		isBuyUI.transform.localScale = new Vector3(0, 0, 0);
 		OverlayButton.transform.localScale = new Vector3(0, 0, 0);
+		DataManager.Instance.SaveDataToJson();
 	}
 
 	

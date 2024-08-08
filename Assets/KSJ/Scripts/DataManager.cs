@@ -102,6 +102,8 @@ public class DataManager : MonoBehaviour
 
 	public class SaveData
 	{
+		public int resetNum;
+		public int advResetNum;
 		public int skinID;
 		public int cannedFood;
 		public int brokenBlue;
@@ -120,6 +122,7 @@ public class DataManager : MonoBehaviour
 		public int greenMarbleLv;
 		public float catGage;
 		public float premiumGage;
+		public List<int> resetItemID;
 	}
 	private void Awake()
 	{
@@ -147,7 +150,9 @@ public class DataManager : MonoBehaviour
 	{
 		SaveData saveData = new SaveData
 		{
-
+			resetNum = resetNum,
+			advResetNum = advResetNum,
+			resetItemID = resetItemID,
 			skinID = skinID,
 			cannedFood = cannedFood,
 			brokenBlue = brokenBlue,
@@ -172,6 +177,7 @@ public class DataManager : MonoBehaviour
 
 		string json = JsonUtility.ToJson(saveData, true);
 		File.WriteAllText(Application.persistentDataPath + "/saveData.json", json);
+		Debug.Log("데이터 저장");
 	}
 	public void LoadDataFromJson()
 	{
@@ -181,6 +187,8 @@ public class DataManager : MonoBehaviour
 			string json = File.ReadAllText(path);
 			SaveData saveData = JsonUtility.FromJson<SaveData>(json);
 
+			resetNum = saveData.resetNum;
+			advResetNum = saveData.advResetNum;
 			skinID = saveData.skinID;
 			cannedFood = saveData.cannedFood;
 			brokenBlue = saveData.brokenBlue;
@@ -199,6 +207,8 @@ public class DataManager : MonoBehaviour
 			greenMarbleLv = saveData.greenMarbleLv;
 			catGage = saveData.catGage;
 			premiumGage = saveData.premiumGage;
+			resetItemID = saveData.resetItemID;
 		}
+		Debug.Log("데이터 불러오기");
 	}
 }

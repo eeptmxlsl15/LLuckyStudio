@@ -14,9 +14,11 @@ public class SelectButton : MonoBehaviour
 		{
 			case Item.Effect:
 				DataManager.Instance.effectID = id;
+				DataManager.Instance.SaveDataToJson();
 				break;
 			case Item.Wallpaper:
 				DataManager.Instance.wallpaper = id;
+				DataManager.Instance.SaveDataToJson();
 				break;
 		}
 		

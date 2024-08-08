@@ -180,6 +180,7 @@ public class UIMapping : MonoBehaviour
 				dataManager.greenMarbleLv++;
 			}
 		}
+		DataManager.Instance.SaveDataToJson();
 	}
 
 	public void UpdateSliderValue()
