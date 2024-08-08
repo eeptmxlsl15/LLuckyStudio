@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 public class DataManager : MonoBehaviour
 {
 	// 싱글톤 인스턴스
@@ -99,28 +100,105 @@ public class DataManager : MonoBehaviour
 	public List<int> haveWallpaper = new List<int>();
 	public List<int> haveEffect = new List<int>();
 
-
+	public class SaveData
+	{
+		public int skinID;
+		public int cannedFood;
+		public int brokenBlue;
+		public int brokenRed;
+		public int brokenGreen;
+		public int sushi;
+		public int silverKey;
+		public int maxSilverKey;
+		public int goldKey;
+		public int maxGoldKey;
+		public int resurrection;
+		public int effectID;
+		public int wallpaper;
+		public int redMarbleLv;
+		public int blueMarbleLv;
+		public int greenMarbleLv;
+		public float catGage;
+		public float premiumGage;
+	}
 	private void Awake()
-    {
-        // 싱글톤 패턴 구현
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 전환 시 객체 유지
-        }
-        else
-        {
-            Destroy(gameObject); // 중복된 인스턴스 제거
-        }
+	{
+		// 싱글톤 패턴 구현
+		if (Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject); // 씬 전환 시 객체 유지
+		}
+		else
+		{
+			Destroy(gameObject); // 중복된 인스턴스 제거
+		}
 		//InitializeUI();
-    }
+		LoadDataFromJson();
+	}
 
 	public void InitializeData(Dictionary<Button, bool> data)
 	{
 		desireStates = new Dictionary<Button, bool>(data);
 	}
 
-	
+
+	public void SaveDataToJson()
+	{
+		SaveData saveData = new SaveData
+		{
+
+			skinID = skinID,
+			cannedFood = cannedFood,
+			brokenBlue = brokenBlue,
+			brokenRed = brokenRed,
+			brokenGreen = brokenGreen,
+			sushi = sushi,
+			silverKey = silverKey,
+			maxSilverKey = maxSilverKey,
+			goldKey = goldKey,
+			maxGoldKey = maxGoldKey,
+			resurrection = resurrection,
+			effectID = effectID,
+			wallpaper = wallpaper,
+			redMarbleLv = redMarbleLv,
+			blueMarbleLv = blueMarbleLv,
+			greenMarbleLv = greenMarbleLv,
+			catGage = catGage,
+			premiumGage = premiumGage
+		};
 
 
+
+		string json = JsonUtility.ToJson(saveData, true);
+		File.WriteAllText(Application.persistentDataPath + "/saveData.json", json);
+	}
+	public void LoadDataFromJson()
+	{
+		string path = Application.persistentDataPath + "/saveData.json";
+		if (File.Exists(path))
+		{
+			string json = File.ReadAllText(path);
+			SaveData saveData = JsonUtility.FromJson<SaveData>(json);
+
+			skinID = saveData.skinID;
+			cannedFood = saveData.cannedFood;
+			brokenBlue = saveData.brokenBlue;
+			brokenRed = saveData.brokenRed;
+			brokenGreen = saveData.brokenGreen;
+			sushi = saveData.sushi;
+			silverKey = saveData.silverKey;
+			maxSilverKey = saveData.maxSilverKey;
+			goldKey = saveData.goldKey;
+			maxGoldKey = saveData.maxGoldKey;
+			resurrection = saveData.resurrection;
+			effectID = saveData.effectID;
+			wallpaper = saveData.wallpaper;
+			redMarbleLv = saveData.redMarbleLv;
+			blueMarbleLv = saveData.blueMarbleLv;
+			greenMarbleLv = saveData.greenMarbleLv;
+			catGage = saveData.catGage;
+			premiumGage = saveData.premiumGage;
+		}
+	}
 }
