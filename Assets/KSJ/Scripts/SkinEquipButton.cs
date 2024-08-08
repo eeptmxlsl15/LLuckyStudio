@@ -13,7 +13,11 @@ public class SkinEquipButton : MonoBehaviour
 	{
 		CollectAllButtons();
 		ArrangeSkins();
+
+		ButtonSetting();
 	}
+
+
 
 	void CollectAllButtons()
 	{
@@ -100,6 +104,7 @@ public class SkinEquipButton : MonoBehaviour
 
 	public void OnClickSkinEquip(int value)
 	{
+		
 		DataManager.Instance.skinID = value;
 
 		foreach (Button button in buttons)
@@ -108,5 +113,22 @@ public class SkinEquipButton : MonoBehaviour
 		}
 
 		buttons[value].interactable = false;
+		DataManager.Instance.SaveDataToJson();
+	}
+	
+	public void ButtonSetting()
+	{
+		
+		for(int index = 0; index < buttons.Count; index++)
+		{
+			if (DataManager.Instance.skinID == index)
+			{
+				buttons[index].interactable = false;
+				
+			}
+
+			else
+				buttons[index].interactable = true;
+		}
 	}
 }

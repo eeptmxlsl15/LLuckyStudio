@@ -89,7 +89,7 @@ public class ShopList : MonoBehaviour
 		}
 
 		DataManager.Instance.resetNum++;
-		
+		DataManager.Instance.SaveDataToJson();
 
 	}
 
