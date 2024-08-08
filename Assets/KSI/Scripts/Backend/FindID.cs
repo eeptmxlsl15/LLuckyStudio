@@ -78,6 +78,23 @@ public class FindID : BackendLoginBase
 					SetMessage(message);
 				}
 			}
+
+			ClearUI();
 		});
+	}
+
+	/// <summary>
+	/// UI 초기화 (알림 텍스트, 이메일 입력 필드, 버튼 활성화)
+	/// </summary>
+	private void ClearUI()
+	{
+		// 알림 텍스트 초기화
+		SetMessage("");
+
+		// 이메일 입력 필드 초기화
+		inputFieldEmail.text = "";
+
+		// 버튼 다시 활성화
+		btnFindID.interactable = true;
 	}
 }

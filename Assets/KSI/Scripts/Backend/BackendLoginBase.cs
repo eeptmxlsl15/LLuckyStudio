@@ -50,5 +50,5 @@ public class BackendLoginBase : MonoBehaviour
 			return true;
 		}
 		return false;
-	}
+	}	
 }
