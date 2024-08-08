@@ -5,16 +5,14 @@ using System.Collections;
 // 파괴됨
 public abstract class BuffTypeObject : MonoBehaviour
 {
-	protected float speed = 10f;
+	[SerializeField] protected float speed = 10f;
 	protected Player player;
 
 	public abstract void Buff();
 
 	private void Update()
 	{
-
 		Move();
-
 	}
 
 	protected virtual void Move()
