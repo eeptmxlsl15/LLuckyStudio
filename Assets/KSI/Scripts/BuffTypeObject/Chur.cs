@@ -23,8 +23,8 @@ public class Chur : BuffTypeObject
 		if (collision.gameObject.tag == "Player")
 		{
 			GameManager.Sound.SFXPlay("051_use_item_01", getSound);
-			Destroy(gameObject);
 			Buff();
+			Destroy(gameObject);
 			Debug.Log("츄르");
 		}
 	}

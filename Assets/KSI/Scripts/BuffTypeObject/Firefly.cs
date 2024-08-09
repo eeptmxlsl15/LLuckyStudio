@@ -41,8 +41,8 @@ public class Firefly : BuffTypeObject
 		if (collision.gameObject.tag == "Player")
 		{
 			GameManager.Sound.SFXPlay("051_use_item_01", getSound);
+			Buff();
 			Destroy(gameObject);
-			Buff();		
 			Debug.Log("반딧불");
 		}
 	}
