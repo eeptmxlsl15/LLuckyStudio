@@ -8,6 +8,11 @@ using UnityEngine;
 // 획득 시 사라짐
 public class Invincibility : BuffTypeObject
 {
+	private void Awake()
+	{
+		getSound = GameManager.Resource.Load<AudioClip>("Sounds/051_use_item_01");
+	}
+
 	public override void Buff()
 	{
 		player.BecomeInvincible(3f);
@@ -17,6 +22,7 @@ public class Invincibility : BuffTypeObject
 	{
 		if (collision.gameObject.tag == "Player")
 		{
+			GameManager.Sound.SFXPlay("051_use_item_01", getSound);
 			Destroy(gameObject);
 			Buff();
 			Debug.Log("무적");
