@@ -6,9 +6,15 @@ public class MapSpawner : MonoBehaviour
 {
 	[SerializeField] private GameObject[] prefabs;
 	[SerializeField] private Transform spawnPoint;
-	[SerializeField] private float spawnInterval = 3.0f; 
+	[SerializeField] private float spawnInterval = 3.0f;
+	[SerializeField] private float initialSpawnDelay = 0f;
 
 	private float timeSinceLastSpawn;
+
+	private void Start()
+	{
+		timeSinceLastSpawn = -initialSpawnDelay;
+	}
 
 	private void Update()
 	{
