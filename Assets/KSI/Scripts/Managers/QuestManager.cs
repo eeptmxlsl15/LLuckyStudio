@@ -54,8 +54,8 @@ public class QuestManager : MonoBehaviour
 					if (quest.isComplete)
 					{
 						Time.timeScale = 0f;
-						resultPopUpUI.DisplayResultUI();
-						GiveReward(quest);
+						GameManager.UI.ShowPopUpUI<PopUpUI>("UI/ResultPopUpUI");
+						//GiveReward(quest);
 					}	
 				}
 				else
