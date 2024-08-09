@@ -10,6 +10,7 @@ public class Shield : BuffTypeObject
 {
 	private void Awake()
 	{
+		player = FindObjectOfType<Player>();
 		getSound = GameManager.Resource.Load<AudioClip>("Sounds/051_use_item_01");
 	}
 
