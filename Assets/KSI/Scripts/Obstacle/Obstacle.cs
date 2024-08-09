@@ -13,17 +13,14 @@ public abstract class Obstacle : MonoBehaviour, IDamagable
 
 	private void Update()
 	{
-		//if (GameManager.Instance != null && GameManager.Instance.IsGameStarted)
-		//{
-			Move();
-		//}
+		Move();
 	}
 
 	protected virtual void Move()
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-		//Destroy(gameObject, 10f);
+		Destroy(gameObject, 5f);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
