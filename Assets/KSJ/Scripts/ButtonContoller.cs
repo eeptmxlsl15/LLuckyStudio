@@ -56,6 +56,7 @@ public class ButtonController : MonoBehaviour
 			currentOnCount--;
 		}
 		DataManager.Instance.InitializeData(desireStates);
+		DataManager.Instance.SaveDataToJson();
 	}
 
 	void SetButtonState(Button button, bool isOn)
