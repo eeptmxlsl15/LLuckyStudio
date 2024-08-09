@@ -18,6 +18,6 @@ public abstract class Goods : MonoBehaviour
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-		Destroy(gameObject, 20f);
+		//Destroy(gameObject, 20f);
 	}
 }
