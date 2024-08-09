@@ -73,7 +73,7 @@ public class SignUp : BackendLoginBase
 					if (callback.IsSuccess())
 					{
 						SetMessage($"계정 생성 성공. {inputFieldID.text}님 환영합니다.");
-
+						ClearUI();
 						// Lobby 씬으로 이동				
 						UnitySceneManager.LoadScene("LobbyScene");
 						GameManager.Scene.LoadLOBBY();
@@ -109,9 +109,27 @@ public class SignUp : BackendLoginBase
 				{
 					SetMessage(message);
 				}
+
+				ClearUI();
 			}
 		});
 	}
 
+	/// <summary>
+	/// UI 초기화 (알림 텍스트, 이메일 입력 필드, 버튼 활성화)
+	/// </summary>
+	private void ClearUI()
+	{
+		// 알림 텍스트 초기화
+		SetMessage("");
 
+		// 입력 필드 초기화
+		inputFieldID.text = "";
+		inputFieldPW.text = "";
+		inputFieldConfirmPW.text = "";
+		inputFieldEmail.text = "";
+
+		// 버튼 다시 활성화
+		signUpButton.interactable = true;
+	}
 }

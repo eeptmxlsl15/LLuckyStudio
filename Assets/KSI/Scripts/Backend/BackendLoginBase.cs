@@ -51,4 +51,12 @@ public class BackendLoginBase : MonoBehaviour
 		}
 		return false;
 	}
+
+	protected void ResetImageColor(Image image)
+	{
+		if (image != null)
+		{
+			image.color = Color.white; // 기본값으로 흰색 설정
+		}
+	}
 }

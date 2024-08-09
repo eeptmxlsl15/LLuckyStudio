@@ -7,14 +7,14 @@ using static Quest;
 // 보상으로 젤리 발바닥 1개당 점수 100점
 // 젤리 발바닥 1개당 초밥 5개
 
-public class jellyPaw : Goods
+public class SoleJelly : Goods
 {
 	public QuestName questName;
 
 	private void Awake()
 	{
 		scoreAdapter = new JellyPawAdapter();
-		// TODO : AudioClip 초기화
+		getSound = GameManager.Resource.Load<AudioClip>("Sounds/051_use_item_01");
 	}
 
 	public override void Contact()
@@ -46,7 +46,7 @@ public class jellyPaw : Goods
 		if (collision.gameObject.tag == "Player")
 		{
 			Contact();
-			// TODO : 효과음 추가
+			GameManager.Sound.SFXPlay("051_use_item_01", getSound);
 		}
 	}
 }
