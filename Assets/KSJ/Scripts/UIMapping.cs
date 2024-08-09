@@ -53,11 +53,14 @@ public class UIMapping : MonoBehaviour
 	// 일일 상점 리셋 횟수
 	public TMP_Text IngameResetText;
 	public TMP_Text AdvResetText;
-
+	public ShopList shopList;
 	void Start()
 	{
+		shopList = FindObjectOfType<ShopList>();
 		// DataManager 인스턴스 캐싱
 		dataManager = DataManager.Instance;
+
+		InvokeRepeating("UpdateDayTime", 0f, 1f);
 		//InitializeUI();
 	}
 
@@ -73,7 +76,7 @@ public class UIMapping : MonoBehaviour
 		UpdateLobbyUI();
 		UpdateUpgrade();
 		UpdateSliderValue();
-		UpdateDayTime();
+		
 		UpdateResetText();
 	}
 
@@ -202,28 +205,29 @@ public class UIMapping : MonoBehaviour
 
 	public void UpdateDayTime()
 	{
-		// 현재 유닉스 시간
-		long currentUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-
-		// 오늘 자정의 유닉스 시간 계산
-		DateTimeOffset now = DateTimeOffset.UtcNow;
-		DateTimeOffset endOfDay = new DateTimeOffset(now.Year, now.Month, now.Day, 23, 59, 59, TimeSpan.Zero);
-		long endOfDayUnixTime = endOfDay.ToUnixTimeSeconds();
-
-		// 남은 시간 계산
-		long secondsRemaining = endOfDayUnixTime - (currentUnixTime + 32400); // UTC에서 9시간(32400초)을 더하면 한국 시간
-		if (secondsRemaining == 0)
-		{// 하루가 바뀔 때 리셋되는 것들
-			ShopList.Instance.PickRandomItems();
-			ShopList.Instance.DisplayRandomItems();
-			dataManager.resetNum = 0;
-			dataManager.advResetNum = 0;
+		DateTime now = DateTime.Now;
+        DateTime midnight = now.Date.AddDays(1); // 자정의 DateTime 객체 생성
+        TimeSpan timeRemaining = midnight - now; // 남은 시간 계산
+		//Debug.Log((int)timeRemaining.TotalSeconds);
+		
+		if ((int)timeRemaining.TotalSeconds == 0) // 
+		{
+			
+			DataManager.Instance.resetNum = 0;
+			DataManager.Instance.advResetNum = 0;
+			shopList.PickRandomItems();
+			shopList.DisplayRandomItems();
+			DataManager.Instance.resetNum = 0;
+			DataManager.Instance.advResetNum = 0;
 		}
 
-		// 남은 시간을 시간, 분, 초로 변환
-		TimeSpan timeRemaining = TimeSpan.FromSeconds(secondsRemaining);
-		// 남은 시간을 텍스트로 표시
-		dayTimeText.text = string.Format("초기화 시간 : {0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds);
+		// 시간, 분, 초 형식으로 표시
+		dayTimeText.text = string.Format("초기화 시간 : {0:D2}:{1:D2}:{2:D2}", 
+                                                timeRemaining.Hours, 
+                                                timeRemaining.Minutes, 
+                                                timeRemaining.Seconds);
+    
+		
 	}
 
 	public void UpdateResetText()
