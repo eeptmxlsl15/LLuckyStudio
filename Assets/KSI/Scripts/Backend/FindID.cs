@@ -17,13 +17,14 @@ public class FindID : BackendLoginBase
 		ResetUI(imageEmail);
 
 		// 필드 값이 비어있는지 체크
-		if (IsFieldDataEmpty(imageEmail, inputFieldEmail.text, "메일 주소")) return;
+		if (IsFieldDataEmpty(imageEmail, inputFieldEmail.text, "메일 주소"))
+			return;
 
 		// 메일 형식 검사
 		if (!inputFieldEmail.text.Contains("@"))
 		{
 			GuideForIncorrectlyEnteredData(imageEmail, "메일 형식이 잘못되었습니다.(ex. address@xx.xx)");
-			return;
+			return;		
 		}
 
 		// "아이디 찾기" 버튼의 상호작용 비활성화
@@ -86,7 +87,7 @@ public class FindID : BackendLoginBase
 	/// <summary>
 	/// UI 초기화 (알림 텍스트, 이메일 입력 필드, 버튼 활성화)
 	/// </summary>
-	private void ClearUI()
+	public void ClearUI()
 	{
 		// 알림 텍스트 초기화
 		SetMessage("");
@@ -96,5 +97,6 @@ public class FindID : BackendLoginBase
 
 		// 버튼 다시 활성화
 		btnFindID.interactable = true;
+
 	}
 }

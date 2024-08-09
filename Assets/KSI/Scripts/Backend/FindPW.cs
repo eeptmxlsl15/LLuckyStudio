@@ -7,11 +7,11 @@ using UnityEngine;
 
 public class FindPW : BackendLoginBase
 {
-	[SerializeField] private Image imageID;          // ID 필드 색상 변경
-	[SerializeField] private TMP_InputField inputFieldID;        // ID 필드 텍스트 정보 추출
-	[SerializeField] private Image imageEmail;           // E-mail 필드 색상 변경
+	[SerializeField] private Image imageID; // ID 필드 색상 변경
+	[SerializeField] private TMP_InputField inputFieldID; // ID 필드 텍스트 정보 추출
+	[SerializeField] private Image imageEmail; // E-mail 필드 색상 변경
 	[SerializeField] private TMP_InputField inputFieldEmail; // E-mail 필드 텍스트 정보 추출
-	[SerializeField] private Button btnFindPW;           // "비밀번호 찾기" 버튼 (상호작용 가능/불가능)
+	[SerializeField] private Button btnFindPW; // "비밀번호 찾기" 버튼 (상호작용 가능/불가능)
 
 	public void OnClickFindPW()
 	{
@@ -52,6 +52,7 @@ public class FindPW : BackendLoginBase
 			if (callback.IsSuccess())
 			{
 				SetMessage($"{inputFieldEmail.text} 주소로 메일을 발송하였습니다.");
+				ClearUI();
 			}
 			// 메일 발송 실패
 			else
@@ -81,6 +82,22 @@ public class FindPW : BackendLoginBase
 					SetMessage(message);
 				}
 			}
+			ClearUI();
 		});
+	}
+
+	/// <summary>
+	/// UI 초기화 (알림 텍스트, 이메일 입력 필드, 버튼 활성화)
+	/// </summary>
+	private void ClearUI()
+	{
+		// 알림 텍스트 초기화
+		SetMessage("");
+
+		// 입력 필드 초기화
+		inputFieldEmail.text = "";
+
+		// 버튼 다시 활성화
+		btnFindPW.interactable = true;
 	}
 }
