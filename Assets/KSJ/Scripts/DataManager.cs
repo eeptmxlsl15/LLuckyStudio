@@ -20,6 +20,8 @@ public class DataManager : MonoBehaviour
 	public float maxHealth = 100f;
 	public float speed = 10f;
 	public float jumpForce = 10f;
+	public float fallSpeed = 5;
+	public float fallStart = 5;
 	public int jumpCount = 0;
 	public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
 	public int floorRes = 0; // 발판형 장애물 저항

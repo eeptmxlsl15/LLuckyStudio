@@ -37,7 +37,7 @@ public class Player : MonoBehaviour , IDamagable
 	public float jumpForce = 10f;
 	public int jumpCount = 0;
 	public int maxJumpCount = 2; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
-	public float fallSpeed=2;
+	public float fallSpeed=5;
 	public float fallStart=5;
 	public float glideTime = 0;
 	public float glideCooldown = 10f;
@@ -419,7 +419,8 @@ public class Player : MonoBehaviour , IDamagable
 		speed = DataManager.Instance.speed;
 		jumpForce = DataManager.Instance.jumpForce;
 		jumpCount = DataManager.Instance.jumpCount;
-
+		fallSpeed = DataManager.Instance.fallSpeed;
+		fallStart = DataManager.Instance.fallStart;
 
 		maxJumpCount = DataManager.Instance.maxJumpCount; // 2단 점프를 위해 최대 점프 횟수를 2로 설정
 		floorRes = DataManager.Instance.floorRes; // 발판형 장애물 저항
