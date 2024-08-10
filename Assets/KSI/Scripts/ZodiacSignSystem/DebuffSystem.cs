@@ -149,6 +149,39 @@ public class DebuffSystem : MonoBehaviour
 		}
 	}
 
+	//public string GetDebuffDescription(BerserkSystemManager.ZodiacSign zodiacSign)
+	//{
+	//	switch (zodiacSign)
+	//	{
+	//		case BerserkSystemManager.ZodiacSign.PIG:
+	//			return "최대 체력 20 감소";
+	//		case BerserkSystemManager.ZodiacSign.DOG:
+	//			return "이동 속도 20 감소";
+	//		case BerserkSystemManager.ZodiacSign.CHICKEN:
+	//			return "고정형 장애물 오브젝트 피해 수치 5 증가";
+	//		case BerserkSystemManager.ZodiacSign.MONKEY:
+	//			return "젤리 코인 점수 5 감소";
+	//		case BerserkSystemManager.ZodiacSign.SHEEP:
+	//			return "반딧불 회복량 5 감소";
+	//		case BerserkSystemManager.ZodiacSign.HORSE:
+	//			return "부스터 아이템 지속시간 1.5초 감소";
+	//		case BerserkSystemManager.ZodiacSign.SNAKE:
+	//			return "날아오는 장애물 오브젝트 피해 수치 5 증가";
+	//		case BerserkSystemManager.ZodiacSign.DRAGON:
+	//			return "무적 아이템 지속시간 1.5초 감소";
+	//		case BerserkSystemManager.ZodiacSign.RABBIT:
+	//			return "츄르의 회복량 5 감소";
+	//		case BerserkSystemManager.ZodiacSign.TIGER:
+	//			return "쉴드 효과 무효화";
+	//		case BerserkSystemManager.ZodiacSign.COW:
+	//			return "활공 1초 감소";
+	//		case BerserkSystemManager.ZodiacSign.MOUSE:
+	//			return "체력이 5초당 1 감소";
+	//		default:
+	//			return "-";
+	//	}
+	//}
+
 	public void FindPlayer()
 	{
 		if (player == null)
