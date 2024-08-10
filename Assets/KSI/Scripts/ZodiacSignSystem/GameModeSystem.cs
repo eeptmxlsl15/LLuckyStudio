@@ -133,6 +133,7 @@ public class GameModeSystem : MonoBehaviour
 		if (infiniteRandomDebuffUI != null )
 		{
 			infiniteRandomDebuffUI.DisplayInfiniteRandomDebuff(GameManager.Instance.InfiniteDebuff1, GameManager.Instance.InfiniteDebuff2);
+			//infiniteRandomDebuffUI.DisplayInfiniteRandomDebuff1(GameManager.Instance.InfiniteDebuff1, GameManager.Instance.InfiniteDebuff2);
 		}
 	}
 
