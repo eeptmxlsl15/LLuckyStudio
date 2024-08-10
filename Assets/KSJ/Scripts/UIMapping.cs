@@ -7,6 +7,8 @@ public class UIMapping : MonoBehaviour
 {
 	// DataManager의 인스턴스를 캐싱
 	private DataManager dataManager;
+	//앱 종료 시간
+	private const string LastExitTimeKey = "LastExitTime";
 
 	[Header("# UI Mapping")]
 	// 인게임 재화
@@ -59,7 +61,7 @@ public class UIMapping : MonoBehaviour
 		shopList = FindObjectOfType<ShopList>();
 		// DataManager 인스턴스 캐싱
 		dataManager = DataManager.Instance;
-
+		CheckDayPassed();
 		InvokeRepeating("UpdateDayTime", 0f, 1f);
 		//InitializeUI();
 	}
@@ -234,5 +236,48 @@ public class UIMapping : MonoBehaviour
 	{
 		IngameResetText.text = "10\n" + dataManager.resetNum +"/"+ dataManager.resetMaxNum;
 		AdvResetText.text = "광고 보기\n" + dataManager.advResetNum + "/" + dataManager.advResetMaxNum;
+	}
+	void CheckDayPassed()
+	{
+		// 마지막 종료 시간을 불러오기
+		string lastExitTimeStr = PlayerPrefs.GetString(LastExitTimeKey, string.Empty);
+
+		if (!string.IsNullOrEmpty(lastExitTimeStr))
+		{
+			DateTime lastExitTime = DateTime.Parse(lastExitTimeStr);
+
+			// 현재 시간과 마지막 종료 시간을 비교
+			if (DateTime.Now.Date > lastExitTime.Date)
+			{
+				// 하루가 지났다면 데이터 초기화
+				dataManager.resetNum = 0;
+				dataManager.advResetNum = 0;
+				shopList.PickRandomItems();
+				shopList.DisplayRandomItems();
+				dataManager.resetNum = 0;
+				dataManager.advResetNum = 0;
+				Debug.Log("데이터가 하루 지남으로 초기화되었습니다.");
+			}
+		}
+	}
+	void OnApplicationQuit()
+	{
+		// 앱 종료 시 현재 시간을 저장
+		PlayerPrefs.SetString(LastExitTimeKey, DateTime.Now.ToString());
+		PlayerPrefs.Save();
+	}
+	private void OnApplicationPause(bool pause)
+	{
+		if (pause)
+		{
+			// 앱이 백그라운드로 전환될 때 현재 시간을 저장
+			PlayerPrefs.SetString(LastExitTimeKey, DateTime.Now.ToString());
+			PlayerPrefs.Save();
+		}
+		else
+		{
+			// 앱이 다시 활성화될 때 날짜가 바뀌었는지 확인
+			CheckDayPassed();
+		}
 	}
 }
