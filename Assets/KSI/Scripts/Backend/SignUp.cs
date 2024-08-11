@@ -119,8 +119,6 @@ public class SignUp : BackendLoginBase
 				{
 					SetMessage(message);
 				}
-
-				ClearUI();
 			}
 		});
 	}
@@ -135,6 +133,7 @@ public class SignUp : BackendLoginBase
 
 		// 입력 필드 초기화
 		inputFieldID.text = "";
+		inputFieldNickname.text = "";
 		inputFieldPW.text = "";
 		inputFieldConfirmPW.text = "";
 		inputFieldEmail.text = "";
