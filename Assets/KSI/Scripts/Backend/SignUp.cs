@@ -82,6 +82,10 @@ public class SignUp : BackendLoginBase
 							{
 								SetMessage($"계정 생성 성공. {inputFieldID.text}님 환영합니다.");
 								ClearUI();
+
+								// 계정 생성에 성공했을 때 해당 계정의 게임 정보 생성
+								BackendGameData.Instance.GameDataInsert();
+
 								// Lobby 씬으로 이동				
 								UnitySceneManager.LoadScene("LobbyScene");
 								GameManager.Scene.LoadLOBBY();
