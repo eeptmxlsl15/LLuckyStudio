@@ -1,11 +1,11 @@
 [System.Serializable]
 public class UserGameData
 {
-	public int INFINITscore; 
+	public int INFINITBestscore; 
 
 	public void Reset()
 	{
-		INFINITscore = 0;
+		INFINITBestscore = 0;
 	}
 }
 
