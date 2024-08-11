@@ -15,7 +15,7 @@ public class DeathPopUpUI : PopUpUI
 		base.Awake();
 
 		buttons["DeathPopUpUIReplayButton"].onClick.AddListener(() => { RestartButton(); });
-		buttons["DeathPopUpUIQuitButton"].onClick.AddListener(() => { QuitButton(); });	
+		buttons["DeathPopUpUIQuitButton"].onClick.AddListener(() => { QuitButton(); });
 	}
 
 	private void Update()
@@ -40,7 +40,7 @@ public class DeathPopUpUI : PopUpUI
 		GameManager.Instance.ResetAllDebuffs();
 		UnitySceneManager.LoadScene("LobbyScene");
 	}
-	
+
 	public void DisplayDeathUI()
 	{
 		int totalScore = GameManager.Score.GetTotalScore();

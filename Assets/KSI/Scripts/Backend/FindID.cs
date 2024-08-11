@@ -97,6 +97,5 @@ public class FindID : BackendLoginBase
 
 		// 버튼 다시 활성화
 		btnFindID.interactable = true;
-
 	}
 }
