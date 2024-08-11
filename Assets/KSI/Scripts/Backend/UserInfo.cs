@@ -16,7 +16,6 @@ public class UserInfo : MonoBehaviour
 	public void GetUserInfoFromBackend()
 	{
 		// 현재 로그인한 사용자 정보 불러오기
-		// https://developer.thebackend.io/unity3d/guide/bmember/userInfo/
 		Backend.BMember.GetUserInfo(callback =>
 		{
 			// 정보 불러오기 성공
