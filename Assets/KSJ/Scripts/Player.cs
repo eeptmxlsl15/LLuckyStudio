@@ -95,6 +95,8 @@ public class Player : MonoBehaviour , IDamagable
 	public int glideEffectID;
 
 	private GameObject currentGlideEffect;
+	private GameObject currentBoosterEffect;
+	
 
 	public enum EffectType
 	{
@@ -279,6 +281,26 @@ public class Player : MonoBehaviour , IDamagable
 			}
 		}
 
+		//부스터 이펙트
+		if (isBooster)
+		{
+			Vector3 offset = new Vector3(1.55f, 0,0);
+			if (currentBoosterEffect == null || !currentBoosterEffect.activeSelf)
+			{
+				currentBoosterEffect = effectPool.Get(0, (int)EffectType.BoosterEffect);
+				currentBoosterEffect.transform.position = transform.position + offset;
+				currentBoosterEffect.SetActive(true);
+			}
+			currentBoosterEffect.transform.position = transform.position + offset;
+		}
+		else
+		{
+
+			if (currentBoosterEffect != null && currentBoosterEffect.activeSelf)
+			{
+				currentBoosterEffect.SetActive(false);
+			}
+		}
 		//쥐 디버프일 때 : 5초당 체력 1 감소 
 		if (isRatDebuff)
 		{
