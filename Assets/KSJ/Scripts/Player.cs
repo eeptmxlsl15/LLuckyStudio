@@ -180,6 +180,11 @@ public class Player : MonoBehaviour , IDamagable
 
 	void Update()
 	{
+		if (glideTime == 0)
+			glideButton.SetActive(false);
+		else
+			glideButton.SetActive(true);
+
 		if (health <= 0)
 		{
 			Die();
