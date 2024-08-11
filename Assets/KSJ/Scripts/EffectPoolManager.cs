@@ -8,6 +8,10 @@ public class EffectPoolManager : MonoBehaviour
 	public GameObject[] jumpEffects;  // 프리팹을 보관하는 변수
 	public GameObject[] glideEffects;
 	public GameObject[] destroyObjectEffects;
+	public GameObject[] boosterEffects;
+	public GameObject[] shieldEffects;
+	public GameObject[] healigEffects;
+	public GameObject[] invincibleEffects;
 
 	private Dictionary<string, List<GameObject>> pools; // 풀 담당을 하는 딕셔너리
 
@@ -31,6 +35,8 @@ public class EffectPoolManager : MonoBehaviour
 		InitializePools(jumpEffects);
 		InitializePools(glideEffects);
 		InitializePools(destroyObjectEffects);
+		InitializePools(boosterEffects);
+		
 	}
 
 	private void InitializePools(GameObject[] effects)
@@ -86,6 +92,7 @@ public class EffectPoolManager : MonoBehaviour
 			case 0: return jumpEffects[index].name;
 			case 1: return glideEffects[index].name;
 			case 2: return destroyObjectEffects[index].name;
+			case 5: return boosterEffects[index].name;
 			default: return null;
 		}
 	}
@@ -97,6 +104,7 @@ public class EffectPoolManager : MonoBehaviour
 			case 0: return jumpEffects[index];
 			case 1: return glideEffects[index];
 			case 2: return destroyObjectEffects[index];
+			case 5: return boosterEffects[index];
 			default: return null;
 		}
 	}
