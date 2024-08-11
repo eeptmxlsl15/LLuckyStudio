@@ -12,6 +12,7 @@ public class EffectPoolManager : MonoBehaviour
 	public GameObject[] shieldEffects;
 	public GameObject[] healigEffects;
 	public GameObject[] invincibleEffects;
+	public GameObject[] fireflyEffects;
 
 	private Dictionary<string, List<GameObject>> pools; // 풀 담당을 하는 딕셔너리
 
@@ -36,7 +37,10 @@ public class EffectPoolManager : MonoBehaviour
 		InitializePools(glideEffects);
 		InitializePools(destroyObjectEffects);
 		InitializePools(boosterEffects);
-		
+		InitializePools(shieldEffects);
+		InitializePools(healigEffects);
+		InitializePools(invincibleEffects);
+		InitializePools(fireflyEffects);
 	}
 
 	private void InitializePools(GameObject[] effects)
@@ -92,7 +96,10 @@ public class EffectPoolManager : MonoBehaviour
 			case 0: return jumpEffects[index].name;
 			case 1: return glideEffects[index].name;
 			case 2: return destroyObjectEffects[index].name;
+			case 4: return shieldEffects[index].name;
 			case 5: return boosterEffects[index].name;
+			case 6: return healigEffects[index].name;
+			case 7: return invincibleEffects[index].name;
 			default: return null;
 		}
 	}
@@ -104,7 +111,10 @@ public class EffectPoolManager : MonoBehaviour
 			case 0: return jumpEffects[index];
 			case 1: return glideEffects[index];
 			case 2: return destroyObjectEffects[index];
+			case 4: return shieldEffects[index];
 			case 5: return boosterEffects[index];
+			case 6: return healigEffects[index];
+			case 7: return invincibleEffects[index];
 			default: return null;
 		}
 	}

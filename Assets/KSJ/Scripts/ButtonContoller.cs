@@ -36,6 +36,7 @@ public class ButtonController : MonoBehaviour
 				currentOnCount++;
 			}
 		}
+		DataManager.Instance.InitializeData(desireStates);
 	}
 
 	void ToggleButton(Button button)
