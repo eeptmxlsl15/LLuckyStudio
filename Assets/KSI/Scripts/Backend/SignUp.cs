@@ -16,6 +16,8 @@ public class SignUp : BackendLoginBase
 	[SerializeField] private TMP_InputField inputFieldConfirmPW; // Confirm PW 필드 텍스트 정보 추출
 	[SerializeField] private Image imageEmail; // E-mail 필드 색상 변경
 	[SerializeField] private TMP_InputField inputFieldEmail;  // E-mail 필드 텍스트 정보 추출
+	[SerializeField] private Image imageNickname; // Nickname 필드 색상 변경
+	[SerializeField] private TMP_InputField inputFieldNickname; // Nickname 필드 텍스트 정보 추출
 	[SerializeField] private Button signUpButton; // "계정 생성" 버튼 (상호작용 가능/불가능)
 
 	/// <summary>
@@ -24,13 +26,14 @@ public class SignUp : BackendLoginBase
 	public void OnClickSignUp()
 	{
 		// 매개변수로 입력한 InputField UI의 색상과 Message 내용 초기화
-		ResetUI(imageID, imagePW, imageConfirmPW, imageEmail);
+		ResetUI(imageID, imagePW, imageConfirmPW, imageEmail, imageNickname);
 
 		// 필드 값이 비어있는지 체크
 		if (IsFieldDataEmpty(imageID, inputFieldID.text, "아이디")) return;
 		if (IsFieldDataEmpty(imagePW, inputFieldPW.text, "비밀번호")) return;
 		if (IsFieldDataEmpty(imageConfirmPW, inputFieldConfirmPW.text, "비밀번호 확인")) return;
 		if (IsFieldDataEmpty(imageEmail, inputFieldEmail.text, "메일 주소")) return;
+		if (IsFieldDataEmpty(imageNickname, inputFieldNickname.text, "닉네임")) return;
 
 		// 비밀번호와 비밀번호 확인의 내용이 다를 때
 		if (!inputFieldPW.text.Equals(inputFieldConfirmPW.text))
@@ -72,12 +75,19 @@ public class SignUp : BackendLoginBase
 				{
 					if (callback.IsSuccess())
 					{
-						SetMessage($"계정 생성 성공. {inputFieldID.text}님 환영합니다.");
-						ClearUI();
-						// Lobby 씬으로 이동				
-						UnitySceneManager.LoadScene("LobbyScene");
-						GameManager.Scene.LoadLOBBY();
-						Time.timeScale = 1f;
+						// 닉네임 설정
+						Backend.BMember.CreateNickname(inputFieldNickname.text, callback =>
+						{
+							if (callback.IsSuccess())
+							{
+								SetMessage($"계정 생성 성공. {inputFieldID.text}님 환영합니다.");
+								ClearUI();
+								// Lobby 씬으로 이동				
+								UnitySceneManager.LoadScene("LobbyScene");
+								GameManager.Scene.LoadLOBBY();
+								Time.timeScale = 1f;
+							}
+						});
 					}
 				});
 			}
