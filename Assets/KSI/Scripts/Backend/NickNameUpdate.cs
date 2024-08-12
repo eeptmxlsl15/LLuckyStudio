@@ -6,7 +6,8 @@ using UnityEngine;
 public class NickNameUpdate : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI textNickname;
-	[SerializeField] private TextMeshProUGUI textGamerID;
+	//[SerializeField] private TextMeshProUGUI textGamerID;
+	[SerializeField] private TMP_InputField inputFieldUID;
 
 	public void UpdateNickname()
 	{
@@ -15,6 +16,6 @@ public class NickNameUpdate : MonoBehaviour
 							UserInfo.Data.gamerId : UserInfo.Data.nickname;
 
 		// gamer_id 출력
-		textGamerID.text = UserInfo.Data.gamerId;
+		inputFieldUID.text = UserInfo.Data.gamerId;
 	}
 }
