@@ -40,6 +40,13 @@ public class BackendGameData
 		Param param = new Param()
 		{
 			{"INFINITBestscore", userGameData.INFINITBestscore},
+			{"cannedFood", userGameData.cannedFood },
+			{"silverKey", userGameData.silverKey },
+			{"goldKey", userGameData.goldKey },
+			{"money", userGameData.money },
+			{"brokenBlue", userGameData.brokenBlue },
+			{"brokenRed", userGameData.brokenRed},
+			{"brokenGreen", userGameData.brokenGreen }
 		};
 
 		// 첫 번째 매개변수는 뒤끝 콘솔의 "게임 정보 관리" 탭에 생성한 테이블 이름
@@ -89,6 +96,13 @@ public class BackendGameData
 						gameDataRowInDate = gameDataJson[0]["inDate"].ToString();
 						// 불러온 게임 정보를 userData 변수에 저장
 						userGameData.INFINITBestscore = int.Parse(gameDataJson[0]["INFINITBestscore"].ToString());
+						userGameData.cannedFood = int.Parse(gameDataJson[1]["cannedFood"].ToString());
+						userGameData.silverKey = int.Parse(gameDataJson[2]["silverKey"].ToString());
+						userGameData.goldKey = int.Parse(gameDataJson[3]["goldKey"].ToString());
+						userGameData.money = int.Parse(gameDataJson[4]["money"].ToString());
+						userGameData.brokenBlue = int.Parse(gameDataJson[5]["brokenBlue"].ToString());
+						userGameData.brokenRed = int.Parse(gameDataJson[6]["brokenRed"].ToString());
+						userGameData.brokenGreen = int.Parse(gameDataJson[7]["brokenGreen"].ToString());
 
 						onGameDataLoadEvent?.Invoke();
 					}
@@ -125,6 +139,13 @@ public class BackendGameData
 		Param param = new Param()
 		{
 			{"INFINITBestscore", userGameData.INFINITBestscore},
+			{"cannedFood", userGameData.cannedFood },
+			{"silverKey", userGameData.silverKey },
+			{"goldKey", userGameData.goldKey },
+			{"money", userGameData.money },
+			{"brokenBlue", userGameData.brokenBlue },
+			{"brokenRed", userGameData.brokenRed},
+			{"brokenGreen", userGameData.brokenGreen }
 
 		};
 
@@ -146,6 +167,8 @@ public class BackendGameData
 					Debug.Log($"게임 정보 데이터 수정에 성공했습니다. : {callback}");
 
 					action?.Invoke();
+
+					onGameDataLoadEvent?.Invoke();
 				}
 				else
 				{
