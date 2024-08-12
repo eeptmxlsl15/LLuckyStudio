@@ -1,3 +1,4 @@
+using BackEnd;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,6 +17,6 @@ public class NickNameUpdate : MonoBehaviour
 							UserInfo.Data.gamerId : UserInfo.Data.nickname;
 
 		// gamer_id 출력
-		inputFieldUID.text = UserInfo.Data.gamerId;
+		inputFieldUID.text = Backend.UID;
 	}
 }
