@@ -1535,6 +1535,8 @@ MonoBehaviour:
   maxHealth: 100
   speed: 10
   jumpForce: 13
+  fallSpeed: 5
+  fallStart: 5
   jumpCount: 0
   maxJumpCount: 2
   floorRes: 0
@@ -2824,7 +2826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.00000086968, y: 7465485}
+  m_AnchoredPosition: {x: -0.00000086968, y: 8121450}
   m_SizeDelta: {x: 599.604, y: 870.45}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &203926676 stripped
@@ -8657,6 +8659,7 @@ MonoBehaviour:
   buttons: []
   skinPrefabs: []
   contentTransform: {fileID: 0}
+  type: 0
 --- !u!1 &661067798
 GameObject:
   m_ObjectHideFlags: 0
@@ -10801,9 +10804,17 @@ MonoBehaviour:
   - {fileID: 6675302182551818641, guid: 5bc9a0bf98f67d240a936bf476ba2082, type: 3}
   - {fileID: 162584487599433031, guid: 39f852c28f9c3fd45a427c24f3564ba7, type: 3}
   glideEffects:
-  - {fileID: 5008211542219613822, guid: 7554b456fde2ed24fb80330eb1896049, type: 3}
+  - {fileID: 561294543803585683, guid: 7f78eb9d7c88b864097f898ccd54d300, type: 3}
   destroyObjectEffects:
   - {fileID: 9206679829297978600, guid: 6717158e14cf86545a3a25e296697374, type: 3}
+  boosterEffects:
+  - {fileID: 3631115036538448911, guid: 531d80d8bd2df7946ba066bbcd05a6dd, type: 3}
+  shieldEffects:
+  - {fileID: 0}
+  healigEffects:
+  - {fileID: 0}
+  invincibleEffects:
+  - {fileID: 0}
 --- !u!4 &810210570
 Transform:
   m_ObjectHideFlags: 0
@@ -29329,6 +29340,7 @@ MonoBehaviour:
   dayTimeText: {fileID: 1841471178}
   IngameResetText: {fileID: 726824338}
   AdvResetText: {fileID: 1428431665}
+  shopList: {fileID: 0}
 --- !u!1 &2142272113
 GameObject:
   m_ObjectHideFlags: 0

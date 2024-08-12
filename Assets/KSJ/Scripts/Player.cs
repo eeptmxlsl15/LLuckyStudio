@@ -96,7 +96,10 @@ public class Player : MonoBehaviour , IDamagable
 
 	private GameObject currentGlideEffect;
 	private GameObject currentBoosterEffect;
-	
+	private GameObject currentShieldEffect;
+	private GameObject currentHealingEffect;
+	private GameObject currentInvincibleEffect;
+	private GameObject currentFireflyEffect;
 
 	public enum EffectType
 	{
@@ -105,7 +108,10 @@ public class Player : MonoBehaviour , IDamagable
 		DestroyEffect,
 		HitEffect,
 		ShieldEffect,
-		BoosterEffect
+		BoosterEffect,
+		HealingEffect,
+		InvincibleEffect,
+		FireflyEffect
 	}
 	static class Constants
 	{
@@ -263,7 +269,8 @@ public class Player : MonoBehaviour , IDamagable
 		//활주 이펙트
 		if (isGlide)
 		{
-			Vector3 offset = new Vector3(-4f, 0, -1f);
+			Vector3 offset = new Vector3(1.55f, 0, 0);
+			
 			if (currentGlideEffect == null || !currentGlideEffect.activeSelf)
 			{
 				currentGlideEffect = effectPool.Get(glideEffectID, (int)EffectType.GlideEffect);
@@ -301,6 +308,52 @@ public class Player : MonoBehaviour , IDamagable
 				currentBoosterEffect.SetActive(false);
 			}
 		}
+
+		//쉴드 이펙트
+		if (isFirstShiled || isSecondShiled)
+		{
+			Vector3 offset = new Vector3(0, 0, 0);
+			if (currentShieldEffect == null || !currentShieldEffect.activeSelf)
+			{
+				currentShieldEffect = effectPool.Get(0, (int)EffectType.ShieldEffect);
+				currentShieldEffect.transform.position = transform.position + offset;
+				currentShieldEffect.SetActive(true);
+			}
+			currentShieldEffect.transform.position = transform.position + offset;
+		}
+		else
+		{
+
+			if (currentShieldEffect != null && currentShieldEffect.activeSelf)
+			{
+				currentShieldEffect.SetActive(false);
+			}
+		}
+		//무적
+		if (isInvincible)
+		{
+			Vector3 offset = new Vector3(0, 0, 0);
+			if (currentInvincibleEffect == null || !currentInvincibleEffect.activeSelf)
+			{
+				currentInvincibleEffect = effectPool.Get(0, (int)EffectType.InvincibleEffect);
+				currentInvincibleEffect.transform.position = transform.position + offset;
+				currentInvincibleEffect.SetActive(true);
+			}
+			currentInvincibleEffect.transform.position = transform.position + offset;
+			float rotationSpeed = 50f; // 회전 속도 (초당 50도 회전)
+			currentInvincibleEffect.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+		}
+		else
+		{
+
+			if (currentInvincibleEffect != null && currentInvincibleEffect.activeSelf)
+			{
+				currentInvincibleEffect.SetActive(false);
+			}
+		}
+
+
+
 		//쥐 디버프일 때 : 5초당 체력 1 감소 
 		if (isRatDebuff)
 		{
@@ -433,6 +486,7 @@ public class Player : MonoBehaviour , IDamagable
 	//시작시 DataManager의 스탯을 가져옴
 	public void SetStat()
 	{
+		
 		KSJSoundManager.Instance.channels = 10;
 		isDead = DataManager.Instance.isDead;
 		//이펙트 
@@ -587,6 +641,10 @@ public class Player : MonoBehaviour , IDamagable
 		health += value;
 		if (health > maxHealth)
 			health = maxHealth;
+		Vector3 offset = new Vector3(-0.3f, -0.15f, 0);
+		Transform effect = effectPool.Get(0, (int)EffectType.FireflyEffect).transform;
+		effect.position = transform.position + offset;
+		StartCoroutine(SetActiveFalseEffect(effect, 0.5f));
 	}
 	public void ReduceSpeed(float duration)
 	{
@@ -616,6 +674,11 @@ public class Player : MonoBehaviour , IDamagable
 		health += value;
 		if (health > maxHealth)
 			health = maxHealth;
+
+		Vector3 offset = new Vector3(-0.3f, -0.15f, 0);
+		Transform effect = effectPool.Get(0, (int)EffectType.HealingEffect).transform;
+		effect.position = transform.position + offset;
+		StartCoroutine(SetActiveFalseEffect(effect, 0.5f));
 	}
 
 	// 무적 : 3초간 모든 피해 무적(낙사 제외)
@@ -688,9 +751,15 @@ public class Player : MonoBehaviour , IDamagable
 			if (isBooster)
 			{
 
-				
-				Transform effect = effectPool.Get(0, (int)EffectType.HitEffect).transform;
-				effect.position = other.transform.position;
+
+				Transform effect = effectPool.Get(0, (int)EffectType.DestroyEffect).transform;
+				Vector3 effectPosition = other.transform.position;
+
+
+				float randomZRotation = Random.Range(0f, 360f);
+				effect.rotation = Quaternion.Euler(0f, 0f, randomZRotation);
+
+				effect.position = effectPosition;
 				KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Destroy);
 				StartCoroutine(SetActiveFalseEffect(effect, 0.5f));
 				Destroy(other.gameObject);

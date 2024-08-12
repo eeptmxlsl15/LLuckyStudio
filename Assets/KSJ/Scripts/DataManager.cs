@@ -145,6 +145,13 @@ public class DataManager : MonoBehaviour
 	public void InitializeData(Dictionary<Button, bool> data)
 	{
 		desireStates = new Dictionary<Button, bool>(data);
+		foreach (var entry in desireStates)
+		{
+			string buttonName = entry.Key.name; // 버튼의 이름을 가져옴
+			bool isActive = entry.Value;
+			Debug.Log($"Button: {buttonName}, State: {isActive}");
+		}
+
 	}
 
 
