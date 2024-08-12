@@ -17,6 +17,7 @@ public class Player : MonoBehaviour , IDamagable
 	private Vector2 originalColliderSize;
 	private Vector2 originalColliderOffset;
 	private SpriteRenderer spriteRenderer;
+	public InfiniteRankRegister weekRank;
 	private Color originalColor;
 	public Color heatColor;
 	public GameObject glideCooltimeUI;
@@ -624,6 +625,12 @@ public class Player : MonoBehaviour , IDamagable
 		Debug.Log("플레이어가 죽었습니다.");
 		Time.timeScale = 0f;
 		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/DeathPopUpUI");
+		
+		if (GameManager.GameModeSystem.curGameMode == GameModeSystem.GameMode.INFINITE)
+		{
+			Debug.Log("무한 모드 점수 : " + GameManager.Score.GetTotalScore());
+			weekRank.Process(GameManager.Score.GetTotalScore());
+		}
 		GameManager.Instance.EndGame();
 	}
 
