@@ -16,6 +16,16 @@ public class BackendPostSystem : MonoBehaviour
 		PostListGet(PostType.Admin);
 	}
 
+	public void PostReceive(PostType postType, string inDate)
+	{
+		PostReceive(postType, postList.FindIndex(item => item.inDate.Equals(inDate)));
+	}
+
+	public void PostReceiveAll()
+	{
+		PostReceiveAll(PostType.Admin);
+	}
+
 	public void PostListGet(PostType postType)
 	{
 		Backend.UPost.GetPostList(postType, callback =>
