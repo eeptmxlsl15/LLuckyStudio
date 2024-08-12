@@ -471,6 +471,7 @@ GameObject:
   - component: {fileID: 867404823}
   - component: {fileID: 867404822}
   - component: {fileID: 867404821}
+  - component: {fileID: 867404827}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -490,6 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9506bac9314fa614296c3da0e811294a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weekRank: {fileID: 867404827}
   heatColor: {r: 0, g: 0, b: 0, a: 0}
   glideCooltimeUI: {fileID: 6831205655188139629}
   glideCooltimeText: {fileID: 3981879944774348821}
@@ -698,6 +700,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &867404827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867404820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd503779027af034f974189f467ab237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1112735443
 PrefabInstance:
   m_ObjectHideFlags: 0
