@@ -52,7 +52,6 @@ public class FindPW : BackendLoginBase
 			if (callback.IsSuccess())
 			{
 				SetMessage($"{inputFieldEmail.text} 주소로 메일을 발송하였습니다.");
-				ClearUI();
 			}
 			// 메일 발송 실패
 			else
@@ -81,21 +80,23 @@ public class FindPW : BackendLoginBase
 				{
 					SetMessage(message);
 				}
-			}
-			ClearUI();
+			}		
 		});
 	}
 
 	/// <summary>
 	/// UI 초기화 (알림 텍스트, 이메일 입력 필드, 버튼 활성화)
 	/// </summary>
-	private void ClearUI()
+	public void ClearUI()
 	{
 		// 알림 텍스트 초기화
 		SetMessage("");
 
 		// 입력 필드 초기화
 		inputFieldEmail.text = "";
+		inputFieldID.text = "";
+		imageID.color = Color.white;
+		imageEmail.color = Color.white;
 
 		// 버튼 다시 활성화
 		btnFindPW.interactable = true;

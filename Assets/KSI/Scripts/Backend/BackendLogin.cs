@@ -102,4 +102,19 @@ public class BackendLogin : BackendLoginBase
 			yield return null;
 		}
 	}
+
+
+	/// <summary>
+	/// UI 초기화 (알림 텍스트, 이메일 입력 필드, 버튼 활성화)
+	/// </summary>
+	public void ClearUI()
+	{
+		// 알림 텍스트 초기화
+		SetMessage("");
+
+		// 입력 필드 초기화
+		inputFieldID.text = "";
+		inputFieldPW.text = "";
+
+	}
 }
