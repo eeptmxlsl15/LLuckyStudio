@@ -1,25 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
+using UnityEngine.Events;
 
 public class BackendPostSystem : MonoBehaviour
 {
+	[System.Serializable]
+	public class PostEvent : UnityEvent<List<PostData>> { }
+	public PostEvent onGetPostListEvent = new PostEvent();
+
 	private List<PostData> postList = new List<PostData>();
 
-	private void Update()
+	public void PostListGet()
 	{
-		if (Input.GetKeyDown(KeyCode.Keypad1))
-		{
-			PostListGet(PostType.Admin);
-		}
-		else if (Input.GetKeyDown(KeyCode.Keypad2))
-		{
-			PostReceive(PostType.Admin, 0);
-		}
-		else if (Input.GetKeyDown(KeyCode.Keypad3))
-		{
-			PostReceiveAll(PostType.Admin);
-		}
+		PostListGet(PostType.Admin);
 	}
 
 	public void PostListGet(PostType postType)
@@ -92,6 +86,9 @@ public class BackendPostSystem : MonoBehaviour
 
 					postList.Add(post);
 				}
+
+				// 우편 리스트 불러오기가 완료되었을 때 이벤트 메소드 호출
+				onGetPostListEvent?.Invoke(postList);
 
 				// 저장 가능한 모든 우편(postList) 정보 출력
 				for (int i = 0; i < postList.Count; ++i)
