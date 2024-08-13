@@ -6,13 +6,13 @@ using UnityEngine;
 public class FadeEffect_TMP : MonoBehaviour
 {
 	[SerializeField] private float effectTime = 1.5f;
+	
 	private TextMeshProUGUI effectText;
 
 	private void Awake()
 	{
 		effectText = GetComponent<TextMeshProUGUI>();
 
-		// 처음 알파값을 0으로 설정
 		Color color = effectText.color;
 		color.a = 0;
 		effectText.color = color;
@@ -30,7 +30,6 @@ public class FadeEffect_TMP : MonoBehaviour
 		float current = 0;
 		float percent = 0;
 
-		// fadeTime 시간동안 while() 반복문 실행
 		while (percent < 1)
 		{
 			current += Time.deltaTime;

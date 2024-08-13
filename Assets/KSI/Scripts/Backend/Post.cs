@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using BackEnd;
-using System;  // TimeSpan
+using System; // TimeSpan
 
 public class Post : MonoBehaviour
 {
@@ -22,33 +22,39 @@ public class Post : MonoBehaviour
 
 	public void Setup(BackendPostSystem postSystem, PopUpPostBox postBox, PostData postData)
 	{
-		// 우편 "수령" 버튼을 눌렀을 때 처리
 		buttonReceive.onClick.AddListener(OnClickPostReceive);
 
 		backendPostSystem = postSystem;
 		popUpPostBox = postBox;
 		this.postData = postData;
 
-		// 우편 제목과 내용 설정
 		textTitle.text = postData.title;
 		textContent.text = postData.content;
 
-		// 첫 번째 아이템 정보를 우편에 출력
 		foreach (string itemKey in postData.postReward.Keys)
 		{
-			// 우편에 포함된 아이템 이미지 출력
-			if (itemKey.Equals("heart")) imageItemIcon.sprite = spriteItemIcons[0];
-			else if (itemKey.Equals("gold")) imageItemIcon.sprite = spriteItemIcons[1];
-			else if (itemKey.Equals("jewel")) imageItemIcon.sprite = spriteItemIcons[2];
+			if (itemKey.Equals("sushi")) imageItemIcon.sprite = spriteItemIcons[0];
+			else if (itemKey.Equals("cannedFood")) imageItemIcon.sprite = spriteItemIcons[1];
+			else if (itemKey.Equals("silverKey")) imageItemIcon.sprite = spriteItemIcons[2];
+			else if (itemKey.Equals("goldKey")) imageItemIcon.sprite = spriteItemIcons[3];
+			else if (itemKey.Equals("money")) imageItemIcon.sprite = spriteItemIcons[4];
+			else if (itemKey.Equals("brokenBlue")) imageItemIcon.sprite = spriteItemIcons[5];
+			else if (itemKey.Equals("brokenRed")) imageItemIcon.sprite = spriteItemIcons[6];
+			else if (itemKey.Equals("brokenGreen")) imageItemIcon.sprite = spriteItemIcons[7];
 
-			// 우편에 포함된 아이템 개수 출력
+			else if (itemKey.Equals("resurrection")) imageItemIcon.sprite = spriteItemIcons[8];
+			else if (itemKey.Equals("wizardBackground")) imageItemIcon.sprite = spriteItemIcons[9];
+			else if (itemKey.Equals("wizardHuntEffect")) imageItemIcon.sprite = spriteItemIcons[10];
+			else if (itemKey.Equals("wizardHuntSkin")) imageItemIcon.sprite = spriteItemIcons[11];
+			else if (itemKey.Equals("nabinyangBackground")) imageItemIcon.sprite = spriteItemIcons[12];
+			else if (itemKey.Equals("nabinyangEffect")) imageItemIcon.sprite = spriteItemIcons[13];
+			else if (itemKey.Equals("nabinyangSkin")) imageItemIcon.sprite = spriteItemIcons[14];
+
 			textItemCount.text = postData.postReward[itemKey].ToString();
 
-			// 하나의 우편에 포함된 아이템이 여러 개 일 수도 있는데 현재 예제에서는 첫 번째 아이템 정보만 출력
 			break;
 		}
 
-		// GetServerTime() - 서버 시간 불러오기
 		Backend.Utils.GetServerTime(callback =>
 		{
 			if (!callback.IsSuccess())
@@ -57,7 +63,6 @@ public class Post : MonoBehaviour
 				return;
 			}
 
-			// JSON 데이터 파싱 성공
 			try
 			{
 				// 현재 서버 시간
@@ -69,10 +74,8 @@ public class Post : MonoBehaviour
 				// timeSpan.TotalHours로 남은 기간을 시(hour)로 표현
 				textExpirationDate.text = $"{timeSpan.TotalHours:F0}시간 후 만료";
 			}
-			// JSON 데이터 파싱 실패
 			catch (Exception e)
 			{
-				// try-catch 에러 출력
 				Debug.LogError(e);
 			}
 		});
@@ -80,9 +83,8 @@ public class Post : MonoBehaviour
 
 	private void OnClickPostReceive()
 	{
-		// 현재 우편 UI 오브젝트 삭제
 		popUpPostBox.DestroyPost(gameObject);
-		// 우편 수령
+
 		backendPostSystem.PostReceive(PostType.Admin, postData.inDate);
 	}
 }

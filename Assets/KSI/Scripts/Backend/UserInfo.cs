@@ -15,13 +15,10 @@ public class UserInfo : MonoBehaviour
 
 	public void GetUserInfoFromBackend()
 	{
-		// 현재 로그인한 사용자 정보 불러오기
 		Backend.BMember.GetUserInfo(callback =>
 		{
-			// 정보 불러오기 성공
 			if (callback.IsSuccess())
 			{
-				// JSON 데이터 파싱 성공
 				try
 				{
 					JsonData json = callback.GetReturnValuetoJSON()["row"];
@@ -34,25 +31,19 @@ public class UserInfo : MonoBehaviour
 					data.subscriptionType = json["subscriptionType"].ToString();
 					data.federationId = json["federationId"]?.ToString();
 				}
-				// JSON 데이터 파싱 실패
 				catch (System.Exception e)
 				{
-					// 유저 정보를 기본 상태로 설정
 					data.Reset();
-					// try-catch 에러 출력
+
 					Debug.LogError(e);
 				}
 			}
-			// 정보 불러오기 실패
 			else
 			{
-				// 유저 정보를 기본 상태로 설정
-				// 일반적으로 오프라인 상태를 대비해 기본적인 정보를 저장해두고 오프라인일 때 불러와서 사용
 				data.Reset();
 				Debug.LogError(callback.GetMessage());
 			}
 
-			// 유저 정보 불러오기에 성공했을 때 onUserInfoEvent에 등록되어 있는 이벤트 메소드 호출
 			onUserInfoEvent?.Invoke();
 		});
 	}

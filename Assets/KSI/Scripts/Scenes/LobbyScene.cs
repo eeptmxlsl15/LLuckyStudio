@@ -10,4 +10,9 @@ public class LobbyScene : MonoBehaviour
 	{
 		user.GetUserInfoFromBackend();
 	}
+
+	private void Start()
+	{
+		BackendGameData.Instance.GameDataLoad();
+	}
 }

@@ -38,7 +38,7 @@ public class BackendManager : MonoBehaviour
 		}
 	}
 
-	// 로그아웃 메서드
+	// 로그아웃
 	public void CustomLogOut()
 	{
 		Backend.BMember.Logout();
@@ -48,7 +48,7 @@ public class BackendManager : MonoBehaviour
 		GameManager.Scene.LoadLOBBY();
 	}
 	
-	// 탈퇴 메서드
+	// 탈퇴
 	public void CustomSignOut()
 	{
 		Backend.BMember.WithdrawAccount();

@@ -38,22 +38,18 @@ public class BackendPostSystem : MonoBehaviour
 
 			Debug.Log($"우편 리스트 불러오기 요청에 성공했습니다. : {callback}");
 
-			// JSON 데이터 파싱 성공
 			try
 			{
 				LitJson.JsonData jsonData = callback.GetFlattenJSON()["postList"];
 
-				// 받아온 데이터의 개수가 0이면 데이터가 없는 것
 				if (jsonData.Count <= 0)
 				{
 					Debug.LogWarning("우편함이 비어있습니다.");
 					return;
 				}
 
-				// 매번 우편 리스트를 불러올 때 postList 초기화
 				postList.Clear();
 
-				// 현재 저장 가능한 모든 우편 정보 불러오기
 				for (int i = 0; i < jsonData.Count; ++i)
 				{
 					PostData post = new PostData();
@@ -63,22 +59,17 @@ public class BackendPostSystem : MonoBehaviour
 					post.inDate = jsonData[i]["inDate"].ToString();
 					post.expirationDate = jsonData[i]["expirationDate"].ToString();
 
-					// 우편에 함께 발송된 모든 아이템 정보 불러오기
 					foreach (LitJson.JsonData itemJson in jsonData[i]["items"])
 					{
-						// 우편에 함께 발송된 아이템의 차트 이름이 "재화차트" 일 때
 						if (itemJson["chartName"].ToString() == KSIConstants.GOODS_CHART_NAME)
 						{
 							string itemName = itemJson["item"]["itemName"].ToString();
 							int itemCount = int.Parse(itemJson["itemCount"].ToString());
 
-							// 우편에 포함된 아이템이 여러 개 일 때
-							// 이미 postReward에 해당 아이템 정보가 있으면 개수 추가
 							if (post.postReward.ContainsKey(itemName))
 							{
 								post.postReward[itemName] += itemCount;
 							}
-							// postReward에 없는 아이템 정보이면 요소 추가
 							else
 							{
 								post.postReward.Add(itemName, itemCount);
@@ -97,19 +88,15 @@ public class BackendPostSystem : MonoBehaviour
 					postList.Add(post);
 				}
 
-				// 우편 리스트 불러오기가 완료되었을 때 이벤트 메소드 호출
 				onGetPostListEvent?.Invoke(postList);
 
-				// 저장 가능한 모든 우편(postList) 정보 출력
 				for (int i = 0; i < postList.Count; ++i)
 				{
 					Debug.Log($"{i}번째 우편\n{postList[i].ToString()}");
 				}
 			}
-			// JSON 데이터 파싱 실패
 			catch (System.Exception e)
 			{
-				// try-catch 에러 출력
 				Debug.LogError(e);
 			}
 		});
@@ -143,12 +130,9 @@ public class BackendPostSystem : MonoBehaviour
 
 			postList.RemoveAt(index);
 
-			// 저장 가능한 아이템이 있을 때
 			if (callback.GetFlattenJSON()["postItems"].Count > 0)
 			{
-				// 아이템 저장
 				SavePostToLocal(callback.GetFlattenJSON()["postItems"]);
-				// 플레이어의 재화 정보를 서버에 업데이트
 				BackendGameData.Instance.GameDataUpdate();
 			}
 			else
@@ -178,39 +162,32 @@ public class BackendPostSystem : MonoBehaviour
 
 			Debug.Log($"우편 전체 수령에 성공했습니다. : {callback}");
 
-			postList.Clear();       // 모든 우편을 수령했기 때문에 postList는 초기화한다.
+			postList.Clear();
 
-			// 모든 우편의 아이템 저장
 			foreach (LitJson.JsonData postItemsJson in callback.GetFlattenJSON()["postItems"])
 			{
 				SavePostToLocal(postItemsJson);
 			}
 
-			// 플레이어의 재화 정보를 서버에 업데이트
 			BackendGameData.Instance.GameDataUpdate();
 		});
 	}
 
 	public void SavePostToLocal(LitJson.JsonData item)
 	{
-		// JSON 데이터 파싱 성공
 		try
 		{
 			foreach (LitJson.JsonData itemJson in item)
 			{
-				// 차트 파일 이름(*.xlsx)과 Backend Console에 등록한 차트 이름
 				string chartFileName = itemJson["item"]["chartFileName"].ToString();
 				string chartName = itemJson["chartName"].ToString();
 
-				// GoodsChart.xlsx에 등록한 첫번째 행 이름
 				int itemId = int.Parse(itemJson["item"]["itemId"].ToString());
 				string itemName = itemJson["item"]["itemName"].ToString();
 				string itemInfo = itemJson["item"]["itemInfo"].ToString();
 
-				// 우편 발송할 때 작성하는 아이템 수량
 				int itemCount = int.Parse(itemJson["itemCount"].ToString());
 
-				// 우편으로 받은 재화를 게임 내 데이터에 적용
 				if (chartName.Equals(KSIConstants.GOODS_CHART_NAME))
 				{
 					if (itemName.Equals("sushi"))
@@ -245,6 +222,35 @@ public class BackendPostSystem : MonoBehaviour
 					{
 						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
 					}
+
+					else if (itemName.Equals("resurrection"))
+					{
+						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+					}
+					else if (itemName.Equals("wizardHuntBackground"))
+					{
+						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+					}
+					else if (itemName.Equals("wizardHuntEffect"))
+					{
+						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+					}
+					else if (itemName.Equals("wizardHuntSkin"))
+					{
+						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+					}
+					else if (itemName.Equals("nabinyangBackground"))
+					{
+						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+					}
+					else if (itemName.Equals("nabinyangEffect"))
+					{
+						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+					}
+					else if (itemName.Equals("nabinyangSkin"))
+					{
+						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+					}
 				}
 
 				Debug.Log($"{chartName} - {chartFileName}");
@@ -252,10 +258,8 @@ public class BackendPostSystem : MonoBehaviour
 				Debug.Log($"아이템을 수령했습니다. : {itemName} - {itemCount}개");
 			}
 		}
-		// JSON 데이터 파싱 실패
 		catch (System.Exception e)
 		{
-			// try-catch 에러 출력
 			Debug.LogError(e);
 		}
 	}
