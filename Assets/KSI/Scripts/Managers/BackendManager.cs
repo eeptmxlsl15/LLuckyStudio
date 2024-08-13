@@ -5,6 +5,7 @@ using BackEnd;
 using System.Threading.Tasks;
 using TMPro;
 using static BackEnd.Backend;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class BackendManager : MonoBehaviour
 {
@@ -35,6 +36,15 @@ public class BackendManager : MonoBehaviour
 			Debug.LogError($"초기화 실패 : {bro}");
 			//UpdateText($"초기화 실패 : {bro}");
 		}
+	}
+
+	// 로그아웃 메서드
+	public void CustomLogOut()
+	{
+		Backend.BMember.Logout();
+		Debug.Log("로그아웃 성공");
+		UnitySceneManager.LoadScene("LoginScene");
+		GameManager.Scene.LoadLOBBY();
 	}
 }
 
