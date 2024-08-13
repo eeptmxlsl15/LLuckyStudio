@@ -55,7 +55,7 @@ public class DataManager : MonoBehaviour
 	public int maxSilverKey = 999;
 	public int goldKey;
 	public int maxGoldKey;
-
+	//부활권
 	public int resurrection;
 
 	public int money;//유료 재화 
@@ -102,6 +102,15 @@ public class DataManager : MonoBehaviour
 	public List<int> haveWallpaper = new List<int>();
 	public List<int> haveEffect = new List<int>();
 
+	[Header("# Item Unlock")]
+	
+	public int magicCatEffect;
+	public int magicCatWallpaper;
+	public int magicCatSkin;
+
+	public int butterflyCatEffect;
+	public int butterflyCatWallpaper;
+	public int butterflyCatSkin;
 	public class SaveData
 	{
 		public int resetNum;
