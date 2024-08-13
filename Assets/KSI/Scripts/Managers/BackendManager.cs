@@ -43,9 +43,21 @@ public class BackendManager : MonoBehaviour
 	{
 		Backend.BMember.Logout();
 		Debug.Log("로그아웃 성공");
+		//KSJSoundManager.Instance.StopBGM();
 		UnitySceneManager.LoadScene("LoginScene");
 		GameManager.Scene.LoadLOBBY();
 	}
+	
+	// 탈퇴 메서드
+	public void CustomSignOut()
+	{
+		Backend.BMember.WithdrawAccount();
+		Debug.Log("탈퇴 성공");
+		//KSJSoundManager.Instance.StopBGM();
+		UnitySceneManager.LoadScene("LoginScene");
+		GameManager.Scene.LoadLOBBY();
+	}
+
 }
 
 
