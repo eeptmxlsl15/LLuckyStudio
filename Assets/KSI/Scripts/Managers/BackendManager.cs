@@ -18,7 +18,7 @@ public class BackendManager : MonoBehaviour
 		settings.functionAuthKey = "AQICAHiT9pph8qngOxVNCJXRC0BZjtURNwhhts4F69FL8VO4dgHzijgayqKy88FRGb2AdcJbAAAAYjBgBgkqhkiG9w0BBwagUzBRAgEAMEwGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMctJLbx8w5C1W4UvjAgEQgB9sAZws0RjaIIFuJcepkSQPjamqIWZ4sICTZwbWqUjr";
 		settings.isSendLogReport = true;
 		settings.timeOutSec = 100;
-		
+
 		// 뒤끝 초기화 (콜백 함수 풀링을 사용하려면 매개변수를 true로 설정)
 		var bro = Backend.Initialize(settings);
 
