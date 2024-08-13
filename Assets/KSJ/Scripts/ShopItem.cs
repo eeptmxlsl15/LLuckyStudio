@@ -138,7 +138,15 @@ public class ShopItem : MonoBehaviour
 				gameObject.SetActive(false);
 				break;
 
-
+			case 20: // 일일 상점 무료 초밥
+				if(DataManager.Instance.freeSushi>=DataManager.Instance.freeSushiMax)
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
+					break;
+				}
+				DataManager.Instance.freeSushi++;
+				DataManager.Instance.sushi += quantity;
+				break;
 			case 100: // 통조림으로 은열쇠 구입
 				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.silverKey == DataManager.Instance.maxSilverKey)
 				{
@@ -146,6 +154,16 @@ public class ShopItem : MonoBehaviour
 					break;
 				}
 				DataManager.Instance.cannedFood -= cannedFoodCost;
+				DataManager.Instance.silverKey += quantity;
+				break;
+
+			case 101:
+				if (DataManager.Instance.sushi - sushiCost < 0 || DataManager.Instance.silverKey == DataManager.Instance.maxSilverKey)
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
+					break;
+				}
+				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.silverKey += quantity;
 				break;
 			default:
@@ -186,6 +204,20 @@ public class ShopItem : MonoBehaviour
 		{
 			quantityText.text = "" + quantity;
 			costText.text = "통조림 : " + cannedFoodCost;
+		}
+		else if(itemID == 101)
+		{
+			quantityText.text = "" + quantity;
+			costText.text = "초밥 : " + sushiCost;
+		}
+		else if (itemID ==20)
+		{
+			
+			
+				
+			costText.text = "일일 500개 \n무료 초밥";
+			
+
 		}
 		else
 		{
