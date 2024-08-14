@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 // 입장 재화
+// 은열쇠 : 10분당 1개 충전이므로 chargingTime 600초
+// 금열쇠 : 30분당 1개 충전이므로 chargingTime 1800초
 public class KeyGenerator : MonoBehaviour
 {
 	[Header("Key")]
@@ -34,7 +37,31 @@ public class KeyGenerator : MonoBehaviour
 		Debug.Log("현재 입장 재화 : " + maxBells);
 	}
 
-	public void UsedSiverBells()
+	public void UsedSiverKey()
+	{
+		Debug.Log("UsedSiverKey 메서드 호출됨.");
+
+		if (curBells >= minBells)
+		{
+			Debug.Log("현재 사용가능한 은열쇠가 충분합니다.");
+
+			int bellsUsed = minBells;
+			curBells -= bellsUsed;
+			lastTime = GetUnixTimestamp();
+			isTimerRunning = true;
+			timerText.gameObject.SetActive(true);
+
+			generatorTimer += chargingTime * bellsUsed;
+
+			UpdateTimerUI();
+		}
+		else
+		{
+			Debug.Log("현재 사용가능한 은열쇠가 " + minBells + " 개 미만");
+		}
+	}
+
+	public void UsedGoldKey()
 	{
 		if (curBells >= minBells)
 		{
@@ -50,7 +77,7 @@ public class KeyGenerator : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("현재 사용가능한 입장 재화가 " + minBells + " 개 미만");
+			Debug.Log("현재 사용가능한 금열쇠가 " + minBells + " 개 미만");
 		}
 	}
 

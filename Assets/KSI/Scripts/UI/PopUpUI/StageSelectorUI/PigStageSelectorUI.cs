@@ -16,7 +16,7 @@ public class PigStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnPigSubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnPigSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
+		StageManager.OnPigSubComplete.AddListener(() => ActivateButton(berserkbossButton));
 	}
 
 	private void DisableAllStageButtons()
