@@ -83,7 +83,7 @@ public class BackendCouponSystem : MonoBehaviour
 				int itemCount = int.Parse(item["itemCount"].ToString());
 
 				if (itemName.Equals("sushi")) BackendGameData.Instance.UserGameData.sushi += itemCount;
-				else if (itemName.Equals("cannedFood;")) BackendGameData.Instance.UserGameData.cannedFood += itemCount;
+				else if (itemName.Equals("cannedFood")) BackendGameData.Instance.UserGameData.cannedFood += itemCount;
 				else if (itemName.Equals("silverKey")) BackendGameData.Instance.UserGameData.silverKey += itemCount;
 				else if (itemName.Equals("goldKey")) BackendGameData.Instance.UserGameData.goldKey += itemCount;
 				else if (itemName.Equals("money")) BackendGameData.Instance.UserGameData.money += itemCount;

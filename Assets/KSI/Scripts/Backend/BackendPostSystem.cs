@@ -225,31 +225,31 @@ public class BackendPostSystem : MonoBehaviour
 
 					else if (itemName.Equals("resurrection"))
 					{
-						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+						BackendGameData.Instance.UserGameData.resurrection += itemCount;
 					}
 					else if (itemName.Equals("wizardHuntBackground"))
 					{
-						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+						BackendGameData.Instance.UserGameData.wizardHuntBackground += itemCount;
 					}
 					else if (itemName.Equals("wizardHuntEffect"))
 					{
-						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+						BackendGameData.Instance.UserGameData.wizardHuntEffect += itemCount;
 					}
 					else if (itemName.Equals("wizardHuntSkin"))
 					{
-						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+						BackendGameData.Instance.UserGameData.wizardHuntSkin += itemCount;
 					}
 					else if (itemName.Equals("nabinyangBackground"))
 					{
-						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+						BackendGameData.Instance.UserGameData.nabinyangBackground += itemCount;
 					}
 					else if (itemName.Equals("nabinyangEffect"))
 					{
-						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+						BackendGameData.Instance.UserGameData.nabinyangEffect += itemCount;
 					}
 					else if (itemName.Equals("nabinyangSkin"))
 					{
-						BackendGameData.Instance.UserGameData.brokenGreen += itemCount;
+						BackendGameData.Instance.UserGameData.nabinyangSkin += itemCount;
 					}
 				}
 

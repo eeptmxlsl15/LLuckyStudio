@@ -18,7 +18,6 @@ public class UserGameData
 	public int nabinyangEffect;
 	public int nabinyangSkin;
 
-
 	public void Reset()
 	{
 		sushi = 100000;

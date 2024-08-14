@@ -44,12 +44,12 @@ public class BackendGameData
 			{"brokenGreen", userGameData.brokenGreen},
 
 			{"resurrection", userGameData.resurrection},
-			{"wizardBackground", userGameData.wizardHuntBackground},
+			{"wizardHuntBackground", userGameData.wizardHuntBackground},
 			{"wizardHuntEffect", userGameData.wizardHuntEffect},
-			{"wizardHuntSkin", userGameData.brokenGreen},
+			{"wizardHuntSkin", userGameData.wizardHuntSkin},
 			{"nabinyangBackground", userGameData.nabinyangBackground},
-			{"nabinyangEffect;", userGameData.nabinyangEffect},
-			{"nabinyangSkin;", userGameData.nabinyangSkin}
+			{"nabinyangEffect", userGameData.nabinyangEffect},
+			{"nabinyangSkin", userGameData.nabinyangSkin}
 	};
 
 		Backend.GameData.Insert("USER_DATA", param, callback =>
@@ -96,14 +96,16 @@ public class BackendGameData
 						userGameData.brokenRed = int.Parse(gameDataJson[0]["brokenRed"].ToString());
 						userGameData.brokenGreen = int.Parse(gameDataJson[0]["brokenGreen"].ToString());
 						userGameData.sushi = int.Parse(gameDataJson[0]["sushi"].ToString());
-						
+
 						userGameData.resurrection = int.Parse(gameDataJson[0]["resurrection"].ToString());
-						userGameData.wizardHuntBackground = int.Parse(gameDataJson[0]["wizardHuntBackground"].ToString());
+						userGameData.wizardHuntBackground = int.Parse(gameDataJson[0]["wizardHuntBackground"].ToString());					
 						userGameData.wizardHuntEffect = int.Parse(gameDataJson[0]["wizardHuntEffect"].ToString());
 						userGameData.wizardHuntSkin = int.Parse(gameDataJson[0]["wizardHuntSkin"].ToString());
 						userGameData.nabinyangBackground = int.Parse(gameDataJson[0]["nabinyangBackground"].ToString());
 						userGameData.nabinyangEffect = int.Parse(gameDataJson[0]["nabinyangEffect"].ToString());
 						userGameData.nabinyangSkin = int.Parse(gameDataJson[0]["nabinyangSkin"].ToString());
+
+						onGameDataLoadEvent?.Invoke();
 
 						// 각 데이터를 디버그 로그로 출력
 						Debug.Log($"INFINITBestscore: {userGameData.INFINITBestscore}");
@@ -121,13 +123,8 @@ public class BackendGameData
 						Debug.Log($"WizardHuntEffect: {userGameData.wizardHuntEffect}");
 						Debug.Log($"WizardHuntSkin: {userGameData.wizardHuntSkin}");
 						Debug.Log($"NabinyangBackground: {userGameData.nabinyangBackground}");
-						Debug.Log($"NabinyangEffect: {userGameData.nabinyangEffect}");
-						Debug.Log($"NabinyangSkin;: {userGameData.nabinyangSkin}");
-
-
-
-
-						onGameDataLoadEvent?.Invoke();
+						Debug.Log($"nabinyangEffect: {userGameData.nabinyangEffect}");
+						Debug.Log($"NabinyangSkin: {userGameData.nabinyangSkin}");					
 					}
 				}
 				catch (System.Exception e)
@@ -165,12 +162,12 @@ public class BackendGameData
 			{"brokenGreen", userGameData.brokenGreen},
 
 			{"resurrection", userGameData.resurrection},
-			{"wizardBackground", userGameData.wizardHuntBackground},
+			{"wizardHuntBackground", userGameData.wizardHuntBackground},
 			{"wizardHuntEffect", userGameData.wizardHuntEffect},
-			{"wizardHuntSkin", userGameData.brokenGreen},
+			{"wizardHuntSkin", userGameData.wizardHuntSkin},
 			{"nabinyangBackground", userGameData.nabinyangBackground},
-			{"nabinyangEffect;", userGameData.nabinyangEffect},
-			{"nabinyangSkin;", userGameData.nabinyangSkin}
+			{"nabinyangEffect", userGameData.nabinyangEffect},
+			{"nabinyangSkin", userGameData.nabinyangSkin}
 		};
 
 		if (string.IsNullOrEmpty(gameDataRowInDate))

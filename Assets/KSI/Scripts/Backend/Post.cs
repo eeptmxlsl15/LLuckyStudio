@@ -43,7 +43,7 @@ public class Post : MonoBehaviour
 			else if (itemKey.Equals("brokenGreen")) imageItemIcon.sprite = spriteItemIcons[7];
 
 			else if (itemKey.Equals("resurrection")) imageItemIcon.sprite = spriteItemIcons[8];
-			else if (itemKey.Equals("wizardBackground")) imageItemIcon.sprite = spriteItemIcons[9];
+			else if (itemKey.Equals("WizardHuntBackground")) imageItemIcon.sprite = spriteItemIcons[9];
 			else if (itemKey.Equals("wizardHuntEffect")) imageItemIcon.sprite = spriteItemIcons[10];
 			else if (itemKey.Equals("wizardHuntSkin")) imageItemIcon.sprite = spriteItemIcons[11];
 			else if (itemKey.Equals("nabinyangBackground")) imageItemIcon.sprite = spriteItemIcons[12];
