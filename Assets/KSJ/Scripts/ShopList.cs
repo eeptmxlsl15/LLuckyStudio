@@ -56,27 +56,45 @@ public class ShopList : MonoBehaviour
 		transform.parent.localScale = originalScale;
 	}
 
-	public void OnClickIngameReset()
+	public void OnClickIngameReset(int value)
 	{
-		if (DataManager.Instance.sushi - resetCost < 0 || DataManager.Instance.resetNum == DataManager.Instance.advResetMaxNum)
+		if (value==0)
 		{
-			KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
-			return;
-			
-			//3번째에도 안되게 해야함
-			//시간이 12시일때 
+			if (DataManager.Instance.cannedFood - 500 < 0 || DataManager.Instance.resetCannedNum == DataManager.Instance.resetCannedNumMax)
+			{
+				KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
+				return;
+
+				//3번째에도 안되게 해야함
+				//시간이 12시일때 
+			}
+			PickRandomItems(value);
+			DataManager.Instance.cannedFood -= 500;
 		}
-		PickRandomItems();
-		DataManager.Instance.sushi -= resetCost;
+		else if (value == 1)
+		{
+			if (DataManager.Instance.sushi - resetCost < 0 || DataManager.Instance.resetNum == DataManager.Instance.resetMaxNum)
+			{
+				KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
+				return;
+
+				//3번째에도 안되게 해야함
+				//시간이 12시일때 
+			}
+			PickRandomItems(value);
+			DataManager.Instance.sushi -= resetCost;
+		}
+		
 		DisplayRandomItems();
 		KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Positive);
 	}
 
-	public void PickRandomItems()//데이터매니져에 리셋 아이템 리스트를 랜덤하게 바꿈
+	public void PickRandomItems(int value)//데이터매니져에 리셋 아이템 리스트를 랜덤하게 바꿈
 	{
-		if (DataManager.Instance.resetNum == 3)
+		if (DataManager.Instance.resetCannedNum == 3 && value == 0)
 			return;
-
+		if (DataManager.Instance.resetNum == 3 && value ==1)
+			return;
 		DataManager.Instance.resetItemID.Clear();
 		
 		while (DataManager.Instance.resetItemID.Count!=2)
@@ -87,8 +105,10 @@ public class ShopList : MonoBehaviour
 				DataManager.Instance.resetItemID.Add(randomIndex);
 			}
 		}
-
-		DataManager.Instance.resetNum++;
+		if (value == 0)
+			DataManager.Instance.resetCannedNum++;
+		else
+			DataManager.Instance.resetNum++;
 		DataManager.Instance.SaveDataToJson();
 
 	}
