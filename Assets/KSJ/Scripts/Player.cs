@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour , IDamagable
 {
-	
 
+	public float boosterSpeed = 1.2f;
 	private Rigidbody2D rb;
 	private Animator anim;
 	private BoxCollider2D playerCollider;
