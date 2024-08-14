@@ -25,13 +25,14 @@ public class ResultPopUpUI : PopUpUI
 
 		buttons["ResultPopUpUIReplayButton"].onClick.AddListener(() => { RestartButton(); });
 		buttons["ResultPopUpUIQuitButton"].onClick.AddListener(() => { QuitButton(); });
+		buttons["ResultPopUpUINextButton"].onClick.AddListener(() => { NextButton(); });
 	}
 
 	private void Start()
 	{
 		totalScoreText = GameObject.Find("TotalScoreText").GetComponent<TextMeshProUGUI>();
-		rewardSushiText = GameObject.Find("SushiText").GetComponent<TextMeshProUGUI>();
-		DesirePieceiText = GameObject.Find("DesireText").GetComponent<TextMeshProUGUI>();
+		//rewardSushiText = GameObject.Find("SushiText").GetComponent<TextMeshProUGUI>();
+		//DesirePieceiText = GameObject.Find("DesireText").GetComponent<TextMeshProUGUI>();
 	}
 
 	private void Update()
@@ -55,6 +56,27 @@ public class ResultPopUpUI : PopUpUI
 		GameManager.Score.Reset();
 		GameManager.Instance.ResetAllDebuffs();
 		UnitySceneManager.LoadScene("LobbyScene");
+	}
+
+	public void NextButton()
+	{
+		GameManager.UI.ClearPopUpUI();
+		Time.timeScale = 1f;
+		GameManager.Score.Reset();
+		GameManager.Instance.ResetAllDebuffs();
+
+		string currentSceneName = UnitySceneManager.GetActiveScene().name;
+
+		if (currentSceneName == "SUBScenePig")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/PigStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSScenePig" || currentSceneName == "BERSERKBOSSScenePig")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
 	}
 
 	public void DisplayResultUI()
