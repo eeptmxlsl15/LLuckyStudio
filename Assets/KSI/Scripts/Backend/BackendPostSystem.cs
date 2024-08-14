@@ -133,7 +133,8 @@ public class BackendPostSystem : MonoBehaviour
 			if (callback.GetFlattenJSON()["postItems"].Count > 0)
 			{
 				SavePostToLocal(callback.GetFlattenJSON()["postItems"]);
-				BackendGameData.Instance.GameDataUpdate();
+				
+
 			}
 			else
 			{
@@ -252,7 +253,7 @@ public class BackendPostSystem : MonoBehaviour
 						BackendGameData.Instance.UserGameData.nabinyangSkin += itemCount;
 					}
 				}
-
+				BackendGameData.Instance.GameDataUpdate();
 				Debug.Log($"{chartName} - {chartFileName}");
 				Debug.Log($"[{itemId}] {itemName} : {itemInfo}, 획득 수량 : {itemCount}");
 				Debug.Log($"아이템을 수령했습니다. : {itemName} - {itemCount}개");
