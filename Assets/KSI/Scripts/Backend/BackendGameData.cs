@@ -104,7 +104,7 @@ public class BackendGameData
 						userGameData.nabinyangBackground = int.Parse(gameDataJson[0]["nabinyangBackground"].ToString());
 						userGameData.nabinyangEffect = int.Parse(gameDataJson[0]["nabinyangEffect"].ToString());
 						userGameData.nabinyangSkin = int.Parse(gameDataJson[0]["nabinyangSkin"].ToString());
-
+						SyncLocalAndServerData();
 						onGameDataLoadEvent?.Invoke();
 
 						// 각 데이터를 디버그 로그로 출력
@@ -148,7 +148,7 @@ public class BackendGameData
 						   "Insert 혹은 Load를 통해 데이터를 생성해주세요.");
 			return;
 		}
-
+		SyncLocalAndServerData();
 		Param param = new Param()
 		{
 			{"INFINITBestscore", userGameData.INFINITBestscore},
@@ -193,6 +193,127 @@ public class BackendGameData
 					Debug.LogError($"게임 정보 데이터 수정에 실패했습니다. : {callback}");
 				}
 			});
+		}
+	}
+	public void SyncLocalAndServerData()
+	{
+		// 서버 데이터와 로컬 데이터를 비교하여 동기화하는 로직 작성
+		// 로컬 데이터가 서버 데이터와 다를 경우 서버 데이터를 덮어씁니다.
+		if (userGameData.sushi != DataManager.Instance.sushi)
+		{
+			DataManager.Instance.sushi = userGameData.sushi;
+		}
+		if (userGameData.cannedFood != DataManager.Instance.cannedFood)
+		{
+			DataManager.Instance.cannedFood = userGameData.cannedFood;
+		}
+		if (userGameData.silverKey != DataManager.Instance.silverKey)
+		{
+			DataManager.Instance.silverKey = userGameData.silverKey;
+		}
+		if (userGameData.goldKey != DataManager.Instance.goldKey)
+		{
+			DataManager.Instance.goldKey = userGameData.goldKey;
+		}
+		if (userGameData.money != DataManager.Instance.money)
+		{
+			DataManager.Instance.money = userGameData.money;
+		}
+		if (userGameData.brokenBlue != DataManager.Instance.brokenBlue)
+		{
+			DataManager.Instance.brokenBlue = userGameData.brokenBlue;
+		}
+		if (userGameData.brokenRed != DataManager.Instance.brokenRed)
+		{
+			DataManager.Instance.brokenRed = userGameData.brokenRed;
+		}
+		if (userGameData.brokenGreen != DataManager.Instance.brokenGreen)
+		{
+			DataManager.Instance.brokenGreen = userGameData.brokenGreen;
+		}
+		if (userGameData.resurrection != DataManager.Instance.resurrection)
+		{
+			DataManager.Instance.resurrection = userGameData.resurrection;
+		}
+
+		// 추가적으로 필요한 데이터 동기화 로직 작성
+	}
+	public void UpdateServerDataFromLocal()
+	{
+		// 로컬 데이터를 서버 데이터로 업데이트
+		Param param = new Param();
+
+		// 각 데이터 항목을 비교하여 변경된 항목만 업데이트 파라미터에 추가
+		if (userGameData.sushi != DataManager.Instance.sushi)
+		{
+			param.Add("sushi", DataManager.Instance.sushi);
+			userGameData.sushi = DataManager.Instance.sushi;
+		}
+		if (userGameData.cannedFood != DataManager.Instance.cannedFood)
+		{
+			param.Add("cannedFood", DataManager.Instance.cannedFood);
+			userGameData.cannedFood = DataManager.Instance.cannedFood;
+		}
+		if (userGameData.silverKey != DataManager.Instance.silverKey)
+		{
+			param.Add("silverKey", DataManager.Instance.silverKey);
+			userGameData.silverKey = DataManager.Instance.silverKey;
+		}
+		if (userGameData.goldKey != DataManager.Instance.goldKey)
+		{
+			param.Add("goldKey", DataManager.Instance.goldKey);
+			userGameData.goldKey = DataManager.Instance.goldKey;
+		}
+		if (userGameData.money != DataManager.Instance.money)
+		{
+			param.Add("money", DataManager.Instance.money);
+			userGameData.money = DataManager.Instance.money;
+		}
+		if (userGameData.brokenBlue != DataManager.Instance.brokenBlue)
+		{
+			param.Add("brokenBlue", DataManager.Instance.brokenBlue);
+			userGameData.brokenBlue = DataManager.Instance.brokenBlue;
+		}
+		if (userGameData.brokenRed != DataManager.Instance.brokenRed)
+		{
+			param.Add("brokenRed", DataManager.Instance.brokenRed);
+			userGameData.brokenRed = DataManager.Instance.brokenRed;
+		}
+		if (userGameData.brokenGreen != DataManager.Instance.brokenGreen)
+		{
+			param.Add("brokenGreen", DataManager.Instance.brokenGreen);
+			userGameData.brokenGreen = DataManager.Instance.brokenGreen;
+		}
+		if (userGameData.resurrection != DataManager.Instance.resurrection)
+		{
+			param.Add("resurrection", DataManager.Instance.resurrection);
+			userGameData.resurrection = DataManager.Instance.resurrection;
+		}
+
+		// 추가적으로 필요한 데이터 업데이트 로직 작성
+
+		if (param.Count > 0)
+		{
+			if (string.IsNullOrEmpty(gameDataRowInDate))
+			{
+				Debug.LogError($"유저의 inDate 정보가 없어 게임 정보 데이터 수정에 실패했습니다.");
+			}
+			else
+			{
+				Debug.Log($"{gameDataRowInDate}의 게임 정보 데이터 수정을 요청합니다.");
+
+				Backend.GameData.UpdateV2("USER_DATA", gameDataRowInDate, Backend.UserInDate, param, callback =>
+				{
+					if (callback.IsSuccess())
+					{
+						Debug.Log($"게임 정보 데이터 수정에 성공했습니다. : {callback}");
+					}
+					else
+					{
+						Debug.LogError($"게임 정보 데이터 수정에 실패했습니다. : {callback}");
+					}
+				});
+			}
 		}
 	}
 }

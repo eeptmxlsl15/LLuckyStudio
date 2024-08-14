@@ -204,7 +204,7 @@ public class DataManager : MonoBehaviour
 		};
 
 
-
+		BackendGameData.Instance.UpdateServerDataFromLocal();
 		string json = JsonUtility.ToJson(saveData, true);
 		File.WriteAllText(Application.persistentDataPath + "/saveData.json", json);
 		Debug.Log("데이터 저장");
