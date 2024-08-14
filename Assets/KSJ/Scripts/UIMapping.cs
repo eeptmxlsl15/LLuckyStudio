@@ -214,13 +214,11 @@ public class UIMapping : MonoBehaviour
 		
 		if ((int)timeRemaining.TotalSeconds == 0) // 
 		{
-			DataManager.Instance.resetCannedNum = 0;
+			
 			DataManager.Instance.resetNum = 0;
 			DataManager.Instance.advResetNum = 0;
-			DataManager.Instance.freeSushi = 0;
-			shopList.PickRandomItems(1);
+			shopList.PickRandomItems();
 			shopList.DisplayRandomItems();
-			DataManager.Instance.resetCannedNum = 0;
 			DataManager.Instance.resetNum = 0;
 			DataManager.Instance.advResetNum = 0;
 		}
@@ -237,7 +235,7 @@ public class UIMapping : MonoBehaviour
 	public void UpdateResetText()
 	{
 		IngameResetText.text = "10\n" + dataManager.resetNum +"/"+ dataManager.resetMaxNum;
-		AdvResetText.text = "500\n" + dataManager.resetCannedNum + "/" + dataManager.resetCannedNumMax;
+		AdvResetText.text = "광고 보기\n" + dataManager.advResetNum + "/" + dataManager.advResetMaxNum;
 	}
 	void CheckDayPassed()
 	{
@@ -252,15 +250,12 @@ public class UIMapping : MonoBehaviour
 			if (DateTime.Now.Date > lastExitTime.Date)
 			{
 				// 하루가 지났다면 데이터 초기화
-				DataManager.Instance.resetCannedNum = 0;
-				DataManager.Instance.resetNum = 0;
-				DataManager.Instance.advResetNum = 0;
-				DataManager.Instance.freeSushi = 0;
-				shopList.PickRandomItems(1);
+				dataManager.resetNum = 0;
+				dataManager.advResetNum = 0;
+				shopList.PickRandomItems();
 				shopList.DisplayRandomItems();
-				DataManager.Instance.resetCannedNum = 0;
-				DataManager.Instance.resetNum = 0;
-				DataManager.Instance.advResetNum = 0;
+				dataManager.resetNum = 0;
+				dataManager.advResetNum = 0;
 				Debug.Log("데이터가 하루 지남으로 초기화되었습니다.");
 			}
 		}

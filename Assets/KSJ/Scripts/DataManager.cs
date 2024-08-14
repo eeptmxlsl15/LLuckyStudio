@@ -88,13 +88,6 @@ public class DataManager : MonoBehaviour
 	//UIMapping 스크립트
 	public int resetNum;
 	public int resetMaxNum;
-	//통조림 초기화
-	public int resetCannedNum;
-	public int resetCannedNumMax=3;
-
-	//일일 무료 초밥 재화
-	public int freeSushi;
-	public int freeSushiMax = 1;
 
 	public int advResetNum;
 	public int advResetMaxNum;
@@ -141,8 +134,6 @@ public class DataManager : MonoBehaviour
 		public float catGage;
 		public float premiumGage;
 		public List<int> resetItemID;
-		public int freeSushi;
-		
 	}
 	private void Awake()
 	{
@@ -187,9 +178,9 @@ public class DataManager : MonoBehaviour
 			brokenGreen = brokenGreen,
 			sushi = sushi,
 			silverKey = silverKey,
-
+			
 			goldKey = goldKey,
-
+			
 			resurrection = resurrection,
 			effectID = effectID,
 			wallpaper = wallpaper,
@@ -197,10 +188,7 @@ public class DataManager : MonoBehaviour
 			blueMarbleLv = blueMarbleLv,
 			greenMarbleLv = greenMarbleLv,
 			catGage = catGage,
-			premiumGage = premiumGage,
-			freeSushi = freeSushi,
-			
-		
+			premiumGage = premiumGage
 		};
 
 
@@ -238,7 +226,6 @@ public class DataManager : MonoBehaviour
 			catGage = saveData.catGage;
 			premiumGage = saveData.premiumGage;
 			resetItemID = saveData.resetItemID;
-			freeSushi = saveData.freeSushi;
 		}
 		Debug.Log("데이터 불러오기");
 	}
