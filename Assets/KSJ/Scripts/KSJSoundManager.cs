@@ -27,7 +27,11 @@ public class KSJSoundManager : MonoBehaviour
 		Slide, 
 		Glide,
 		Destroy,
-		Booster
+		Booster,
+		Invincible,
+		Shield,
+		Heal,
+		Firfly
 	}
 
 	void Awake()
@@ -87,5 +91,11 @@ public class KSJSoundManager : MonoBehaviour
 		}
 
 	}
-	
+	public void StopBGM()
+	{
+		if (bgmPlayer != null && bgmPlayer.isPlaying)
+		{
+			bgmPlayer.Stop();
+		}
+	}
 }
