@@ -10,7 +10,7 @@ public class ResultPopUpUI : PopUpUI
 	[Header("UI")]
 	[SerializeField] private TextMeshProUGUI totalScoreText;
 	[SerializeField] private TextMeshProUGUI rewardSushiText;
-	[SerializeField] private TextMeshProUGUI DesirePieceiText;
+	//[SerializeField] private TextMeshProUGUI desirePieceiText;
 	
 	public UnityAction OnDisplayDeathUIChanged;
 
@@ -31,8 +31,8 @@ public class ResultPopUpUI : PopUpUI
 	private void Start()
 	{
 		totalScoreText = GameObject.Find("TotalScoreText").GetComponent<TextMeshProUGUI>();
-		//rewardSushiText = GameObject.Find("SushiText").GetComponent<TextMeshProUGUI>();
-		//DesirePieceiText = GameObject.Find("DesireText").GetComponent<TextMeshProUGUI>();
+		//rewardSushiText = GameObject.Find("JellyPawCountText").GetComponent<TextMeshProUGUI>();
+		//desirePieceiText = GameObject.Find("DesireText").GetComponent<TextMeshProUGUI>();
 	}
 
 	private void Update()
@@ -192,16 +192,20 @@ public class ResultPopUpUI : PopUpUI
 	public void DisplayResultUI()
 	{
 		int totalScore = GameManager.Score.GetTotalScore();
-		totalScoreText.text = totalScore.ToString();	
+		totalScoreText.text = totalScore.ToString();
+
+		int rewardSushi = totalScore / 500 * 25 ;
+		rewardSushiText.text = rewardSushi.ToString();
 	}
 
 	public void UpdateRewardSushiText(int reward)
 	{
 		rewardSushiText.text = reward.ToString();
+
 	}
 
-	public void UpdateDesirePieceiText(int rewardValue)
-	{
-		DesirePieceiText.text = rewardValue.ToString();
-	}
+	//public void UpdateDesirePieceiText(int rewardValue)
+	//{
+	//	desirePieceiText.text = rewardValue.ToString();
+	//}
 }

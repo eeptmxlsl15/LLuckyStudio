@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using static GameModeSystem;
 
-public class SoleJellyUI : MonoBehaviour
+public class InfiniteSoleJellyUI : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI jellyPawText;
 	[SerializeField] private TextMeshProUGUI sushiCountText;
@@ -22,6 +22,6 @@ public class SoleJellyUI : MonoBehaviour
 
 	private void UpdateCountText(int value)
 	{
-		sushiCountText.text = (value / 500 * 25).ToString();
+		sushiCountText.text = (value / 500 * 5).ToString();
 	}
 }

@@ -104,7 +104,7 @@ public class QuestManager : MonoBehaviour
 	{
 		int rewardValue = quest.GetDesirePiece();
 		Debug.Log($"퀘스트 보상 : '{quest.curQuestName}' / 깨진 염원 조각 {rewardValue} 개");
-		resultPopUpUI.UpdateDesirePieceiText(rewardValue);
+		//resultPopUpUI.UpdateDesirePieceiText(rewardValue);
 	}
 
 	public void OnGameEnd()
