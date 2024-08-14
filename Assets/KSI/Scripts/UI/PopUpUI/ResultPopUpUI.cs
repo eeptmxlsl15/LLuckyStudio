@@ -77,6 +77,116 @@ public class ResultPopUpUI : PopUpUI
 			StageManager.OnPigBossComplete.Invoke();
 			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
 		}
+		else if(currentSceneName == "SUBSceneDog")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/DogStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneDog" || currentSceneName == "BERSERKBOSSSceneDog")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
+		else if (currentSceneName == "SUBSceneChicken")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/ChickenStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneChicken" || currentSceneName == "BERSERKBOSSSceneChicken")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
+		else if (currentSceneName == "SUBSceneMonkey")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/MonkeyStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneMonkey" || currentSceneName == "BERSERKBOSSSceneMonkey")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
+		else if (currentSceneName == "SUBSceneSheep")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/SheepStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneSheep" || currentSceneName == "BERSERKBOSSSceneSheep")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
+		else if (currentSceneName == "SUBSceneHorse")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/HorseStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneHorse" || currentSceneName == "BERSERKBOSSSceneHorse")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
+		else if (currentSceneName == "SUBSceneSnake")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/SnakeStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneSnake" || currentSceneName == "BERSERKBOSSSceneSnake")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
+		else if (currentSceneName == "SUBSceneDragon")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/DragonStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneDragon" || currentSceneName == "BERSERKBOSSSceneDragon")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
+		else if (currentSceneName == "SUBSceneRabbit")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/RabbitStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneRabbit" || currentSceneName == "BERSERKBOSSSceneRabbit")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
+		else if (currentSceneName == "SUBSceneTiger")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/TigerStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneTiger" || currentSceneName == "BERSERKBOSSSceneTiger")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
+		else if (currentSceneName == "SUBSceneCow")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/CowStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneCow" || currentSceneName == "BERSERKBOSSSceneCow")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
+		else if (currentSceneName == "SUBSceneMouse")
+		{
+			StageManager.OnPigSubComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/MouseStoryModeSelectUI");
+		}
+		else if (currentSceneName == "BOSSSceneMouse" || currentSceneName == "BERSERKBOSSSceneMouse")
+		{
+			StageManager.OnPigBossComplete.Invoke();
+			GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		}
 	}
 
 	public void DisplayResultUI()
