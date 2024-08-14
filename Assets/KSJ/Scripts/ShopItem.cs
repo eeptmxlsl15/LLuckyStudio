@@ -148,7 +148,7 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.sushi += quantity;
 				break;
 			case 100: // 통조림으로 은열쇠 구입
-				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.silverKey == DataManager.Instance.maxSilverKey)
+				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.silverKey > DataManager.Instance.maxSilverKey)
 				{
 					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
@@ -156,15 +156,24 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.cannedFood -= cannedFoodCost;
 				DataManager.Instance.silverKey += quantity;
 				break;
-
-			case 101:
-				if (DataManager.Instance.sushi - sushiCost < 0 || DataManager.Instance.silverKey == DataManager.Instance.maxSilverKey)
+			
+			case 101:// 초밥으로 은열쇠 구입
+				if (DataManager.Instance.sushi - sushiCost < 0 || DataManager.Instance.silverKey > DataManager.Instance.maxSilverKey)
 				{
 					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
 				}
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.silverKey += quantity;
+				break;
+			case 200: //통조림으로 초밥 구입
+				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.sushi > DataManager.Instance.sushiMax)
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
+					break;
+				}
+				DataManager.Instance.cannedFood -= cannedFoodCost;
+				DataManager.Instance.sushi += quantity;
 				break;
 			default:
 
@@ -219,12 +228,19 @@ public class ShopItem : MonoBehaviour
 			
 
 		}
+		else if (itemID == 200)
+		{
+			quantityText.text = "" + quantity;
+			costText.text = "통조림:" + cannedFoodCost;
+		}
 		else
 		{
 		quantityText.text = "" + quantity;
 		costText.text = "초밥 : " + sushiCost;
 
 		}
+
+		
 
 	}
 

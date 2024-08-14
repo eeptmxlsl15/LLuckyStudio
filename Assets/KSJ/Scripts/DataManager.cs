@@ -10,6 +10,7 @@ public class DataManager : MonoBehaviour
 	// 씬 간에 전달할 데이터
 	//염원
 	public Dictionary<Button, bool> desireStates = new Dictionary<Button, bool>();
+	public int sushiMax = 999999998;
 	//스탯
 	[Header("# Player Skin")]
 	public RuntimeAnimatorController[] playerSkin;
