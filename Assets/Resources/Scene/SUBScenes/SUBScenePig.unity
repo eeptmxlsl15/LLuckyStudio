@@ -195,7 +195,7 @@ PrefabInstance:
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: spawnPoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1837772124}
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: initialSpawnDelay
       value: 0
@@ -269,6 +269,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 242914145837143904, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
+      propertyPath: m_Name
+      value: SushiPawImage
+      objectReference: {fileID: 0}
     - target: {fileID: 957213450287609073, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
       propertyPath: player
       value: 
@@ -292,6 +296,10 @@ PrefabInstance:
     - target: {fileID: 2574749366631991533, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297723894183757120, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
+      propertyPath: m_Name
+      value: SushiCountText
       objectReference: {fileID: 0}
     - target: {fileID: 5849546277098551815, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
       propertyPath: m_AnchorMax.y
@@ -522,6 +530,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e78a7e6af3844e41bf84fa4b1684b68, type: 3}
+--- !u!4 &1837772124 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 449743734870794375, guid: 7e78a7e6af3844e41bf84fa4b1684b68, type: 3}
+  m_PrefabInstance: {fileID: 1837772123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1233389942011308305
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9506bac9314fa614296c3da0e811294a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weekRank: {fileID: 0}
   heatColor: {r: 0, g: 0, b: 0, a: 0}
   glideCooltimeUI: {fileID: 1435421297}
   glideCooltimeText: {fileID: 1435421296}
@@ -1350,7 +1364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jellyPawText: {fileID: 131729597}
-  jellyPawCountText: {fileID: 110420127}
+  sushiCountText: {fileID: 110420127}
 --- !u!61 &8467907349644545389
 BoxCollider2D:
   m_ObjectHideFlags: 0

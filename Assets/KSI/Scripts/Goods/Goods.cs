@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class Goods : MonoBehaviour
 {
 	[SerializeField] private float speed = 10f;
-	protected int scoreValue = 100;
+	protected int scoreValue = 500;
 	protected IScore scoreAdapter;
 	protected AudioClip getSound;
 

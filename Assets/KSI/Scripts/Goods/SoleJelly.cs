@@ -1,4 +1,5 @@
 using UnityEngine;
+using static GameModeSystem;
 using static Quest;
 
 // 젤리 발바닥(점수 코인)
@@ -20,7 +21,9 @@ public class SoleJelly : Goods
 	public override void Contact()
 	{
 		gameObject.SetActive(false);
-		Debug.Log("발바닥 젤리 점수 : " + scoreValue);
+
+		Debug.Log($"발바닥 젤리 점수 : {scoreValue}");
+		
 		scoreAdapter.AddScore(scoreValue);
 
 		QuestManager questManager = FindObjectOfType<QuestManager>();
