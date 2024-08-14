@@ -69,8 +69,8 @@ public class UIMapping : MonoBehaviour
 	void Update()
 	{
 		// 최대치 관리
-		if (dataManager.sushi > 999999998)
-			dataManager.sushi = 999999999;
+		if (dataManager.sushi > dataManager.sushiMax)
+			dataManager.sushi = dataManager.sushiMax + 1;
 		if (dataManager.silverKey > dataManager.maxSilverKey)
 			dataManager.silverKey = dataManager.maxSilverKey;
 		UpdateCatsDesire();
