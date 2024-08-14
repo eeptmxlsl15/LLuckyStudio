@@ -16,7 +16,7 @@ public class ChickenStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnChickenSubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnChickenSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
+		StageManager.OnChickenSubComplete.AddListener(() => ActivateButton(berserkbossButton));
 	}
 
 	private void DisableAllStageButtons()
