@@ -2258,7 +2258,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1012.97876}
+  m_AnchoredPosition: {x: 0, y: 791.8015}
   m_SizeDelta: {x: 0, y: 488.092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &203926676 stripped
@@ -9415,6 +9415,11 @@ MonoBehaviour:
   - {fileID: 5008211542219613822, guid: 7554b456fde2ed24fb80330eb1896049, type: 3}
   destroyObjectEffects:
   - {fileID: 9206679829297978600, guid: 6717158e14cf86545a3a25e296697374, type: 3}
+  boosterEffects: []
+  shieldEffects: []
+  healigEffects: []
+  invincibleEffects: []
+  fireflyEffects: []
 --- !u!4 &810210570
 Transform:
   m_ObjectHideFlags: 0
@@ -12236,7 +12241,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1399198038}
   m_HandleRect: {fileID: 1399198037}
   m_Direction: 2
-  m_Value: 1.0000005
+  m_Value: 1.0000004
   m_Size: 0.5469956
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13572,8 +13577,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2077018135}
   m_HandleRect: {fileID: 2077018134}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.5469956
+  m_Value: 0.9999998
+  m_Size: 0.54699546
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22275,7 +22280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 825.8651}
+  m_AnchoredPosition: {x: 0.000030517578, y: 825.86505}
   m_SizeDelta: {x: 0, y: 1295.045}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1961006200 stripped
@@ -22370,7 +22375,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1152235636}
   m_HandleRect: {fileID: 1152235635}
   m_Direction: 2
-  m_Value: 0.000000036952258
+  m_Value: 0.000000110856774
   m_Size: 0.36228856
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22806,8 +22811,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1467789554}
   m_HandleRect: {fileID: 1467789553}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.5469956
+  m_Value: 0.9999998
+  m_Size: 0.54699546
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -24436,6 +24441,10 @@ MonoBehaviour:
   resetItemID: 0000000001000000
   resetNum: 0
   resetMaxNum: 3
+  resetCannedNum: 0
+  resetCannedNumMax: 3
+  freeSushi: 0
+  freeSushiMax: 1
   advResetNum: 0
   advResetMaxNum: 3
   isDead: 0
@@ -24444,6 +24453,12 @@ MonoBehaviour:
   haveSkin: 
   haveWallpaper: 
   haveEffect: 
+  magicCatEffect: 0
+  magicCatWallpaper: 0
+  magicCatSkin: 0
+  butterflyCatEffect: 0
+  butterflyCatWallpaper: 0
+  butterflyCatSkin: 0
 --- !u!114 &8311434941296621568
 MonoBehaviour:
   m_ObjectHideFlags: 0
