@@ -10,14 +10,20 @@ public class UserGameData
 	public int brokenRed;
 	public int brokenGreen;
 	public int INFINITBestscore;
+	public int resurrection;
+	public int wizardHuntBackground;
+	public int wizardHuntEffect;
+	public int wizardHuntSkin;
+	public int nabinyangBackground;
+	public int nabinyangEffect;
+	public int nabinyangSkin;
 
 	public void Reset()
 	{
-		sushi = 0;
-		cannedFood = 0;
-		silverKey = 0;
-		goldKey = 0;
+		sushi = 100000;
+		cannedFood = 10000;
+		silverKey = 30;
+		goldKey = 5;
 		INFINITBestscore = 0;
 	}
 }
-

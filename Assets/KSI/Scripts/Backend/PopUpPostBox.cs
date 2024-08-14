@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PopUpPostBox : MonoBehaviour
 {
-	[SerializeField] private BackendPostSystem backendPostSystem; // 우편 "수령" 버튼을 눌렀을 때 PostReceive() 호출용
+	[SerializeField] private BackendPostSystem backendPostSystem;
 	[SerializeField] private GameObject postPrefab; // 우편 UI 프리팹
 	[SerializeField] private Transform parentContent; // 우편 UI가 배치되는 ScrollView의 Content
-	[SerializeField] private GameObject textSystem; // "우편함이 비어있습니다" 텍스트 오브젝트
+	[SerializeField] private GameObject alertText; // "우편함이 비어있습니다" 텍스트 오브젝트
 
 	private List<GameObject> postList;
 
@@ -32,7 +32,7 @@ public class PopUpPostBox : MonoBehaviour
 			postList.Add(clone);
 		}
 
-		textSystem.SetActive(false);
+		alertText.SetActive(false);
 	}
 
 	public void DestroyPostAll()
@@ -44,7 +44,7 @@ public class PopUpPostBox : MonoBehaviour
 
 		postList.Clear();
 
-		textSystem.SetActive(true);
+		alertText.SetActive(true);
 	}
 
 	public void DestroyPost(GameObject post)
@@ -54,7 +54,7 @@ public class PopUpPostBox : MonoBehaviour
 
 		if (postList.Count == 0)
 		{
-			textSystem.SetActive(true);
+			alertText.SetActive(true);
 		}
 	}
 }

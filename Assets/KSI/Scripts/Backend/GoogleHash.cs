@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GoogleHash : MonoBehaviour
 {
-	public TMP_InputField googleHash;
+	[SerializeField] private TMP_InputField googleHash;
 
 	public void GetGoogleHash()
 	{

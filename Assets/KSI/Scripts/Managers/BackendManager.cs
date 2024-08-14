@@ -5,6 +5,7 @@ using BackEnd;
 using System.Threading.Tasks;
 using TMPro;
 using static BackEnd.Backend;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class BackendManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class BackendManager : MonoBehaviour
 		settings.functionAuthKey = "AQICAHiT9pph8qngOxVNCJXRC0BZjtURNwhhts4F69FL8VO4dgHzijgayqKy88FRGb2AdcJbAAAAYjBgBgkqhkiG9w0BBwagUzBRAgEAMEwGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMctJLbx8w5C1W4UvjAgEQgB9sAZws0RjaIIFuJcepkSQPjamqIWZ4sICTZwbWqUjr";
 		settings.isSendLogReport = true;
 		settings.timeOutSec = 100;
-		
+
 		// 뒤끝 초기화 (콜백 함수 풀링을 사용하려면 매개변수를 true로 설정)
 		var bro = Backend.Initialize(settings);
 
@@ -36,6 +37,27 @@ public class BackendManager : MonoBehaviour
 			//UpdateText($"초기화 실패 : {bro}");
 		}
 	}
+
+	// 로그아웃
+	public void CustomLogOut()
+	{
+		Backend.BMember.Logout();
+		Debug.Log("로그아웃 성공");
+		//KSJSoundManager.Instance.StopBGM();
+		UnitySceneManager.LoadScene("LoginScene");
+		GameManager.Scene.LoadLOBBY();
+	}
+	
+	// 탈퇴
+	public void CustomSignOut()
+	{
+		Backend.BMember.WithdrawAccount();
+		Debug.Log("탈퇴 성공");
+		//KSJSoundManager.Instance.StopBGM();
+		UnitySceneManager.LoadScene("LoginScene");
+		GameManager.Scene.LoadLOBBY();
+	}
+
 }
 
 
