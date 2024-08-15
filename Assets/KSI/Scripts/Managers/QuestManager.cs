@@ -55,7 +55,7 @@ public class QuestManager : MonoBehaviour
 					{
 						Time.timeScale = 0f;
 						GameManager.UI.ShowPopUpUI<PopUpUI>("UI/ResultPopUpUI");
-						//GiveReward(quest);
+						GiveReward(quest);
 					}	
 				}
 				else
@@ -96,15 +96,42 @@ public class QuestManager : MonoBehaviour
 	{
 		int reward = quest.GetReward() * 5;
 		Debug.Log($"퀘스트 보상 : '{quest.curQuestName}' / 초밥 {reward} 개 ");
-		resultPopUpUI.UpdateRewardSushiText(reward);
-		//DataManager.Instance.sushi += reward;	
+		DataManager.Instance.sushi += reward;
 	}
 
 	private void GiveDesirePiece(Quest quest)
 	{
 		int rewardValue = quest.GetDesirePiece();
 		Debug.Log($"퀘스트 보상 : '{quest.curQuestName}' / 깨진 염원 조각 {rewardValue} 개");
-		//resultPopUpUI.UpdateDesirePieceiText(rewardValue);
+		string[] colors = { "blue", "red", "green" };
+
+		System.Random random = new System.Random();
+		List<int> selectedIndexes = new List<int>();
+
+		while (selectedIndexes.Count < 1)
+		{
+			int index = random.Next(colors.Length);
+			if (!selectedIndexes.Contains(index))
+			{
+				selectedIndexes.Add(index);
+			}
+		}
+
+		foreach (int index in selectedIndexes)
+		{
+			switch (colors[index])
+			{
+				case "blue":
+					DataManager.Instance.brokenBlue += rewardValue;
+					break;
+				case "red":
+					DataManager.Instance.brokenRed += rewardValue;
+					break;
+				case "green":
+					DataManager.Instance.brokenGreen += rewardValue;
+					break;
+			}
+		}
 	}
 
 	public void OnGameEnd()
