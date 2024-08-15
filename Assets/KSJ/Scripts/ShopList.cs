@@ -43,7 +43,7 @@ public class ShopList : MonoBehaviour
 			GameObject itemPrefab = itemPrefabs[index];
 
 			Transform spawnPoint = spawnPoints[i];
-			Debug.Log(spawnPoint.localPosition.x + spawnPoint.localPosition.y);
+			
 			GameObject spawnedItem = Instantiate(itemPrefab, transform);
 
 			// localPosition을 사용하여 정확한 위치 설정

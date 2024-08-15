@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour , IDamagable
 {
-	
 
+	public float boosterSpeed = 1.2f;
 	private Rigidbody2D rb;
 	private Animator anim;
 	private BoxCollider2D playerCollider;
@@ -497,8 +497,7 @@ public class Player : MonoBehaviour , IDamagable
 		maxHealth = DataManager.Instance.maxHealth+DataManager.Instance.redMarbleValue[DataManager.Instance.redMarbleLv];
 		if (DataManager.Instance.skinID == 5)// 해골냥 : 체력 10 증가
 			maxHealth += 10;
-
-		speed = DataManager.Instance.speed;
+		
 		jumpForce = DataManager.Instance.jumpForce;
 		jumpCount = DataManager.Instance.jumpCount;
 		fallSpeed = DataManager.Instance.fallSpeed;

@@ -1,105 +1,107 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Slot : MonoBehaviour
+public class BackgroundManager : MonoBehaviour
 {
-	// 슬롯의 배경 오브젝트 (스프라이트가 변경될 오브젝트)
-	public Image background;
-
-	// 슬롯의 자식 오브젝트들 중 버튼들
-	public Button[] buttons;
-
-	// 버튼별로 교체할 스프라이트들
-	public Sprite[] sprites;
-
-	// 현재 선택된 버튼의 인덱스 (상태를 저장하기 위해)
-	private int selectedButtonIndex = -1;
+	public Image background; // 배경 이미지
+	public Button[] buttons; // 배경을 선택하는 버튼 배열
+	private int selectedButtonIndex = -1; // 현재 선택된 버튼의 인덱스
 
 	private void Start()
 	{
-		// 이전에 저장된 상태가 있으면 불러오기
-		LoadState();
+		LoadState(); // 이전에 저장된 상태를 불러오기
 
-		// 모든 버튼들에 클릭 이벤트 추가
 		for (int i = 0; i < buttons.Length; i++)
 		{
-			int index = i; // 지역 변수를 사용하여 클로저 문제 해결
-			buttons[i].onClick.AddListener(() => OnButtonClick(index));
-
-			// 이전 상태를 반영하여 버튼 활성화/비활성화 설정
-			if (index == selectedButtonIndex)
-			{
-				SetButtonState(buttons[i], false); // 비활성화
-			}
+			int index = i; // 루프 변수 캡처
+			buttons[i].onClick.AddListener(() => OnButtonClick(index)); // 각 버튼에 클릭 이벤트 연결
 		}
 	}
 
-	// 버튼이 클릭되었을 때 호출되는 메서드
-	private void OnButtonClick(int buttonIndex)
+	private void OnButtonClick(int index)
 	{
-		// 이미 선택된 버튼은 무시
-		if (buttonIndex == selectedButtonIndex)
-			return;
-
-		// 새로운 버튼이 선택되었을 때
-		selectedButtonIndex = buttonIndex;
-
-		// 배경 스프라이트 변경
-		if (buttonIndex >= 0 && buttonIndex < sprites.Length)
+		if (selectedButtonIndex != index) // 버튼이 이미 선택된 상태가 아닌 경우
 		{
-			background.sprite = sprites[buttonIndex];
-		}
-
-		// 모든 버튼을 활성화하고 현재 버튼은 비활성화
-		for (int i = 0; i < buttons.Length; i++)
-		{
-			if (i == selectedButtonIndex)
+			// 모든 버튼을 다시 활성화 상태로 설정
+			foreach (var button in buttons)
 			{
-				SetButtonState(buttons[i], false); // 비활성화
+				button.interactable = true;
+			}
+
+			// 클릭된 버튼을 비활성화 상태(회색)로 설정
+			buttons[index].interactable = false;
+
+			// 해당 버튼의 이름으로 프리팹을 로드하여 배경 이미지 설정
+			string prefabPath = "Wallpapers/" + buttons[index].name; // 버튼 이름이 프리팹 이름과 일치한다고 가정
+			GameObject loadedPrefab = Resources.Load<GameObject>(prefabPath);
+			if (loadedPrefab != null)
+			{
+				Image loadedImage = loadedPrefab.GetComponent<Image>();
+				if (loadedImage != null)
+				{
+					background.sprite = loadedImage.sprite; // 배경 이미지 변경
+				}
+				else
+				{
+					Debug.LogWarning($"프리팹 '{prefabPath}'에 Image 컴포넌트가 없습니다.");
+				}
 			}
 			else
 			{
-				SetButtonState(buttons[i], true); // 활성화
+				Debug.LogWarning($"프리팹 경로: {prefabPath} 로드 실패");
 			}
-		}
 
-		// 상태 저장
-		SaveState();
-	}
-
-	// 버튼의 활성화/비활성화 상태를 설정하는 메서드
-	private void SetButtonState(Button button, bool isActive)
-	{
-		button.interactable = isActive;
-
-		Image buttonImage = button.GetComponent<Image>();
-		if (buttonImage != null)
-		{
-			buttonImage.color = isActive ? Color.white : Color.gray; // 활성화: 흰색, 비활성화: 회색
+			selectedButtonIndex = index; // 선택된 버튼 인덱스 업데이트
+			SaveState(); // 상태 저장
 		}
 	}
 
-	// 상태를 저장하는 메서드
 	private void SaveState()
 	{
-		PlayerPrefs.SetInt(gameObject.name + "_SelectedButtonIndex", selectedButtonIndex);
-		PlayerPrefs.SetString(gameObject.name + "_BackgroundSprite", background.sprite.name);
-		PlayerPrefs.Save();
+		PlayerPrefs.SetInt(gameObject.name + "_SelectedButtonIndex", selectedButtonIndex); // 선택된 버튼 인덱스 저장
+
+		// 선택된 버튼의 이름을 저장
+		if (selectedButtonIndex >= 0 && selectedButtonIndex < buttons.Length)
+		{
+			string buttonName = buttons[selectedButtonIndex].name;
+			PlayerPrefs.SetString(gameObject.name + "_BackgroundButtonName", buttonName);
+		}
+
+		PlayerPrefs.Save(); // PlayerPrefs 저장
 	}
 
-	// 상태를 불러오는 메서드
 	private void LoadState()
 	{
-		selectedButtonIndex = PlayerPrefs.GetInt(gameObject.name + "_SelectedButtonIndex", -1);
+		selectedButtonIndex = PlayerPrefs.GetInt(gameObject.name + "_SelectedButtonIndex", -1); // 저장된 버튼 인덱스 불러오기
 
-		string backgroundSpriteName = PlayerPrefs.GetString(gameObject.name + "_BackgroundSprite", "");
-		if (!string.IsNullOrEmpty(backgroundSpriteName))
+		// 마지막으로 선택된 버튼 이름으로 프리팹 로드
+		string buttonName = PlayerPrefs.GetString(gameObject.name + "_BackgroundButtonName", "");
+		if (!string.IsNullOrEmpty(buttonName))
 		{
-			Sprite savedSprite = Resources.Load<Sprite>(backgroundSpriteName);
-			if (savedSprite != null)
+			string prefabPath = "Wallpapers/" + buttonName;
+			GameObject loadedPrefab = Resources.Load<GameObject>(prefabPath);
+			if (loadedPrefab != null)
 			{
-				background.sprite = savedSprite;
+				Image loadedImage = loadedPrefab.GetComponent<Image>();
+				if (loadedImage != null)
+				{
+					background.sprite = loadedImage.sprite; // 배경 이미지 설정
+				}
+				else
+				{
+					Debug.LogWarning($"프리팹 '{prefabPath}'에 Image 컴포넌트가 없습니다.");
+				}
 			}
+			else
+			{
+				Debug.LogWarning($"프리팹 경로: {prefabPath} 로드 실패");
+			}
+		}
+
+		// 저장된 상태에 따라 버튼의 상호작용 설정
+		if (selectedButtonIndex >= 0 && selectedButtonIndex < buttons.Length)
+		{
+			buttons[selectedButtonIndex].interactable = false; // 선택된 버튼을 비활성화 상태로 설정
 		}
 	}
 }

@@ -18,13 +18,13 @@ public class SkinEquipButton : MonoBehaviour
 	public Type type;
 
 	void Start()
-	{
+	{ 
 		if(type == Type.Skin)
 			CollectAllSkinButtons();
 		else if(type == Type.Effect)
 			CollectAllEffectButtons();
 		//ArrangeSkins();
-
+		
 		ButtonSetting(type);
 	}
 
@@ -34,12 +34,16 @@ public class SkinEquipButton : MonoBehaviour
 	{
 		// 현재 게임 오브젝트와 모든 자식 오브젝트에서 버튼 컴포넌트를 찾아서 리스트에 추가
 		Button[] foundButtons = GetComponentsInChildren<Button>(true);
-
+		
 		for (int i = 0; i < foundButtons.Length; i++)
 		{
-			int index = i; // 캡처하기 위해 새 변수 생성
-			foundButtons[i].onClick.AddListener(() => OnClickSkinEquip(index));
-			buttons.Add(foundButtons[i]);
+
+
+			int index = i;
+				foundButtons[i].onClick.AddListener(() => OnClickSkinEquip(index));
+				buttons.Add(foundButtons[i]);
+			
+			
 		}
 	}
 	void CollectAllEffectButtons()
