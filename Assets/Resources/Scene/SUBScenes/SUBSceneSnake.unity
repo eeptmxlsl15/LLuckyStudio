@@ -562,6 +562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9506bac9314fa614296c3da0e811294a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boosterSpeed: 1.2
+  weekRank: {fileID: 0}
   heatColor: {r: 0, g: 0, b: 0, a: 0}
   glideCooltimeUI: {fileID: 924937283}
   glideCooltimeText: {fileID: 924937282}
@@ -651,6 +653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.3
+  player: {fileID: 0}
 --- !u!95 &2198955726013087831
 Animator:
   serializedVersion: 5
@@ -955,6 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5825c3a5eaeb414c8225f7f2e03c775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   speed: 0.05
 --- !u!114 &5063189295799889418
 MonoBehaviour:
@@ -968,6 +972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5825c3a5eaeb414c8225f7f2e03c775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   speed: 0.5
 --- !u!4 &5092238570830874471
 Transform:
@@ -1068,6 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5825c3a5eaeb414c8225f7f2e03c775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   speed: 0.4
 --- !u!1 &5600822357424329597
 GameObject:
@@ -1343,7 +1349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jellyPawText: {fileID: 924937281}
-  jellyPawCountText: {fileID: 924937280}
+  sushiCountText: {fileID: 924937280}
 --- !u!61 &8467907349644545389
 BoxCollider2D:
   m_ObjectHideFlags: 0
