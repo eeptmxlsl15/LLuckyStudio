@@ -97,42 +97,60 @@ public class ShopItem : MonoBehaviour
 
 			case 0: // 은방울
 				if (DataManager.Instance.sushi - sushiCost < 0)
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
+				}
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.silverKey += quantity;
 				gameObject.SetActive(false);
 				break;
 			case 1: // 금방울
 				if (DataManager.Instance.sushi - sushiCost < 0)
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
+				}
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.goldKey += quantity;
 				gameObject.SetActive(false);
 				break;
 			case 2: // 부활권
 				if (DataManager.Instance.sushi - sushiCost < 0)
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
+				}
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.resurrection += quantity;
 				gameObject.SetActive(false);
 				break;
 			case 3: // 적 깨진 염원 조각
 				if (DataManager.Instance.sushi - sushiCost < 0)
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
+				}
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.brokenRed += quantity;
 				gameObject.SetActive(false);
 				break;
 			case 4: // 청 깨진 염원 조각
 				if (DataManager.Instance.sushi - sushiCost < 0)
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
+				}
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.brokenBlue += quantity;
 				gameObject.SetActive(false);
 				break;
 			case 5: // 녹 깨진 염원 조각
 				if (DataManager.Instance.sushi - sushiCost < 0)
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
+				}
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.brokenGreen += quantity;
 				gameObject.SetActive(false);
@@ -147,7 +165,7 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.freeSushi++;
 				DataManager.Instance.sushi += quantity;
 				break;
-			case 100: // 통조림으로 은열쇠 구입
+			case 100: // 통조림으로 은열쇠 구입 - 은열쇠 상점
 				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.silverKey > DataManager.Instance.maxSilverKey)
 				{
 					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
@@ -157,7 +175,7 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.silverKey += quantity;
 				break;
 			
-			case 101:// 초밥으로 은열쇠 구입
+			case 101:// 초밥으로 은열쇠 구입 - 은열쇠 상점
 				if (DataManager.Instance.sushi - sushiCost < 0 || DataManager.Instance.silverKey > DataManager.Instance.maxSilverKey)
 				{
 					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
@@ -166,7 +184,9 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.silverKey += quantity;
 				break;
-			case 200: //통조림으로 초밥 구입
+			
+			
+			case 200: //통조림으로 초밥 구입 - 일일 상점 초밥들
 				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.sushi > DataManager.Instance.sushiMax)
 				{
 					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
@@ -175,6 +195,26 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.cannedFood -= cannedFoodCost;
 				DataManager.Instance.sushi += quantity;
 				break;
+
+			case 300: // 스킨들
+				if (DataManager.Instance.cannedFood - cannedFoodCost < 0)
+				{
+					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
+					break;
+				}
+				DataManager.Instance.cannedFood -= cannedFoodCost;
+				transform.gameObject.SetActive(false);
+				break;
+
+
+
+
+
+
+
+
+
+
 			default:
 
 				break;
