@@ -9,9 +9,13 @@ using UnityEngine;
 public abstract class Platform : MonoBehaviour
 {
 	public float speed = 10f;
-
+	public Player player;
 	//public abstract void Pass();
+	private void Awake()
+	{
+		player = FindObjectOfType<Player>();
 
+	}
 	protected virtual void Update()
 	{
 		Move();
@@ -19,7 +23,11 @@ public abstract class Platform : MonoBehaviour
 
 	protected virtual void Move()
 	{
-		transform.Translate(Vector3.left * speed * Time.deltaTime);
+		if (player.isBooster || player.isGlide)
+			transform.Translate(Vector3.left * speed * Time.deltaTime * player.boosterSpeed);
+		else
+			transform.Translate(Vector3.left * speed * Time.deltaTime);
+		
 
 		Destroy(gameObject, 10f);
 	}

@@ -7,10 +7,14 @@ public abstract class BuffTypeObject : MonoBehaviour
 {
 	[SerializeField] protected float speed = 10f;
 	protected AudioClip getSound;
-	protected Player player;
+	public Player player;
 
 	public abstract void Buff();
+	private void Awake()
+	{
+		player = FindObjectOfType<Player>();
 
+	}
 	private void Update()
 	{
 		Move();
@@ -18,7 +22,10 @@ public abstract class BuffTypeObject : MonoBehaviour
 
 	protected virtual void Move()
 	{
-		transform.Translate(Vector3.left * speed * Time.deltaTime);
+		if (player.isBooster || player.isGlide)
+			transform.Translate(Vector3.left * speed * Time.deltaTime * player.boosterSpeed);
+		else
+			transform.Translate(Vector3.left * speed * Time.deltaTime);
 
 		//Destroy(gameObject, 20f);
 	}

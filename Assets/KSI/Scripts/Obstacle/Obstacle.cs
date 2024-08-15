@@ -8,17 +8,24 @@ public abstract class Obstacle : MonoBehaviour, IDamagable
 {
 	[SerializeField] private float speed = 10f;
 	[SerializeField] protected int damage = 10;
-
+	public Player player;
 	public void TakeDamage(int damage) { }
+	private void Awake()
+	{
+		player = FindObjectOfType<Player>();
 
+	}
 	private void Update()
 	{
 		Move();
 	}
 
 	protected virtual void Move()
-	{
-		transform.Translate(Vector3.left * speed * Time.deltaTime);
+	{ 
+		if (player.isBooster || player.isGlide)
+			transform.Translate(Vector3.left * speed * Time.deltaTime * player.boosterSpeed);
+		else
+			transform.Translate(Vector3.left * speed * Time.deltaTime);
 
 		//Destroy(gameObject, 20f);
 	}
