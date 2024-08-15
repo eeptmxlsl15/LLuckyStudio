@@ -495,7 +495,7 @@ public class Player : MonoBehaviour , IDamagable
 
 		health = DataManager.Instance.health;
 		maxHealth = DataManager.Instance.maxHealth+DataManager.Instance.redMarbleValue[DataManager.Instance.redMarbleLv];
-		if (DataManager.Instance.skinID == 5)// 해골냥 : 체력 10 증가
+		if (DataManager.Instance.skinID == 5 || DataManager.Instance.skinID== 6)// 해골냥 : 체력 10 증가 || 마법사냥 : 체력 10 증가
 			maxHealth += 10;
 		
 		jumpForce = DataManager.Instance.jumpForce;
@@ -508,8 +508,10 @@ public class Player : MonoBehaviour , IDamagable
 		flyRes = DataManager.Instance.flyRes; // 날아오는 장애물 저항
 		healthRegen = DataManager.Instance.healthRegen;
 		glideTime = DataManager.Instance.glideTime+DataManager.Instance.greenMarbleValue[DataManager.Instance.greenMarbleLv];
-		if (DataManager.Instance.skinID == 4)//천사냥 : 활주 시간 2초  증가
+		if (DataManager.Instance.skinID == 4)//천사냥 : 활공 시간 2초  증가
 			glideTime += 2f;
+		if(DataManager.Instance.skinID == 6 )//마법사냥 : 활공 시간 3초 증가
+			glideTime += 3f;
 
 		if (DataManager.Instance.greenMarbleLv == 10)
 			glideCooldown = DataManager.Instance.glideCooldown *(0.8f);
