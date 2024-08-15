@@ -108,7 +108,7 @@ public class QuestManager : MonoBehaviour
 		System.Random random = new System.Random();
 		List<int> selectedIndexes = new List<int>();
 
-		while (selectedIndexes.Count < 2)
+		while (selectedIndexes.Count < 1)
 		{
 			int index = random.Next(colors.Length);
 			if (!selectedIndexes.Contains(index))
