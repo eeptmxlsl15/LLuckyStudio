@@ -181,11 +181,11 @@ PrefabInstance:
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 1316339176463540059, guid: 6bcfcf8c1d4559d478ec15830810af39, type: 3}
+      objectReference: {fileID: 2125827722768655237, guid: 24b67e61533ce8c4eb5630c65b026307, type: 3}
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 1999362945461869183, guid: 734fef93b163af3488323bd89e68d948, type: 3}
+      objectReference: {fileID: 1694154552095426004, guid: 734fef93b163af3488323bd89e68d948, type: 3}
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[2]
       value: 
@@ -193,7 +193,7 @@ PrefabInstance:
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[3]
       value: 
-      objectReference: {fileID: 8394709698461059957, guid: b72a7637b47b34146a5a4d0818b57ffb, type: 3}
+      objectReference: {fileID: 4597287158677962065, guid: b72a7637b47b34146a5a4d0818b57ffb, type: 3}
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[4]
       value: 
@@ -201,23 +201,23 @@ PrefabInstance:
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[5]
       value: 
-      objectReference: {fileID: 2743673191987797379, guid: a1fa9c06b4b2ac947946c90aedd31147, type: 3}
+      objectReference: {fileID: 899215396532610829, guid: a1fa9c06b4b2ac947946c90aedd31147, type: 3}
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[6]
       value: 
-      objectReference: {fileID: 5387806077493776952, guid: a04dbb51122a6bc428793d6581283611, type: 3}
+      objectReference: {fileID: 8985797972509308802, guid: a04dbb51122a6bc428793d6581283611, type: 3}
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[7]
       value: 
-      objectReference: {fileID: 5004722560042257080, guid: 09fd8043e683ec1489dce09c582f5a19, type: 3}
+      objectReference: {fileID: 7543279297723020945, guid: 09fd8043e683ec1489dce09c582f5a19, type: 3}
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[8]
       value: 
-      objectReference: {fileID: 6432977452379715569, guid: 3294ba8bfb6ba9e498dee2d12ca301a4, type: 3}
+      objectReference: {fileID: 5434712942975925156, guid: 3294ba8bfb6ba9e498dee2d12ca301a4, type: 3}
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[9]
       value: 
-      objectReference: {fileID: 1652027949876028108, guid: 8a2e706e06a6b1643848b4ffa0db6535, type: 3}
+      objectReference: {fileID: 5629507866210241585, guid: 638ab404d691d9b46b52f0778f9c0b35, type: 3}
     - target: {fileID: 7721535370474801420, guid: 045abacd2bd22f04d8ebfef9991fb453, type: 3}
       propertyPath: prefabs.Array.data[10]
       value: 
@@ -483,17 +483,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
---- !u!114 &282398722 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2381198178359723457, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
-  m_PrefabInstance: {fileID: 282398721}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &282398723 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1400098712747709884, guid: 24097b44630b5494aa5d2ad4497d96fc, type: 3}
@@ -778,6 +767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9506bac9314fa614296c3da0e811294a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boosterSpeed: 1.2
+  weekRank: {fileID: 0}
   heatColor: {r: 0, g: 0, b: 0, a: 0}
   glideCooltimeUI: {fileID: 282398727}
   glideCooltimeText: {fileID: 282398726}
@@ -1174,7 +1165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jellyPawText: {fileID: 149365308}
-  jellyPawCountText: {fileID: 282398722}
+  sushiCountText: {fileID: 0}
 --- !u!81 &6941613668055882983
 AudioListener:
   m_ObjectHideFlags: 0
