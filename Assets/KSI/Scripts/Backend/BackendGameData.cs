@@ -235,6 +235,32 @@ public class BackendGameData
 		{
 			DataManager.Instance.resurrection = userGameData.resurrection;
 		}
+		//마법냥
+		if( userGameData.wizardHuntBackground != DataManager.Instance.magicCatWallpaper)
+		{
+			DataManager.Instance.magicCatWallpaper = userGameData.wizardHuntBackground;
+		}
+		if(userGameData.wizardHuntEffect != DataManager.Instance.magicCatEffect)
+		{
+			DataManager.Instance.magicCatEffect = DataManager.Instance.magicCatEffect;
+		}
+		if(userGameData.wizardHuntSkin != DataManager.Instance.magicCatSkin)
+		{
+			DataManager.Instance.magicCatSkin = userGameData.wizardHuntSkin;
+		}
+		//나비냥
+		if(userGameData.nabinyangBackground != DataManager.Instance.butterflyCatWallpaper)
+		{
+			DataManager.Instance.butterflyCatWallpaper = userGameData.nabinyangBackground;
+		}
+		if (userGameData.nabinyangEffect != DataManager.Instance.butterflyCatEffect)
+		{
+			DataManager.Instance.butterflyCatEffect = userGameData.nabinyangEffect;
+		}
+		if (userGameData.nabinyangSkin != DataManager.Instance.butterflyCatSkin)
+		{
+			DataManager.Instance.butterflyCatSkin = userGameData.nabinyangSkin;
+		}
 
 		// 추가적으로 필요한 데이터 동기화 로직 작성
 	}
