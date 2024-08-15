@@ -612,7 +612,7 @@ public class Player : MonoBehaviour , IDamagable
 	public int WaterPillarDamage(int damage)
 	{
 		if (activeDesires[2])//닭 염원
-			return damage -= 10;
+			return damage -= 5;
 		return damage;
 	}
 	public void Die()

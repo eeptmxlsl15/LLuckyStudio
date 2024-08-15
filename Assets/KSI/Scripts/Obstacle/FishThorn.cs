@@ -11,6 +11,6 @@ public class FishThorn : Obstacle
 {
     private void Start()
     {
-		damage = 10;
+		damage = player.FlyObstacleDamage(damage);
     }
 }
