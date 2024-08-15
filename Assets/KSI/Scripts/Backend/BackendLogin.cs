@@ -25,6 +25,8 @@ public class BackendLogin : BackendLoginBase
 		StartCoroutine(nameof(LoginProcessRoutine));
 
 		ResponseToLogin(inputFieldID.text, inputFieldPW.text);
+
+		KSJSoundManager.Instance.Init();
 	}
 
 	private void ResponseToLogin(string ID, string PW)

@@ -46,6 +46,7 @@ public class BackendManager : MonoBehaviour
 		//KSJSoundManager.Instance.StopBGM();
 		UnitySceneManager.LoadScene("LoginScene");
 		GameManager.Scene.LoadLOBBY();
+		KSJSoundManager.Instance.StopBGM();
 	}
 	
 	// 탈퇴
@@ -56,6 +57,7 @@ public class BackendManager : MonoBehaviour
 		//KSJSoundManager.Instance.StopBGM();
 		UnitySceneManager.LoadScene("LoginScene");
 		GameManager.Scene.LoadLOBBY();
+		KSJSoundManager.Instance.StopBGM();
 	}
 
 }
