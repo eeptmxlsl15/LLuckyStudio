@@ -36,7 +36,24 @@ public class BackendManager : MonoBehaviour
 			Debug.LogError($"초기화 실패 : {bro}");
 			//UpdateText($"초기화 실패 : {bro}");
 		}
+
+		AutoLogin();
 	}
+
+
+	public void AutoLogin()
+	{
+		BackendReturnObject bro = Backend.BMember.LoginWithTheBackendToken();
+		if (bro.IsSuccess())
+		{
+			Debug.Log("자동 로그인에 성공했습니다");
+		}
+		else
+		{
+			Debug.Log("로그인에 실패했습니다");
+		}
+	}
+
 
 	// 로그아웃
 	public void CustomLogOut()

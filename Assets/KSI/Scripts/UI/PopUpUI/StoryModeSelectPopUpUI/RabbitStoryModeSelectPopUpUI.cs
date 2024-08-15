@@ -12,7 +12,7 @@ public class RabbitStoryModeSelectPopUpUI : PopUpUI
 		buttons["RabbitSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["RabbitBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/RabbitBossPopUpUI"); });
 		buttons["RabbitBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/RabbitBERSERKBossPopUpUI"); });
-		buttons["RabbitStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["RabbitStoryModeSelectBackButton"].onClick.AddListener(() => { BackButton(); });
 	}
 
 	public void LoadSUBScene()
@@ -21,5 +21,12 @@ public class RabbitStoryModeSelectPopUpUI : PopUpUI
 		UnitySceneManager.LoadScene("SUBSceneRabbit");
 		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
+	}
+
+	public void BackButton()
+	{
+		GameManager.UI.ClearPopUpUI();
+		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		Time.timeScale = 0f;
 	}
 }

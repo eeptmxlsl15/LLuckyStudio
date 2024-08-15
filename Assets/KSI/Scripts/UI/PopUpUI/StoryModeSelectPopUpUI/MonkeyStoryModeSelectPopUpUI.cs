@@ -12,7 +12,7 @@ public class MonkeyStoryModeSelectPopUpUI : PopUpUI
 		buttons["MonkeySUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["MonkeyBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/MonkeyBossPopUpUI"); });
 		buttons["MonkeyBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/MonkeyBERSERKBossPopUpUI"); });
-		buttons["MonkeyStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["MonkeyStoryModeSelectBackButton"].onClick.AddListener(() => { BackButton(); });
 	}
 
 	public void LoadSUBScene()
@@ -21,5 +21,12 @@ public class MonkeyStoryModeSelectPopUpUI : PopUpUI
 		UnitySceneManager.LoadScene("SUBSceneMonkey");
 		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
+	}
+
+	public void BackButton()
+	{
+		GameManager.UI.ClearPopUpUI();
+		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		Time.timeScale = 0f;
 	}
 }

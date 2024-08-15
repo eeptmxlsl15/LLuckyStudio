@@ -5,7 +5,6 @@ using BackEnd;
 
 public class StageUnlockData : BackendStoreManager
 {
-
 	private const string UnlockedStages = "UnlockedStages"; 
 
 	public HashSet<int> unlockedStages = new HashSet<int>();
