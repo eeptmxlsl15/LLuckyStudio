@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
+
 
 public class StoryModeEntrancePopUpUI : PopUpUI
 {
@@ -21,6 +23,14 @@ public class StoryModeEntrancePopUpUI : PopUpUI
 		buttons["TigerButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/TigerStoryModeSelectUI"); });
 		buttons["MouseButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeSelectUI/MouseStoryModeSelectUI"); });
 
-		buttons["StoryModeEntranceBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["StoryModeEntranceBackButton"].onClick.AddListener(() => { BackButton(); });
+	}
+
+	public void BackButton()
+	{	
+		Time.timeScale = 0f;
+		UnitySceneManager.LoadScene("LobbyScene");
+		GameManager.UI.ClearPopUpUI();
+		GameManager.Scene.LoadLOBBY();
 	}
 }
