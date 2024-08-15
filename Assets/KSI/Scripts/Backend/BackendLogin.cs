@@ -25,6 +25,8 @@ public class BackendLogin : BackendLoginBase
 		StartCoroutine(nameof(LoginProcessRoutine));
 
 		ResponseToLogin(inputFieldID.text, inputFieldPW.text);
+
+		//KSJSoundManager.Instance.Init();
 	}
 
 	private void ResponseToLogin(string ID, string PW)
@@ -39,6 +41,7 @@ public class BackendLogin : BackendLoginBase
 				Debug.Log($"유저 닉네임 : " + Backend.UserNickName);
 				Debug.Log($"유저 인데이트 : " + Backend.UserInDate);
 				Debug.Log($"유저 UID(쿠폰용) : " + Backend.UID);
+				Account.Inst.UserDataGet();
 				SceneManager.LoadScene("LobbyScene");
 				GameManager.Scene.LoadLOBBY();
 			}

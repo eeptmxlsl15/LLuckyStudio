@@ -12,7 +12,7 @@ public class MouseStoryModeSelectUI : PopUpUI
 		buttons["MouseSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["MouseBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/MouseBossPopUpUI"); });
 		buttons["MouseBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/MouseBERSERKBossPopUpUI"); });
-		buttons["MouseStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["MouseStoryModeSelectBackButton"].onClick.AddListener(() => { BackButton(); });
 	}
 
 	public void LoadSUBScene()
@@ -21,5 +21,12 @@ public class MouseStoryModeSelectUI : PopUpUI
 		UnitySceneManager.LoadScene("SUBSceneMouse");
 		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
+	}
+
+	public void BackButton()
+	{
+		GameManager.UI.ClearPopUpUI();
+		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		Time.timeScale = 0f;
 	}
 }

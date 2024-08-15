@@ -25,5 +25,6 @@ public class PigStoryModeSelectPopUpUI : PopUpUI
 	{
 		GameManager.UI.ClearPopUpUI();
 		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		Time.timeScale = 0;
 	}
 }

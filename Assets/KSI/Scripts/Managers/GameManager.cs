@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 		InitManagers();
 
 		OnApplicationPause();
+		OnApplicationQuit();
 
 		Application.targetFrameRate = 60;
 	}
@@ -146,5 +147,23 @@ public class GameManager : MonoBehaviour
 	{
 		ResetBossDebuff();
 		ResetInfiniteDebuff();
+	}
+
+	private void OnApplicationQuit()
+	{
+		Account.Inst.UserDataAllSave();
+	}
+
+	private void OnDisable()
+	{
+		Account.Inst.UserDataAllSave();
+	}
+
+	private void OnApplicationFocus(bool hasFocus)
+	{
+		if (hasFocus)
+		{
+			GameManager.Backend.AutoLogin();
+		}
 	}
 }

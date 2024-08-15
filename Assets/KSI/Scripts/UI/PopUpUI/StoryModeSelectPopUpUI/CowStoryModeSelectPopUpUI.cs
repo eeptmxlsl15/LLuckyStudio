@@ -12,7 +12,7 @@ public class CowStoryModeSelectPopUpUI : PopUpUI
 		buttons["CowSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["CowBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/CowBossPopUpUI"); });
 		buttons["CowBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/CowBERSERKBossPopUpUI"); });
-		buttons["CowStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["CowStoryModeSelectBackButton"].onClick.AddListener(() => { BackButton(); });
 	}
 
 	public void LoadSUBScene()
@@ -21,5 +21,11 @@ public class CowStoryModeSelectPopUpUI : PopUpUI
 		UnitySceneManager.LoadScene("SUBSceneCow");
 		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
+	}
+
+	public void BackButton()
+	{
+		GameManager.UI.ClearPopUpUI();
+		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
 	}
 }

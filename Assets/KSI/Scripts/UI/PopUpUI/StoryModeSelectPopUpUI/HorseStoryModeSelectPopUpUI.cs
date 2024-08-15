@@ -12,7 +12,7 @@ public class HorseStoryModeSelectPopUpUI : PopUpUI
 		buttons["HorseSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["HorseBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/HorseBossPopUpUI"); });
 		buttons["HorseBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/HorseBERSERKBossPopUpUI"); });
-		buttons["HorseStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["HorseStoryModeSelectBackButton"].onClick.AddListener(() => { BackButton(); });
 	}
 
 	public void LoadSUBScene()
@@ -21,5 +21,12 @@ public class HorseStoryModeSelectPopUpUI : PopUpUI
 		UnitySceneManager.LoadScene("SUBSceneHorse");
 		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
+	}
+
+	public void BackButton()
+	{
+		GameManager.UI.ClearPopUpUI();
+		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		Time.timeScale = 0f;
 	}
 }

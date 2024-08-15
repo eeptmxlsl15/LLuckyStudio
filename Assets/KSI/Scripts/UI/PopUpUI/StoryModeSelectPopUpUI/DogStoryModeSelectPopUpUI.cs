@@ -10,7 +10,7 @@ public class DogStoryModeSelectPopUpUI : PopUpUI
 		buttons["DogSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["DogBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/DogBossPopUpUI"); });
 		buttons["DogBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/DogBERSERKBossPopUpUI"); });
-		buttons["DogStoryModeSelectBackButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+		buttons["DogStoryModeSelectBackButton"].onClick.AddListener(() => { BackButton(); });
 	}
 
 	public void LoadSUBScene()
@@ -19,5 +19,12 @@ public class DogStoryModeSelectPopUpUI : PopUpUI
 		UnitySceneManager.LoadScene("SUBSceneDog");
 		GameManager.Scene.LoadSUB();
 		Time.timeScale = 1f;	
+	}
+
+	public void BackButton()
+	{
+		GameManager.UI.ClearPopUpUI();
+		GameManager.UI.ShowPopUpUI<PopUpUI>("UI/StoryModeEntranceUI");
+		Time.timeScale = 0f;
 	}
 }
