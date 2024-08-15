@@ -14,6 +14,10 @@ public class UIMapping : MonoBehaviour
 	// 인게임 재화
 	public TMP_Text sushiText;
 	public TMP_Text silverKeyText;
+	public TMP_Text goldKeyText;
+
+	public TMP_Text silverTimeKeyText;
+	public TMP_Text goldKeyTimeText;
 	public TMP_Text cannedFoodText;
 	// 스탯창에 표시되는 텍스트
 	public TMP_Text maxHealthText;
@@ -56,6 +60,11 @@ public class UIMapping : MonoBehaviour
 	public TMP_Text IngameResetText;
 	public TMP_Text AdvResetText;
 	public ShopList shopList;
+
+	private const string LastSilverKeyTimeKey = "LastSilverKeyTime";
+	private const string LastGoldKeyTimeKey = "LastGoldKeyTime";
+	private const int SilverKeyInterval = 6; // 10분 (600초)
+	private const int GoldKeyInterval = 18;  // 30분 (1800초)
 	void Start()
 	{
 		shopList = FindObjectOfType<ShopList>();
@@ -63,6 +72,7 @@ public class UIMapping : MonoBehaviour
 		dataManager = DataManager.Instance;
 		CheckDayPassed();
 		InvokeRepeating("UpdateDayTime", 0f, 1f);
+		InvokeRepeating("UpdateKeyGeneration", 0f, 1f);
 		//InitializeUI();
 	}
 
@@ -73,6 +83,7 @@ public class UIMapping : MonoBehaviour
 			dataManager.sushi = dataManager.sushiMax + 1;
 		if (dataManager.silverKey > dataManager.maxSilverKey)
 			dataManager.silverKey = dataManager.maxSilverKey;
+		
 		UpdateCatsDesire();
 		UpdateCharacterUI();
 		UpdateLobbyUI();
@@ -201,7 +212,7 @@ public class UIMapping : MonoBehaviour
 	{
 		sushiText.text = "" + dataManager.sushi;
 		silverKeyText.text = "" + dataManager.silverKey + "/30";
-
+		goldKeyText.text = "" + dataManager.goldKey +"/5";
 		cannedFoodText.text = "" + dataManager.cannedFood;
 	}
 
@@ -267,22 +278,104 @@ public class UIMapping : MonoBehaviour
 	}
 	void OnApplicationQuit()
 	{
-		// 앱 종료 시 현재 시간을 저장
 		PlayerPrefs.SetString(LastExitTimeKey, DateTime.Now.ToString());
+		PlayerPrefs.SetString(LastSilverKeyTimeKey, DateTime.Now.ToString());
+		PlayerPrefs.SetString(LastGoldKeyTimeKey, DateTime.Now.ToString());
 		PlayerPrefs.Save();
 	}
 	private void OnApplicationPause(bool pause)
 	{
 		if (pause)
 		{
-			// 앱이 백그라운드로 전환될 때 현재 시간을 저장
 			PlayerPrefs.SetString(LastExitTimeKey, DateTime.Now.ToString());
+			PlayerPrefs.SetString(LastSilverKeyTimeKey, DateTime.Now.ToString());
+			PlayerPrefs.SetString(LastGoldKeyTimeKey, DateTime.Now.ToString());
 			PlayerPrefs.Save();
 		}
 		else
 		{
-			// 앱이 다시 활성화될 때 날짜가 바뀌었는지 확인
 			CheckDayPassed();
 		}
 	}
+
+	void UpdateKeyGeneration()
+	{
+		DateTime now = DateTime.Now;
+
+		// 실버 키 처리
+		if (dataManager.silverKey < dataManager.maxSilverKey)
+		{
+			DateTime lastSilverKeyTime = DateTime.Parse(PlayerPrefs.GetString(LastSilverKeyTimeKey, now.ToString()));
+			TimeSpan silverKeyTimeSpan = now - lastSilverKeyTime;
+
+			if (silverKeyTimeSpan.TotalSeconds >= SilverKeyInterval)
+			{
+				int keysToAdd = (int)(silverKeyTimeSpan.TotalSeconds / SilverKeyInterval);
+				dataManager.silverKey = Mathf.Min(dataManager.silverKey + keysToAdd, dataManager.maxSilverKey);
+				PlayerPrefs.SetString(LastSilverKeyTimeKey, now.ToString());
+				DataManager.Instance.SaveDataToJson();
+				silverKeyTimeSpan = TimeSpan.Zero; // 실버 키가 생성되었으므로 남은 시간을 0으로 초기화
+			}
+
+			UpdateSilverKeyTimerUI(silverKeyTimeSpan); // 실버 키 타이머 UI 갱신
+		}
+		else
+		{
+			silverTimeKeyText.text = "실버 키: 최대치 도달";
+		}
+
+		// 골드 키 처리
+		if (dataManager.goldKey < dataManager.maxGoldKey)
+		{
+			DateTime lastGoldKeyTime = DateTime.Parse(PlayerPrefs.GetString(LastGoldKeyTimeKey, now.ToString()));
+			TimeSpan goldKeyTimeSpan = now - lastGoldKeyTime;
+
+			if (goldKeyTimeSpan.TotalSeconds >= GoldKeyInterval)
+			{
+				int keysToAdd = (int)(goldKeyTimeSpan.TotalSeconds / GoldKeyInterval);
+				dataManager.goldKey = Mathf.Min(dataManager.goldKey + keysToAdd, dataManager.maxGoldKey);
+				PlayerPrefs.SetString(LastGoldKeyTimeKey, now.ToString());
+				DataManager.Instance.SaveDataToJson();
+				goldKeyTimeSpan = TimeSpan.Zero; // 골드 키가 생성되었으므로 남은 시간을 0으로 초기화
+			}
+
+			UpdateGoldKeyTimerUI(goldKeyTimeSpan); // 골드 키 타이머 UI 갱신
+		}
+		else
+		{
+			goldKeyTimeText.text = "골드 키: 최대치 도달";
+		}
+
+		UpdateLobbyUI(); // 열쇠 갱신을 UI에 반영
+	}
+	void UpdateSilverKeyTimerUI(TimeSpan silverKeyTimeSpan)
+	{
+		// 실버 키 타이머 업데이트
+		double silverTimeLeft = SilverKeyInterval - silverKeyTimeSpan.TotalSeconds;
+		if (silverTimeLeft > 0)
+		{
+			TimeSpan silverTimeRemaining = TimeSpan.FromSeconds(silverTimeLeft);
+			silverTimeKeyText.text = $"실버 키: {silverTimeRemaining.Minutes:D2}:{silverTimeRemaining.Seconds:D2} 후 생성";
+		}
+		else
+		{
+			silverTimeKeyText.text = "실버 키: 생성됨";
+		}
+	}
+
+	void UpdateGoldKeyTimerUI(TimeSpan goldKeyTimeSpan)
+	{
+		// 골드 키 타이머 업데이트
+		double goldTimeLeft = GoldKeyInterval - goldKeyTimeSpan.TotalSeconds;
+		if (goldTimeLeft > 0)
+		{
+			TimeSpan goldTimeRemaining = TimeSpan.FromSeconds(goldTimeLeft);
+			goldKeyTimeText.text = $"골드 키: {goldTimeRemaining.Minutes:D2}:{goldTimeRemaining.Seconds:D2} 후 생성";
+		}
+		else
+		{
+			goldKeyTimeText.text = "골드 키: 생성됨";
+		}
+	}
+
 }
