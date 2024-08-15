@@ -3309,46 +3309,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94540527}
   m_CullTransparentMesh: 1
---- !u!21 &94676870
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/RoundedCorners
-  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _OuterUV: {r: 0, g: 0, b: 1, a: 1}
-    - _WidthHeightRadius: {r: 1327.9417, g: 84.62474, b: 30, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &96016272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4138,8 +4098,20 @@ PrefabInstance:
       value: -1.9160156
       objectReference: {fileID: 0}
     - target: {fileID: 8536791993695393663, guid: 04bbe4a0fd1995c478f0779bd928d422, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3.843
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536791993695393663, guid: 04bbe4a0fd1995c478f0779bd928d422, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 2.4336
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536791993695393663, guid: 04bbe4a0fd1995c478f0779bd928d422, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.9213867
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536791993695393663, guid: 04bbe4a0fd1995c478f0779bd928d422, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.1169434
+      value: 1.2167969
       objectReference: {fileID: 0}
     - target: {fileID: 8850442647618793057, guid: 04bbe4a0fd1995c478f0779bd928d422, type: 3}
       propertyPath: m_Name
@@ -4147,7 +4119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8850442647618793057, guid: 04bbe4a0fd1995c478f0779bd928d422, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9169986906040325622, guid: 04bbe4a0fd1995c478f0779bd928d422, type: 3}
       propertyPath: m_text
@@ -22765,8 +22737,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -24844,7 +24816,7 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _OuterUV: {r: 0, g: 0, b: 1, a: 1}
-    - _WidthHeightRadius: {r: 1327.9417, g: 100.06702, b: 30, a: 0}
+    - _WidthHeightRadius: {r: 1328.0857, g: 98.6982, b: 30, a: 0}
   m_BuildTextureStacks: []
 --- !u!224 &849014698 stripped
 RectTransform:
@@ -27220,7 +27192,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300.52548, y: -9429645}
+  m_AnchoredPosition: {x: 300.52548, y: -9775956}
   m_SizeDelta: {x: 601.046, y: 538.5817}
   m_Pivot: {x: 0.49999997, y: -0.00000001228252}
 --- !u!1 &934196717
@@ -29637,7 +29609,7 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _OuterUV: {r: 0, g: 0, b: 1, a: 1}
-    - _WidthHeightRadius: {r: 1206.923, g: 172.78088, b: 80, a: 0}
+    - _WidthHeightRadius: {r: 1207.0533, g: 129.9773, b: 80, a: 0}
   m_BuildTextureStacks: []
 --- !u!224 &1001434289 stripped
 RectTransform:
@@ -30448,10 +30420,10 @@ RectTransform:
   - {fileID: 748247345}
   m_Father: {fileID: 123303229}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.08121958, y: 0.17}
-  m_AnchorMax: {x: 0.91134137, y: 0.79}
-  m_AnchoredPosition: {x: 2.3051758, y: 153.28568}
-  m_SizeDelta: {x: 12.6888, y: -188.6636}
+  m_AnchorMin: {x: 0.08121958, y: 0.6588597}
+  m_AnchorMax: {x: 0.91134137, y: 0.96056587}
+  m_AnchoredPosition: {x: 2.3051758, y: 27.3796}
+  m_SizeDelta: {x: 12.6888, y: -43.2948}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1020896624
 MonoBehaviour:
@@ -33201,7 +33173,7 @@ PrefabInstance:
     - target: {fileID: 6759575015916934098, guid: e62892ff510895d47b58d9bc43f5420b, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 94676870}
+      objectReference: {fileID: 844805753}
     - target: {fileID: 7740641593706664755, guid: e62892ff510895d47b58d9bc43f5420b, type: 3}
       propertyPath: m_CullTransparentMesh
       value: 0
@@ -34673,7 +34645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300.52548, y: -10873884}
+  m_AnchoredPosition: {x: 300.52548, y: -11220195}
   m_SizeDelta: {x: 601.046, y: 414.36}
   m_Pivot: {x: 0.49999997, y: -0.00000001228252}
 --- !u!1001 &1210498275
@@ -50865,7 +50837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5194522103003137021, guid: a0092b892881bec47a9c0a849db31da4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -293.7588
+      value: -355.4413
       objectReference: {fileID: 0}
     - target: {fileID: 5194522103003137021, guid: a0092b892881bec47a9c0a849db31da4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -50901,7 +50873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5194522103003137021, guid: a0092b892881bec47a9c0a849db31da4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 146.87889
+      value: 208.93451
       objectReference: {fileID: 0}
     - target: {fileID: 5194522103003137021, guid: a0092b892881bec47a9c0a849db31da4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -55578,7 +55550,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1152235635}
   m_Direction: 2
   m_Value: -0.00000002840528
-  m_Size: 0
+  m_Size: 0.30396307
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
