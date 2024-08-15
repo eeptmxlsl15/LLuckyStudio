@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class UIMapping : MonoBehaviour
 {
 	// DataManager의 인스턴스를 캐싱
@@ -39,7 +40,7 @@ public class UIMapping : MonoBehaviour
 	// 각각의 강화버튼과 텍스트
 	public Button upgradeRedGlide;
 	public TMP_Text needRedSushi;
-	
+
 	public Button upgradeBlueHP;
 	public TMP_Text needBlueSushi;
 
@@ -47,7 +48,7 @@ public class UIMapping : MonoBehaviour
 	public TMP_Text needGreenSushi;
 
 	// 슬라이더
-	
+
 
 	public Slider brokenRedSlider;
 	public Slider brokenBlueSlider;
@@ -55,6 +56,8 @@ public class UIMapping : MonoBehaviour
 
 	// 일일 상점 초기화 시간 텍스트
 	public TMP_Text dayTimeText;
+	public TMP_Text silverkeyTimeText;
+	public TMP_Text goldkeyTimeText;
 
 	// 일일 상점 리셋 횟수
 	public TMP_Text IngameResetText;
@@ -63,8 +66,10 @@ public class UIMapping : MonoBehaviour
 
 	private const string LastSilverKeyTimeKey = "LastSilverKeyTime";
 	private const string LastGoldKeyTimeKey = "LastGoldKeyTime";
-	private const int SilverKeyInterval = 6; // 10분 (600초)
-	private const int GoldKeyInterval = 18;  // 30분 (1800초)
+
+	private const int SilverKeyInterval = 600; // 10분 (600초)
+	private const int GoldKeyInterval = 1800;  // 30분 (1800초)
+
 	void Start()
 	{
 		shopList = FindObjectOfType<ShopList>();
@@ -89,7 +94,7 @@ public class UIMapping : MonoBehaviour
 		UpdateLobbyUI();
 		UpdateUpgrade();
 		UpdateSliderValue();
-		
+
 		UpdateResetText();
 	}
 
@@ -118,7 +123,7 @@ public class UIMapping : MonoBehaviour
 		else
 			needBlueSushi.text = "강화    " + dataManager.nextSushi[dataManager.blueMarbleLv];
 
-		if(dataManager.greenMarbleLv == 10)
+		if (dataManager.greenMarbleLv == 10)
 			needGreenSushi.text = "강화 완료";
 		else
 			needGreenSushi.text = "강화    " + dataManager.nextSushi[dataManager.greenMarbleLv];
@@ -126,9 +131,9 @@ public class UIMapping : MonoBehaviour
 
 	public void UpdateCatsDesire()
 	{
-		redMarble.text = "Lv." + dataManager.redMarbleLv + " 최대 체력 " + dataManager.redMarbleValue[dataManager.redMarbleLv]+" 증가";
-		blueMarble.text = "Lv." + dataManager.blueMarbleLv + " 모든 피해 " + dataManager.blueMarbleValue[dataManager.blueMarbleLv]+" 감소";
-		greenMarble.text = "Lv. " + dataManager.greenMarbleLv + " 활공  " + dataManager.greenMarbleValue[dataManager.greenMarbleLv]+"초 증가";
+		redMarble.text = "Lv." + dataManager.redMarbleLv + " 최대 체력 " + dataManager.redMarbleValue[dataManager.redMarbleLv] + " 증가";
+		blueMarble.text = "Lv." + dataManager.blueMarbleLv + " 모든 피해 " + dataManager.blueMarbleValue[dataManager.blueMarbleLv] + " 감소";
+		greenMarble.text = "Lv. " + dataManager.greenMarbleLv + " 활공  " + dataManager.greenMarbleValue[dataManager.greenMarbleLv] + "초 증가";
 	}
 
 	public void UpdateUpgrade()
@@ -201,7 +206,7 @@ public class UIMapping : MonoBehaviour
 
 	public void UpdateSliderValue()
 	{
-		
+
 
 		brokenBlueSlider.value = (float)dataManager.brokenBlue / dataManager.nextExp[dataManager.blueMarbleLv];
 		brokenRedSlider.value = (float)dataManager.brokenRed / dataManager.nextExp[dataManager.redMarbleLv];
@@ -219,10 +224,10 @@ public class UIMapping : MonoBehaviour
 	public void UpdateDayTime()
 	{
 		DateTime now = DateTime.Now;
-        DateTime midnight = now.Date.AddDays(1); // 자정의 DateTime 객체 생성
-        TimeSpan timeRemaining = midnight - now; // 남은 시간 계산
-		//Debug.Log((int)timeRemaining.TotalSeconds);
-		
+		DateTime midnight = now.Date.AddDays(1); // 자정의 DateTime 객체 생성
+		TimeSpan timeRemaining = midnight - now; // 남은 시간 계산
+												 //Debug.Log((int)timeRemaining.TotalSeconds);
+
 		if ((int)timeRemaining.TotalSeconds == 0) // 
 		{
 			DataManager.Instance.resetCannedNum = 0;
@@ -237,17 +242,17 @@ public class UIMapping : MonoBehaviour
 		}
 
 		// 시간, 분, 초 형식으로 표시
-		dayTimeText.text = string.Format("초기화 시간 : {0:D2}:{1:D2}:{2:D2}", 
-                                                timeRemaining.Hours, 
-                                                timeRemaining.Minutes, 
-                                                timeRemaining.Seconds);
-    
-		
+		dayTimeText.text = string.Format("초기화 시간 : {0:D2}:{1:D2}:{2:D2}",
+												timeRemaining.Hours,
+												timeRemaining.Minutes,
+												timeRemaining.Seconds);
+
+
 	}
 
 	public void UpdateResetText()
 	{
-		IngameResetText.text = "10\n" + dataManager.resetNum +"/"+ dataManager.resetMaxNum;
+		IngameResetText.text = "10\n" + dataManager.resetNum + "/" + dataManager.resetMaxNum;
 		AdvResetText.text = "500\n" + dataManager.resetCannedNum + "/" + dataManager.resetCannedNumMax;
 	}
 	void CheckDayPassed()
@@ -272,6 +277,8 @@ public class UIMapping : MonoBehaviour
 				DataManager.Instance.resetCannedNum = 0;
 				DataManager.Instance.resetNum = 0;
 				DataManager.Instance.advResetNum = 0;
+				DataManager.Instance.freeSushi = 0;
+				
 				Debug.Log("데이터가 하루 지남으로 초기화되었습니다.");
 			}
 		}
@@ -281,6 +288,7 @@ public class UIMapping : MonoBehaviour
 		PlayerPrefs.SetString(LastExitTimeKey, DateTime.Now.ToString());
 		PlayerPrefs.SetString(LastSilverKeyTimeKey, DateTime.Now.ToString());
 		PlayerPrefs.SetString(LastGoldKeyTimeKey, DateTime.Now.ToString());
+
 		PlayerPrefs.Save();
 	}
 	private void OnApplicationPause(bool pause)
@@ -296,6 +304,8 @@ public class UIMapping : MonoBehaviour
 		{
 			CheckDayPassed();
 		}
+
+		
 	}
 
 	void UpdateKeyGeneration()
@@ -303,6 +313,7 @@ public class UIMapping : MonoBehaviour
 		DateTime now = DateTime.Now;
 
 		// 실버 키 처리
+
 		if (dataManager.silverKey < dataManager.maxSilverKey)
 		{
 			DateTime lastSilverKeyTime = DateTime.Parse(PlayerPrefs.GetString(LastSilverKeyTimeKey, now.ToString()));
@@ -349,12 +360,14 @@ public class UIMapping : MonoBehaviour
 		UpdateLobbyUI(); // 열쇠 갱신을 UI에 반영
 	}
 	void UpdateSilverKeyTimerUI(TimeSpan silverKeyTimeSpan)
+
 	{
 		// 실버 키 타이머 업데이트
 		double silverTimeLeft = SilverKeyInterval - silverKeyTimeSpan.TotalSeconds;
 		if (silverTimeLeft > 0)
 		{
 			TimeSpan silverTimeRemaining = TimeSpan.FromSeconds(silverTimeLeft);
+
 			silverTimeKeyText.text = $"실버 키: {silverTimeRemaining.Minutes:D2}:{silverTimeRemaining.Seconds:D2} 후 생성";
 		}
 		else
@@ -365,16 +378,20 @@ public class UIMapping : MonoBehaviour
 
 	void UpdateGoldKeyTimerUI(TimeSpan goldKeyTimeSpan)
 	{
+
+	
 		// 골드 키 타이머 업데이트
 		double goldTimeLeft = GoldKeyInterval - goldKeyTimeSpan.TotalSeconds;
 		if (goldTimeLeft > 0)
 		{
 			TimeSpan goldTimeRemaining = TimeSpan.FromSeconds(goldTimeLeft);
+
 			goldKeyTimeText.text = $"골드 키: {goldTimeRemaining.Minutes:D2}:{goldTimeRemaining.Seconds:D2} 후 생성";
 		}
 		else
 		{
 			goldKeyTimeText.text = "골드 키: 생성됨";
+
 		}
 	}
 
