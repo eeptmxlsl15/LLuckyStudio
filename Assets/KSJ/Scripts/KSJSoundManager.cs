@@ -49,7 +49,7 @@ public class KSJSoundManager : MonoBehaviour
 
 	}
 
-	void Init()
+	public void Init()
 	{
 		// 배경음 플레이어 초기화
 		GameObject bgmObject = new GameObject("BgmPlayer");

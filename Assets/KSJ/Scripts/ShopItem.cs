@@ -18,7 +18,7 @@ public class ShopItem : MonoBehaviour
 
 	public TMP_Text costText;
 	public TMP_Text quantityText;
-	
+
 	// 한번 샀을 때 색을 바꿈
 	public Button button;
 	public Image icon;
@@ -51,7 +51,7 @@ public class ShopItem : MonoBehaviour
 		}
 
 		UpdateText();
-		
+
 	}
 
 	private void Update() { }
@@ -157,7 +157,7 @@ public class ShopItem : MonoBehaviour
 				break;
 
 			case 20: // 일일 상점 무료 초밥
-				if(DataManager.Instance.freeSushi>=DataManager.Instance.freeSushiMax)
+				if (DataManager.Instance.freeSushi >= DataManager.Instance.freeSushiMax)
 				{
 					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
@@ -166,7 +166,7 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.sushi += quantity;
 				break;
 			case 100: // 통조림으로 은열쇠 구입 - 은열쇠 상점
-				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.silverKey > DataManager.Instance.maxSilverKey)
+				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.silverKey > 999)
 				{
 					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
@@ -174,9 +174,9 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.cannedFood -= cannedFoodCost;
 				DataManager.Instance.silverKey += quantity;
 				break;
-			
+
 			case 101:// 초밥으로 은열쇠 구입 - 은열쇠 상점
-				if (DataManager.Instance.sushi - sushiCost < 0 || DataManager.Instance.silverKey > DataManager.Instance.maxSilverKey)
+				if (DataManager.Instance.sushi - sushiCost < 0 || DataManager.Instance.silverKey > 999)
 				{
 					KSJSoundManager.Instance.PlaySfx(KSJSoundManager.Sfx.Negative);
 					break;
@@ -184,8 +184,8 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.sushi -= sushiCost;
 				DataManager.Instance.silverKey += quantity;
 				break;
-			
-			
+
+
 			case 200: //통조림으로 초밥 구입 - 일일 상점 초밥들
 				if (DataManager.Instance.cannedFood - cannedFoodCost < 0 || DataManager.Instance.sushi > DataManager.Instance.sushiMax)
 				{
@@ -243,9 +243,9 @@ public class ShopItem : MonoBehaviour
 		DataManager.Instance.SaveDataToJson();
 	}
 
-	
-		
-	
+
+
+
 
 	public void UpdateText()
 	{
@@ -254,18 +254,18 @@ public class ShopItem : MonoBehaviour
 			quantityText.text = "" + quantity;
 			costText.text = "통조림 : " + cannedFoodCost;
 		}
-		else if(itemID == 101)
+		else if (itemID == 101)
 		{
 			quantityText.text = "" + quantity;
 			costText.text = "초밥 : " + sushiCost;
 		}
-		else if (itemID ==20)
+		else if (itemID == 20)
 		{
-			
-			
-				
+
+
+
 			costText.text = "일일 500개 \n무료 초밥";
-			
+
 
 		}
 		else if (itemID == 200)
@@ -275,14 +275,14 @@ public class ShopItem : MonoBehaviour
 		}
 		else
 		{
-		quantityText.text = "" + quantity;
-		costText.text = "초밥 : " + sushiCost;
+			quantityText.text = "" + quantity;
+			costText.text = "초밥 : " + sushiCost;
 
 		}
 
-		
+
 
 	}
 
-	
+
 }
