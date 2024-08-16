@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 9058267985147941468}
   - component: {fileID: 3977147688688399587}
   - component: {fileID: 6885902089769606817}
+  - component: {fileID: 3210598427307218031}
   m_Layer: 5
   m_Name: RabbitSUBButton
   m_TagString: Untagged
@@ -199,7 +200,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3977147688688399587}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3210598427307218031}
+        m_TargetAssemblyTypeName: UseKey, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3210598427307218031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302471632356070739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e067ea33fa4ffa47b3be9db7d23436c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyType: 0
 --- !u!1 &2771038879240109201
 GameObject:
   m_ObjectHideFlags: 0

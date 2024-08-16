@@ -1287,6 +1287,7 @@ GameObject:
   - component: {fileID: 1554958019949571430}
   - component: {fileID: 6850140414154755033}
   - component: {fileID: 4012320095180300699}
+  - component: {fileID: 8396890061846512915}
   m_Layer: 5
   m_Name: HorseSUBButton
   m_TagString: Untagged
@@ -1395,7 +1396,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6850140414154755033}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8396890061846512915}
+        m_TargetAssemblyTypeName: UseKey, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8396890061846512915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8805227376053004905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e067ea33fa4ffa47b3be9db7d23436c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyType: 0
 --- !u!1001 &8297133935957992790
 PrefabInstance:
   m_ObjectHideFlags: 0

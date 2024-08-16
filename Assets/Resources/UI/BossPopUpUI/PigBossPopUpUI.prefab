@@ -623,6 +623,7 @@ GameObject:
   - component: {fileID: 8032606544469742472}
   - component: {fileID: 7071593924177029241}
   - component: {fileID: 4330356076066232896}
+  - component: {fileID: 1738525251173864254}
   m_Layer: 5
   m_Name: PigBOSSEntranceButton
   m_TagString: Untagged
@@ -731,7 +732,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7071593924177029241}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1738525251173864254}
+        m_TargetAssemblyTypeName: UseKey, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1738525251173864254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5154420506280641042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e067ea33fa4ffa47b3be9db7d23436c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyType: 0
 --- !u!1 &5521426514659697117
 GameObject:
   m_ObjectHideFlags: 0
