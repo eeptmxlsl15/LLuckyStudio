@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
 
 		InitManagers();
 
-		OnApplicationPause();
-		OnApplicationQuit();
+		//OnApplicationPause();
+		//OnApplicationQuit();
 
 		Application.targetFrameRate = 60;
 	}
@@ -151,12 +151,12 @@ public class GameManager : MonoBehaviour
 
 	private void OnApplicationQuit()
 	{
-		Account.Inst.UserDataAllSave();
+		//Account.Inst.UserDataAllSave();
 	}
 
 	private void OnDisable()
 	{
-		Account.Inst.UserDataAllSave();
+		//Account.Inst.UserDataAllSave();
 	}
 
 	private void OnApplicationFocus(bool hasFocus)

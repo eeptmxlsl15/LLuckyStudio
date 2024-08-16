@@ -37,7 +37,7 @@ public class BackendManager : MonoBehaviour
 			//UpdateText($"초기화 실패 : {bro}");
 		}
 
-		AutoLogin();
+		//AutoLogin();
 	}
 
 
