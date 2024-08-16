@@ -25,7 +25,7 @@ public class InfiniteRankData : MonoBehaviour
 			}
 			else
 			{
-				textRank.text = "순위에 없음";
+				textRank.text = "-";
 			}
 
 
