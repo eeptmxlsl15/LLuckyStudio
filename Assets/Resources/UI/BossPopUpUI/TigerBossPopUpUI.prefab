@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 2274172384723813371}
   - component: {fileID: 1357183959830525962}
   - component: {fileID: 5543497124547545651}
+  - component: {fileID: 8814125245539177240}
   m_Layer: 5
   m_Name: TigerBOSSEntranceButton
   m_TagString: Untagged
@@ -196,7 +197,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1357183959830525962}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8814125245539177240}
+        m_TargetAssemblyTypeName: UseKey, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8814125245539177240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998871631219348065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e067ea33fa4ffa47b3be9db7d23436c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyType: 0
 --- !u!1 &4347937929232478638
 GameObject:
   m_ObjectHideFlags: 0

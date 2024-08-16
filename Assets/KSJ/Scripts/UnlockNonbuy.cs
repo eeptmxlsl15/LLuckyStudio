@@ -7,7 +7,7 @@ public class UnlockNonbuy : MonoBehaviour
 	private void Start()
 	{
 		//초기화
-		ResetUnlockStatus();
+		//ResetUnlockStatus();
 		// 이전에 저장된 상태를 불러와서 비활성화된 상태면 비활성화 시킴
 		if (PlayerPrefs.GetInt(objectName + "_unlocked", 0) == 1)
 		{

@@ -894,6 +894,7 @@ GameObject:
   - component: {fileID: 6255787664700757561}
   - component: {fileID: 6596596557783199176}
   - component: {fileID: 409839948745367537}
+  - component: {fileID: 6444529605265627694}
   m_Layer: 5
   m_Name: CowBERSERKBossEntranceButton
   m_TagString: Untagged
@@ -1002,7 +1003,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6596596557783199176}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6444529605265627694}
+        m_TargetAssemblyTypeName: UseKey, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6444529605265627694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9088447182696236963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e067ea33fa4ffa47b3be9db7d23436c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyType: 0
 --- !u!1001 &5150822625578629131
 PrefabInstance:
   m_ObjectHideFlags: 0
