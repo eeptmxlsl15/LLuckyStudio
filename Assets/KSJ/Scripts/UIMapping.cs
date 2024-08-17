@@ -56,8 +56,7 @@ public class UIMapping : MonoBehaviour
 
 	// 일일 상점 초기화 시간 텍스트
 	public TMP_Text dayTimeText;
-	public TMP_Text silverkeyTimeText;
-	public TMP_Text goldkeyTimeText;
+	
 
 	// 일일 상점 리셋 횟수
 	public TMP_Text IngameResetText;
