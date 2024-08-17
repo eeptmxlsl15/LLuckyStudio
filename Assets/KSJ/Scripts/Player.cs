@@ -184,7 +184,10 @@ public class Player : MonoBehaviour , IDamagable
 		// 염원 적용 후 최대 체력에 맞게 조정
 		health = maxHealth;
 		// 점프 파티클 위치
-		
+		foreach (Transform child in effectPool.transform)
+		{
+			child.gameObject.SetActive(false);
+		}
 	}
 
 	void Update()
