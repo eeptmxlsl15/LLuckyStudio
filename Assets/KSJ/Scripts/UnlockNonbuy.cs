@@ -90,6 +90,52 @@ public class UnlockNonbuy : MonoBehaviour
 
 		}
 
+		else if (objectName == "catgage1")
+		{
+			if (DataManager.Instance.catGage == 1)
+			{
+				gameObject.SetActive(false);
+				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);
+				//PlayerPrefs.Save();
+			}
+		}
+		else if (objectName == "catgage2")
+		{
+			if (DataManager.Instance.catGage == 3)
+			{
+				gameObject.SetActive(false);
+				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);
+				//PlayerPrefs.Save();
+			}
+		}
+		else if (objectName == "catgage3")
+		{
+			if (DataManager.Instance.catGage == 5)
+			{
+				gameObject.SetActive(false);
+				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);
+				//PlayerPrefs.Save();
+			}
+		}
+		else if (objectName == "catgage4")
+		{
+			if (DataManager.Instance.catGage == 7)
+			{
+				gameObject.SetActive(false);
+				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);
+				//PlayerPrefs.Save();
+			}
+		}
+		else if (objectName == "catgage5")
+		{
+			if (DataManager.Instance.catGage == 10)
+			{
+				gameObject.SetActive(false);
+				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);
+				//PlayerPrefs.Save();
+			}
+		}
+
 	}
 
 

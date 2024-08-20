@@ -44,7 +44,7 @@ public class DataManager : MonoBehaviour
 	public int brokenRed;//활주시간
 	public int brokenGreen;//점프횟수
 	public int sushi;//인게임 재화
-
+ 
 
 	/// <summary>
 	/// silverKey : 현재 은열쇠 수
