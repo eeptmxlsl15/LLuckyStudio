@@ -149,15 +149,15 @@ public class GameManager : MonoBehaviour
 		ResetInfiniteDebuff();
 	}
 
-	private void OnApplicationQuit()
-	{
-		//Account.Inst.UserDataAllSave();
-	}
+	//private void OnApplicationQuit()
+	//{
+	//	Account.Inst.UserDataAllSave();
+	//}
 
-	private void OnDisable()
-	{
-		//Account.Inst.UserDataAllSave();
-	}
+	//private void OnDisable()
+	//{
+	//	Account.Inst.UserDataAllSave();
+	//}
 
 	//private void OnApplicationFocus(bool hasFocus)
 	//{
