@@ -233,13 +233,13 @@ public class Player : MonoBehaviour , IDamagable
 				Debug.Log("체력 회복: " + health);
 			}
 		}
-		//활주 쿨타임이 아닐때
+		//활주 중일때
 		if (isGlide && canGlide && !isGrounded) {
 			rb.velocity = new Vector2(rb.velocity.x, 0.5f);
 			
 			glideButtonHoldTimer += Time.deltaTime;
-			
 
+			
 			if (glideButtonHoldTimer > glideTime)
 			{
 
@@ -264,6 +264,7 @@ public class Player : MonoBehaviour , IDamagable
 			if (glideCooldownTimer >= glideCooldown)
 			{
 				glideCooltimeUI.SetActive(false);
+				glideCooltimeText.text = "활공";
 				canGlide = true;
 				glideCooldownTimer = 0f;
 				glideButton.GetComponent<Image>().color = originalGlideButtonColor;
@@ -273,6 +274,7 @@ public class Player : MonoBehaviour , IDamagable
 		//활주 이펙트
 		if (isGlide)
 		{
+			
 			Vector3 offset = new Vector3(1.55f, 0, 0);
 			
 			if (currentGlideEffect == null || !currentGlideEffect.activeSelf)
