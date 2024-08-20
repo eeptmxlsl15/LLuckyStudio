@@ -159,11 +159,11 @@ public class GameManager : MonoBehaviour
 		//Account.Inst.UserDataAllSave();
 	}
 
-	private void OnApplicationFocus(bool hasFocus)
-	{
-		if (hasFocus)
-		{
-			GameManager.Backend.AutoLogin();
-		}
-	}
+	//private void OnApplicationFocus(bool hasFocus)
+	//{
+	//	if (hasFocus)
+	//	{
+	//		GameManager.Backend.AutoLogin();
+	//	}
+	//}
 }
