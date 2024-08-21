@@ -243,4 +243,12 @@ public class DataManager : MonoBehaviour
 		}
 		Debug.Log("데이터 불러오기");
 	}
+
+	public void UseGoldkey()
+	{
+		goldKey--;
+		if (goldKey < 0)
+			goldKey = 0;
+		SaveDataToJson();
+	}
 }
