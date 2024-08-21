@@ -26,6 +26,7 @@ public class InfiniteModeEntranceUI : MonoBehaviour
 
 		if (!isCloseButtonPressed)
 		{
+			DataManager.Instance.UseGoldkey();
 			UnitySceneManager.LoadScene("INFINITEScene");
 			GameManager.Scene.LoadINFINITE();
 		}
