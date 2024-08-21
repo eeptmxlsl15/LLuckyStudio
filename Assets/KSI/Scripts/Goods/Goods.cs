@@ -7,6 +7,7 @@ public abstract class Goods : MonoBehaviour
 	protected IScore scoreAdapter;
 	protected AudioClip getSound;
 	public Player player;
+
 	public abstract void Contact();
 	private void Start()
 	{
