@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
 	public void StartGame()
 	{
 		IsGameStarted = true;
+		GameManager.Score.Reset();
 	}
 
 	public void StopGame()

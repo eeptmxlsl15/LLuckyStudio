@@ -6,7 +6,6 @@ public class ScoreManager : MonoBehaviour
 	public int jellyPawText;
 
 	public UnityAction<int> OnJellyPawChanged;
-	//public UnityAction<int> OnJellyPawCountChanged;
 
 	public void AddJellyPaw(int score)
 	{
@@ -28,6 +27,5 @@ public class ScoreManager : MonoBehaviour
 	public void Reset()
 	{
 		jellyPawText = 0;
-		//jellyPawCountText = 0;
 	}
 }
