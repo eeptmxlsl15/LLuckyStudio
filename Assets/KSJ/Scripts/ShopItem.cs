@@ -206,14 +206,14 @@ public class ShopItem : MonoBehaviour
 				transform.gameObject.SetActive(false);
 				break;
 
-			case 500:// 냥냥 게이지
+			case 500:// 냥냥 게이지 - 통조림 1,3번째
 
 				DataManager.Instance.cannedFood += quantity;
 				transform.gameObject.SetActive(false);
 				// 상태 저장
 				break;
 
-			case 501:// 냥냥 게이지
+			case 501:// 냥냥 게이지 - 염원 조각 10개씩
 
 				DataManager.Instance.brokenBlue += 10;
 				DataManager.Instance.brokenRed += 10;
@@ -222,12 +222,11 @@ public class ShopItem : MonoBehaviour
 				// 상태 저장
 				break;
 
-
-
-
-
-			default:
-
+			case 502: //냥냥 게이지 - 초롱냥과 배경
+				DataManager.Instance.gageCatWallpaper+=1;
+				DataManager.Instance.gageCatSkin += 1;
+				transform.gameObject.SetActive(false);
+				// 상태 저장
 				break;
 
 		}
@@ -288,7 +287,7 @@ public class ShopItem : MonoBehaviour
 
 
 
-		else if (itemID == 500)//냥냥게이지
+		else if (itemID == 500)//냥냥게이지 1,3 통조림
 		{
 			quantityText.text = "" + quantity;
 			costText.text = "무료";
@@ -298,7 +297,11 @@ public class ShopItem : MonoBehaviour
 			quantityText.text = "깨진 염원 \n10개씩";
 			costText.text = "무료";
 		}
-
+		else if (itemID == 502)
+		{
+			quantityText.text = "초롱냥과 배경";
+			costText.text = "무료";
+		}
 
 
 
@@ -311,6 +314,7 @@ public class ShopItem : MonoBehaviour
 			costText.text = "초밥 : " + sushiCost;
 
 		}
+		
 
 
 

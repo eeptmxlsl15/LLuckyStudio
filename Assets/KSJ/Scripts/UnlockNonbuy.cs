@@ -135,6 +135,24 @@ public class UnlockNonbuy : MonoBehaviour
 				//PlayerPrefs.Save();
 			}
 		}
+		else if (objectName == "gagecatskin")
+		{
+			if (DataManager.Instance.gageCatSkin == 1)
+			{
+				gameObject.SetActive(false);
+				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);
+				//PlayerPrefs.Save();
+			}
+		}
+		else if (objectName == "gagecatwallpaper")
+		{
+			if (DataManager.Instance.gageCatWallpaper == 1)
+			{
+				gameObject.SetActive(false);
+				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);
+				//PlayerPrefs.Save();
+			}
+		}
 
 	}
 

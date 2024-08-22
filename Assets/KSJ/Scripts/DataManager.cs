@@ -119,6 +119,10 @@ public class DataManager : MonoBehaviour
 	public int butterflyCatEffect;
 	public int butterflyCatWallpaper;
 	public int butterflyCatSkin;
+
+	public int gageCatEffect;
+	public int gageCatWallpaper;
+	public int gageCatSkin;
 	public class SaveData
 	{
 		public int resetNum;
