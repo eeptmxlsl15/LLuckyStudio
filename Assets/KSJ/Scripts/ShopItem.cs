@@ -206,10 +206,21 @@ public class ShopItem : MonoBehaviour
 				transform.gameObject.SetActive(false);
 				break;
 
+			case 500:// 냥냥 게이지
 
+				DataManager.Instance.cannedFood += quantity;
+				transform.gameObject.SetActive(false);
+				// 상태 저장
+				break;
 
+			case 501:// 냥냥 게이지
 
-
+				DataManager.Instance.brokenBlue += 10;
+				DataManager.Instance.brokenRed += 10;
+				DataManager.Instance.brokenGreen += 10;
+				transform.gameObject.SetActive(false);
+				// 상태 저장
+				break;
 
 
 
@@ -273,6 +284,27 @@ public class ShopItem : MonoBehaviour
 			quantityText.text = "" + quantity;
 			costText.text = "통조림:" + cannedFoodCost;
 		}
+
+
+
+
+		else if (itemID == 500)//냥냥게이지
+		{
+			quantityText.text = "" + quantity;
+			costText.text = "무료";
+		}
+		else if (itemID == 501)//냥냥게이지
+		{
+			quantityText.text = "깨진 염원 \n10개씩";
+			costText.text = "무료";
+		}
+
+
+
+
+
+
+
 		else
 		{
 			quantityText.text = "" + quantity;
