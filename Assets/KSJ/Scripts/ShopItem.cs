@@ -15,7 +15,7 @@ public class ShopItem : MonoBehaviour
 	public GameObject itemPrefab; // 아이템 프리팹을 저장할 변수
 	public Transform contentTransform; // 프리팹 아이템을 넣을 부모 Transform
 	public Button OverlayButton; // 다른 곳을 클릭하면 isBuyUI가 꺼지게 하는 버튼
-
+	private const string ItemPurchasedKey = "ItemPurchased_";//냥냥게이지 구매 상태를 저장
 	public TMP_Text costText;
 	public TMP_Text quantityText;
 
@@ -49,7 +49,12 @@ public class ShopItem : MonoBehaviour
 		{
 			Debug.LogError("Contents 오브젝트를 찾을 수 없습니다. isBuyUI 안에 Content 오브젝트를 추가하세요.");
 		}
-
+		// 냥냥 게이지 구매 상태 저장
+		if (PlayerPrefs.GetInt(ItemPurchasedKey + itemID, 0) == 1)
+		{
+			gameObject.SetActive(false);
+			return;
+		}
 		UpdateText();
 
 	}
@@ -206,17 +211,42 @@ public class ShopItem : MonoBehaviour
 				transform.gameObject.SetActive(false);
 				break;
 
+			case 500:// 냥냥 게이지 - 통조림 1,3번째
 
+				DataManager.Instance.cannedFood += quantity;
+				transform.gameObject.SetActive(false);
+				PlayerPrefs.SetInt(ItemPurchasedKey + _itemID, 1); // 상태 저장
+				PlayerPrefs.Save();
+				// 상태 저장
+				break;
 
+			case 501:// 냥냥 게이지 - 염원 조각 10개씩
 
+				DataManager.Instance.brokenBlue += 10;
+				DataManager.Instance.brokenRed += 10;
+				DataManager.Instance.brokenGreen += 10;
+				transform.gameObject.SetActive(false);
+				PlayerPrefs.SetInt(ItemPurchasedKey + _itemID, 1); // 상태 저장
+				PlayerPrefs.Save();
+				// 상태 저장
+				break;
 
-
-
-
-
-
-			default:
-
+			case 502: //냥냥 게이지 - 초롱냥과 배경
+				DataManager.Instance.gageCatWallpaper+=1;
+				DataManager.Instance.gageCatSkin += 1;
+				transform.gameObject.SetActive(false);
+				PlayerPrefs.SetInt(ItemPurchasedKey + _itemID, 1); // 상태 저장
+				PlayerPrefs.Save();
+				// 상태 저장
+				break;
+			case 503: //냥냥 게이지 - 특별 염원
+				DataManager.Instance.glideTime += 3;
+				DataManager.Instance.allRes += 1;
+				DataManager.Instance.maxHealth += 5;
+				transform.gameObject.SetActive(false);
+				PlayerPrefs.SetInt(ItemPurchasedKey + _itemID, 1); // 상태 저장
+				PlayerPrefs.Save();
+				// 상태 저장
 				break;
 
 		}
@@ -273,12 +303,38 @@ public class ShopItem : MonoBehaviour
 			quantityText.text = "" + quantity;
 			costText.text = "통조림:" + cannedFoodCost;
 		}
+
+
+
+
+		else if (itemID == 500)//냥냥게이지 1,3 통조림
+		{
+			quantityText.text = "" + quantity;
+			costText.text = "무료";
+		}
+		else if (itemID == 501)//냥냥게이지
+		{
+			quantityText.text = "깨진 염원 \n10개씩";
+			costText.text = "무료";
+		}
+		else if (itemID == 502)
+		{
+			quantityText.text = "초롱냥과 배경";
+			costText.text = "무료";
+		}
+
+
+
+
+
+
 		else
 		{
 			quantityText.text = "" + quantity;
 			costText.text = "초밥 : " + sushiCost;
 
 		}
+		
 
 
 

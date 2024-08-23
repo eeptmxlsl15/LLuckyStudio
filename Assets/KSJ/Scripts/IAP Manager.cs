@@ -17,6 +17,11 @@ public class IAPManager : MonoBehaviour , IStoreListener
 	private string cannedfood8000 = "cannedfood8000";
 	private string cannedfood20000 = "cannedfood20000";
 
+	private string basickpackage = "basickpackage";
+	private string nobilitypackage = "nobilitypackage";
+	private string dailypackage = "dailypackage";
+	private string nerocatpackage = "nerocatpackage";
+
 	private string cannedfood400_400 = "cannedfood400_400";
 	private string cannedfood800_800 = "cannedfood800_800";
 	private string cannedfood2000_2000 = "cannedfood2000_2000";
@@ -44,6 +49,13 @@ public class IAPManager : MonoBehaviour , IStoreListener
 		builder.AddProduct(cannedfood8000, ProductType.Consumable);
 		builder.AddProduct(cannedfood20000, ProductType.Consumable);
 
+		builder.AddProduct(basickpackage, ProductType.NonConsumable);
+		builder.AddProduct(nobilitypackage, ProductType.NonConsumable);
+		builder.AddProduct(dailypackage, ProductType.NonConsumable);
+		builder.AddProduct(nerocatpackage, ProductType.NonConsumable);
+
+
+
 		builder.AddProduct(cannedfood400_400, ProductType.NonConsumable);
 		builder.AddProduct(cannedfood800_800, ProductType.NonConsumable);
 		builder.AddProduct(cannedfood2000_2000, ProductType.NonConsumable);
@@ -64,6 +76,11 @@ public class IAPManager : MonoBehaviour , IStoreListener
 		CheckNonConsumable(cannedfood4000_4000);
 		CheckNonConsumable(cannedfood8000_8000);
 		CheckNonConsumable(cannedfood20000_20000);
+
+		CheckNonConsumable(basickpackage);
+		CheckNonConsumable(nobilitypackage);
+		CheckNonConsumable(dailypackage);
+		CheckNonConsumable(nerocatpackage);
 	}
 
 	public void OnInitializeFailed(InitializationFailureReason error)
@@ -90,34 +107,84 @@ public class IAPManager : MonoBehaviour , IStoreListener
 		if(product.definition.id== cannedfood400)
 		{
 			DataManager.Instance.cannedFood += 400;
+			DataManager.Instance.catGage++;
 			DataManager.Instance.SaveDataToJson();
 		}
 		else if (product.definition.id == cannedfood800)
 		{
 			DataManager.Instance.cannedFood += 800;
+			DataManager.Instance.catGage++;
 			DataManager.Instance.SaveDataToJson();
 		}
 		else if (product.definition.id == cannedfood2000)
 		{
 			DataManager.Instance.cannedFood += 2000;
+			DataManager.Instance.catGage++;
 			DataManager.Instance.SaveDataToJson();
 		}
 		else if (product.definition.id == cannedfood4000)
 		{
 			DataManager.Instance.cannedFood += 4000;
+			DataManager.Instance.catGage++;
 			DataManager.Instance.SaveDataToJson();
 		}
 		else if (product.definition.id == cannedfood8000)
 		{
 			DataManager.Instance.cannedFood += 8000;
+			DataManager.Instance.catGage++;
 			DataManager.Instance.SaveDataToJson();
 		}
 		else if (product.definition.id == cannedfood20000)
 		{
 			DataManager.Instance.cannedFood += 20000;
+			DataManager.Instance.catGage++;
 			DataManager.Instance.SaveDataToJson();
 		}
 
+
+		else if(product.definition.id == basickpackage)
+		{
+			DataManager.Instance.silverKey += 10;
+			DataManager.Instance.goldKey+=5;
+			DataManager.Instance.sushi += 10000;
+			DataManager.Instance.brokenBlue += 10;
+			DataManager.Instance.brokenGreen += 10;
+			DataManager.Instance.brokenRed += 10;
+			DataManager.Instance.catGage++;
+			nonConsumableButton.SetActive(true);
+			DataManager.Instance.SaveDataToJson();
+		}
+		else if (product.definition.id == nobilitypackage)
+		{
+			DataManager.Instance.silverKey += 10;
+			DataManager.Instance.goldKey += 10;
+			DataManager.Instance.sushi += 30000;
+			DataManager.Instance.brokenBlue += 20;
+			DataManager.Instance.brokenGreen += 20;
+			DataManager.Instance.brokenRed += 20;
+			DataManager.Instance.catGage++;
+			nonConsumableButton.SetActive(true);
+			DataManager.Instance.SaveDataToJson();
+		}
+		else if (product.definition.id == dailypackage)
+		{
+			DataManager.Instance.silverKey += 10;
+			DataManager.Instance.sushi += 20000;
+			DataManager.Instance.brokenBlue += 3;
+			DataManager.Instance.brokenGreen += 3;
+			DataManager.Instance.brokenRed += 3;
+			DataManager.Instance.catGage++;
+			nonConsumableButton.SetActive(true);
+			DataManager.Instance.SaveDataToJson();
+		}
+		else if (product.definition.id == nerocatpackage)
+		{
+			DataManager.Instance.neroCatSkin++;
+			DataManager.Instance.neroCatWallpaper++;
+			DataManager.Instance.catGage++;
+			nonConsumableButton.SetActive(true);
+			DataManager.Instance.SaveDataToJson();
+		}
 
 
 		else if (product.definition.id == cannedfood400_400)
