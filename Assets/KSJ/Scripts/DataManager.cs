@@ -123,6 +123,10 @@ public class DataManager : MonoBehaviour
 	public int gageCatEffect;
 	public int gageCatWallpaper;
 	public int gageCatSkin;
+
+
+	public int neroCatSkin;
+	public int neroCatWallpaper;
 	public class SaveData
 	{
 		public int resetNum;

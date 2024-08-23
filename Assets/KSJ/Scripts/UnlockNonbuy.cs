@@ -9,6 +9,7 @@ public class UnlockNonbuy : MonoBehaviour
 		//초기화
 		//ResetUnlockStatus();
 		// 이전에 저장된 상태를 불러와서 비활성화된 상태면 비활성화 시킴
+		/*
 		if (PlayerPrefs.GetInt(objectName + "_unlocked", 0) == 1)
 		{
 			gameObject.SetActive(false);
@@ -17,6 +18,8 @@ public class UnlockNonbuy : MonoBehaviour
 		{
 			InvokeRepeating("Unlock", 0f, 1f);
 		}
+		*/
+		InvokeRepeating("Unlock", 0f, 1f);
 	}
 
 	public void Unlock()
@@ -147,6 +150,25 @@ public class UnlockNonbuy : MonoBehaviour
 		else if (objectName == "gagecatwallpaper")
 		{
 			if (DataManager.Instance.gageCatWallpaper == 1)
+			{
+				gameObject.SetActive(false);
+				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);
+				//PlayerPrefs.Save();
+			}
+		}
+
+		else if (objectName == "nerocatskin")
+		{
+			if (DataManager.Instance.neroCatSkin == 1)
+			{
+				gameObject.SetActive(false);
+				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);
+				//PlayerPrefs.Save();
+			}
+		}
+		else if (objectName == "nerocatwallpaper")
+		{
+			if (DataManager.Instance.neroCatWallpaper == 1)
 			{
 				gameObject.SetActive(false);
 				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);

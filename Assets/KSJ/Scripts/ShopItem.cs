@@ -15,7 +15,7 @@ public class ShopItem : MonoBehaviour
 	public GameObject itemPrefab; // 아이템 프리팹을 저장할 변수
 	public Transform contentTransform; // 프리팹 아이템을 넣을 부모 Transform
 	public Button OverlayButton; // 다른 곳을 클릭하면 isBuyUI가 꺼지게 하는 버튼
-
+	private const string ItemPurchasedKey = "ItemPurchased_";//냥냥게이지 구매 상태를 저장
 	public TMP_Text costText;
 	public TMP_Text quantityText;
 
@@ -49,7 +49,12 @@ public class ShopItem : MonoBehaviour
 		{
 			Debug.LogError("Contents 오브젝트를 찾을 수 없습니다. isBuyUI 안에 Content 오브젝트를 추가하세요.");
 		}
-
+		// 냥냥 게이지 구매 상태 저장
+		if (PlayerPrefs.GetInt(ItemPurchasedKey + itemID, 0) == 1)
+		{
+			gameObject.SetActive(false);
+			return;
+		}
 		UpdateText();
 
 	}
@@ -210,6 +215,8 @@ public class ShopItem : MonoBehaviour
 
 				DataManager.Instance.cannedFood += quantity;
 				transform.gameObject.SetActive(false);
+				PlayerPrefs.SetInt(ItemPurchasedKey + _itemID, 1); // 상태 저장
+				PlayerPrefs.Save();
 				// 상태 저장
 				break;
 
@@ -219,6 +226,8 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.brokenRed += 10;
 				DataManager.Instance.brokenGreen += 10;
 				transform.gameObject.SetActive(false);
+				PlayerPrefs.SetInt(ItemPurchasedKey + _itemID, 1); // 상태 저장
+				PlayerPrefs.Save();
 				// 상태 저장
 				break;
 
@@ -226,6 +235,17 @@ public class ShopItem : MonoBehaviour
 				DataManager.Instance.gageCatWallpaper+=1;
 				DataManager.Instance.gageCatSkin += 1;
 				transform.gameObject.SetActive(false);
+				PlayerPrefs.SetInt(ItemPurchasedKey + _itemID, 1); // 상태 저장
+				PlayerPrefs.Save();
+				// 상태 저장
+				break;
+			case 503: //냥냥 게이지 - 특별 염원
+				DataManager.Instance.glideTime += 3;
+				DataManager.Instance.allRes += 1;
+				DataManager.Instance.maxHealth += 5;
+				transform.gameObject.SetActive(false);
+				PlayerPrefs.SetInt(ItemPurchasedKey + _itemID, 1); // 상태 저장
+				PlayerPrefs.Save();
 				// 상태 저장
 				break;
 
