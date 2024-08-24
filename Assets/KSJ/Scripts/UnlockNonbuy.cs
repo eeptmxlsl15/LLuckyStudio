@@ -156,6 +156,15 @@ public class UnlockNonbuy : MonoBehaviour
 				//PlayerPrefs.Save();
 			}
 		}
+		else if (objectName == "gagecateffect")
+		{
+			if (DataManager.Instance.gageCatEffect == 1)
+			{
+				gameObject.SetActive(false);
+				//PlayerPrefs.SetInt(objectName + "_unlocked", 1);
+				//PlayerPrefs.Save();
+			}
+		}
 
 		else if (objectName == "nerocatskin")
 		{
