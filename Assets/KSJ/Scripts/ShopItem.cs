@@ -234,6 +234,7 @@ public class ShopItem : MonoBehaviour
 			case 502: //냥냥 게이지 - 초롱냥과 배경
 				DataManager.Instance.gageCatWallpaper+=1;
 				DataManager.Instance.gageCatSkin += 1;
+				DataManager.Instance.gageCatEffect += 1;
 				transform.gameObject.SetActive(false);
 				PlayerPrefs.SetInt(ItemPurchasedKey + _itemID, 1); // 상태 저장
 				PlayerPrefs.Save();
