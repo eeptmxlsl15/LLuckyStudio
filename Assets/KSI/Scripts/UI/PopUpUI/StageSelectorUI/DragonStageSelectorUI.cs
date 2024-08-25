@@ -7,7 +7,7 @@ public class DragonStageSelectorUI : MonoBehaviour
 {
 	public Button subButton;
 	public Button bossButton;
-	public Button berserkbossButton;
+	//public Button berserkbossButton;
 
 	private void Start()
 	{
@@ -16,14 +16,14 @@ public class DragonStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnDragonSubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnDragonSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
+		//StageManager.OnDragonSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
 	}
 
 	private void DisableAllStageButtons()
 	{
 		subButton.interactable = false;
 		bossButton.interactable = false;
-		berserkbossButton.interactable = false;
+		//berserkbossButton.interactable = false;
 	}
 
 	private void ActivateButton(Button button)

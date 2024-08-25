@@ -7,7 +7,7 @@ public class ChickenStageSelectorUI : MonoBehaviour
 {
 	public Button subButton;
 	public Button bossButton;
-	public Button berserkbossButton;
+	//public Button berserkbossButton;
 
 	private void Start()
 	{
@@ -16,14 +16,14 @@ public class ChickenStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnChickenSubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnChickenSubComplete.AddListener(() => ActivateButton(berserkbossButton));
+		//StageManager.OnChickenSubComplete.AddListener(() => ActivateButton(berserkbossButton));
 	}
 
 	private void DisableAllStageButtons()
 	{
 		subButton.interactable = false;
 		bossButton.interactable = false;
-		berserkbossButton.interactable = false;
+		//berserkbossButton.interactable = false;
 	}
 
 	private void ActivateButton(Button button)

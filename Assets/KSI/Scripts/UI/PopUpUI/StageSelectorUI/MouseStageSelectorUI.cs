@@ -7,7 +7,7 @@ public class MouseStageSelectorUI : MonoBehaviour
 {
 	public Button subButton;
 	public Button bossButton;
-	public Button berserkbossButton;
+	//public Button berserkbossButton;
 
 	private void Start()
 	{
@@ -16,14 +16,14 @@ public class MouseStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnMouseSubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnMouseSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
+		//StageManager.OnMouseSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
 	}
 
 	private void DisableAllStageButtons()
 	{
 		subButton.interactable = false;
 		bossButton.interactable = false;
-		berserkbossButton.interactable = false;
+		//berserkbossButton.interactable = false;
 	}
 
 	private void ActivateButton(Button button)

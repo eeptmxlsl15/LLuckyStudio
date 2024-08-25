@@ -7,7 +7,7 @@ public class PigStageSelectorUI : MonoBehaviour
 {
 	public Button subButton;
 	public Button bossButton;
-	public Button berserkbossButton;
+	//public Button berserkbossButton;
 
 	private void Start()
 	{
@@ -16,16 +16,14 @@ public class PigStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnPigSubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnPigSubComplete.AddListener(() => ActivateButton(berserkbossButton));
-
-		CheckAndActivateUnlockedStages();
+		//StageManager.OnPigSubComplete.AddListener(() => ActivateButton(berserkbossButton));
 	}
 
 	private void DisableAllStageButtons()
 	{
-		subButton.interactable = false;
+		//subButton.interactable = false;
 		bossButton.interactable = false;
-		berserkbossButton.interactable = false;
+		//berserkbossButton.interactable = false;
 	}
 
 	private void ActivateButton(Button button)
@@ -33,27 +31,6 @@ public class PigStageSelectorUI : MonoBehaviour
 		if (button != null)
 		{
 			button.interactable = true;
-		}
-	}
-
-	// 버튼 활성화와 스테이지 해금을 처리하는 메서드
-	private void ActivateButtonAndUnlockStage(Button button, int stageIndex)
-	{
-		ActivateButton(button);
-		Account.Inst.stageUnlockData.UnlockStage(stageIndex);
-	}
-
-	// 이미 해금된 스테이지 버튼을 활성화하는 메서드
-	private void CheckAndActivateUnlockedStages()
-	{
-		if (Account.Inst.stageUnlockData.unlockedStages.Contains(1))
-		{
-			ActivateButton(bossButton);
-		}
-
-		if (Account.Inst.stageUnlockData.unlockedStages.Contains(2))
-		{
-			ActivateButton(berserkbossButton);
 		}
 	}
 }

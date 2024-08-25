@@ -7,7 +7,7 @@ public class DogStageSelectorUI : MonoBehaviour
 {
 	public Button subButton;
 	public Button bossButton;
-	public Button berserkbossButton;
+	//public Button berserkbossButton;
 
 	private void Start()
 	{
@@ -16,14 +16,14 @@ public class DogStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnDogSubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnDogSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
+		//StageManager.OnDogSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
 	}
 
 	private void DisableAllStageButtons()
 	{
 		subButton.interactable = false;
 		bossButton.interactable = false;
-		berserkbossButton.interactable = false;
+		//berserkbossButton.interactable = false;
 	}
 
 	private void ActivateButton(Button button)

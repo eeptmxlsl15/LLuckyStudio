@@ -7,7 +7,7 @@ public class RabbitStageSelectorUI : MonoBehaviour
 {
 	public Button subButton;
 	public Button bossButton;
-	public Button berserkbossButton;
+	//public Button berserkbossButton;
 
 	private void Start()
 	{
@@ -16,14 +16,14 @@ public class RabbitStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnRabbitSubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnRabbitSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
+		//StageManager.OnRabbitSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
 	}
 
 	private void DisableAllStageButtons()
 	{
 		subButton.interactable = false;
 		bossButton.interactable = false;
-		berserkbossButton.interactable = false;
+		//berserkbossButton.interactable = false;
 	}
 
 	private void ActivateButton(Button button)

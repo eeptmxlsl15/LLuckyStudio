@@ -9,7 +9,7 @@ public class DogStoryModeSelectPopUpUI : PopUpUI
 
 		buttons["DogSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["DogBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/DogBossPopUpUI"); });
-		buttons["DogBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/DogBERSERKBossPopUpUI"); });
+		//buttons["DogBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/DogBERSERKBossPopUpUI"); });
 		buttons["DogStoryModeSelectBackButton"].onClick.AddListener(() => { BackButton(); });
 	}
 
