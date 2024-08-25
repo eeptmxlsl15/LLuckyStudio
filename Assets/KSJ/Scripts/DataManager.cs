@@ -166,7 +166,9 @@ public class DataManager : MonoBehaviour
 			Destroy(gameObject); // 중복된 인스턴스 제거
 		}
 		//InitializeUI();
+		BackendGameData.Instance.SyncLocalAndServerData();
 		LoadDataFromJson();
+
 	}
 
 	public void InitializeData(Dictionary<Button, bool> data)
