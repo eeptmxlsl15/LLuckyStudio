@@ -11,7 +11,7 @@ public class RabbitStoryModeSelectPopUpUI : PopUpUI
 
 		buttons["RabbitSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["RabbitBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/RabbitBossPopUpUI"); });
-		buttons["RabbitBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/RabbitBERSERKBossPopUpUI"); });
+		//buttons["RabbitBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/RabbitBERSERKBossPopUpUI"); });
 		buttons["RabbitStoryModeSelectBackButton"].onClick.AddListener(() => { BackButton(); });
 	}
 

@@ -11,7 +11,7 @@ public class TigerStoryModeSelectUI : PopUpUI
 
 		buttons["TigerSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["TigerBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/TigerBossPopUpUI"); });
-		buttons["TigerBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/TigerBERSERKBossPopUpUI"); });
+		//buttons["TigerBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/TigerBERSERKBossPopUpUI"); });
 		buttons["TigerStoryModeSelectBackButton"].onClick.AddListener(() => { BackButton(); });
 	}
 

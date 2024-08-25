@@ -11,7 +11,7 @@ public class SheepStoryModeSelectPopUpUI : PopUpUI
 
 		buttons["SheepSUBButton"].onClick.AddListener(() => { LoadSUBScene(); });
 		buttons["SheepBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BossPopUpUI/SheepBossPopUpUI"); });
-		buttons["SheepBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/SheepBERSERKBossPopUpUI"); });
+		//buttons["SheepBERSERKBOSSButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<PopUpUI>("UI/BERSERKBossPopUpUI/SheepBERSERKBossPopUpUI"); });
 		buttons["SheepStoryModeSelectBackButton"].onClick.AddListener(() => { BackButton(); });
 	}
 
