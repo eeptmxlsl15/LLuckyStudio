@@ -21,7 +21,7 @@ public class PigStageSelectorUI : MonoBehaviour
 
 	private void DisableAllStageButtons()
 	{
-		subButton.interactable = false;
+		//subButton.interactable = false;
 		bossButton.interactable = false;
 		//berserkbossButton.interactable = false;
 	}
