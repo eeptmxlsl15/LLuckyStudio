@@ -7,7 +7,7 @@ public class MonkeyStageSelectorUI : MonoBehaviour
 {
 	public Button subButton;
 	public Button bossButton;
-	public Button berserkbossButton;
+	//public Button berserkbossButton;
 
 	private void Start()
 	{
@@ -16,14 +16,14 @@ public class MonkeyStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnMonkeySubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnMonkeySubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
+		//StageManager.OnMonkeySubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
 	}
 
 	private void DisableAllStageButtons()
 	{
 		subButton.interactable = false;
 		bossButton.interactable = false;
-		berserkbossButton.interactable = false;
+		//berserkbossButton.interactable = false;
 	}
 
 	private void ActivateButton(Button button)

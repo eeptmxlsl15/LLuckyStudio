@@ -7,7 +7,7 @@ public class SheepStageSelectorUI : MonoBehaviour
 {
 	public Button subButton;
 	public Button bossButton;
-	public Button berserkbossButton;
+	//public Button berserkbossButton;
 
 	private void Start()
 	{
@@ -16,14 +16,14 @@ public class SheepStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnSheepSubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnSheepSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
+		//StageManager.OnSheepSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
 	}
 
 	private void DisableAllStageButtons()
 	{
 		subButton.interactable = false;
 		bossButton.interactable = false;
-		berserkbossButton.interactable = false;
+		//berserkbossButton.interactable = false;
 	}
 
 	private void ActivateButton(Button button)

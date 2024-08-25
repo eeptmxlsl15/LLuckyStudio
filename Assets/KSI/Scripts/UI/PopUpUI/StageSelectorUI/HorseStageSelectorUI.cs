@@ -7,7 +7,7 @@ public class HorseStageSelectorUI : MonoBehaviour
 {
 	public Button subButton;
 	public Button bossButton;
-	public Button berserkbossButton;
+	//public Button berserkbossButton;
 
 	private void Start()
 	{
@@ -16,14 +16,14 @@ public class HorseStageSelectorUI : MonoBehaviour
 		subButton.interactable = true;
 
 		StageManager.OnHorseSubComplete.AddListener(() => ActivateButton(bossButton));
-		StageManager.OnHorseSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
+		//StageManager.OnHorseSubComplete.AddListener(() => ActivateButton(berserkbossButton)); ;
 	}
 
 	private void DisableAllStageButtons()
 	{
 		subButton.interactable = false;
 		bossButton.interactable = false;
-		berserkbossButton.interactable = false;
+		//berserkbossButton.interactable = false;
 	}
 
 	private void ActivateButton(Button button)
