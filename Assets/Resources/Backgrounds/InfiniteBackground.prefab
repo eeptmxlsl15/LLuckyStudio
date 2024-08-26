@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 42782543578288741}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0231, y: -5.0715, z: 18.8}
-  m_LocalScale: {x: 35.95503, y: 2.2575235, z: 1.8307915}
+  m_LocalPosition: {x: 0.0134, y: -5.0715, z: 18.8}
+  m_LocalScale: {x: 35.659134, y: 2.2575235, z: 1.8307915}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 630046043027302359}
@@ -117,7 +117,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00073060393, y: -0.27917424}
+  m_Offset: {x: -0.00073060393, y: -0.25662923}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -128,7 +128,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0029154, y: 0.44165152}
+  m_Size: {x: 1.0029154, y: 0.48674157}
   m_EdgeRadius: 0
 --- !u!114 &1098851086312545309
 MonoBehaviour:
@@ -1560,6 +1560,7 @@ GameObject:
   - component: {fileID: 373227138522173830}
   - component: {fileID: 2151017866672895464}
   - component: {fileID: 146857146006730349}
+  - component: {fileID: 4922517617662399942}
   - component: {fileID: 496535714983188635}
   m_Layer: 0
   m_Name: Background2 (7)
@@ -1633,6 +1634,51 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!61 &4922517617662399942
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413208853459490734}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00073063374, y: -0.10266696}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0029154, y: 0.79466605}
+  m_EdgeRadius: 0
 --- !u!114 &496535714983188635
 MonoBehaviour:
   m_ObjectHideFlags: 0
