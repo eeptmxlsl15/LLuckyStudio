@@ -151,7 +151,7 @@ public class IAPManager : MonoBehaviour , IStoreListener
 			DataManager.Instance.brokenGreen += 10;
 			DataManager.Instance.brokenRed += 10;
 			DataManager.Instance.catGage++;
-			nonConsumableButton.SetActive(true);
+			//nonConsumableButton.SetActive(true);
 			DataManager.Instance.SaveDataToJson();
 		}
 		else if (product.definition.id == nobilitypackage)
@@ -159,11 +159,11 @@ public class IAPManager : MonoBehaviour , IStoreListener
 			DataManager.Instance.silverKey += 10;
 			DataManager.Instance.goldKey += 10;
 			DataManager.Instance.sushi += 30000;
-			DataManager.Instance.brokenBlue += 20;
-			DataManager.Instance.brokenGreen += 20;
-			DataManager.Instance.brokenRed += 20;
+			DataManager.Instance.brokenBlue += 15;
+			DataManager.Instance.brokenGreen += 15;
+			DataManager.Instance.brokenRed += 15;
 			DataManager.Instance.catGage++;
-			nonConsumableButton.SetActive(true);
+			//nonConsumableButton.SetActive(true);
 			DataManager.Instance.SaveDataToJson();
 		}
 		else if (product.definition.id == dailypackage)
@@ -174,7 +174,7 @@ public class IAPManager : MonoBehaviour , IStoreListener
 			DataManager.Instance.brokenGreen += 3;
 			DataManager.Instance.brokenRed += 3;
 			DataManager.Instance.catGage++;
-			nonConsumableButton.SetActive(true);
+			//nonConsumableButton.SetActive(true);
 			DataManager.Instance.SaveDataToJson();
 		}
 		else if (product.definition.id == nerocatpackage)
